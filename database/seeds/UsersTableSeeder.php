@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
 
             [
                 'name' => 'Brigita Šahinović',
-                'email' => 'brigita.s@live.com',
+                'email' => 'student1@gmail.com',
                 'password' => bcrypt('123456'),
                 'index_number'=> '1930DS',
                 'title'=> '',
@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
 
             [
                 'name' => 'Hrvoje Ljubić',
-                'email' => 'hrvamo@gmail.com',
+                'email' => 'student@gmail.com',
                 'password' => bcrypt('123456'),
                 'index_number'=> '1954DS',
                 'title'=> '',
@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
 
             [
                 'name' => 'Marija Tuka',
-                'email' => 'marijat1995@gmail.com',
+                'email' => 'student2@gmail.com',
                 'password' => bcrypt('123456'),
                 'index_number'=> '1929DS',
                 'title'=> '',
@@ -52,7 +52,7 @@ class UsersTableSeeder extends Seeder
 
             [
                 'name' => 'Daniel Vasić',
-                'email' => 'dvasic1@gmail.com',
+                'email' => 'professor@gmail.com',
                 'password' => bcrypt('123456'),
                 'index_number'=> '',
                 'title'=> 'assistent',
