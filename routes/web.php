@@ -19,9 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-//Resources
-Route::get('/users', 'UserController@index'); // Retrieve all data from table users
-Route::get('/users/{id}', 'UserController@show'); // Retrieve user which corresponds to passed ID
+Route::get('/users', 'UserController@index'); // Retrieve all data from table user
+Route::get('/users/{id}', 'UserController@show')->where('id', '[0-9]+'); // Retrieve user which corresponds to passed ID
+Route::get('/users/create', 'UserController@create')->name('user_create');
+Route::post('/users/create', 'UserController@store');
 
 Route::get('/attendances', 'AttendanceController@index');
 Route::get('/attendances/{id}', 'AttendanceController@show');
@@ -39,7 +40,9 @@ Route::get('/collegiumstudy', 'CollegiumStudyController@index');
 Route::get('/collegiumstudy/{id}', 'CollegiumStudyController@show');
 
 Route::get('/conversations', 'ConversationController@index');
-Route::get('/conversations/{id}', 'ConversationController@show');
+Route::get('/conversations/{id}', 'ConversationController@show')->where('id', '[0-9]+');
+Route::get('/conversations/create', 'ConversationController@create')->name('conversation_create');
+Route::post('/conversations/create', 'ConversationController@store');
 
 Route::get('/faculties', 'FacultyController@index');
 Route::get('/faculties/{id}', 'FacultyController@show');
@@ -51,10 +54,14 @@ Route::get('/followers', 'FollowerUserController@index');
 Route::get('/followers/{id}', 'FollowerUserController@show');
 
 Route::get('/messages', 'MessageController@index');
-Route::get('/messages/{id}', 'MessageController@show');
+Route::get('/messages/{id}', 'MessageController@show')->where('id', '[0-9]+');
+Route::get('/messages/create', 'MessageController@create')->name('message_create');
+Route::post('messages/create', 'MessageController@store');
 
 Route::get('/participants', 'ParticipantController@index');
-Route::get('/participants/{id}', 'ParticipantController@show');
+Route::get('/participants/{id}', 'ParticipantController@show')->where('id', '[0-9]+');
+Route::get('/participants/create', 'ParticipantController@create')->name('participant_create');
+Route::post('participants/create', 'ParticipantController@store');
 
 Route::get('/posts', 'PostController@index');
 Route::get('/posts/{id}', 'PostController@show');

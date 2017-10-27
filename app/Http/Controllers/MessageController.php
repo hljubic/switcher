@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Conversation;
 use App\Message;
+use App\User;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -24,24 +26,31 @@ class MessageController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $conversations = Conversation::all();
+
+        return view('message.create', ['users' => $users], ['conversations' => $conversations]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $message = new Message();
+        $message->fill($request->all());
+        $message->save();
+
+        return redirect('/messages/create')->with('success', 'Poruka kreirana.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -52,7 +61,7 @@ class MessageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -63,8 +72,8 @@ class MessageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -75,7 +84,7 @@ class MessageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
