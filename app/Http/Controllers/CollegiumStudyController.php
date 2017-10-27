@@ -35,7 +35,9 @@ class CollegiumStudyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $colegium_study=new CollegiumStudy();
+        $colegium_study->fill($request->all());
+        $colegium_study->save();
     }
 
     /**

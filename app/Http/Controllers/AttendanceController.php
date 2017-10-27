@@ -24,7 +24,8 @@ class AttendanceController extends Controller
      */
     public function create()
     {
-        //
+        $classes=Classes::all();
+        return view('attendance.create',['classes'=>$classes]);
     }
 
     /**
@@ -35,7 +36,9 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attendances=new Attendance();
+        $attendances->fill($request->all());
+        $attendances->save();
     }
 
     /**

@@ -35,7 +35,9 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $files=new File();
+        $files->fill($request->all());
+        $files->save();
     }
 
     /**

@@ -35,7 +35,9 @@ class ClasseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $classes=new Classe();
+        $classes->fill($request->all());
+        $classes->save();
     }
 
     /**
