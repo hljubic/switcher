@@ -60,6 +60,18 @@ class UsersTableSeeder extends Seeder
                 'type' => 'professor',
                 'is_active' => '1',
                 'study_id' => '1',
+            ],
+
+            [
+                'name' => 'Sanja Svužević',
+                'email' => 'professor1@gmail.com',
+                'password' => bcrypt('123456'),
+                'index_number'=> '',
+                'title'=> 'dr.sc.',
+                'phone' => '0638123987',
+                'type' => 'professor',
+                'is_active' => '1',
+                'study_id' => '1',
             ]
 
         ];
