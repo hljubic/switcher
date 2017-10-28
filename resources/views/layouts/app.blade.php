@@ -73,10 +73,8 @@
                 </div>
             </div>
         </nav>
-        <div class="col-lg-6 col-lg-offset-3">
-            @include('layouts.messages')
-            @yield('content')
-        </div>
+        @include('layouts.messages')
+        @yield('content')
     </div>
 
     <!-- Scripts -->
