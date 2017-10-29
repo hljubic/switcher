@@ -14,12 +14,12 @@ class AttendancesTableSeeder extends Seeder
     {
             $attendances = [
                 [
-                    'class_id' =>4 ,
-                    'user_id'=>1,
+                    'class_id' =>'7' ,
+                    'user_id'=>'1',
                 ],
                 [
-                    'class_id' => 5,
-                    'user_id'=>2,
+                    'class_id' => '8',
+                    'user_id'=>'2',
                 ],
             ];
 

@@ -15,10 +15,12 @@ class CollegiumStudyTableSeeder extends Seeder
         $collegium_studies = [
             [
 
+                'collegium_id'=>1,
                 'study_id'=>1,
+
             ],
             [
-
+                'collegium_id'=>2,
                 'study_id'=>2,
             ],
         ];
