@@ -66,7 +66,11 @@ class MessageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $message = Message::find($id);
+        $users = User::all();
+        $conversations = Conversation::all();
+
+        return view('message.edit', array('message' => $message, 'conversations' => $conversations, 'users' => $users));
     }
 
     /**
@@ -78,7 +82,11 @@ class MessageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $message = Message::find($id);
+        $message->fill($request->all());
+        $message->save();
+
+        return redirect('/messages/create')->with('success', 'Podatci ažurirani.');
     }
 
     /**

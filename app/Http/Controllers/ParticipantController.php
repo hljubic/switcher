@@ -66,7 +66,11 @@ class ParticipantController extends Controller
      */
     public function edit($id)
     {
-        //
+        $participant = Participant::find($id);
+        $conversations = Conversation::all();
+        $users = User::all();
+
+        return view("participant.edit", array('participant' => $participant, 'users' => $users, 'conversations' => $conversations));
     }
 
     /**
@@ -78,7 +82,11 @@ class ParticipantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $participant = Participant::find($id);
+        $participant->fill($request->all());
+        $participant->save();
+
+        return redirect('/participants/create')->with('success', 'Podatci ažurirani.');
     }
 
     /**

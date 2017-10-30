@@ -21,8 +21,14 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/users', 'UserController@index'); // Retrieve all data from table user
 Route::get('/users/{id}', 'UserController@show')->where('id', '[0-9]+'); // Retrieve user which corresponds to passed ID
+//Create user
 Route::get('/users/create', 'UserController@create')->name('user_create');
 Route::post('/users/create', 'UserController@store');
+//Update user
+Route::get('/users')->name('users');
+Route::get("/users/edit/{id}", "UserController@edit");
+Route::patch("/users/edit/{id}", "UserController@update");
+
 
 Route::get('/attendances', 'AttendanceController@index');
 Route::get('/attendances/{id}', 'AttendanceController@show');
@@ -41,8 +47,13 @@ Route::get('/collegiumstudy/{id}', 'CollegiumStudyController@show');
 
 Route::get('/conversations', 'ConversationController@index');
 Route::get('/conversations/{id}', 'ConversationController@show')->where('id', '[0-9]+');
+//Create conversation
 Route::get('/conversations/create', 'ConversationController@create')->name('conversation_create');
 Route::post('/conversations/create', 'ConversationController@store');
+//Update conversation
+Route::get('/conversations')->name('conversations');
+Route::get("/conversations/edit/{id}", "ConversationController@edit");
+Route::patch("/conversations/edit/{id}", "ConversationController@update");
 
 Route::get('/faculties', 'FacultyController@index');
 Route::get('/faculties/{id}', 'FacultyController@show');
@@ -55,13 +66,23 @@ Route::get('/followers/{id}', 'FollowerUserController@show');
 
 Route::get('/messages', 'MessageController@index');
 Route::get('/messages/{id}', 'MessageController@show')->where('id', '[0-9]+');
+//Create message
 Route::get('/messages/create', 'MessageController@create')->name('message_create');
 Route::post('messages/create', 'MessageController@store');
+//Update message
+Route::get('/messages')->name('messages');
+Route::get("/messages/edit/{id}", "MessageController@edit");
+Route::patch("/messages/edit/{id}", "MessageController@update");
 
 Route::get('/participants', 'ParticipantController@index');
 Route::get('/participants/{id}', 'ParticipantController@show')->where('id', '[0-9]+');
+//Create participant
 Route::get('/participants/create', 'ParticipantController@create')->name('participant_create');
 Route::post('participants/create', 'ParticipantController@store');
+//Update participant
+Route::get('/participants')->name('participants');
+Route::get("/participants/edit/{id}", "ParticipantController@edit");
+Route::patch("/participants/edit/{id}", "ParticipantController@update");
 
 Route::get('/posts', 'PostController@index');
 Route::get('/posts/{id}', 'PostController@show');

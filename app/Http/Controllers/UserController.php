@@ -64,7 +64,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $studies = Study::all();
+        return view("user.edit", ['user' => $user], ['studies' => $studies]);
     }
 
     /**
@@ -76,7 +78,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->fill(array_filter($request->all(), 'strlen'));
+        $user->save();
+
+        return redirect('/users/create')->with('success', 'Podatci korisnika ažurirani.');
     }
 
     /**
@@ -89,4 +95,6 @@ class UserController extends Controller
     {
         //
     }
+
+
 }

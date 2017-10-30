@@ -21,13 +21,15 @@
                 <div class="form-group">
                     <label for="inputPassword" class="col-lg-2 control-label">Lozinka</label>
                     <div class="col-lg-10">
-                        <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Lozinka">
+                        <input type="password" class="form-control" id="inputPassword" name="password"
+                               placeholder="Lozinka">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputIndex" class="col-lg-2 control-label">Broj indeksa</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputIndex" name="index_number" placeholder="Broj indeksa">
+                        <input type="text" class="form-control" id="inputIndex" name="index_number"
+                               placeholder="Broj indeksa">
                     </div>
                 </div>
                 <div class="form-group">
@@ -44,7 +46,8 @@
                 <div class="form-group">
                     <label for="inputPhone" class="col-lg-2 control-label">Broj telefona</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputPhone" name="phone" placeholder="Broj telefona">
+                        <input type="text" class="form-control" id="inputPhone" name="phone"
+                               placeholder="Broj telefona">
                     </div>
                 </div>
                 <div class="form-group">
@@ -52,7 +55,7 @@
                     <div class="col-lg-10">
                         <select class="form-control" id="select" name="type">
                             <option value="admin">Admin</option>
-                            <option value="proffesor">Profesor</option>
+                            <option value="professor">Profesor</option>
                             <option value="student">Student</option>
                             <option value="moderator">Moderator</option>
                         </select>

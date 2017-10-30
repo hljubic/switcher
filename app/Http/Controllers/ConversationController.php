@@ -64,7 +64,11 @@ class ConversationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $conversation = Conversation::find($id);
+        $users = User::all();
+
+        return view('conversation.edit', ['conversation' => $conversation], ['users' => $users]);
+
     }
 
     /**
@@ -76,7 +80,11 @@ class ConversationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $conversation = Conversation::find($id);
+        $conversation->fill($request->all());
+        $conversation->save();
+
+        return redirect('/conversations/create')->with('success', 'Podatci ažurirani.');
     }
 
     /**

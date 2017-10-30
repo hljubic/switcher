@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'index_number','title', 'phone', 'type', 'is_active', 'study_id'
+        'name', 'email', 'password', 'index_number', 'title', 'phone', 'type', 'is_active', 'study_id'
     ];
 
     public $timestamps = false;
@@ -28,4 +28,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //metoda koja vraća kriptirani password
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 }
