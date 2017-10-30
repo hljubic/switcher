@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Task;
 use App\TaskUser;
+use App\User;
 use Illuminate\Http\Request;
 
 class TaskUserController extends Controller
@@ -24,7 +26,10 @@ class TaskUserController extends Controller
      */
     public function create()
     {
-        //
+            $users = User::all();
+            $tasks = Task::all();
+
+            return view('team.create',['tasks'=>$tasks],['users'=>$users]);
     }
 
     /**
@@ -35,7 +40,12 @@ class TaskUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $taskusers = new TaskUser();
+        $taskusers->fill($request->all());
+        $taskusers->save();
+
+        return redirect('/team/create')->with('success','Tim uspješno kreiran.');
+
     }
 
     /**

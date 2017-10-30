@@ -8,10 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Switcher') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <!--style for datepicker-->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker3.min.css') }}">
+
 
     @stack('stylesheets')
 
@@ -32,7 +35,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Switcher') }}
                     </a>
                 </div>
 
@@ -74,12 +77,25 @@
             </div>
         </nav>
 
-        @yield('content')
+            @include('layouts.messages')
+            @yield('content')
+
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
 
+   <!--including jquery-->
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <!--including boostrap theme-->
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <!--including library for datepicker-->
+    <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+    <!--javaScript function for datepicker-->
+    <script>
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+        });
+    </script>
     @stack('scripts')
 </body>
 </html>

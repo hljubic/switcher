@@ -15,9 +15,9 @@ class CreateCollegiumStudyTable extends Migration
     {
         Schema::create('collegium_study', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('collegium_id')->unsigned()->index();
+            $table->integer('collegium_id')->unsigned()->index()->nullable();
             $table->foreign('collegium_id')->references("id")->on("collegiums");
-            $table->integer('study_id')->unsigned()->index();
+            $table->integer('study_id')->unsigned()->index()->nullable();
             $table->foreign('study_id')->references("id")->on("studies");
             $table->timestamps();
         });

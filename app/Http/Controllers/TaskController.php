@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Collegium;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,9 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        $collegiums = Collegium::all();
+
+        return view('task.create', ['collegiums' => $collegiums]);
     }
 
     /**
@@ -35,7 +38,11 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tasks = new Task();
+        $tasks->fill($request->all());
+        $tasks->save();
+
+        return redirect('/tasks/create')->with('success','Zadatak uspješno kreiran.');
     }
 
     /**
