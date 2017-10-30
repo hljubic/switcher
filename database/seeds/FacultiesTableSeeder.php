@@ -12,7 +12,7 @@ class FacultiesTableSeeder extends Seeder
      */
     public function run()
     {
-        $facultis = [
+        $faculties = [
             [
                 'name' => 'Fakultet prirodoslovno matematičkih znanosti',
                 'short_name' => 'FPMOZ',
@@ -32,7 +32,7 @@ class FacultiesTableSeeder extends Seeder
             ]
         ];
 
-        foreach ($facultis as $faculty)
+        foreach ($faculties as $faculty)
             Faculty::create($faculty);
     }
 }

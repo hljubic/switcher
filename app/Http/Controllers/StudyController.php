@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Faculty;
 use App\Study;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,9 @@ class StudyController extends Controller
      */
     public function create()
     {
-        //
+        $faculties = Faculty::all();
+        return view('study.create', ['faculties' => $faculties]);
+
     }
 
     /**
@@ -35,7 +38,9 @@ class StudyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $studies = new Study();
+        $studies -> fill($request->all());
+        $studies -> save();
     }
 
     /**

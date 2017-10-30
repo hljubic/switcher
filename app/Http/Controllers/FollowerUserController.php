@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FollowerUser;
+use App\User;
 use Illuminate\Http\Request;
 
 class FollowerUserController extends Controller
@@ -24,7 +25,8 @@ class FollowerUserController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        return view('follower.create', ['users' => $users]);
     }
 
     /**
@@ -35,7 +37,9 @@ class FollowerUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $followers = new FollowerUser();
+        $followers -> fill($request->all());
+        $followers -> save();
     }
 
     /**
