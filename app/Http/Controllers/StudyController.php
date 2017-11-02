@@ -41,6 +41,7 @@ class StudyController extends Controller
         $studies = new Study();
         $studies -> fill($request->all());
         $studies -> save();
+        return redirect('/studies/create')->with('success', 'Studij kreiran.');
     }
 
     /**
@@ -62,7 +63,11 @@ class StudyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $studies = Study::find($id);
+        $faculties = Faculty::all();
+
+        return view('study.edit', array('studies' => $studies, 'faculties' => $faculties));
+
     }
 
     /**
@@ -74,7 +79,11 @@ class StudyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $studies = Study::find($id); //finding study with
+        $studies -> fill($request->all());
+        $studies -> save();
+
+        return redirect('home') -> with('success', 'Podatci azurirani.'); //returns to create form
     }
 
     /**

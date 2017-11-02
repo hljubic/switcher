@@ -40,6 +40,7 @@ class FollowerUserController extends Controller
         $followers = new FollowerUser();
         $followers -> fill($request->all());
         $followers -> save();
+        return redirect('/followers/create')->with('success', 'Follower kreiran.');
     }
 
     /**

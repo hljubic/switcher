@@ -40,7 +40,7 @@ class FacultyController extends Controller
         $faculties = new Faculty();
         $faculties->fill($request->all());
         $faculties->save();
-        //return redirect('/faculties/create')->with('success', 'Fakultet dodan.');
+        return redirect('/faculties/create')->with('success', 'Fakultet dodan.');
     }
 
     /**

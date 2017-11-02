@@ -42,7 +42,7 @@ Route::get('/conversations', 'ConversationController@index');
 Route::get('/conversations/{id}', 'ConversationController@show');
 
 Route::get('/faculties', 'FacultyController@index');
-Route::get('/faculties/{id}', 'FacultyController@show')->where('id', '[0-9]+');
+Route::get('/faculties/{id}', 'FacultyController@show')->where('id', '[0-9]+'); //
 Route::get('faculties/create', 'FacultyController@create')->name('faculty_create');
 Route::post('faculties/create', 'FacultyController@store');
 
@@ -65,8 +65,13 @@ Route::get('/posts/{id}', 'PostController@show');
 
 Route::get('/studies', 'StudyController@index');
 Route::get('/studies/{id}', 'StudyController@show')->where('id', '[0-9]+');
+//create study
 Route::get('studies/create', 'StudyController@create')->name('study_create');
 Route::post('studies/create', 'StudyController@store');
+//update study
+Route::get('/studies')-> name('studies');
+Route::get('/studies/edit/{id}','StudyController@edit');
+Route::patch('/studies/edit/{id}','StudyController@update');
 
 Route::get('/tasks', 'TaskController@index');
 Route::get('/tasks/{id}', 'TaskController@show');
