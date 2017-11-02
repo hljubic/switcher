@@ -16,7 +16,9 @@ class MessageController extends Controller
      */
     public function index()
     {
-        return Message::all();
+        $messages = Message::all();
+
+        return view('message.index', ['messages' => $messages]);
     }
 
     /**
@@ -44,7 +46,7 @@ class MessageController extends Controller
         $message->fill($request->all());
         $message->save();
 
-        return redirect('/messages/create')->with('success', 'Poruka kreirana.');
+        return redirect('/messages')->with('success', 'Poruka kreirana.');
     }
 
     /**
@@ -86,7 +88,7 @@ class MessageController extends Controller
         $message->fill($request->all());
         $message->save();
 
-        return redirect('/messages/create')->with('success', 'Podatci ažurirani.');
+        return redirect('/messages')->with('success', 'Podatci ažurirani.');
     }
 
     /**
@@ -97,6 +99,10 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $message = Message::find($id);
+
+        $message->delete();
+
+        return redirect('/messages')->with('success', 'Poruka izbrisana.');
     }
 }

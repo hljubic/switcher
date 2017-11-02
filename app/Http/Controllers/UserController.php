@@ -15,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        $users = User::all();
+
+        return view('user.index', ['users' => $users]);
     }
 
     /**
@@ -42,7 +44,7 @@ class UserController extends Controller
         $user->fill($request->all());
         $user->save();
 
-        return redirect('/users/create')->with('success', 'Korisnik kreiran.');
+        return redirect('/users')->with('success', 'Korisnik kreiran.');
     }
 
     /**
@@ -82,7 +84,7 @@ class UserController extends Controller
         $user->fill(array_filter($request->all(), 'strlen'));
         $user->save();
 
-        return redirect('/users/create')->with('success', 'Podatci korisnika ažurirani.');
+        return redirect('/users')->with('success', 'Podatci korisnika ažurirani.');
     }
 
     /**
@@ -93,7 +95,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+
+        $user->delete();
+
+        return redirect('/users')->with('success', 'Korisnik izbrisan.');
     }
 
 

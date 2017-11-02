@@ -16,7 +16,9 @@ class ParticipantController extends Controller
      */
     public function index()
     {
-        return Participant::all();
+        $participants = Participant::orderBy('conversation_id')->get();
+
+        return view('participant.index', ['participants' => $participants]);
     }
 
     /**
@@ -44,7 +46,7 @@ class ParticipantController extends Controller
         $participant->fill($request->all());
         $participant->save();
 
-        return redirect('/participants/create')->with('success', 'Korisnik dodan u razgovor.');
+        return redirect('/participants')->with('success', 'Korisnik dodan u razgovor.');
     }
 
     /**
@@ -86,7 +88,7 @@ class ParticipantController extends Controller
         $participant->fill($request->all());
         $participant->save();
 
-        return redirect('/participants/create')->with('success', 'Podatci ažurirani.');
+        return redirect('/participants')->with('success', 'Podatci ažurirani.');
     }
 
     /**
@@ -97,6 +99,9 @@ class ParticipantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $participant = Participant::find($id);
+        $participant->delete();
+
+        return redirect('/participants')->with('success', 'Korisnik izbrisan iz razgovora');
     }
 }

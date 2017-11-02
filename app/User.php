@@ -34,4 +34,9 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    public function study()
+    {
+        return $this->belongsTo('App\Study');
+    }
 }

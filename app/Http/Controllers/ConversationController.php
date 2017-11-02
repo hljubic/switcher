@@ -15,7 +15,9 @@ class ConversationController extends Controller
      */
     public function index()
     {
-        return Conversation::all();
+        $conversations = Conversation::all();
+
+        return view('conversation.index', ['conversations' => $conversations]);
     }
 
     /**
@@ -42,7 +44,7 @@ class ConversationController extends Controller
         $conversation->fill($request->all());
         $conversation->save();
 
-        return redirect('/conversations/create')->with('success', 'Razgovor kreiran.');
+        return redirect('/conversations')->with('success', 'Razgovor kreiran.');
     }
 
     /**
@@ -84,7 +86,7 @@ class ConversationController extends Controller
         $conversation->fill($request->all());
         $conversation->save();
 
-        return redirect('/conversations/create')->with('success', 'Podatci ažurirani.');
+        return redirect('/conversations')->with('success', 'Podatci ažurirani.');
     }
 
     /**
@@ -95,6 +97,10 @@ class ConversationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $conversation = Conversation::find($id);
+
+        $conversation->delete();
+
+        return redirect('/conversations')->with('success', 'Razgovor izbrisan.');
     }
 }
