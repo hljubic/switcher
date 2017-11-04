@@ -34,16 +34,25 @@ Route::get('/users/delete/{id}', 'UserController@destroy');
 
 
 Route::get('/attendances', 'AttendanceController@index');
-Route::get('/attendances/{id}', 'AttendanceController@show');
+Route::get('/attendances/{id}', 'AttendanceController@show')->where('id','[0-9]+');
+Route::get('/attendances/create','AttendanceController@create')->name('attendance_create');
+Route::post('/attendances/create','AttendanceController@store');
+
 
 Route::get('/classes', 'ClasseController@index');
-Route::get('/classes/{id}', 'ClasseController@show');
+Route::get('/classes/{id}', 'ClasseController@show')->where ('id','[0-9]+');
+Route::get('/classes/create','ClasseController@create')->name('classe_create');
+Route::post('/classes/create','ClasseController@store');
+
 
 Route::get('/collegiums', 'CollegiumController@index')->name('colegiums');
 Route::get('/collegiums/{id}', 'CollegiumController@show')->where('id', '[0-9]+')->name('collegium_show');
 
-Route::get('/collegiumstudy', 'CollegiumStudyController@index');
-Route::get('/collegiumstudy/{id}', 'CollegiumStudyController@show');
+Route::get('/collegium_study', 'CollegiumStudyController@index');
+Route::get('/collegium_study/{id}', 'CollegiumStudyController@show')->where('id','[0-9]+');
+Route::get('/collegium_study/create','CollegiumStudyController@create')->name('collegium_study_create');
+Route::post('/collegium_study/create','CollegiumStudyController@store');
+
 
 
 Route::get('/conversations', 'ConversationController@index');
@@ -63,7 +72,9 @@ Route::get('/faculties', 'FacultyController@index');
 Route::get('/faculties/{id}', 'FacultyController@show');
 
 Route::get('/files', 'FileController@index');
-Route::get('/files/{id}', 'FileController@show');
+Route::get('/files/{id}', 'FileController@show')->where('id','[0-9]+');
+Route::get('files/create','FileController@create')->name('file_create');
+Route::post('/files/create','FileController@store');
 
 Route::get('/followers', 'FollowerUserController@index');
 Route::get('/followers/{id}', 'FollowerUserController@show');

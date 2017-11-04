@@ -46,5 +46,6 @@ class MessagesTableSeeder extends Seeder
 
         foreach ($messages as $message)
             Message::create($message);
+
     }
 }

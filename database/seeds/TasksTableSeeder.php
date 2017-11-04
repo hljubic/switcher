@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Task;
+use Illuminate\Database\Seeder;
 
 class TasksTableSeeder extends Seeder
 {
@@ -19,7 +19,7 @@ class TasksTableSeeder extends Seeder
                 'deadline' => '2017-11-01',
                 'description' => '......',
                 'type'=> 'seminar paper',
-                'collegium_id'=> '2',
+                'collegium_id'=> '1',
 
             ],
 
@@ -28,7 +28,7 @@ class TasksTableSeeder extends Seeder
                 'deadline' => '2017-11-07',
                 'description' => '......',
                 'type'=> 'project',
-                'collegium_id'=> '4',
+                'collegium_id'=> '2',
             ],
 
             [

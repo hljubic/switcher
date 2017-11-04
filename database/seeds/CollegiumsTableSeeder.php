@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Collegium;
+use Illuminate\Database\Seeder;
 
 class CollegiumsTableSeeder extends Seeder
 {
@@ -19,24 +19,23 @@ class CollegiumsTableSeeder extends Seeder
                 'description' => '........',
                 'prof_id'=> '4',
                 'assist_id' => '4',
-
-
+                'conversation_id'=>'1',
             ],
 
             [
                 'name' => 'Računalni praktikum 2',
                 'description' => '........',
-                'prof_id'=> '4',
-                'assist_id' => '4',
-
+                'prof_id'=> '2',
+                'assist_id' => '2',
+                'conversation_id'=>'2',
             ],
 
             [
                 'name' => 'Baze podataka ',
                 'description' => '........',
-                'prof_id'=> '4',
-                'assist_id' => '4',
-
+                'prof_id'=> '1',
+                'assist_id' => '1',
+                'conversation_id'=>'3',
             ],
 
         ];

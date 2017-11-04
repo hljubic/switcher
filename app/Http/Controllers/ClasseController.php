@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classe;
+use App\Collegium;
 use Illuminate\Http\Request;
 
 class ClasseController extends Controller
@@ -24,7 +25,9 @@ class ClasseController extends Controller
      */
     public function create()
     {
-        //
+        $collegiums=Collegium::all();
+
+        return view('classe.create',['collegiums'=>$collegiums]);
     }
 
     /**
@@ -35,7 +38,11 @@ class ClasseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $classes=new Classe();
+        $classes->fill($request->all());
+        $classes->save();
+
+        return redirect('classes/create')->with('success','Kreirano ');
     }
 
     /**
