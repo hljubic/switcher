@@ -21,7 +21,7 @@ class CreateCollegiumsTable extends Migration
             $table->foreign('prof_id')->references('id')->on('users');
             $table->integer('assist_id')->unsigned()->index();
             $table->foreign('assist_id')->references('id')->on('users');
-            $table->integer('conversation_id')->unsigned()->index();
+            $table->integer('conversation_id')->unsigned()->index()->nullable();
             $table->foreign('conversation_id')->references('id')->on('conversations');
             $table->timestamps();
 

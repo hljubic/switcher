@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Study;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -21,6 +22,17 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    //metoda iz RegisterUsers.php za povezivanje tablice Study radi stranog ključa u registraciji
+    public function showRegistrationForm()
+    {
+        $studies = Study::all();
+        return view('auth.register',['studies'=>$studies]);
+    }
 
     /**
      * Where to redirect users after registration.
@@ -62,10 +74,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'index_number' => $data['index_number'],
+            'phone' => $data['phone'],
+            'type' => 'student',
+            'study_id' => $data['study_id']
         ]);
+
     }
 }

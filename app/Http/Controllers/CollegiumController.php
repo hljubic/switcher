@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Collegium;
+use App\Conversation;
+use App\User;
 use Illuminate\Http\Request;
 
 class CollegiumController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,8 @@ class CollegiumController extends Controller
      */
     public function index()
     {
-        return Collegium::all();
+        $collegiums = Collegium::all();
+        return view('collegium.index')->with('collegiums',$collegiums);
     }
 
     /**
@@ -24,7 +27,10 @@ class CollegiumController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $conversations = Conversation::all();
+
+        return view('collegium.create', ['users' => $users],['conversations'=>$conversations]);
     }
 
     /**
@@ -35,7 +41,12 @@ class CollegiumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $collegiums = new Collegium();
+        $collegiums->fill($request->all());
+        $collegiums->save();
+
+        return redirect('collegiums/create')->with('success', 'Kolegij kreiran.');
+
     }
 
     /**
@@ -46,7 +57,8 @@ class CollegiumController extends Controller
      */
     public function show($id)
     {
-        return Collegium::find($id);
+        $collegiums =  Collegium::find($id);
+        return view('collegium.show')->with('collegiums',$collegiums);
     }
 
     /**

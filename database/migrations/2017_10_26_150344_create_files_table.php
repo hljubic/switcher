@@ -19,9 +19,9 @@ class CreateFilesTable extends Migration
             $table->string("path",255);
             $table->mediumText("description");
             $table->bigInteger("size")->unsigned()->index();
-            $table->integer("task_id")->unsigned()->index();
+            $table->integer("task_id")->unsigned()->index()->nullable();
             $table->foreign("task_id")->references("id")->on("tasks");
-            $table->integer("post_id")->unsigned()->index();
+            $table->integer("post_id")->unsigned()->index()->nullable();
             $table->foreign("post_id")->references("id")->on("posts");
             $table->timestamps();
         });

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Collegium;
+use App\Conversation;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -24,7 +26,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $conversations = Conversation::all();
+        $collegiums = Collegium::all();
+
+        return view('post.create',['conversations'=>$conversations],['collegiums'=>$collegiums]);
     }
 
     /**
@@ -35,7 +40,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post();
+        $post->fill($request->all());
+        $post->save();
+
+        return redirect('/posts/create')->with('success','Objava uspješno kreirana.');
     }
 
     /**

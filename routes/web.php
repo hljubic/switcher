@@ -29,11 +29,8 @@ Route::get('/attendances/{id}', 'AttendanceController@show');
 Route::get('/classes', 'ClasseController@index');
 Route::get('/classes/{id}', 'ClasseController@show');
 
-Route::get('/collegiums', 'CollegiumController@index');
-Route::get('/collegiums/{id}', 'CollegiumController@show');
-
-Route::get('/collegiumstudy', 'CollegiumStudyController@index');
-Route::get('/collegiumstudy/{id}', 'CollegiumStudyController@show');
+Route::get('/collegiums', 'CollegiumController@index')->name('colegiums');
+Route::get('/collegiums/{id}', 'CollegiumController@show')->where('id', '[0-9]+')->name('collegium_show');
 
 Route::get('/collegiumstudy', 'CollegiumStudyController@index');
 Route::get('/collegiumstudy/{id}', 'CollegiumStudyController@show');
@@ -57,18 +54,39 @@ Route::get('/participants', 'ParticipantController@index');
 Route::get('/participants/{id}', 'ParticipantController@show');
 
 Route::get('/posts', 'PostController@index');
-Route::get('/posts/{id}', 'PostController@show');
+Route::get('/posts/{id}', 'PostController@show')->where('id', '[0-9]+');
 
 Route::get('/studies', 'StudyController@index');
 Route::get('/studies/{id}', 'StudyController@show');
 
 Route::get('/tasks', 'TaskController@index');
-Route::get('/tasks/{id}', 'TaskController@show');
+Route::get('/tasks/{id}', 'TaskController@show')->where('id', '[0-9]+');
 
 Route::get('/team', 'TaskUserController@index');
-Route::get('/team/{id}', 'TaskUserController@show');
+Route::get('/team/{id}', 'TaskUserController@show')->where('id', '[0-9]+');
 
 Route::get('/chat', 'ChatController@index');
+
+
+//CRUD for table collegiums
+Route::get('/collegiums/create', 'CollegiumController@create')->name('collegium_create');
+Route::post('/collegiums/create', 'CollegiumController@store');
+
+//CRUD for table tasks
+Route::get('/tasks/create', 'TaskController@create')->name('task_create');
+Route::post('/tasks/create', 'TaskController@store');
+
+
+//CRUD  for table task_user
+Route::get('/team/create', 'TaskUserController@create')->name('taskuser_create');
+Route::post('/team/create', 'TaskUserController@store');
+
+
+//CRUD  for table posts
+Route::get('/posts/create', 'PostController@create')->name('post_create');
+Route::post('/posts/create', 'PostController@store');
+
+
 
 
 

@@ -16,7 +16,7 @@ class CreateClassesTable extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->increments('id');
             $table->enum("type",array("lecture","exercises","labaratory ecercises"));
-            $table->integer("collegium_id")->unsigned()->index();
+            $table->integer("collegium_id")->unsigned()->index()->nullable();
             $table->foreign("collegium_id")->references("id")->on("collegiums");
             $table->timestamps();
         });
