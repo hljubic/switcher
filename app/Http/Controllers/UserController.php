@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Study;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        $users = User::all();
+
+        return view('user.index', ['users' => $users]);
     }
 
     /**
@@ -24,24 +27,30 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $studies = Study::all();
+
+        return view('user.create', ['studies' => $studies]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        $user->fill($request->all());
+        $user->save();
+
+        return redirect('/users')->with('success', 'Korisnik kreiran.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -52,34 +61,46 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $studies = Study::all();
+        return view("user.edit", ['user' => $user], ['studies' => $studies]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->fill(array_filter($request->all(), 'strlen'));
+        $user->save();
+
+        return redirect('/users')->with('success', 'Podatci korisnika ažurirani.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+
+        $user->delete();
+
+        return redirect('/users')->with('success', 'Korisnik izbrisan.');
     }
+
+
 }

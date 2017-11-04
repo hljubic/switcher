@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Conversation;
+use App\User;
 use Illuminate\Http\Request;
 
 class ConversationController extends Controller
@@ -14,7 +15,9 @@ class ConversationController extends Controller
      */
     public function index()
     {
-        return Conversation::all();
+        $conversations = Conversation::all();
+
+        return view('conversation.index', ['conversations' => $conversations]);
     }
 
     /**
@@ -24,24 +27,30 @@ class ConversationController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+
+        return view('conversation.create', ['users' => $users]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $conversation = new Conversation();
+        $conversation->fill($request->all());
+        $conversation->save();
+
+        return redirect('/conversations')->with('success', 'Razgovor kreiran.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -52,34 +61,46 @@ class ConversationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $conversation = Conversation::find($id);
+        $users = User::all();
+
+        return view('conversation.edit', ['conversation' => $conversation], ['users' => $users]);
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $conversation = Conversation::find($id);
+        $conversation->fill($request->all());
+        $conversation->save();
+
+        return redirect('/conversations')->with('success', 'Podatci ažurirani.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $conversation = Conversation::find($id);
+
+        $conversation->delete();
+
+        return redirect('/conversations')->with('success', 'Razgovor izbrisan.');
     }
 }
