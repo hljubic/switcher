@@ -44,15 +44,18 @@
 
 @push('scripts')
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="http://172.25.20.172:3000/socket.io/socket.io.js"></script>
 
 
     <script>
         $(function () {
-            var socket = io('localhost:3000');
+            var socket = io('172.25.20.172:3000');
 
             $('form').submit(function () {
-                socket.emit('send_message', $('#message').val());
+                var msg = $('#message').val();
+                var date = new Date();
+
+                socket.emit('send_message', '{{ Auth::user()->name }} at ' + date.getHours() + ':' + date.getMinutes() + ' sent : <strong>' + msg + '</strong>');
 
                 $('#message').val('');
 
@@ -60,9 +63,7 @@
             });
 
             socket.on('receive_message', function (msg) {
-                var date = new Date();
-
-                $('#messages').append($('<li>').html('{{ Auth::user()->name }} at ' + date.getHours() + ':' + date.getMinutes() + ' sent : <strong>' + msg + '</strong>'));
+                $('#messages').append($('<li>').html(msg));
             });
         });
     </script>

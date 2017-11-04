@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
         $users =[
 
             [
-                'name' => 'Brigita Šahinović',
+                'name' => 'Student 1',
                 'email' => 'student1@gmail.com',
                 'password' => bcrypt('123456'),
                 'index_number'=> '1930DS',
@@ -27,8 +27,8 @@ class UsersTableSeeder extends Seeder
             ],
 
             [
-                'name' => 'Hrvoje Ljubić',
-                'email' => 'student@gmail.com',
+                'name' => 'Student 2',
+                'email' => 'student2@gmail.com',
                 'password' => bcrypt('123456'),
                 'index_number'=> '1954DS',
                 'title'=> '',
@@ -39,8 +39,8 @@ class UsersTableSeeder extends Seeder
             ],
 
             [
-                'name' => 'Marija Tuka',
-                'email' => 'student2@gmail.com',
+                'name' => 'Student 3',
+                'email' => 'student3@gmail.com',
                 'password' => bcrypt('123456'),
                 'index_number'=> '1929DS',
                 'title'=> '',
@@ -51,7 +51,7 @@ class UsersTableSeeder extends Seeder
             ],
 
             [
-                'name' => 'Daniel Vasić',
+                'name' => 'Professor 1',
                 'email' => 'professor@gmail.com',
                 'password' => bcrypt('123456'),
                 'index_number'=> '',
@@ -63,7 +63,7 @@ class UsersTableSeeder extends Seeder
             ],
 
             [
-                'name' => 'Sanja Svužević',
+                'name' => 'Professor 2',
                 'email' => 'professor1@gmail.com',
                 'password' => bcrypt('123456'),
                 'index_number'=> '',
