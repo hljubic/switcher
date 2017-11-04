@@ -27,11 +27,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    //metoda koja vraća kriptirani password
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
 
     public function study()
     {
