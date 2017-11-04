@@ -12,18 +12,18 @@ class AttendancesTableSeeder extends Seeder
      */
     public function run()
     {
-            $attendances = [
-                [
-                    'class_id' =>'7' ,
-                    'user_id'=>'1',
-                ],
-                [
-                    'class_id' => '8',
-                    'user_id'=>'2',
-                ],
-            ];
+        $attendances = [
+            [
+                'class_id' => '1',
+                'user_id' => '1',
+            ],
+            [
+                'class_id' => '2',
+                'user_id' => '2',
+            ],
+        ];
 
-            foreach($attendances as $attendance)
-                Attendance::create($attendance);
+        foreach ($attendances as $attendance)
+            Attendance::create($attendance);
     }
 }

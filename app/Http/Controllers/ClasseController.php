@@ -25,30 +25,30 @@ class ClasseController extends Controller
      */
     public function create()
     {
-        $collegiums=Collegium::all();
+        $collegiums = Collegium::all();
 
-        return view('classe.create',['collegiums'=>$collegiums]);
+        return view('classe.create', ['collegiums' => $collegiums]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $classes=new Classe();
+        $classes = new Classe();
         $classes->fill($request->all());
         $classes->save();
 
-        return redirect('classes/create')->with('success','Kreirano ');
+        return redirect('classes/create')->with('success', 'Kreirano ');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -59,7 +59,7 @@ class ClasseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -70,8 +70,8 @@ class ClasseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -82,7 +82,7 @@ class ClasseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

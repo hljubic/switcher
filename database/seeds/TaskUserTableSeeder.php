@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\TaskUser;
+use Illuminate\Database\Seeder;
 
 class TaskUserTableSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class TaskUserTableSeeder extends Seeder
      */
     public function run()
     {
-        $tasksusers =[
+        $tasksusers = [
 
             [
                 'status' => 'in progress',
@@ -24,16 +24,11 @@ class TaskUserTableSeeder extends Seeder
                 'status' => 'in progress',
                 'task_id' => '2',
                 'user_id' => '3',
-            ],
+            ]
 
-            [
-                'status' => 'in progress',
-                'task_id' => '4',
-                'user_id' => '1',
-            ],
         ];
 
-        foreach($tasksusers as $taskuser)
+        foreach ($tasksusers as $taskuser)
             TaskUser::create($taskuser);
     }
 }

@@ -12,15 +12,15 @@ class FilesTableSeeder extends Seeder
      */
     public function run()
     {
-        $files =[
+        $files = [
 
             [
                 'name' => 'Seminarski',
                 'path' => '',
                 'description' => 'Kao neki seminarski',
-                'size'=> '23',
-                'task_id'=>2,
-                'post_id'=>1,
+                'size' => '23',
+                'task_id' => 2,
+                'post_id' => 1,
 
             ],
 
@@ -28,13 +28,13 @@ class FilesTableSeeder extends Seeder
                 'name' => 'Zavrsni',
                 'path' => '',
                 'description' => 'Kao neki zavrsni',
-                'size'=> '23',
-                'task_id'=>4,
-                'post_id'=>2,
+                'size' => '23',
+                'task_id' => 1,
+                'post_id' => 2,
 
-                ]
-            ];
-        foreach($files as $file)
+            ]
+        ];
+        foreach ($files as $file)
             File::create($file);
     }
 }

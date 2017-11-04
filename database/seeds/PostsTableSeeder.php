@@ -12,31 +12,31 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        $posts =[
+        $posts = [
 
             [
                 'content' => 'Ovo je post 1',
-                'conversation_id'=>'1',
+                'conversation_id' => '1',
                 'collegium_id' => '1',
 
             ],
 
             [
                 'content' => 'Ovo je post 2',
-                'conversation_id'=>'2',
+                'conversation_id' => '2',
                 'collegium_id' => '2',
 
             ],
 
             [
                 'content' => 'Ovo je post 3',
-                'conversation_id'=>'3',
+                'conversation_id' => '3',
                 'collegium_id' => '3',
             ],
 
         ];
 
-        foreach($posts as $post)
+        foreach ($posts as $post)
             Post::create($post);
     }
 }

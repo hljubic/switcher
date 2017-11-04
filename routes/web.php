@@ -34,25 +34,24 @@ Route::get('/users/delete/{id}', 'UserController@destroy');
 
 
 Route::get('/attendances', 'AttendanceController@index');
-Route::get('/attendances/{id}', 'AttendanceController@show')->where('id','[0-9]+');
-Route::get('/attendances/create','AttendanceController@create')->name('attendance_create');
-Route::post('/attendances/create','AttendanceController@store');
+Route::get('/attendances/{id}', 'AttendanceController@show')->where('id', '[0-9]+');
+Route::get('/attendances/create', 'AttendanceController@create')->name('attendance_create');
+Route::post('/attendances/create', 'AttendanceController@store');
 
 
 Route::get('/classes', 'ClasseController@index');
-Route::get('/classes/{id}', 'ClasseController@show')->where ('id','[0-9]+');
-Route::get('/classes/create','ClasseController@create')->name('classe_create');
-Route::post('/classes/create','ClasseController@store');
+Route::get('/classes/{id}', 'ClasseController@show')->where('id', '[0-9]+');
+Route::get('/classes/create', 'ClasseController@create')->name('classe_create');
+Route::post('/classes/create', 'ClasseController@store');
 
 
 Route::get('/collegiums', 'CollegiumController@index')->name('colegiums');
 Route::get('/collegiums/{id}', 'CollegiumController@show')->where('id', '[0-9]+')->name('collegium_show');
 
 Route::get('/collegium_study', 'CollegiumStudyController@index');
-Route::get('/collegium_study/{id}', 'CollegiumStudyController@show')->where('id','[0-9]+');
-Route::get('/collegium_study/create','CollegiumStudyController@create')->name('collegium_study_create');
-Route::post('/collegium_study/create','CollegiumStudyController@store');
-
+Route::get('/collegium_study/{id}', 'CollegiumStudyController@show')->where('id', '[0-9]+');
+Route::get('/collegium_study/create', 'CollegiumStudyController@create')->name('collegium_study_create');
+Route::post('/collegium_study/create', 'CollegiumStudyController@store');
 
 
 Route::get('/conversations', 'ConversationController@index');
@@ -74,13 +73,13 @@ Route::get('faculties/create', 'FacultyController@create')->name('faculty_create
 Route::post('faculties/create', 'FacultyController@store');
 
 Route::get('/files', 'FileController@index');
-Route::get('/files/{id}', 'FileController@show')->where('id','[0-9]+');
-Route::get('files/create','FileController@create')->name('file_create');
-Route::post('/files/create','FileController@store');
+Route::get('/files/{id}', 'FileController@show')->where('id', '[0-9]+');
+Route::get('files/create', 'FileController@create')->name('file_create');
+Route::post('/files/create', 'FileController@store');
 
 Route::get('/followers', 'FollowerUserController@index');
-Route::get('/followers/{id}', 'FollowerUserController@show')->where('id','[0-9]+');
-Route::get('/followers/create','FollowerUserController@create')->name('follower_create');
+Route::get('/followers/{id}', 'FollowerUserController@show')->where('id', '[0-9]+');
+Route::get('/followers/create', 'FollowerUserController@create')->name('follower_create');
 Route::post('followers/create', 'FollowerUserController@store');
 
 
@@ -121,9 +120,9 @@ Route::get('/studies/{id}', 'StudyController@show')->where('id', '[0-9]+');
 Route::get('studies/create', 'StudyController@create')->name('study_create');
 Route::post('studies/create', 'StudyController@store');
 //update study
-Route::get('/studies')-> name('studies');
-Route::get('/studies/edit/{id}','StudyController@edit');
-Route::patch('/studies/edit/{id}','StudyController@update');
+Route::get('/studies')->name('studies');
+Route::get('/studies/edit/{id}', 'StudyController@edit');
+Route::patch('/studies/edit/{id}', 'StudyController@update');
 
 Route::get('/tasks', 'TaskController@index');
 Route::get('/tasks/{id}', 'TaskController@show')->where('id', '[0-9]+');

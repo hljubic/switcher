@@ -12,14 +12,14 @@ class TasksTableSeeder extends Seeder
      */
     public function run()
     {
-        $tasks =[
+        $tasks = [
 
             [
                 'name' => 'Programski jezik c, c++',
                 'deadline' => '2017-11-01',
                 'description' => '......',
-                'type'=> 'seminar paper',
-                'collegium_id'=> '1',
+                'type' => 'seminar paper',
+                'collegium_id' => '1',
 
             ],
 
@@ -27,23 +27,22 @@ class TasksTableSeeder extends Seeder
                 'name' => 'Model baze podataka',
                 'deadline' => '2017-11-07',
                 'description' => '......',
-                'type'=> 'project',
-                'collegium_id'=> '2',
+                'type' => 'project',
+                'collegium_id' => '2',
             ],
 
             [
                 'name' => 'Zadatak 2',
                 'deadline' => '2017-11-01',
                 'description' => '......',
-                'type'=> 'homework',
-                'collegium_id'=> '3',
+                'type' => 'homework',
+                'collegium_id' => '3',
             ],
-
 
 
         ];
 
-        foreach($tasks as $task)
+        foreach ($tasks as $task)
             Task::create($task);
     }
 }

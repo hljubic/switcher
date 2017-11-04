@@ -15,17 +15,17 @@ class CollegiumStudyTableSeeder extends Seeder
         $collegium_studies = [
             [
 
-                'collegium_id'=>1,
-                'study_id'=>1,
+                'collegium_id' => 1,
+                'study_id' => 1,
 
             ],
             [
-                'collegium_id'=>2,
-                'study_id'=>2,
+                'collegium_id' => 2,
+                'study_id' => 2,
             ],
         ];
 
-        foreach($collegium_studies as $collegiumStudy)
-            CollegiumStudy::create($collegiumStudy);
+        foreach ($collegium_studies as $collegium_study)
+            CollegiumStudy::create($collegium_study);
     }
 }

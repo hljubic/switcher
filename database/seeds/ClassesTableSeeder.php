@@ -1,4 +1,4 @@
- <?php
+<?php
 
 use App\Classe;
 use Illuminate\Database\Seeder;
@@ -15,16 +15,16 @@ class ClassesTableSeeder extends Seeder
         $classes = [
             [
                 'type' => 'lecture',
-                'collegium_id'=>1,
+                'collegium_id' => 1,
 
             ],
             [
                 'type' => 'exercises',
-                'collegium_id'=>2,
+                'collegium_id' => 2,
 
             ],
         ];
-        foreach($classes as $classe)
-            Classe::create($classe);
+        foreach ($classes as $class)
+            Classe::create($class);
     }
 }

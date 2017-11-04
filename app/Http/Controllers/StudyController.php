@@ -33,21 +33,21 @@ class StudyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $studies = new Study();
-        $studies -> fill($request->all());
-        $studies -> save();
+        $studies->fill($request->all());
+        $studies->save();
         return redirect('/studies/create')->with('success', 'Studij kreiran.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -58,7 +58,7 @@ class StudyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -73,23 +73,23 @@ class StudyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $studies = Study::find($id); //finding study with
-        $studies -> fill($request->all());
-        $studies -> save();
+        $studies->fill($request->all());
+        $studies->save();
 
-        return redirect('home') -> with('success', 'Podatci azurirani.'); //returns to create form
+        return redirect('home')->with('success', 'Podatci azurirani.'); //returns to create form
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -12,35 +12,35 @@ class CollegiumsTableSeeder extends Seeder
      */
     public function run()
     {
-        $collegiums =[
+        $collegiums = [
 
             [
                 'name' => 'Računalni praktikum 1',
                 'description' => '........',
-                'prof_id'=> '4',
+                'prof_id' => '4',
                 'assist_id' => '4',
-                'conversation_id'=>'1',
+                'conversation_id' => '1',
             ],
 
             [
                 'name' => 'Računalni praktikum 2',
                 'description' => '........',
-                'prof_id'=> '2',
+                'prof_id' => '2',
                 'assist_id' => '2',
-                'conversation_id'=>'2',
+                'conversation_id' => '2',
             ],
 
             [
                 'name' => 'Baze podataka ',
                 'description' => '........',
-                'prof_id'=> '1',
+                'prof_id' => '1',
                 'assist_id' => '1',
-                'conversation_id'=>'3',
+                'conversation_id' => '3',
             ],
 
         ];
 
-        foreach($collegiums as $collegium)
+        foreach ($collegiums as $collegium)
             Collegium::create($collegium);
     }
 }

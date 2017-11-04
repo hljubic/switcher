@@ -14,8 +14,8 @@ class FollowersUsersTableSeeder extends Seeder
     {
         $followerUsers = [
             [
-                'user_id' => 5,
-                'follower_id' => 6,
+                'user_id' => 1,
+                'follower_id' => 2,
             ]
         ];
 

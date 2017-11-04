@@ -44,12 +44,12 @@
 
 @push('scripts')
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="http://172.25.20.172:3000/socket.io/socket.io.js"></script>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
 
 
     <script>
         $(function () {
-            var socket = io('172.25.20.172:3000');
+            var socket = io('localhost:3000');
 
             $('form').submit(function () {
                 var msg = $('#message').val();

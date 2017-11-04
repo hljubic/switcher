@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Collegium;
 use App\Conversation;
 use App\User;
@@ -17,7 +18,7 @@ class CollegiumController extends Controller
     public function index()
     {
         $collegiums = Collegium::all();
-        return view('collegium.index')->with('collegiums',$collegiums);
+        return view('collegium.index')->with('collegiums', $collegiums);
     }
 
     /**
@@ -30,13 +31,13 @@ class CollegiumController extends Controller
         $users = User::all();
         $conversations = Conversation::all();
 
-        return view('collegium.create', ['users' => $users],['conversations'=>$conversations]);
+        return view('collegium.create', ['users' => $users], ['conversations' => $conversations]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -52,19 +53,19 @@ class CollegiumController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $collegiums =  Collegium::find($id);
-        return view('collegium.show')->with('collegiums',$collegiums);
+        $collegiums = Collegium::find($id);
+        return view('collegium.show')->with('collegiums', $collegiums);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -75,8 +76,8 @@ class CollegiumController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -87,7 +88,7 @@ class CollegiumController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
