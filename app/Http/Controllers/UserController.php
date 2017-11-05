@@ -41,8 +41,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = new User();
-        $user->fill($request->except('password'));
-        $user->password = bcrypt($request['password']);
+        $user->fill($request->all());
         $user->save();
 
         return redirect('/users')->with('success', 'Korisnik kreiran.');
@@ -82,12 +81,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        if ($request->filled('password')) {
-            $user->fill(array_filter($request->except('password'), 'strlen'));
-            $user->password = bcrypt($request['password']);
-        } else {
-            $user->fill(array_filter($request->all(), 'strlen'));
-        }
+        $user->fill(array_filter($request->all(), 'strlen'));
         $user->save();
 
         return redirect('/users')->with('success', 'Podatci korisnika ažurirani.');
