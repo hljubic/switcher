@@ -66,7 +66,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        $conversations = Conversation::all();
+        $collegiums = Collegium::all();
+
+        return view('post.edit', array('post' => $post, 'conversations' => $conversations, 'collegiums' => $collegiums));
     }
 
     /**
@@ -78,7 +82,11 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $post->fill($request->all());
+        $post->save();
+
+        return redirect('/posts')->with('success', 'Podatci ažurirani.');
     }
 
     /**
@@ -89,6 +97,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+
+        return redirect('/posts')->with('success', 'Objava izbrisana.');
     }
 }

@@ -64,7 +64,10 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        $task = Task::find($id);
+        $collegiums = Collegium::all();
+
+        return view('/task.edit',['task' => $task],['collegiums' => $collegiums]);
     }
 
     /**
@@ -76,8 +79,13 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $task = Task::find($id);
+       $task->fill(array_filter($request->all(), 'strlen'));
+       $task->save();
+
+       return redirect('/tasks')->with('success', 'Podaci zadatka ažurirani.');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -87,6 +95,9 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::find($id);
+        $task->delete();
+
+        return redirect('/tasks')->with('success', 'Zadatak izbrisan.');
     }
 }
