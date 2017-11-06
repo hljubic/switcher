@@ -15,7 +15,8 @@ class ClasseController extends Controller
      */
     public function index()
     {
-        return Classe::all();
+        $classes = Classe::all();
+        return view('classe.index', ['classes' => $classes]);
     }
 
     /**
@@ -64,7 +65,11 @@ class ClasseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $classes = Classe::find($id);
+        $collegiums = Collegium::all();
+
+        return view('classe.edit',['collegiums' => $collegiums, 'classes' => $classes]);
+
     }
 
     /**
@@ -76,7 +81,11 @@ class ClasseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $classes = Classe::find($id);
+        $classes->fill($request->all());
+        $classes->save();
+
+        return redirect('/classes')->with('success', 'Ažurirano ');
     }
 
     /**
@@ -87,6 +96,8 @@ class ClasseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $classes = Classe::find($id);
+        $classes->delete();
+        return redirect('/classes')->with('success', 'Izbrisano ');
     }
 }

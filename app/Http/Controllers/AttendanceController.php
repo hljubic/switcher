@@ -16,7 +16,8 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        return Attendance::all();
+        $attendances = Attendance::all();
+        return view('attendance.index', ['attendances' => $attendances]);
     }
 
     /**
@@ -65,7 +66,10 @@ class AttendanceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $attendances = Attendance::find($id);
+        $classes = Classe::all();
+        $users = User::all();
+        return view('attendance.edit', ['users' => $users, 'attendances' => $attendances, 'classes' => $classes]);
     }
 
     /**
@@ -77,7 +81,10 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $attendances = Attendance::find($id);
+        $attendances->fill($request->all());
+        $attendances->save();
+        return redirect('/attendances')->with('success', 'Ažurirano ');
     }
 
     /**
@@ -88,6 +95,10 @@ class AttendanceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $attendances = Attendance::find($id);
+        $attendances->delete();
+        return redirect('/attendances')->with('success', 'Izbrisano ');
+
+
     }
 }

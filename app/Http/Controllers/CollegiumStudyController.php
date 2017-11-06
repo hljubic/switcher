@@ -16,7 +16,8 @@ class CollegiumStudyController extends Controller
      */
     public function index()
     {
-        return CollegiumStudy::all();
+        $collegium_study = CollegiumStudy::all();
+        return view('collegiumStudy.index', ['collegium_study' => $collegium_study]);
     }
 
     /**
@@ -65,7 +66,10 @@ class CollegiumStudyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $collegium_study = CollegiumStudy::find($id);
+        $collegiums = Collegium::all();
+        $studies = Study::all();
+        return view('collegiumStudy.edit', array('collegium_study' => $collegium_study, 'collegiums' => $collegiums, 'studies' => $studies));
     }
 
     /**
@@ -77,7 +81,11 @@ class CollegiumStudyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $collegium_study = CollegiumStudy::find($id);
+        $collegium_study->fill($request->all());
+        $collegium_study->save();
+
+        return redirect('/collegium_study')->with('success', 'Kreirano ');
     }
 
     /**
@@ -88,6 +96,8 @@ class CollegiumStudyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $collegium_study = CollegiumStudy::find($id);
+        $collegium_study->delete();
+        return redirect('/collegium_study')->with('success', 'Izbrisano ');
     }
 }

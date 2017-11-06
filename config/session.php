@@ -48,7 +48,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Session File Location
+    | Session file Location
     |--------------------------------------------------------------------------
     |
     | When using the native session driver, we need a location where session

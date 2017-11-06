@@ -16,7 +16,8 @@ class FileController extends Controller
      */
     public function index()
     {
-        return File::all();
+        $files = File::all();
+        return view('file.index', ['files' => $files]);
     }
 
     /**
@@ -65,7 +66,10 @@ class FileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $files = File::find($id);
+        $posts = Post::all();
+        $tasks = Task::all();
+        return view('file.edit', ['files' => $files, 'posts' => $posts, 'tasks' => $tasks]);
     }
 
     /**
@@ -77,7 +81,11 @@ class FileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $files = File::find($id);
+        $files->fill($request->all());
+        $files->save();
+
+        return redirect('/files')->with('success', 'Ažurirano ');
     }
 
     /**
@@ -88,6 +96,8 @@ class FileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $files = File::find($id);
+        $files->delete();
+        return redirect('/files')->with('success', 'Izbrisano ');
     }
 }

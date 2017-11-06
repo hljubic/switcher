@@ -8,4 +8,9 @@ class Classe extends Model
 {
     public $timestamps = false;
     protected $fillable = ['type', 'collegium_id'];
+
+    public function collegium()
+    {
+        return $this->belongsTo('App\Collegium', 'collegium_id');
+    }
 }
