@@ -69,11 +69,6 @@ Route::get('/team', 'TaskUserController@index');
 Route::get('/team/{id}', 'TaskUserController@show');
 
 Route::get('/chat', 'ChatController@index');
-
-
-
-
-
-
-
-
+Route::get('/chat/conversations/{user_id}', 'ChatController@getConversations')->name('conversations');
+Route::get('/chat/messages/{conversation_id}', 'ChatController@getMessages')->name('messages');
+Route::post('/messages/create', 'MessageController@store')->name('message.create');

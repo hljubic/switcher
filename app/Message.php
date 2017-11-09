@@ -8,4 +8,9 @@ class Message extends Model
 {
     protected $fillable = ['content', 'conversation_id', 'sender_id'];
     public $timestamps = false;
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'sender_id');
+    }
 }
