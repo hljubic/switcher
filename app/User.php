@@ -1,15 +1,10 @@
 <?php
-
 namespace App;
-
-
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
-
 class User extends Authenticatable
 {
     //use Notifiable;
-
     public $timestamps = false;
     /**
      * The attributes that are mass assignable.
@@ -27,13 +22,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
     //funkcija koja postavlja kriptiranu lozinku
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = Hash::needsRehash($password) ? Hash::make($password) : $password;
     }
-
     public function study()
     {
         return $this->belongsTo('App\Study');

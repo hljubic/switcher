@@ -15,7 +15,9 @@ class FollowerUserController extends Controller
      */
     public function index()
     {
-        return FollowerUser::all();
+        $followers = FollowerUser::all();
+
+        return view('follower.index',['followers' => $followers]);
     }
 
     /**
@@ -62,7 +64,10 @@ class FollowerUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $followers = FollowerUser::find($id);
+        $users = User::all();
+
+        return view('follower.edit', array('followers' => $followers, 'users' => $users));
     }
 
     /**
@@ -74,7 +79,11 @@ class FollowerUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $followers = FollowerUser::find($id);
+        $followers -> fill($request->all());
+        $followers -> save();
+
+        return redirect('home')->with('success', 'Podatci azurirani.');
     }
 
     /**
@@ -85,6 +94,10 @@ class FollowerUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $followers = FollowerUser::find($id);
+
+        $followers -> delete();
+
+        return redirect('/followers')->with('success', "Pratitelj izbrisan.");
     }
 }
