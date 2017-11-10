@@ -15,7 +15,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return Task::all();
+        $tasks =  Task::all();
+        return view('task.index')->with('tasks',$tasks);
     }
 
     /**
@@ -42,7 +43,7 @@ class TaskController extends Controller
         $tasks->fill($request->all());
         $tasks->save();
 
-        return redirect('/tasks/create')->with('success', 'Zadatak uspješno kreiran.');
+        return redirect('/tasks')->with('success', 'Zadatak uspješno kreiran.');
     }
 
     /**

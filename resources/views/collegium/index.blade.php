@@ -1,19 +1,41 @@
 @extends ('layouts.app')
 
 @section('content')
-    <div class="col-md-6 col-md-offset-3">
-    <h1>Kolegiji </h1>
+    <div class="col-md-8 col-md-offset-2">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#table_view" data-toggle="tab">Kolegiji</a></li>
+            <li><a href="{{route('collegium_create')}}" class="btn btn-success">Dodaj</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="table_view" style="padding-top:35px">
+                <table class="table table-striped table-hover ">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Naziv</th>
+                        <th>Opis</th>
+                        <th>Nositelj kolegija</th>
+                        <th>Asistent</th>
 
-        @foreach($collegiums as $collegium)
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><a href="{{route('collegium_show',$collegium->id)}}">{{$collegium->name}}</a></h3>
-                </div>
-                <div class="panel-body">
-                    {{$collegium->description}}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($collegiums as $collegium)
+                        <tr>
+                            <td>{{$collegium->id}}</td>
+                            <td>{{$collegium->name}}</td>
+                            <td>{{$collegium->description}}</td>
+                            <td>{{$collegium->professor->name}}</td>
+                            <td>{{$collegium->assistent->name}}</td>
 
-                </div>
+                            <td><a href="{{route('collegium_edit')}}/{{$collegium->id}}" class="btn btn-primary btn-xs">Uredi</a></td>
+                            <td><a href="{{route('collegium_delete')}}/{{$collegium->id}}" class="btn btn-danger btn-xs">Izbriši</a></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
-        @endforeach
+        </div>
     </div>
+
 @endsection

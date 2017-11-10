@@ -16,7 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::all();
+        $posts = Post::all();
+        return view('post.index')->with('posts', $posts);
     }
 
     /**
@@ -44,7 +45,7 @@ class PostController extends Controller
         $post->fill($request->all());
         $post->save();
 
-        return redirect('/posts/create')->with('success', 'Objava uspješno kreirana.');
+        return redirect('/posts')->with('success', 'Objava uspješno kreirana.');
     }
 
     /**
