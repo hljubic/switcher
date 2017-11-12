@@ -13,9 +13,15 @@ class StudyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return Study::all();
+//    public function index()
+//    {
+//        $studies = Study::all();
+//        return view('study.index', ['studies' => $studies]);
+//    }
+
+    public function index(){
+        $studies = Study::all();
+        return view('study.index', ['studies' => $studies]);
     }
 
     /**
@@ -25,7 +31,7 @@ class StudyController extends Controller
      */
     public function create()
     {
-        $faculties = Faculty::all();
+        $faculties = Faculty::all(); //FK from faculty
         return view('study.create', ['faculties' => $faculties]);
 
     }
@@ -94,6 +100,8 @@ class StudyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $studies = Study::find($id);
+        $studies->delete();
+        return redirect('/studies')->with('success', 'Studij izbrisan.');
     }
 }

@@ -14,7 +14,9 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        return Faculty::all();
+        $faculties = Faculty::all();
+
+        return view('faculty.index', ['faculties' => $faculties]);
     }
 
     /**
@@ -62,7 +64,9 @@ class FacultyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $faculties = Faculty::find($id);
+
+        return view('faculty.edit', array('faculties' => $faculties));
     }
 
     /**
@@ -74,7 +78,11 @@ class FacultyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $faculties = Faculty::find($id); //find faculty with id
+        $faculties -> fill($request->all());
+        $faculties -> save();
+
+        return redirect('home')->with('success', 'Podatci azurirani');
     }
 
     /**
@@ -85,6 +93,10 @@ class FacultyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $faculty = Faculty::find($id);
+
+        $faculty -> delete();
+
+        return redirect('/faculties')->with('success', 'Fakultet izbrisan.');
     }
 }
