@@ -70,7 +70,9 @@ class CollegiumController extends Controller
      */
     public function edit($id)
     {
-        //
+        $collegium = Collegium::find($id);
+        $users = User::all();
+        return view("collegium.edit", ['collegium' => $collegium], ['users' => $users]);
     }
 
     /**
@@ -82,7 +84,11 @@ class CollegiumController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $collegium = Collegium::find($id);
+        $collegium->fill(array_filter($request->all(), 'strlen'));
+        $collegium->save();
+
+        return redirect('/collegiums')->with('success', 'Podaci kolegija ažurirani.');
     }
 
     /**
@@ -93,6 +99,9 @@ class CollegiumController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $collegium = Collegium::find($id);
+        $collegium->delete();
+
+        return redirect('/collegiums')->with('success', 'Kolegij izbrisan.');
     }
 }

@@ -67,7 +67,11 @@ class TaskUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $taskuser = TaskUser::find($id);
+        $users = User::all();
+        $tasks = Task::all();
+
+        return view('team.edit', array('taskuser' => $taskuser, 'tasks' => $tasks, 'users' => $users));
     }
 
     /**
@@ -79,7 +83,11 @@ class TaskUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $taskuser = TaskUser::find($id);
+        $taskuser->fill(array_filter($request->all(), 'strlen'));
+        $taskuser->save();
+
+        return redirect('/team')->with('success', 'Podaci ažurirani.');
     }
 
     /**
@@ -90,6 +98,9 @@ class TaskUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $taskuser = TaskUser::find($id);
+        $taskuser->delete();
+
+        return redirect('/team')->with('success', 'Tim izbrisan.');
     }
 }
