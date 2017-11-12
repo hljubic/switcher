@@ -46,7 +46,7 @@ class CollegiumController extends Controller
         $collegiums->fill($request->all());
         $collegiums->save();
 
-        return redirect('collegiums/create')->with('success', 'Kolegij kreiran.');
+        return redirect('/collegiums')->with('success', 'Kolegij kreiran.');
 
     }
 

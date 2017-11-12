@@ -16,7 +16,8 @@ class TaskUserController extends Controller
      */
     public function index()
     {
-        return TaskUser::all();
+        $teams = TaskUser::all();
+        return view('team.index')->with('teams',$teams);
     }
 
     /**
@@ -44,7 +45,7 @@ class TaskUserController extends Controller
         $taskusers->fill($request->all());
         $taskusers->save();
 
-        return redirect('/team/create')->with('success', 'Tim uspješno kreiran.');
+        return redirect('/team')->with('success', 'Tim uspješno kreiran.');
 
     }
 
@@ -56,7 +57,8 @@ class TaskUserController extends Controller
      */
     public function show($id)
     {
-        return TaskUser::find($id);
+        $team = TaskUser::find($id);
+        return view('team.index')->with('team',$team);
     }
 
     /**
