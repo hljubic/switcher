@@ -36,7 +36,6 @@ Route::get('/users/delete/{id}', 'UserController@destroy');
 //ATTENDANCES
 Route::get('/attendances', 'AttendanceController@index');
 Route::get('/attendances/{id}', 'AttendanceController@show')->where('id', '[0-9]+');
-
 //create attendance
 Route::get('/attendances/create', 'AttendanceController@create')->name('attendance_create');
 Route::post('/attendances/create', 'AttendanceController@store');
@@ -63,19 +62,15 @@ Route::get('/classes/delete')->name('classe_delete');
 Route::get('/classes/delete/{id}','ClasseController@destroy');
 
 //COLLEGIUMS
-//index collegiums
 Route::get('/collegiums', 'CollegiumController@index')->name('colegiums');
 Route::get('/collegiums/{id}', 'CollegiumController@show')->where('id', '[0-9]+')->name('collegium_show');
-
 //create collegium
 Route::get('/collegiums/create', 'CollegiumController@create')->name('collegium_create');
 Route::post('/collegiums/create', 'CollegiumController@store');
-
 //update collegium
 Route::get('/collegiums/edit')->name('collegium_edit');
 Route::get('/collegiums/edit/{id}', 'CollegiumController@edit');
 Route::patch('/collegiums/edit/{id}', 'CollegiumController@update');
-
 //destroy collegium
 Route::get('/collegiums/delete')->name('collegium_delete');
 Route::get('/collegiums/delete/{id}', 'CollegiumController@destroy');
@@ -107,6 +102,7 @@ Route::patch('/conversations/edit/{id}', 'ConversationController@update');
 //Destroy conversation
 Route::get('/conversations/delete')->name('conversation_delete');
 Route::get('/conversations/delete/{id}', 'ConversationController@destroy');
+
 //FACULTIES
 Route::get('/faculties', 'FacultyController@index');
 Route::get('/faculties/{id}', 'FacultyController@show')->where('id', '[0-9]+');
@@ -124,7 +120,6 @@ Route::get('/faculties/delete/{id}', 'FacultyController@destroy');
 //FILES
 Route::get('/files', 'FileController@index');
 Route::get('/files/{id}', 'FileController@show')->where('id', '[0-9]+');
-
 //Create files
 Route::get('files/create', 'FileController@create')->name('file_create');
 Route::post('/files/create', 'FileController@store');
@@ -139,7 +134,6 @@ Route::get('/files/delete/{id}', 'FileController@destroy');
 //FOLLOWER_USER
 Route::get('/followers', 'FollowerUserController@index');
 Route::get('/followers/{id}', 'FollowerUserController@show')->where('id', '[0-9]+');
-
 //create follower_user
 Route::get('/followers/create', 'FollowerUserController@create')->name('follower_create');
 Route::post('followers/create', 'FollowerUserController@store');
@@ -150,6 +144,7 @@ Route::patch('/followers/edit/{id}', 'FollowerUserController@update');
 //Destroy  follower_user
 Route::get('/followers/delete')->name('follower_delete');
 Route::get('/followers/delete/{id}', 'FollowerUserController@destroy');
+
 //MESSAGES
 Route::get('/messages', 'MessageController@index');
 Route::get('/messages/{id}', 'MessageController@show')->where('id', '[0-9]+');
@@ -191,6 +186,7 @@ Route::patch('/posts/edit/{id}', 'PostController@update');
 //destroy post
 Route::get('/posts/delete')->name('post_delete');
 Route::get('/posts/delete/{id}', 'PostController@destroy');
+
 //STUDIES
 Route::get('/studies', 'StudyController@index');
 Route::get('/studies/{id}', 'StudyController@show')->where('id', '[0-9]+');
@@ -218,6 +214,7 @@ Route::patch('/tasks/edit/{id}', 'TaskController@update');
 //destroy task
 Route::get('/tasks/delete')->name('task_delete');
 Route::get('/tasks/delete/{id}', 'TaskController@destroy');
+
 //TASK_USER
 Route::get('/team', 'TaskUserController@index');
 Route::get('/team/{id}', 'TaskUserController@show')->where('id', '[0-9]+');
@@ -231,9 +228,6 @@ Route::patch('/team/edit/{id}', 'TaskUserController@update');
 //destroy team
 Route::get('/team/delete')->name('taskuser_delete');
 Route::get('/team/delete/{id}', 'TaskUserController@destroy');
+
+// Chat
 Route::get('/chat', 'ChatController@index');
-
-
-
-
-
