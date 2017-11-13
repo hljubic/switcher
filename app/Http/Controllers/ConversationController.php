@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Conversation;
+use App\Participant;
 use App\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class ConversationController extends Controller
 {
@@ -12,7 +14,14 @@ class ConversationController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
         $conversations = Conversation::all();
@@ -102,5 +111,11 @@ class ConversationController extends Controller
         $conversation->delete();
 
         return redirect('/conversations')->with('success', 'Razgovor izbrisan.');
+    }
+
+    public function dajSudionike($id){
+
+        $conversation=Conversation::find($id);
+        return view('chat.conversation', ['conversation' => $conversation]);
     }
 }

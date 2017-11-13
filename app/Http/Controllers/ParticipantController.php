@@ -104,4 +104,5 @@ class ParticipantController extends Controller
 
         return redirect('/participants')->with('success', 'Korisnik izbrisan iz razgovora');
     }
+
 }

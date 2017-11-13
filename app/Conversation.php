@@ -14,4 +14,9 @@ class Conversation extends Model
     {
         return $this->belongsTo('App\User', 'creator_id');
     }
+
+    public function participants()
+    {
+        return $this->belongsToMany('App\User','participants');
+    }
 }
