@@ -87,7 +87,7 @@ Route::get('/messages', 'MessageController@index');
 Route::get('/messages/{id}', 'MessageController@show')->where('id', '[0-9]+');
 //Create message
 Route::get('/messages/create', 'MessageController@create')->name('message_create');
-Route::post('messages/create', 'MessageController@store');
+Route::post('messages/create', 'MessageController@store')->name('message.create');
 //Update message
 Route::get('/messages/edit')->name('message_edit');
 Route::get('/messages/edit/{id}', 'MessageController@edit');
@@ -131,6 +131,8 @@ Route::get('/team', 'TaskUserController@index');
 Route::get('/team/{id}', 'TaskUserController@show')->where('id', '[0-9]+');
 
 Route::get('/chat', 'ChatController@index');
+Route::get('/chat/conversations/{user_id}', 'ChatController@getConversations')->name('conversations');
+Route::get('/chat/messages/{conversation_id}', 'ChatController@getMessages')->name('messages');
 
 
 //CRUD for table collegiums

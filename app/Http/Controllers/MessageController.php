@@ -46,7 +46,6 @@ class MessageController extends Controller
         $message->fill($request->all());
         $message->save();
 
-        return redirect('/messages')->with('success', 'Poruka kreirana.');
     }
 
     /**
