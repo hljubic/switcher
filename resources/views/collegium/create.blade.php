@@ -5,18 +5,19 @@
         <form class="form-horizontal" action="{{route ('collegium_create')}}" method="POST">
             {{ csrf_field() }}
             <fieldset>
-                <legend >Kreiranje kolegija</legend>
+                <legend>Kreiranje kolegija</legend>
 
                 <div class="form-group">
                     <label for="inputName" class="col-lg-2 control-label">Naziv kolegija</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputName"  name="name" placeholder="Naziv" >
+                        <input type="text" class="form-control" id="inputName" name="name" placeholder="Naziv">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="textArea" class="col-lg-2 control-label">Opis</label>
                     <div class="col-lg-10">
-                        <textarea class="form-control" rows="3" id="textArea" name="description" placeholder="Opis kolegija"></textarea>
+                        <textarea class="form-control" rows="3" id="textArea" name="description"
+                                  placeholder="Opis kolegija"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -25,9 +26,9 @@
                         <select class="form-control" id="select" name="prof_id">
 
                             @foreach($users as $user)
-                                    @if($user->type == 'professor')
-                                        <option value="{{ $user->id }}">{{ $user->title }} {{ $user->name }}</option>
-                                    @endif
+                                @if($user->type == 'professor')
+                                    <option value="{{ $user->id }}">{{ $user->title }} {{ $user->name }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>

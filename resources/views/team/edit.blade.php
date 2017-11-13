@@ -11,9 +11,14 @@
                     <label for="select" class="col-lg-2 control-label">Stanje zadatka</label>
                     <div class="col-lg-10">
                         <select class="form-control" id="select" name="status">
-                            <option value="in progress" {{ ($taskuser->status == "in progress") ? 'selected' : ''}}>U izradi</option>
-                            <option value="finished" {{ ($taskuser->status == "finished") ? 'selected' : ''}}>Završeno</option>
-                            <option value="not finished" {{ ($taskuser->status == "not finished") ? 'selected' : ''}}>Nije završeno</option>
+                            <option value="in progress" {{ ($taskuser->status == "in progress") ? 'selected' : ''}}>U
+                                izradi
+                            </option>
+                            <option value="finished" {{ ($taskuser->status == "finished") ? 'selected' : ''}}>Završeno
+                            </option>
+                            <option value="not finished" {{ ($taskuser->status == "not finished") ? 'selected' : ''}}>
+                                Nije završeno
+                            </option>
                             </option>
                         </select>
                     </div>

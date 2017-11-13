@@ -27,8 +27,10 @@
                             <td>{{$team->user->name}}</td>
 
 
-                            <td><a href="{{route('taskuser_edit')}}/{{$team->id}}" class="btn btn-primary btn-xs">Uredi</a></td>
-                            <td><a href="{{route('taskuser_delete')}}/{{$team->id}}" class="btn btn-danger btn-xs">Izbriši</a></td>
+                            <td><a href="{{route('taskuser_edit')}}/{{$team->id}}"
+                                   class="btn btn-primary btn-xs">Uredi</a></td>
+                            <td><a href="{{route('taskuser_delete')}}/{{$team->id}}" class="btn btn-danger btn-xs">Izbriši</a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -28,8 +28,10 @@
                             <td>{{$collegium->professor->name}}</td>
                             <td>{{$collegium->assistent->name}}</td>
 
-                            <td><a href="{{route('collegium_edit')}}/{{$collegium->id}}" class="btn btn-primary btn-xs">Uredi</a></td>
-                            <td><a href="{{route('collegium_delete')}}/{{$collegium->id}}" class="btn btn-danger btn-xs">Izbriši</a></td>
+                            <td><a href="{{route('collegium_edit')}}/{{$collegium->id}}" class="btn btn-primary btn-xs">Uredi</a>
+                            </td>
+                            <td><a href="{{route('collegium_delete')}}/{{$collegium->id}}"
+                                   class="btn btn-danger btn-xs">Izbriši</a></td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -13,10 +13,9 @@
         <ul class="message-items">
 
 
-
             @foreach($conversations as $conversation)
                 <li class="list-group-item active btn-default">
-                    <a href = "{{route("messages",["conversation_id" => $conversation->id])}}">
+                    <a href="{{route("messages",["conversation_id" => $conversation->id])}}">
                         <div class="message-user-icon"></div>
                         <div class="message-user-name">{{ $conversation->user->name }}</div>
                         <br><br>
@@ -144,7 +143,7 @@
                                 <div class="message-time help-block">
                                     {{ $message->created_at }}
                                 </div>
-                                <div  class="messager-right div @if ($message->user->id == Auth::user()->id) {{"left"}} @else {{"right"}}@endif">
+                                <div class="messager-right div @if ($message->user->id == Auth::user()->id) {{"left"}} @else {{"right"}}@endif">
                                     {{ $message->content }}
                                 </div>
                                 <div class="clear"></div>
@@ -195,7 +194,7 @@
                 $.ajax({
                     type: "POST",
                     url: "{{route("message.create")}}",
-                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data: date
                 });
                 $('#m').val('');
@@ -225,7 +224,7 @@
                 var nova_poruka = "<li class=" + 'me' + " id=" + 'id' + " >" +
                     //"<div class=\'message-user1-icon\'></div>"+
                     "<div class='list-group-item' >" + '{{ Auth::user()->name }}' +
-                    "<div class=\"message-time help-block\">"+date.getYear()+"-"+date.getMonth()+"-"+date.getDay()+" "+ date.getHours() + ':' + date.getMinutes() +
+                    "<div class=\"message-time help-block\">" + date.getYear() + "-" + date.getMonth() + "-" + date.getDay() + " " + date.getHours() + ':' + date.getMinutes() +
                     "</div>" +
                     "<div  class='messager-right div left'>" + msg +
                     "</div>" +
@@ -234,7 +233,6 @@
                     //'<p>' + msg + '</p>' +
                     "</li>";
                 // nova_poruka.find('p').text(msg);
-
 
 
                 $('#poruke').append(nova_poruka);

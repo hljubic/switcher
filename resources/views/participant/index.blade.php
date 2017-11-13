@@ -20,8 +20,10 @@
                 <td>{{$participant->id}}</td>
                 <td>{{$participant->conversation->title}}</td>
                 <td>{{$participant->user->name}}</td>
-                <td><a href="{{route('participant_edit')}}/{{$participant->id}}" class="btn btn-primary btn-xs">Uredi</a></td>
-                <td><a href="{{route('participant_delete')}}/{{$participant->id}}" class="btn btn-danger btn-xs">Izbriši</a>
+                <td><a href="{{route('participant_edit')}}/{{$participant->id}}"
+                       class="btn btn-primary btn-xs">Uredi</a></td>
+                <td><a href="{{route('participant_delete')}}/{{$participant->id}}"
+                       class="btn btn-danger btn-xs">Izbriši</a>
                 </td>
             </tr>
         @endforeach

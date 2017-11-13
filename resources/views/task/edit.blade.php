@@ -23,14 +23,17 @@
                 <div class="form-group">
                     <label for="inputEmail" class="col-lg-2 control-label">Opis</label>
                     <div class="col-lg-10">
-                        <textarea class="form-control" rows="3" id="textArea" name="description" value="{{$task->description}}"></textarea>
+                        <textarea class="form-control" rows="3" id="textArea" name="description"
+                                  value="{{$task->description}}"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="select" class="col-lg-2 control-label">Tip zadatka</label>
                     <div class="col-lg-10">
                         <select class="form-control" id="select" name="type">
-                            <option value="seminar paper" {{ ($task->type == "seminar paper") ? 'selected' : ''}}>Seminarski rad</option>
+                            <option value="seminar paper" {{ ($task->type == "seminar paper") ? 'selected' : ''}}>
+                                Seminarski rad
+                            </option>
                             <option value="homework" {{ ($task->type == "homework") ? 'selected' : ''}}>Zadaća</option>
                             <option value="project" {{ ($task->type == "project") ? 'selected' : ''}}>Projekt</option>
                             </option>

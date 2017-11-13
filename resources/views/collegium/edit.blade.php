@@ -16,7 +16,8 @@
                 <div class="form-group">
                     <label for="inputEmail" class="col-lg-2 control-label">Opis</label>
                     <div class="col-lg-10">
-                        <textarea class="form-control" rows="3" id="textArea" name="description" value="{{$collegium->description}}"></textarea>
+                        <textarea class="form-control" rows="3" id="textArea" name="description"
+                                  value="{{$collegium->description}}"></textarea>
                     </div>
                 </div>
                 <div class="form-group">

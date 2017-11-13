@@ -24,8 +24,10 @@
                             <td>{{$post->content}}</td>
                             <td>{{$post->created_at}}</td>
 
-                            <td><a href="{{route('post_edit')}}/{{$post->id}}" class="btn btn-primary btn-xs">Uredi</a></td>
-                            <td><a href="{{route('post_delete')}}/{{$post->id}}" class="btn btn-danger btn-xs">Izbriši</a></td>
+                            <td><a href="{{route('post_edit')}}/{{$post->id}}" class="btn btn-primary btn-xs">Uredi</a>
+                            </td>
+                            <td><a href="{{route('post_delete')}}/{{$post->id}}"
+                                   class="btn btn-danger btn-xs">Izbriši</a></td>
                         </tr>
                     @endforeach
                     </tbody>

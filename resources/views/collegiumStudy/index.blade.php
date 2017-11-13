@@ -22,7 +22,8 @@
                 <td>{{$collegium_study->study->name}}</td>
                 <td><a href="{{route('collegium_study_edit')}}/{{$collegium_study->id}}"
                        class="btn btn-primary btn-xs">Uredi</a></td>
-                <td><a href="{{route('collegium_study_delete')}}/{{$collegium_study->id}}" class="btn btn-danger btn-xs">Izbriši</a>
+                <td><a href="{{route('collegium_study_delete')}}/{{$collegium_study->id}}"
+                       class="btn btn-danger btn-xs">Izbriši</a>
                 </td>
             </tr>
         @endforeach

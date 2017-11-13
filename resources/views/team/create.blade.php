@@ -6,7 +6,7 @@
             {{ csrf_field() }}
 
             <fieldset>
-                <legend >Dodijeli studentu zadatak</legend>
+                <legend>Dodijeli studentu zadatak</legend>
 
                 <div class="form-group">
                     <label for="select" class="col-lg-2 control-label">Stanje zadatka</label>

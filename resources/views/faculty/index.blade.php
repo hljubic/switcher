@@ -27,7 +27,8 @@
                 <td>{{$faculty->email}}</td>
                 <td>{{$faculty->phone}}</td>
                 <td><a href="{{route('faculty_edit')}}/{{$faculty->id}}" class="btn btn-primary btn-xs">Uredi</a></td>
-                <td><a href="{{route('faculty_delete')}}/{{$faculty->id}}" class="btn btn-danger btn-xs">Izbriši</a></td>
+                <td><a href="{{route('faculty_delete')}}/{{$faculty->id}}" class="btn btn-danger btn-xs">Izbriši</a>
+                </td>
             </tr>
         @endforeach
         </tbody>
