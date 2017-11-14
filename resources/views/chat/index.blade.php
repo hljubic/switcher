@@ -15,7 +15,7 @@
 
             @foreach($conversations as $conversation)
                 <li class="list-group-item active btn-default">
-                    <a href="{{route("messages",["conversation_id" => $conversation->id])}}">
+                    <a href="{{route("messages",[ "conversation_id" => $conversation->id])}}">
                         <div class="message-user-icon"></div>
                         <div class="message-user-name">{{ $conversation->user->name }}</div>
                         <br><br>
@@ -129,7 +129,7 @@
         <div class="list-messagers">
 
             <div class="user-header">
-                <div class="user-name"></div>
+                <div class="user-name">4</div>
                 <br><br>
                 <div class="user-status help-block">Active 2 m ago</div>
             </div>
