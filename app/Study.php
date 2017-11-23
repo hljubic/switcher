@@ -8,4 +8,9 @@ class Study extends Model
 {
     public $timestamps = false;
     protected $fillable = ['name', 'description', 'faculty_id'];
+
+    public function faculty()
+    {
+        return $this->belongsTo('App\Faculty');
+    }
 }

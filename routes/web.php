@@ -62,7 +62,7 @@ Route::get('/classes/delete')->name('classe_delete');
 Route::get('/classes/delete/{id}','ClasseController@destroy');
 
 //COLLEGIUMS
-Route::get('/collegiums', 'CollegiumController@index')->name('colegiums');
+Route::get('/collegiums', 'CollegiumController@index')->name('collegiums');
 Route::get('/collegiums/{id}', 'CollegiumController@show')->where('id', '[0-9]+')->name('collegium_show');
 //create collegium
 Route::get('/collegiums/create', 'CollegiumController@create')->name('collegium_create');
@@ -104,8 +104,8 @@ Route::get('/conversations/delete')->name('conversation_delete');
 Route::get('/conversations/delete/{id}', 'ConversationController@destroy');
 
 //FACULTIES
-Route::get('/faculties', 'FacultyController@index');
-Route::get('/faculties/{id}', 'FacultyController@show')->where('id', '[0-9]+');
+Route::get('/faculties', 'FacultyController@index')->name('faculties');
+Route::get('/faculties/{id}', 'FacultyController@show')->where('id', '[0-9]+')->name('faculty_show');
 //create faculty
 Route::get('faculties/create', 'FacultyController@create')->name('faculty_create');
 Route::post('faculties/create', 'FacultyController@store');
@@ -188,7 +188,7 @@ Route::get('/posts/delete')->name('post_delete');
 Route::get('/posts/delete/{id}', 'PostController@destroy');
 
 //STUDIES
-Route::get('/studies', 'StudyController@index');
+Route::get('/studies', 'StudyController@index')->name('studies');
 Route::get('/studies/{id}', 'StudyController@show')->where('id', '[0-9]+');
 //create study
 Route::get('/studies/create', 'StudyController@create')->name('study_create');
