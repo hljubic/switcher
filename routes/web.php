@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/users', 'UserController@index'); // Retrieve all data from table user
+Route::get('/users', 'UserController@index')->name('users'); // Retrieve all data from table user
 Route::get('/users/{id}', 'UserController@show')->where('id', '[0-9]+'); // Retrieve user which corresponds to passed ID
 //Create user
 Route::get('/users/create', 'UserController@create')->name('user_create');
@@ -151,11 +151,12 @@ Route::post('/team/create', 'TaskUserController@store');
 Route::get('/posts/create', 'PostController@create')->name('post_create');
 Route::post('/posts/create', 'PostController@store');
 
-
-
-
-
-
+//imenik
+Route::get('/imenik', 'UserController@imenik');
+Route::get('/follow')->name('follow');
+Route::post('/follow/{id}', 'FollowerUserController@follow');
+Route::get('/unfollow')->name('unfollow');
+Route::get('/unfollow/{id}', 'FollowerUserController@unfollow');
 
 
 

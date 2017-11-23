@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\FollowerUser;
 use App\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class FollowerUserController extends Controller
 {
@@ -17,7 +18,7 @@ class FollowerUserController extends Controller
     {
         $followers = FollowerUser::all();
 
-        return view('follower.index',['followers' => $followers]);
+        return view('follower.index', ['followers' => $followers]);
     }
 
     /**
@@ -42,7 +43,7 @@ class FollowerUserController extends Controller
         $followers = new FollowerUser();
         $followers->fill($request->all());
         $followers->save();
-        return redirect('/followers/create')->with('success', 'Follower kreiran.');
+        return redirect()->back()->with('success', 'Zapratili ste korisnika.');
     }
 
     /**
@@ -80,8 +81,8 @@ class FollowerUserController extends Controller
     public function update(Request $request, $id)
     {
         $followers = FollowerUser::find($id);
-        $followers -> fill($request->all());
-        $followers -> save();
+        $followers->fill($request->all());
+        $followers->save();
 
         return redirect('home')->with('success', 'Podatci azurirani.');
     }
@@ -96,8 +97,26 @@ class FollowerUserController extends Controller
     {
         $followers = FollowerUser::find($id);
 
-        $followers -> delete();
+        $followers->delete();
 
         return redirect('/followers')->with('success', "Pratitelj izbrisan.");
     }
+
+    public function follow($id)
+    {
+        $followers = new FollowerUser();
+        $followers->user_id = $id;
+        $followers->follower_id = Auth::user()->id;
+        $followers->save();
+        return redirect()->back()->with('success', 'Zapratili ste korisnika.');
+    }
+
+    public function unfollow($id)
+    {
+        $followers = FollowerUser::where('follower_id', '=', $id);
+        $followers->delete();
+        return redirect()->back()->with('success', 'Otpratili ste korisnika.');
+    }
+
+
 }

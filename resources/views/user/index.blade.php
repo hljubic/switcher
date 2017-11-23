@@ -22,6 +22,7 @@
         </thead>
         <tbody>
         @foreach($users as $user)
+
             <tr>
                 <td>{{$user->id}}</td>
                 <td>{{$user->name}}</td>
@@ -32,9 +33,11 @@
                 <td>{{$user->type}}</td>
                 <td>{{$user->is_active}}</td>
                 <td>{{$user->study->name}}</td>
+
                 <td><a href="{{route('user_edit')}}/{{$user->id}}" class="btn btn-primary btn-xs">Uredi</a></td>
                 <td><a href="{{route('user_delete')}}/{{$user->id}}" class="btn btn-danger btn-xs">Izbriši</a></td>
             </tr>
+
         @endforeach
         </tbody>
     </table>
