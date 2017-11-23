@@ -58,7 +58,8 @@ class StudyController extends Controller
      */
     public function show($id)
     {
-        return Study::find($id);
+        $studies = Study::find($id);
+        return view('study.show')->with('studies',$studies);
     }
 
     /**

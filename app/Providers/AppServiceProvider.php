@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Collegium;
+use App\Faculty;
+use App\Study;
 use Illuminate\Support\ServiceProvider;
+use View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +17,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
+
+        $faculties = Faculty::all();
+        view()->share('faculties', $faculties);
+        $studies = Study::all();
+        view()->share('studies', $studies);
+        $collegiums = Collegium::all();
+        view()->share('collegiums', $collegiums);
     }
 
     /**
@@ -23,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
+
 }

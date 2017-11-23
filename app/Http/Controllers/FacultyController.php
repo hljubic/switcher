@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Faculty;
+use App\Study;
 use Illuminate\Http\Request;
+
 
 class FacultyController extends Controller
 {
@@ -15,7 +17,6 @@ class FacultyController extends Controller
     public function index()
     {
         $faculties = Faculty::all();
-
         return view('faculty.index', ['faculties' => $faculties]);
     }
 
@@ -26,8 +27,7 @@ class FacultyController extends Controller
      */
     public function create()
     {
-        $faculties = Faculty::all();
-        //return view('faculty.create', ['faculties' => $faculties]); ako imamo stranih kljuceva
+
         return view('faculty.create');
     }
 
@@ -53,7 +53,9 @@ class FacultyController extends Controller
      */
     public function show($id)
     {
-        return Faculty::find($id);
+        $faculties = Faculty::find($id);
+        $studies = Study::where('faculty_id', '=', $id)->get();
+        return view('faculty.show', ['faculties' => $faculties, 'studies' => $studies]);
     }
 
     /**
@@ -79,8 +81,8 @@ class FacultyController extends Controller
     public function update(Request $request, $id)
     {
         $faculties = Faculty::find($id); //find faculty with id
-        $faculties -> fill($request->all());
-        $faculties -> save();
+        $faculties->fill($request->all());
+        $faculties->save();
 
         return redirect('home')->with('success', 'Podatci azurirani');
     }
@@ -95,8 +97,10 @@ class FacultyController extends Controller
     {
         $faculty = Faculty::find($id);
 
-        $faculty -> delete();
+        $faculty->delete();
 
         return redirect('/faculties')->with('success', 'Fakultet izbrisan.');
     }
+
+
 }
