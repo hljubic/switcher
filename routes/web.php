@@ -199,11 +199,12 @@ Route::patch('/studies/edit/{id}', 'StudyController@update');
 //destroy study
 Route::get('/studies/delete')->name('study_delete');
 Route::get('/studies/delete/{id}', 'StudyController@destroy');
-//TASKS
+
+
+//CRUD for table tasks
 Route::get('/tasks', 'TaskController@index');
 Route::get('/tasks/{id}', 'TaskController@show')->where('id', '[0-9]+');
-
-//create task
+//create
 Route::get('/tasks/create', 'TaskController@create')->name('task_create');
 Route::post('/tasks/create', 'TaskController@store');
 //update task
@@ -229,10 +230,6 @@ Route::get('/team/delete')->name('taskuser_delete');
 Route::get('/team/delete/{id}', 'TaskUserController@destroy');
 
 
-//CRUD  for table posts
-Route::get('/posts/create', 'PostController@create')->name('post_create');
-Route::post('/posts/create', 'PostController@store');
-
 //imenik
 Route::get('/imenik', 'UserController@imenik');
 Route::get('/follow')->name('follow');
@@ -243,3 +240,5 @@ Route::get('/unfollow/{id}', 'FollowerUserController@unfollow');
 
 // Chat
 Route::get('/chat', 'ChatController@index');
+Route::get('/chat/conversations/{user_id}', 'ChatController@getConversations')->name('conversations');
+Route::get('/chat/messages/{conversation_id}', 'ChatController@getMessages')->name('messages');

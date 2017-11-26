@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Conversation;
 use App\Message;
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
@@ -29,15 +29,16 @@ class ChatController extends Controller
         return view('chat.index')
             ->with('conversations', Conversation::where('creator_id', '=', Auth::user()->id)->orderBy('id', 'desc')->get())
             ->with('messages', array())
-            ->with('conversation_id',0);
-
+            ->with('conversation_id', 0);
     }
 
-    public function getMessages(Request $request, $conversation_id){
+    public function getMessages(Request $request, $conversation_id)
+    {
         //return Message::where('conversation_id', $conversation_id)->get();
         return view('chat.index')
             ->with('conversations', Conversation::where('creator_id', '=', Auth::user()->id)->orderBy('id', 'desc')->get())
             ->with('messages', Message::where('conversation_id', "=", $conversation_id)->get())
-            ->with('conversation_id',  $conversation_id);
+            ->with('conversation_id', $conversation_id);
+
     }
 }

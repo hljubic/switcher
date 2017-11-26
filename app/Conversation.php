@@ -10,6 +10,7 @@ class Conversation extends Model
 
     protected $fillable = ['title', 'creator_id'];
 
+
     public function user()
     {
         return $this->belongsTo('App\User', 'creator_id');
