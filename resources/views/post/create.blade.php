@@ -15,12 +15,17 @@
                                   placeholder="Sadržaj objave"></textarea>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="inputDate" class="col-lg-2 control-label">Datum i vrijeme</label>
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control datepicker" id="inputDate " name="created_at"
-                               placeholder="Datum i vrijeme">
-                    </div>
+                {{--<div class="form-group">--}}
+                    {{--<label for="inputDate" class="col-lg-2 control-label">Datum i vrijeme</label>--}}
+                    {{--<div class="col-lg-10">--}}
+                        {{--<input type="text" class="form-control datepicker" id="inputDate " name="created_at"--}}
+                               {{--placeholder="Datum i vrijeme">--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+
+                <div>
+                    <label for="inputDate" class="col-lg-2">Datum i vrijeme</label>
+                    <p name="created_at" id="inputDate">{{ date('d-M-y') }}</p>
                 </div>
             <!--<div class="form-group">
                     <label for="select" class="col-lg-2 control-label">Razgovor</label>

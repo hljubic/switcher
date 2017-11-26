@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = ['content', 'created_at', 'conversation_id', 'collegium_id'];
 
     public function collegium(){
