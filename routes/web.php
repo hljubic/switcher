@@ -241,8 +241,5 @@ Route::get('/unfollow')->name('unfollow');
 Route::get('/unfollow/{id}', 'FollowerUserController@unfollow');
 
 
-
-
-
 // Chat
 Route::get('/chat', 'ChatController@index');

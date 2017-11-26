@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration
+class CreateCollegiumUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,13 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('collegium_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->longText("content");
-            $table->integer("conversation_id")->unsigned()->index()->nullable();
-            $table->foreign("conversation_id")->references("id")->on("conversations");
             $table->integer("collegium_id")->unsigned()->index()->nullable();
             $table->foreign("collegium_id")->references("id")->on("collegiums");
             $table->integer("user_id")->unsigned()->index()->nullable();
             $table->foreign("user_id")->references("id")->on("users");
             $table->timestamps();
-
         });
     }
 
@@ -34,6 +30,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('collegium_users');
     }
 }

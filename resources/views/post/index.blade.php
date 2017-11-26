@@ -14,7 +14,7 @@
                         <th>ID</th>
                         <th>Sadržaj</th>
                         <th>Datum i vrijeme</th>
-
+                        <th>Autor</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -23,7 +23,7 @@
                             <td>{{$post->id}}</td>
                             <td>{{$post->content}}</td>
                             <td>{{$post->created_at}}</td>
-
+                            <td>{{$post->user->name}}</td>
                             <td><a href="{{route('post_edit')}}/{{$post->id}}" class="btn btn-primary btn-xs">Uredi</a>
                             </td>
                             <td><a href="{{route('post_delete')}}/{{$post->id}}"

@@ -1,9 +1,10 @@
 <?php
 
-use App\Post;
+use App\CollegiumUser;
 use Illuminate\Database\Seeder;
 
-class PostsTableSeeder extends Seeder
+
+class CollegiumUserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,34 +13,28 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        $posts = [
+        $collegiumUsers = [
 
             [
-                'content' => 'Ovo je post 1',
-                'conversation_id' => '1',
                 'collegium_id' => '1',
                 'user_id' => '1',
 
             ],
 
             [
-                'content' => 'Ovo je post 2',
-                'conversation_id' => '2',
                 'collegium_id' => '2',
                 'user_id' => '2',
 
             ],
 
             [
-                'content' => 'Ovo je post 3',
-                'conversation_id' => '3',
                 'collegium_id' => '3',
                 'user_id' => '3',
             ],
 
         ];
 
-        foreach ($posts as $post)
-            Post::create($post);
+        foreach ($collegiumUsers as $collegiumUser)
+            CollegiumUser::create($collegiumUser);
     }
 }

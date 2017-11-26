@@ -22,4 +22,7 @@ class Collegium extends Model
     {
         return $this->belongsTo('App\Conversation');
     }
+    public function user(){
+        return $this->belongsToMany('App\User');
+    }
 }

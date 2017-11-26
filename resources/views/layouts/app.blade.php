@@ -14,6 +14,7 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!--style for datepicker -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker3.min.css') }}">
+    <!-- icons -->
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <!-- style for sidebar -->
     <link href="{{asset('css/simple-sidebar.css') }}" rel="stylesheet">
@@ -122,6 +123,6 @@
 
 </script>
 
-@stack('scripts')
+    @stack('scripts')
 </body>
 </html>

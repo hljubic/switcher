@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['content', 'created_at', 'conversation_id', 'collegium_id'];
+    protected $fillable = ['content', 'created_at', 'conversation_id', 'collegium_id', 'user_id'];
 
     public function collegium(){
 
@@ -16,6 +16,11 @@ class Post extends Model
 
     public function conversation(){
 
-        return $this->belongsTo('App\Conversation','converastion_id');
+        return $this->belongsTo('App\Conversation','conversation_id');
+    }
+
+    public function user(){
+
+        return $this->belongsTo('App\User','user_id');
     }
 }

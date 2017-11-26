@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Collegium;
 use App\FollowerUser;
+use App\Message;
+use App\Post;
 use App\Study;
 use App\User;
 use Illuminate\Http\Request;
@@ -64,7 +66,10 @@ class UserController extends Controller
         $user = User::find($id);
         $followers = FollowerUser::where('user_id', '=', $id)->count();
         $following = FollowerUser::where('follower_id', '=', $id)->count();
-        $collegiums = Collegium::where('prof_id', '=', $id)->orWhere('assist_id', '=', $id)->get();
+        $collegiums = Collegium::where('prof_id', '=', $id)->orWhere('assist_id', '=', $id)->orwhereHas('user', function ($q) use ($id) {
+            $q->where('user_id', '=', $id);
+        })->get();
+        $posts = Post::where('user_id', '=', $id)->get();
 
         if (FollowerUser::where('follower_id', '=', Auth::user()->id)->exists()) {
             $followButton = true;
@@ -73,7 +78,7 @@ class UserController extends Controller
         }
 
         return view('user.profil', array('user' => $user, 'followers' => $followers, 'following' => $following,
-            'collegiums' => $collegiums, 'followButton' => $followButton));
+            'collegiums' => $collegiums, 'posts' => $posts, 'followButton' => $followButton));
     }
 
     /**
