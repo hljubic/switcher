@@ -95,7 +95,7 @@
         </div>
     </nav>
 
-    @include('inc.sidebar',array(['faculties',$faculties],['studies',$studies],['collegiums',$collegiums]))
+    @include('inc.sidebar',['faculties',$faculties],['studies',$studies],['collegiums',$collegiums])
 
     @include('layouts.messages')
 

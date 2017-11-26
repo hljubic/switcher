@@ -240,5 +240,5 @@ Route::get('/unfollow/{id}', 'FollowerUserController@unfollow');
 
 // Chat
 Route::get('/chat', 'ChatController@index');
-Route::get('/chat/conversations/{user_id}', 'ChatController@getConversations')->name('conversations');
-Route::get('/chat/messages/{conversation_id}', 'ChatController@getMessages')->name('messages');
+Route::get('/chat/conversations', 'ChatController@getConversations')->name('conversations'); //vraća sve razgovore prijavljenog korisnika
+Route::get('/chat/messages/{conversation_id}', 'ChatController@getMessages')->name('messages'); //vraća sve poruke u razgovoru čiji id je proslijeđen

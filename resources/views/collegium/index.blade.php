@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 
 @section('content')
-    <div class="col-md-8 col-md-offset-2" >
+    <div class="col-md-8 col-md-offset-2">
         <div id="page-content-wrapper">
             <ul class="nav nav-pills nav-justified" style=" border: 3px;">
                 <li><a href="#table_view" data-toggle="tab">Kolegiji</a></li>
@@ -23,31 +23,25 @@
                         </thead>
                         <tbody>
                         @foreach($collegiums as $collegium)
-                         <tr>
+                            <tr>
                                 <td>{{$collegium->id}}</td>
                                 <td>{{$collegium->name}}</td>
                                 <td>{{$collegium->description}}</td>
                                 <td>{{$collegium->professor->name}}</td>
                                 <td>{{$collegium->assistent->name}}</td>
 
-                                <td><a href="{{route('collegiums')}}/{{$collegium->id}}" class="btn btn-warning btn-xs">Prikaz</a></td>
-                                <td><a href="{{route('collegium_edit')}}/{{$collegium->id}}" class="btn btn-primary btn-xs">Uredi</a></td>
-                                <td><a href="{{route('collegium_delete')}}/{{$collegium->id}}" class="btn btn-danger btn-xs">Izbriši</a></td>
-                         </tr>
+                                <td><a href="{{route('collegiums')}}/{{$collegium->id}}" class="btn btn-warning btn-xs">Prikaz</a>
+                                </td>
+                                <td><a href="{{route('collegium_edit')}}/{{$collegium->id}}"
+                                       class="btn btn-primary btn-xs">Uredi</a></td>
+                                <td><a href="{{route('collegium_delete')}}/{{$collegium->id}}"
+                                       class="btn btn-danger btn-xs">Izbriši</a></td>
+                            </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
-
-            <div class="tab-content">
-                <div class="tab-pane fade active in" id="create_view" style="padding-top:35px">
-
-                </div>
-            </div>
         </div>
     </div>
-
-
-
 @endsection

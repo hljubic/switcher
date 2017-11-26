@@ -1,11 +1,11 @@
 @extends ('layouts.app')
 
 @section('content')
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-8 col-md-offset-2">
         <div id="page-content-wrapper">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#table_view" data-toggle="tab">Zadaci</a></li>
-                <li><a href="{{route('task_create')}}" class="btn btn-success">Dodaj</a></li>
+            <ul class="nav nav-pills nav-justified" style=" border: 3px;">
+                <li><a href="#table_view" data-toggle="tab">Zadaci</a></li>
+                <li><a href="{{route('task_create')}}" class="btn">Dodaj</a></li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="table_view" style="padding-top:35px">
@@ -33,8 +33,10 @@
                                 <td>{{$task->collegium->name}}</td>
                                 <td>{{$task->created_at}}</td>
 
-                                <td><a href="{{route('task_edit')}}/{{$task->id}}" class="btn btn-primary btn-xs">Uredi</a></td>
-                                <td><a href="{{route('task_delete')}}/{{$task->id}}" class="btn btn-danger btn-xs">Izbriši</a></td>
+                                <td><a href="{{route('task_edit')}}/{{$task->id}}"
+                                       class="btn btn-primary btn-xs">Uredi</a></td>
+                                <td><a href="{{route('task_delete')}}/{{$task->id}}" class="btn btn-danger btn-xs">Izbriši</a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -43,5 +45,4 @@
             </div>
         </div>
     </div>
-
 @endsection

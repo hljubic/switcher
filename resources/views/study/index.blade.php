@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="col-md-8 col-md-offset-2" >
+    <div class="col-md-8 col-md-offset-2">
         <div id="page-content-wrapper">
             <ul class="nav nav-pills nav-justified" style="">
                 <li><a href="#table_view" data-toggle="tab">Studiji</a></li>
@@ -12,7 +12,7 @@
                 <div class="tab-pane fade active in" id="table_view" style="padding-top:35px">
                     <table class="table table-striped table-hover ">
                         <thead>
-                        <tr >
+                        <tr>
                             <th>ID</th>
                             <th>Ime</th>
                             <th>Opis</th>
@@ -29,19 +29,16 @@
                                 <td>{{$study->faculty->name}}</td>
                                 <td></td>
 
-                                <td><a href="{{route('studies')}}/{{$study->id}}" class="btn btn-warning btn-xs">Prikaz</a></td>
-                                <td><a href="{{route('study_edit')}}/{{$study->id}}" class="btn btn-primary btn-xs">Uredi</a></td>
-                                <td><a href="{{route('study_delete')}}/{{$study->id}}" class="btn btn-danger btn-xs">Izbriši</a></td>
+                                <td><a href="{{route('studies')}}/{{$study->id}}"
+                                       class="btn btn-warning btn-xs">Prikaz</a></td>
+                                <td><a href="{{route('study_edit')}}/{{$study->id}}" class="btn btn-primary btn-xs">Uredi</a>
+                                </td>
+                                <td><a href="{{route('study_delete')}}/{{$study->id}}" class="btn btn-danger btn-xs">Izbriši</a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-                </div>
-            </div>
-
-            <div class="tab-content">
-                <div class="tab-pane fade active in" id="create_view" style="padding-top:35px">
-
                 </div>
             </div>
         </div>

@@ -45,12 +45,6 @@
                     </table>
                 </div>
             </div>
-
-            <div class="tab-content">
-                <div class="tab-pane fade active in" id="create_view" style="padding-top:35px">
-
-                </div>
-            </div>
         </div>
     </div>
 @endsection
