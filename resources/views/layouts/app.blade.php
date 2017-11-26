@@ -55,18 +55,19 @@
                                                                              aria-hidden="true"></i></button>
                         </form>
 
-                        <li><a href="#"><i class="fa fa-university" aria-hidden="true"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{route('faculties')}}">Fakulteti</a></li>
-                                <li><a href="{{route('studies')}}">Studijske grupe</a></li>
-                                <li><a href="{{route('collegiums')}}">Kolegiji</a></li>
-                            </ul>
+                        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-university" aria-hidden="true"></i>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{route('faculties')}}">Fakulteti</a></li>
+                                    <li><a href="{{route('studies')}}">Studijske grupe</a></li>
+                                    <li><a href="{{route('collegiums')}}">Kolegiji</a></li>
+                                </ul>
+                            </a>
                         </li>
                         <li><a href="#"><i class="fa fa-exclamation" aria-hidden="true"></i></a></li>
                         <li><a href="#"><i class="fa fa-comments" aria-hidden="true"></i><span
                                         class="badge">3</span></a></li>
                         <li><a href="#"><i class="fa fa-users" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-address-book" aria-hidden="true"></i></a>
+                        <li><a href="{{route('imenik')}}"><i class="fa fa-address-book" aria-hidden="true"></i></a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -84,7 +85,7 @@
 
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="#">{{Auth::user()->name}}</a>
+                                            <a href="{{route('users')}}/{{Auth::user()->id}}">{{Auth::user()->name}}</a>
                                         </li>
                                         <li>
                                             <a href="{{ route('logout') }}"

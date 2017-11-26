@@ -231,7 +231,7 @@ Route::get('/team/delete/{id}', 'TaskUserController@destroy');
 
 
 //imenik
-Route::get('/imenik', 'UserController@imenik');
+Route::get('/imenik', 'UserController@imenik')->name('imenik');
 Route::get('/follow')->name('follow');
 Route::post('/follow/{id}', 'FollowerUserController@follow');
 Route::get('/unfollow')->name('unfollow');
