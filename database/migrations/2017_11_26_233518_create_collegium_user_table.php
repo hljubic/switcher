@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCollegiumUsersTable extends Migration
+class CreateCollegiumUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCollegiumUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('collegium_users', function (Blueprint $table) {
+        Schema::create('collegium_user', function (Blueprint $table) {
             $table->increments('id');
             $table->integer("collegium_id")->unsigned()->index()->nullable();
             $table->foreign("collegium_id")->references("id")->on("collegiums");
@@ -30,6 +30,6 @@ class CreateCollegiumUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collegium_users');
+        Schema::dropIfExists('collegium_user');
     }
 }
