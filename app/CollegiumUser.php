@@ -8,7 +8,6 @@ class CollegiumUser extends Model
 {
     protected $table = 'collegium_user';
     public $timestamps = false;
-    protected $table = 'collegium_user';
     protected $fillable = ['collegium_id', 'user_id'];
 
     public function user(){
