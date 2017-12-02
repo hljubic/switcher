@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-8 col-md-offset-2" class="panel-default" style="margin-top: 50px;">
         <div id="page-content-wrapper">
             <ul class="nav nav-pills nav-justified" style=" border: 3px;">
                 <li><a href="#table_view" data-toggle="tab">Pregled pratitelja</a></li>

@@ -21,43 +21,112 @@
                         <div class="tab-pane fade active in" id="general-data" style="padding-top:15px">
 
                             <blockquote>
-                                <p> Naziv:</p>
-                                <p>{{$faculties->name}}</p>
-                                <hr>
-                                <p> Kratica:</p>
-                                <p>{{$faculties->short_name}}</p>
-                                <hr>
-                                <p> Adresa:</p>
-                                <p>{{$faculties->address}}</p>
-                                <hr>
-                                <p> Web stranica:</p>
-                                <p>{{$faculties->web}}</p>
-                                <hr>
-                                <p> Email:</p>
-                                <p>{{$faculties->email}}</p>
-                                <hr>
-                                <p> Broj telefona:</p>
-                                <p>{{$faculties->phone}}</p>
+                                <div class="list-group-item" style="border:none; align-content: center;">
+                                    <div class="row">
+                                        <div class="col-lg-1" style="margin:0px;">
+                                            <i class="fa fa-university" aria-hidden="true" style="margin:6px; font-size: 25px;"></i>
+                                           <br>
+                                        </div>
+                                        <div class="col-lg-11" style="padding-top: 8px;">
+                                            <p>{{$faculties->name}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </blockquote>
+                            <hr>
+                            <blockquote>
+                                <div class="list-group-item" style="border:none; align-content: center;">
+                                    <div class="row">
+                                        <div class="col-lg-1" style="margin:0px;">
+                                            <i class="fa fa-bars" aria-hidden="true" style="margin:6px; font-size: 25px;"></i>
+                                            <br>
+                                        </div>
+                                        <div class="col-lg-11" style="padding-top: 8px;">
+                                            <p>{{$faculties->short_name}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </blockquote>
+                            <hr>
+                            <blockquote>
+                                <div class="list-group-item" style="border:none; align-content: center;">
+                                    <div class="row">
+                                        <div class="col-lg-1" style="margin:0px;">
+                                            <i class="fa fa-map-marker" aria-hidden="true" style="margin:6px; font-size: 25px;"></i>
+                                            <br>
+                                        </div>
+                                        <div class="col-lg-11" style="padding-top: 8px;">
+                                            <p>{{$faculties->address}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </blockquote>
+                            <hr>
+                            <blockquote>
+                                <div class="list-group-item" style="border:none; align-content: center;">
+                                    <div class="row">
+                                        <div class="col-lg-1" style="margin:0px;">
+                                            <i class="fa fa-window-restore" aria-hidden="true" style="margin:6px; font-size: 25px;"></i>
+                                            <br>
+                                        </div>
+                                        <div class="col-lg-11" style="padding-top: 8px;">
+                                            <p>{{$faculties->web}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </blockquote>
+                            <hr>
+                            <blockquote>
+                                <div class="list-group-item" style="border:none; align-content: center;">
+                                    <div class="row">
+                                        <div class="col-lg-1" style="margin:0px;">
+                                            <i class="fa fa-envelope" aria-hidden="true" style="margin:6px; font-size: 25px;"></i>
+                                            <br>
+                                        </div>
+                                        <div class="col-lg-11" style="padding-top: 8px;">
+                                            <p>{{$faculties->email}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </blockquote>
+                            <hr>
+                            <blockquote>
+                                <div class="list-group-item" style="border:none; align-content: center;">
+                                    <div class="row">
+                                        <div class="col-lg-1" style="margin:0px;">
+                                            <i class="fa fa-phone" aria-hidden="true" style="margin:6px; font-size: 25px;"></i>
+                                            <br>
+                                        </div>
+                                        <div class="col-lg-11" style="padding-top: 8px;">
+                                            <p>{{$faculties->phone}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </blockquote>
+
 
                         </div>
                         <div class="tab-pane fade" id="studies-data" style="padding-top:15px">
-                            @foreach($studies as $study)
-                                <div class="row">
-                                    <h3 class="header col-lg-11">{{$study->name}}</h3>
-                                    <a href="{{route('studies')}}/{{$study->id}}" class="btn btn-default col-lg-1"
-                                       style="align-self: flex-start;">Više</a>
+                            @foreach($faculties->studies as $study)
+                                <div class="list-group-item" style="margin-bottom: 10px;">
+                                    <div class="row">
+                                        <div class="col-lg-10">
+                                            <h3 class="header" style="margin-bottom: 20px;">{{$study->name}}</h3>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <a href="{{route('studies')}}/{{$study->id}}"
+                                               class="btn btn-success btn-block"
+                                               style="align-self: flex-start; border-radius: 50px; margin-top: 10px;">Više</a>
+                                        </div>
 
+                                    </div>
                                 </div>
-                                <hr>
-
                             @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
 @endsection

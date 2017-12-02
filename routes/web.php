@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 //USERS
 Route::get('/users', 'UserController@index')->name('users'); // Retrieve all data from table user
 Route::get('/users/{id}', 'UserController@show')->where('id', '[0-9]+'); // Retrieve user which corresponds to passed ID
@@ -202,7 +202,7 @@ Route::get('/studies/delete/{id}', 'StudyController@destroy');
 
 
 //CRUD for table tasks
-Route::get('/tasks', 'TaskController@index');
+Route::get('/tasks', 'TaskController@index')->name('tasks');
 Route::get('/tasks/{id}', 'TaskController@show')->where('id', '[0-9]+');
 //create
 Route::get('/tasks/create', 'TaskController@create')->name('task_create');
@@ -229,6 +229,19 @@ Route::patch('/team/edit/{id}', 'TaskUserController@update');
 Route::get('/team/delete')->name('taskuser_delete');
 Route::get('/team/delete/{id}', 'TaskUserController@destroy');
 
+//COLLEGIUM_USER
+Route::get('/collegium_user', 'CollegiumUserController@index');
+Route::get('/collegium_user/{id}', 'CollegiumUserController@show')->where('id', '[0-9]+');
+//Create collegium_study
+Route::get('/collegium_user/create', 'CollegiumUserController@create')->name('collegium_user_create');
+Route::post('/collegium_user/create', 'CollegiumUserController@store');
+//Update collegium_study
+Route::get('/collegium_user/edit')->name('collegium_user_edit');
+Route::get('/collegium_user/edit/{id}', 'CollegiumUserController@edit');
+Route::patch('/collegium_user/edit/{id}', 'CollegiumUserController@update');
+//Destroy collegium_study
+Route::get('/collegium_user/delete')->name('collegium_user_delete');
+Route::get('/collegium_user/delete/{id}','CollegiumUserController@destroy');
 
 //imenik
 Route::get('/imenik', 'UserController@imenik')->name('imenik');
@@ -237,7 +250,11 @@ Route::post('/follow/{id}', 'FollowerUserController@follow');
 Route::get('/unfollow')->name('unfollow');
 Route::get('/unfollow/{id}', 'FollowerUserController@unfollow');
 
-
+//collegium profile
+Route::get('/followCollegium')->name('followCollegium');
+Route::post('/followCollegium/{id}','CollegiumUserController@AddMeToCollegium');
+Route::get('/unfollowCollegium')->name('unfollowCollegium');
+Route::get('/unfollowCollegium/{id}', 'CollegiumUserController@RemoveMeFromCollegium');
 // Chat
 Route::get('/chat', 'ChatController@index');
 Route::get('/chat/conversations', 'ChatController@getConversations')->name('conversations'); //vraća sve razgovore prijavljenog korisnika

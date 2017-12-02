@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Collegium;
 use App\Faculty;
 use App\Study;
+use App\Task;
 use Illuminate\Support\ServiceProvider;
 use View;
 
@@ -25,9 +26,12 @@ class AppServiceProvider extends ServiceProvider
         view()->share('studies', $studies);
         $collegiums = Collegium::all();
         view()->share('collegiums', $collegiums);
+        $tasks = Task::all();
+        view()->share('tasks',$tasks);
     }
 
-    /**
+    /**CreateCollegiumUserTable' not found
+
      * Register any application services.
      *
      * @return void

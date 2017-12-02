@@ -13,4 +13,9 @@ class Study extends Model
     {
         return $this->belongsTo('App\Faculty');
     }
+
+    public function collegiums()
+    {
+        return $this->belongsToMany('App\Collegium');
+    }
 }

@@ -32,4 +32,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Study');
     }
+
+    public function task(){
+
+        return $this->belongsToMany('App\Task');
+    }
+
+    public function collegium(){
+
+        return $this->belongsToMany('App\Collegium');
+    }
 }

@@ -2,11 +2,11 @@
 
 @section('content')
 
-    <div class="col-md-8 col-md-offset-2">
-        <div id="page-content-wrapper">
+    <div class="col-md-8 col-md-offset-2 ">
+        <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
             <ul class="nav nav-pills nav-justified">
                 <li><a href="#table_view" data-toggle="tab">Fakulteti</a></li>
-                <li><a href="{{route('faculty_create')}}" class="btn">Dodaj</a></li>
+                <li><a href="{{route('faculty_create')}}">Dodaj</a></li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="table_view" style="padding-top:35px">

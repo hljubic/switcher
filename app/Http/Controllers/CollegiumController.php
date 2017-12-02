@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Collegium;
+use App\CollegiumUser;
 use App\Conversation;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CollegiumController extends Controller
 {
@@ -59,7 +61,14 @@ class CollegiumController extends Controller
     public function show($id)
     {
         $collegiums = Collegium::find($id);
-        return view('collegium.show')->with('collegiums', $collegiums);
+        if (CollegiumUser::where('user_id', '=', Auth::user()->id)->where('collegium_id','=',$id)->exists()) {
+            $followButton = true;
+        } else {
+            $followButton = false;
+        }
+
+        return view('collegium.show',array('collegiums' => $collegiums,'followButton' => $followButton));
+
     }
 
     /**

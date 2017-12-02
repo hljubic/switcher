@@ -54,8 +54,8 @@ class FacultyController extends Controller
     public function show($id)
     {
         $faculties = Faculty::find($id);
-        $studies = Study::where('faculty_id', '=', $id)->get();
-        return view('faculty.show', ['faculties' => $faculties, 'studies' => $studies]);
+       // $studies = Study::where('faculty_id', '=', $id)->get();
+        return view('faculty.show', ['faculties' => $faculties]);
     }
 
     /**

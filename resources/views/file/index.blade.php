@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-md-8 col-md-offset-2">
-        <div id="page-content-wrapper">
+        <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
             <ul class="nav nav-pills nav-justified" style=" border: 3px;">
                 <li><a href="#table_view" data-toggle="tab">Pregled datoteka</a></li>
                 <li><a href="{{route('file_create')}}" class="btn">Dodaj</a></li>

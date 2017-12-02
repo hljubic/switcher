@@ -25,4 +25,16 @@ class Collegium extends Model
     public function user(){
         return $this->belongsToMany('App\User');
     }
+
+    public function studies(){
+        return $this->belongsToMany('App\Study');
+    }
+
+    public function posts(){
+        return $this->hasMany('App\Post');
+    }
+
+    public function tasks(){
+        return $this->hasMany('App\Task');
+    }
 }

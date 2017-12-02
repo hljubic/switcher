@@ -8,4 +8,8 @@ class Faculty extends Model
 {
     public $timestamps = false;
     protected $fillable = ['name', 'short_name', 'address', 'web', 'phone', 'email'];
+
+    public function studies(){
+       return $this->hasMany('App\Study');
+    }
 }

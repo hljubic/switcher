@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-4 col-md-offset-4">
         <div class="panel panel-default" style="margin-top: 50px;">
             <div class="panel-heading">
                 <h3 class="panel-title">Dodaj novi fakultet</h3>
@@ -53,11 +53,11 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-10 col-md-offset-2" style="margin-top: 30px;">
-                                <div class="col-md-5">
+                            <div class="col-md-12" style="margin-top: 30px;">
+                                <div class="col-md-6">
                                     <button type="reset" class="btn btn-default  btn-block">Cancel</button>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <button type="submit" class="btn btn-primary btn-block">Submit</button>
                                 </div>
                             </div>
@@ -67,4 +67,5 @@
             </div>
         </div>
     </div>
+
 @endsection
