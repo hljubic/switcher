@@ -133,4 +133,18 @@ body {
     position: relative;
     margin-right: 0;
   }
+
+  #profile {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border-style: double;
+    background: #dde1e2;
+    font-size: 60px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #ffffff;
+    text-align: center;
+    line-height: 130px;
+    margin: 25px 15px;
+  }
 }
