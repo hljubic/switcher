@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Collegium;
+use App\FollowerUser;
 use App\Post;
+use App\Task;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,6 +28,15 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('home', ['posts' => $posts]);
+        $collegiums = Collegium::where('prof_id', '=', Auth::user()->id)->orWhere('assist_id', '=', Auth::user()->id)
+            ->orwhereHas('user', function ($q) {
+                $q->where('user_id', '=', Auth::user()->id);
+            })->get();
+        $tasks = Task::whereHas('user', function ($q) {
+            $q->where('user_id', '=', Auth::user()->id);
+        })->get();
+        $friends = FollowerUser::where('follower_id', '=', Auth::user()->id)->get();
+        return view('home', array('posts' => $posts, 'collegiums' => $collegiums, 'tasks' => $tasks,
+            'friends' => $friends));
     }
 }

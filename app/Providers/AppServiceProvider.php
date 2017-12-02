@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Collegium;
 use App\Faculty;
 use App\Study;
+use App\TaskUser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use View;
 
@@ -25,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         view()->share('studies', $studies);
         $collegiums = Collegium::all();
         view()->share('collegiums', $collegiums);
+
     }
 
     /**

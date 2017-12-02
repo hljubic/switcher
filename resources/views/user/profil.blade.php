@@ -1,96 +1,143 @@
 @extends ('layouts.app')
 
 @section('content')
-    <div class="col-lg-8 col-lg-offset-2" style="margin-top: 50px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="panel panel-success" style="margin-bottom: 2%">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{{$user->name}}</h3>
-                        </div>
-                        <div class="panel-body">
-                            <i class="fa fa-envelope" aria-hidden="true"></i> {{$user->email}}
-                            <br><br>
-                            <i class="fa fa-phone" aria-hidden="true"></i> {{$user->phone}}
-                            <br><br>
-                            <i class="fa fa-graduation-cap" aria-hidden="true"></i> {{$user->type}}
-                            <br><br>
-                            <i class="fa fa-book" aria-hidden="true"></i> {{$user->index_number}}
-                            <br><br>
-                            <i class="fa fa-university" aria-hidden="true"></i> {{$user->study->name}}
-
-                        </div>
-                        <div class="panel-footer">
-                            <div class="row">
-                                <div class="col-lg-6" style="text-align: center; font-weight: bold;">
-                                    Followers
-                                    <br>
-                                    {{$followers}}
-                                </div>
-                                <div class="col-lg-6" style="text-align: center; font-weight: bold;">
-                                    Following
-                                    <br>
-                                    {{$following}}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2" style="margin-top: 50px;">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="item">
+                                    <div id="profile">{{substr($user->name,0,1)}}</div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    @if(Auth::user()->id == $user->id)
-                        <a href="{{route('user_edit')}}/{{$user->id}}" class="btn btn-success btn-sm"
-                           style="width: 100%;">Uredi</a></td>
-                    @elseif($followButton == true)
-                        <a href="{{route('unfollow')}}/{{Auth::user()->id}}" class="btn btn-success btn-sm"
-                           style="width: 100%;">Unfollow</a>
-                    @else
-                        <form class="form-horizontal" action="{{route('follow')}}/{{$user->id}}" method="POST">
-                            {{csrf_field()}}
-                            <fieldset>
-                                <button type="submit" class="btn btn-success btn-sm" style="width: 100%;">Follow
-                                </button>
-                            </fieldset>
-                        </form>
-                    @endif
-                </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-success" style="height: 370px;">
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#kolegiji">Kolegiji</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#objave">Objave</a>
-                            </li>
-                        </ul>
-                        <div class="panel-body">
-                            <div id="myTabContent" class="tab-content">
-                                <div class="tab-pane fade in active show" id="kolegiji">
-                                    @foreach($collegiums as $collegium)
-                                        {{$collegium->name}}
-                                        <br>
-                                    @endforeach
-                                </div>
-                                <div class="tab-pane fade" id="objave">
-                                    <ul class="list-group">
-                                        <li class="list-group-item">
-                                            @foreach($posts as $post)
-                                                <h5>{{$post->content}}</h5>
-                                                <br>
-                                                <small><i class="fa fa-user"
-                                                          aria-hidden="true"></i> {{$post->user->name}}</small>
+                            <div class="col-lg-5">
+                                <h4 id="storename">{{$user->name}}</h4>
 
-                                                <br>
-                                                <small><i class="fa fa-clock-o"
-                                                          aria-hidden="true"></i> {{$post->created_at}}</small>
-                                            @endforeach
-                                        </li>
-                                    </ul>
+                                <div class="row">
+                                    <div class="col-lg-3" style="text-align: center; font-weight: bold;">
+                                        <small>Pratitelji</small>
+                                        <h5>{{$followers}}</h5>
+                                    </div>
+                                    <div class="col-lg-5" style="text-align: center; font-weight: bold;">
+                                        <small>Pratim</small>
+                                        <h5>{{$following}}</h5>
+                                    </div>
+                                    <div class="col-lg-3" style="text-align: center; font-weight: bold;">
+                                        <small>Objave</small>
+                                        <h5>{{$posts->count()}}</h5>
+                                    </div>
                                 </div>
+                                <br>
+                                @if(Auth::user()->id == $user->id)
+                                    <a href="{{route('user_edit')}}/{{$user->id}}" class="btn btn-success btn-sm"
+                                       style="width: 100%;">
+                                        Uredi</a></td>
+                                @elseif($followButton == true)
+                                    <div class="row">
+                                        <a href="{{route('unfollow')}}/{{Auth::user()->id}}"
+                                           class="btn btn-success btn-sm col-lg-6"
+                                           style="width: 120px; margin-left: 16px;">
+                                            Unfollow</a>
+                                        <a href="#" class="btn btn-success disabled btn-sm col-lg-6"
+                                           style="width: 120px; margin-left: 20px;">Poruka</a>
+                                    </div>
+                                @else
+                                    <div class="row">
+                                        <form class="form-horizontal col-lg-6"
+                                              action="{{route('follow')}}/{{$user->id}}"
+                                              method="POST">
+                                            {{csrf_field()}}
+                                            <fieldset>
+                                                <button type="submit" class="btn btn-success btn-sm"
+                                                        style="width: 120px;">
+                                                    Follow
+                                                </button>
+                                            </fieldset>
+                                        </form>
+                                        <a href="#" class="btn btn-success disabled btn-sm col-lg-4"
+                                           style="width: 120px;">Poruka</a>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-lg-4">
+                                <blockquote>
+                                    <h5><i class="fa fa-graduation-cap" aria-hidden="true"></i> {{$user->type}}</h5>
+                                    <h5><i class="fa fa-envelope" aria-hidden="true"></i> {{$user->email}}</h5>
+                                    <h5><i class="fa fa-phone" aria-hidden="true"></i> {{$user->phone}}</h5>
+                                    <h5><i class="fa fa-book" aria-hidden="true"></i> {{$user->index_number}}</h5>
+                                    <h5><i class="fa fa-university" aria-hidden="true"></i> {{$user->study->name}}</h5>
+                                </blockquote>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2" style="margin-top: 20px;">
+                <div class="panel">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#objave">Objave</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kolegiji">Kolegiji</a>
+                        </li>
+                    </ul>
+                    <div class="panel-body">
+                        <div id="myTabContent" class="tab-content">
+                            <!-- objave -->
+                            <div class="tab-pane fade active in" id="objave">
+                                <div class="list-group col-lg-10 col-lg-offset-1">
+                                    @foreach($posts as $post)
+                                        <div class="list-group-item" style="margin-bottom: 10px;">
+                                            <div class="panel panel-default ">
+
+
+                                                <div class="panel-body">
+                                                    <p>{{$post->content}}</p>
+                                                    <small>by {{$post->user->name}},</small>
+                                                    <br>
+                                                    <small>{{$post->created_at}}</small>
+
+                                                </div>
+                                                <div class="panel-footer">
+                                                    <form class="form-horizontal">
+                                                        <div class="row">
+                                                            <div class="col-lg-9">
+                                                                <input class="form-control"
+                                                                       style="margin-bottom: 5px; border-radius: 50px;"
+                                                                       id="focusedInput" type="text"
+                                                                       placeholder="Napisi komentar...">
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <button type="button" class="btn btn-success"
+                                                                        style="border-radius: 50px;">Komentiraj
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <!-- kolegiji -->
+                            <div class="tab-pane fade" id="kolegiji" style="margin-bottom: 100px;">
+                                @foreach($collegiums as $collegium)
+                                    <li class="list-group-item">
+                                        <a href="#" style="color:#303030;">{{$collegium->name}}</a>
+                                    </li>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 @endsection

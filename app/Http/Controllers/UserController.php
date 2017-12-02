@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Collegium;
 use App\FollowerUser;
-use App\Message;
 use App\Post;
 use App\Study;
 use App\User;
@@ -71,7 +70,7 @@ class UserController extends Controller
         })->get();
         $posts = Post::where('user_id', '=', $id)->get();
 
-        if (FollowerUser::where('follower_id', '=', Auth::user()->id)->exists()) {
+        if (FollowerUser::where('follower_id', '=', Auth::user()->id)->where('user_id','=',$id)->exists()) {
             $followButton = true;
         } else {
             $followButton = false;

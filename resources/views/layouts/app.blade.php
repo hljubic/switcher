@@ -18,7 +18,6 @@
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <!-- style for sidebar -->
     <link href="{{asset('css/simple-sidebar.css') }}" rel="stylesheet">
-
     @stack('stylesheets')
 
 </head>
@@ -40,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/home') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -55,7 +54,9 @@
                                                                              aria-hidden="true"></i></button>
                         </form>
 
-                        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-university" aria-hidden="true"></i>
+
+                        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-university"
+                                                                                          aria-hidden="true"></i>
                                 <ul class="dropdown-menu">
                                     <li><a href="{{route('faculties')}}">Fakulteti</a></li>
                                     <li><a href="{{route('studies')}}">Studijske grupe</a></li>
@@ -109,16 +110,17 @@
     </nav>
 
     @include('inc.sidebar',['faculties',$faculties],['studies',$studies],['collegiums',$collegiums])
-
     @include('layouts.messages')
 
     @yield('content')
+
 </div>
 
 <!-- Scripts -->
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+
 
 <script>
     //datepicker
@@ -132,10 +134,15 @@
         $("#wrapper").toggleClass("toggled");
     });
 
-    //pills
-
+    //profile picture
+    $(document).ready(function () {
+        var storename = $('#storename').text();
+        var intials = $('#storename').text().charAt(0);
+        var profile = $('#profile').text(intials);
+    });
 </script>
 
-    @stack('scripts')
+
+@stack('scripts')
 </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Task extends Model
 {
@@ -12,5 +13,9 @@ class Task extends Model
     public function collegium(){
 
         return $this->belongsTo('App\Collegium','collegium_id');
+    }
+
+    public function user(){
+        return $this->belongsToMany('App\User');
     }
 }
