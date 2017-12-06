@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-lg-8 col-lg-offset-2">
-        <form class="form-horizontal" action="{{route('participant_edit')}}/{{$participant->id}}" method="POST">
+        <form class="form-horizontal" action="{{route('participants_edit')}}/{{$participant->id}}" method="POST">
             {{ method_field("PATCH") }}
             {{ csrf_field() }}
             <fieldset>

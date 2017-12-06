@@ -16,11 +16,13 @@ class StudiesTableSeeder extends Seeder
             [
                 'name' => 'Informatika',
                 'description' => 'Imat ces se kad kajat!',
+                'faculty_id'=>'1'
 
             ],
             [
                 'name' => 'Kemija',
                 'description' => 'Fakultet kemije',
+                'faculty_id'=>'1'
 
             ]
 

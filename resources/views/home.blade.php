@@ -15,7 +15,7 @@
                         <div>
 
                             <ul class="pager">
-                                <li><a href="{{route('post_create')}}"><i class="fa fa-plus-circle"
+                                <li><a href="{{route('posts_create')}}"><i class="fa fa-plus-circle"
                                                                           aria-hidden="true"></i></a></li>
                             </ul>
 

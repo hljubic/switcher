@@ -8,7 +8,7 @@
                 <h3 class="panel-title">Dodaj novi kolegij</h3>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" action="{{route ('collegium_create')}}" method="POST">
+                <form class="form-horizontal" action="{{route ('collegiums_create')}}" method="POST">
                     {{ csrf_field() }}
                     <fieldset>
                         <legend></legend>

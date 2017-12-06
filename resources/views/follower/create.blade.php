@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="col-md-8 col-md-offset-2">
-        <form class="form-horizontal" action="{{ route('follower_create') }}" method="POST">
+        <form class="form-horizontal" action="{{ route('followers_create') }}" method="POST">
             {{csrf_field()}}
             <fieldset>
                 <legend>Follower</legend>

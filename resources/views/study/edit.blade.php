@@ -7,7 +7,7 @@
                 <h3 class="panel-title">Dodaj novi fakultet</h3>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" action="{{ route('study_edit') }}/{{$studies->id}}" method="POST">
+                <form class="form-horizontal" action="{{ route('studies_edit') }}/{{$studies->id}}" method="POST">
                     {{method_field("PATCH")}}
                     {{csrf_field()}}
                     <fieldset>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col col-md-8 col-md-offset-2">
-        <form class="form-horizontal" action="{{ route('file_create') }}" method="POST">
+        <form class="form-horizontal" action="{{ route('files_create') }}" method="POST">
 
             {{ csrf_field() }}
             <fieldset>

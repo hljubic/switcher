@@ -5,7 +5,7 @@
         <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
             <ul class="nav nav-pills nav-justified" style=" border: 3px;">
                 <li><a href="#table_view" data-toggle="tab">Zadaci</a></li>
-                <li><a href="{{route('task_create')}}" class="btn">Dodaj</a></li>
+                <li><a href="{{route('tasks_create')}}" class="btn">Dodaj</a></li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="table_view" style="padding-top:35px">
@@ -33,9 +33,9 @@
                                 <td>{{$task->collegium->name}}</td>
                                 <td>{{$task->created_at}}</td>
 
-                                <td><a href="{{route('task_edit')}}/{{$task->id}}"
+                                <td><a href="{{route('tasks_edit')}}/{{$task->id}}"
                                        class="btn btn-primary btn-xs">Uredi</a></td>
-                                <td><a href="{{route('task_delete')}}/{{$task->id}}" class="btn btn-danger btn-xs">Izbriši</a>
+                                <td><a href="{{route('tasks_delete')}}/{{$task->id}}" class="btn btn-danger btn-xs">Izbriši</a>
                                 </td>
                             </tr>
                         @endforeach

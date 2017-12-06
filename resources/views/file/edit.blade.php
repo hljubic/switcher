@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="col-lg-8 col-lg-offset-2">
-        <form class="form-horizontal" action="{{route('file_edit')}}/{{$files->id}}" method="POST">
+        <form class="form-horizontal" action="{{route('files_edit')}}/{{$files->id}}" method="POST">
             {{ method_field("PATCH") }}
             {{ csrf_field() }}
             <fieldset>
