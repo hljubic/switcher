@@ -47,7 +47,7 @@ a {
     float: right;
     width: 20px;
     height: 20px;
-    background-image: url(img/icons-20.png);
+    /*background-image: url(img/icons-20.png);*/
     background-repeat: no-repeat;
     background-position: 0 0;
     cursor: pointer;
@@ -186,7 +186,7 @@ a {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-image: url(img/);
+    /*background-image: url(img/);*/
     background-repeat: no-repeat;
 }
 
@@ -204,13 +204,12 @@ a {
 
 }
 
-.btn-default {
+.dugme1{
     height: 100px !important;
     color: #000000 !important;
     background-color: #FFFFFF !important;
 }
-
-.btn-default:hover {
+.dugme1:hover {
     background-color: #f0f0f0 !important;
 }
 
@@ -218,7 +217,7 @@ a {
     border: 0px !important;
 }
 
-.btn {
+.dugme2{
     float: right;
     height: 40px !important;
     width: 100px;
@@ -229,7 +228,7 @@ a {
     height: 700px !important;
 }
 
-.form-control {
+.forma1{
     width: 85% !important;
 }
 
