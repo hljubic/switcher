@@ -18,4 +18,9 @@ class Task extends Model
     public function user(){
         return $this->belongsToMany('App\User');
     }
+
+    public function files(){
+
+        return $this->hasMany('App\File','task_id');
+    }
 }

@@ -255,6 +255,14 @@ Route::get('/followCollegium')->name('followCollegium');
 Route::post('/followCollegium/{id}','CollegiumUserController@AddMeToCollegium');
 Route::get('/unfollowCollegium')->name('unfollowCollegium');
 Route::get('/unfollowCollegium/{id}', 'CollegiumUserController@RemoveMeFromCollegium');
+
+//task profile
+Route::get('/followTask')->name('followTask');
+Route::post('/followTask/{id}','TaskUserController@AddMeToTask');
+
+//uploading file
+Route::get('/upload','UploadController@index');
+Route::post('/store','UploadController@store')->name('upload_store');
 // Chat
 Route::get('/chat', 'ChatController@index');
 Route::get('/chat/conversations', 'ChatController@getConversations')->name('conversations'); //vraća sve razgovore prijavljenog korisnika

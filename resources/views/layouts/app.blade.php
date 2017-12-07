@@ -148,6 +148,17 @@
         var intials = $('#storename').text().charAt(0);
         var profile = $('#profile').text(intials);
     });
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip(options)
+    })
+
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover({
+            placement : 'bottom'
+        });
+    });
+
 </script>
 
 @stack('scripts')

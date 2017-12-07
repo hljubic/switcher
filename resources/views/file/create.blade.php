@@ -8,20 +8,15 @@
             <fieldset>
                 <legend>Dodaj rad</legend>
                 <div class="form-group">
-                    <label for="select" class="col-lg-2 control-label">Naziv</label>
+                    <label for="inputPath" class="col-lg-2 control-label">Naziv</label>
                     <div class="col-lg-10">
-                        <select class="form-control" id="select" name="name">
-                            <option value="seminarski">seminarski</option>
-                            <option value="zavrsni">zavrsni</option>
-                            <option value="diplomski">diplomski</option>
-                            <option value=""></option>
-                        </select>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="naziv">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPhone" class="col-lg-2 control-label">Path</label>
+                    <label for="inputPath" class="col-lg-2 control-label">Putanja</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="path" name="path" placeholder="Path">
+                        <input type="text" class="form-control" id="path" name="path" placeholder="putanja">
                     </div>
                 </div>
                 <div class="form-group">

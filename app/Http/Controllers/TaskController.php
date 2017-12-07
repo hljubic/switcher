@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Collegium;
 use App\Task;
+use App\TaskUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -55,7 +57,12 @@ class TaskController extends Controller
     public function show($id)
     {
         $tasks = Task::find($id);
-        return view('task.show')->with('tasks',$tasks);
+        if (TaskUser::where('user_id', '=', Auth::user()->id)->where('task_id','=',$id)->exists()) {
+            $followButton = true;
+        } else {
+            $followButton = false;
+        }
+        return view('task.show',array('tasks' => $tasks,'followButton' => $followButton));
     }
 
     /**

@@ -120,7 +120,7 @@ class CollegiumUserController extends Controller
 
     public function RemoveMeFromCollegium($id)
     {
-        $followers = CollegiumUser::where('user_id', '=', $id);
+        $followers = CollegiumUser::where('user_id', '=', Auth::user()->id)->where('collegium_id','=',$id);
         $followers->delete();
         return redirect()->back()->with('success', 'Otpratili ste korisnika.');
     }

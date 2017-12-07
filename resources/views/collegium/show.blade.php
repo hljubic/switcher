@@ -13,9 +13,11 @@
                         <div class="col-lg-3">
                             <div class="row">
                                 @if($followButton == true)
-                                    <a href="{{route('unfollowCollegium')}}/{{Auth::user()->id}}" class="btn btn-success btn-sm">Unfollow</a>
-                                @elseif($followButton == false)
-                                    <form class="form-horizontal" action="{{route('followCollegium')}}/{{$collegiums->id}}"
+                                    <a href="{{route('unfollowCollegium')}}/{{$collegiums->id}}"
+                                       class="btn btn-success btn-sm">Unfollow</a>
+                                @else
+                                    <form class="form-horizontal"
+                                          action="{{route('followCollegium')}}/{{$collegiums->id}}"
                                           method="POST">
                                         {{csrf_field()}}
                                         <fieldset>
@@ -217,12 +219,15 @@
                                     <div class="list-group-item"
                                          style="margin-bottom: 10px; border-left:solid #18BC9C 6px;">
                                         <div class="row">
-                                            <div class="col-lg-1" style="border-right:solid #ecf0f1;">
-                                                <h4 style="margin-top: 35px;">{{\Carbon\Carbon::parse($task->deadline)->format('d.m')}}</h4>
-                                                <p style="padding-top: 15px;"></p>
+                                            <div class="col-lg-2"
+                                                 style="border-right: solid #ecf0f1; text-align: center;">
+                                                <h4 class="header"
+                                                    style="padding-top:20px;">{{\Carbon\Carbon::parse($task->deadline)->format('d.m')}}</h4>
+                                                <p style="padding-top:20px;"></p>
                                             </div>
-                                            <div class="col-lg-9">
-                                                <h4 class="header" style="margin-top: 25px;">{{$task->name}}</h4>
+
+                                            <div class="col-lg-8">
+                                                <h4 class="header" style="padding-top: 15px;">{{$task->name}}</h4>
                                                 <p>{{$task->type}}</p>
                                             </div>
                                             <div class="col-lg-2">
@@ -232,7 +237,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 @endif
                             @endforeach
                             <h3 style="margin-top: 25px;">Projektni zadaci</h3>
@@ -243,12 +247,14 @@
                                     <div class="list-group-item"
                                          style="margin-bottom: 10px; border-left:solid #ec971f 6px;">
                                         <div class="row">
-                                            <div class="col-lg-1" style="border-right:solid #ecf0f1;">
-                                                <h4 style="margin-top: 30px;">{{\Carbon\Carbon::parse($task->deadline)->format('d.m')}}</h4>
-                                                <p style="padding-top: 15px;"></p>
+                                            <div class="col-lg-2"
+                                                 style="border-right: solid #ecf0f1; text-align: center;">
+                                                <h4 class="header"
+                                                    style="padding-top:20px;">{{\Carbon\Carbon::parse($task->deadline)->format('d.m')}}</h4>
+                                                <p style="padding-top:20px;"></p>
                                             </div>
-                                            <div class="col-lg-9">
-                                                <h4 class="header" style="margin-top: 25px;">{{$task->name}}</h4>
+                                            <div class="col-lg-8">
+                                                <h4 class="header" style="padding-top: 15px;">{{$task->name}}</h4>
                                                 <p>{{$task->type}}</p>
                                             </div>
                                             <div class="col-lg-2">
@@ -267,12 +273,14 @@
                                     <div class="list-group-item"
                                          style="margin-bottom: 10px; border-left:solid  #d9534f 6px;">
                                         <div class="row">
-                                            <div class="col-lg-1" style="border-right:solid #ecf0f1;">
-                                                <h4 style="margin-top: 30px;">{{\Carbon\Carbon::parse($task->deadline)->format('d.m')}}</h4>
-                                                <p style="padding-top: 15px;"></p>
+                                            <div class="col-lg-2"
+                                                 style="border-right: solid #ecf0f1; text-align: center;">
+                                                <h4 class="header"
+                                                    style="padding-top:20px;">{{\Carbon\Carbon::parse($task->deadline)->format('d.m')}}</h4>
+                                                <p style="padding-top:20px;"></p>
                                             </div>
-                                            <div class="col-lg-9">
-                                                <h4 class="header" style="margin-top: 25px;">{{$task->name}}</h4>
+                                            <div class="col-lg-8">
+                                                <h4 class="header" style="padding-top: 15px;">{{$task->name}}</h4>
                                                 <p>{{$task->type}}</p>
                                             </div>
                                             <div class="col-lg-2">

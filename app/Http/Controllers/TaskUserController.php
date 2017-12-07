@@ -6,6 +6,7 @@ use App\Task;
 use App\TaskUser;
 use App\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class TaskUserController extends Controller
 {
@@ -104,5 +105,17 @@ class TaskUserController extends Controller
         $taskuser->delete();
 
         return redirect('/team')->with('success', 'Tim izbrisan.');
+    }
+
+    public function AddMeToTask($id){
+
+        $followers = new TaskUser();
+        $followers->task_id = $id;
+        $followers->user_id = Auth::user()->id;
+        $followers->save();
+
+        return redirect()->back()->with('success','Upisani ste na zadatak');
+
+
     }
 }
