@@ -148,6 +148,7 @@
         var intials = $('#storename').text().charAt(0);
         var profile = $('#profile').text(intials);
     });
+
 </script>
 
 @stack('scripts')

@@ -13,9 +13,11 @@
                         <div class="col-lg-3">
                             <div class="row">
                                 @if($followButton == true)
-                                    <a href="{{route('unfollowCollegium')}}/{{Auth::user()->id}}" class="btn btn-success btn-sm">Unfollow</a>
+                                    <a href="{{route('unfollowCollegium')}}/{{Auth::user()->id}}"
+                                       class="btn btn-success btn-sm">Unfollow</a>
                                 @elseif($followButton == false)
-                                    <form class="form-horizontal" action="{{route('followCollegium')}}/{{$collegiums->id}}"
+                                    <form class="form-horizontal"
+                                          action="{{route('followCollegium')}}/{{$collegiums->id}}"
                                           method="POST">
                                         {{csrf_field()}}
                                         <fieldset>
@@ -37,7 +39,6 @@
                         <li><a href="#posts-data" data-toggle="tab">Obavijesti</a></li>
                         <li><a href="#tasks-data" data-toggle="tab">Zadaci</a></li>
                         <li><a href="#classes-data" data-toggle="tab">Predavanja / Vježbe </a></li>
-                        <li><a href="#attendances-data" data-toggle="tab">Prisutnost</a></li>
                         <li><a href="#student-data" data-toggle="tab">Studenti</a></li>
 
                     </ul>
@@ -282,29 +283,134 @@
                                             </div>
                                         </div>
                                     </div>
+                                @else
+                                    <div class="list-group-item"
+                                         style="margin-bottom: 10px; border-left:solid  #d9534f 6px;">
+                                        <div class="row">
+                                            <div class="col-lg-1" style="border-right:solid #ecf0f1;">
+                                                <h4 style="margin-top: 30px;">{{\Carbon\Carbon::parse($task->deadline)->format('d.m')}}</h4>
+                                                <p style="padding-top: 15px;"></p>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <h4 class="header" style="margin-top: 25px;">{{$task->name}}</h4>
+                                                <p>{{$task->type}}</p>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <a href="{{route('tasks')}}/{{$task->id}}"
+                                                   class="btn btn-danger btn-block"
+                                                   style="align-self: flex-start; border-radius: 50px; margin-top: 25px;">Više</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endif
                             @endforeach
                         </div>
-                        <div class="tab-pane fade" id="classes-data" style="padding-top:15px"></div>
-                        <div class="tab-pane fade" id="attendances-data" style="padding-top:15px"></div>
-                        <div class="tab-pane fade" id="student-data" style="padding-top:15px">
-                            @foreach($collegiums->user as $user)
-                                <div class="list-group-item"
-                                     style="margin-bottom: 10px; border-left:solid  #d9534f 6px;">
+                        <!-- classes -->
+                        <div class="tab-pane fade" id="classes-data" style="padding-top:15px">
+                            <form class="form-horizontal" action="{{ route('classe_create') }}" method="POST">
+                                {{ csrf_field() }}
+                                <fieldset>
                                     <div class="row">
-                                        <div class="col-lg-9">
-                                            <h4 class="header" style="margin-top: 25px;">{{$user->name}}</h4>
+                                        <div class="col-lg-3">
+                                            <select class="form-control" id="select" name="type">
+                                                <option value="lecture">Predavanja</option>
+                                                <option value="exercises">Vježbe</option>
+                                                <option value="laboratory exercises">Laboratorijske vježbe</option>
+                                            </select>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <input type="hidden" name="collegium_id" value="{{$collegiums->id}}">
+                                        <input type="hidden" name="created_at" value="{{ date('y-m-d h:i:s') }}">
+                                        <div class="col-lg-6">
+                                            <button type="submit" class="btn btn-primary">Dodaj</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        <br><br>
+                        @foreach($collegiums->classe as $classe)
+                            @if($classe->type == 'lecture')
+                                <div class="list-group-item"
+                                     style="margin-bottom: 10px; border-left:solid #18BC9C 6px;">
+                                    <div class="row">
+                                        <div class="col-lg-2"
+                                             style="border-right:solid #ecf0f1; text-align: center;">
+                                            <h4 style="margin-top: 35px;">{{\Carbon\Carbon::parse($classe->deadline)->format('d.m.')}}</h4>
+                                            <p>{{\Carbon\Carbon::parse($classe->deadline)->format('h:m')}} h</p>
+                                            <p style="padding-top: 15px;"></p>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <h4 class="header" style="margin-top: 50px;">Predavanje</h4>
+                                        </div>
+                                        <div class="col-lg-2" style="margin-top: 15px;">
+                                            <a href="{{route('attendances')}}/{{$classe->id}}"
+                                               class="btn btn-success btn-block"
+                                               style="align-self: flex-start; border-radius: 50px; margin-top: 25px;">Prisutnost</a>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @elseif($classe->type == 'exercises')
+                                <div class="list-group-item"
+                                     style="margin-bottom: 10px; border-left:solid #ec971f 6px;">
+                                    <div class="row">
+                                        <div class="col-lg-2"
+                                             style="border-right:solid #ecf0f1; text-align: center;">
+                                            <h4 style="margin-top: 35px;">{{\Carbon\Carbon::parse($classe->deadline)->format('d.m.')}}</h4>
+                                            <p>{{\Carbon\Carbon::parse($classe->deadline)->format('h:m')}} h</p>
+                                            <p style="padding-top: 15px;"></p>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <h4 class="header" style="margin-top: 50px; vertical-align: middle;">
+                                                Vježbe</h4>
+                                        </div>
+                                        <div class="col-lg-2" style="margin-top: 15px;">
+                                            <a href="{{route('attendances')}}/{{$classe->id}}"
+                                               class="btn btn-warning btn-block"
+                                               style="align-self: flex-start; border-radius: 50px; margin-top: 25px;">Prisutnost</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="list-group-item"
+                                     style="margin-bottom: 10px; border-left:solid #d9534f 6px;">
+                                    <div class="row">
+                                        <div class="col-lg-2"
+                                             style="border-right:solid #ecf0f1; text-align: center;">
+                                            <h4 style="margin-top: 35px;">{{\Carbon\Carbon::parse($classe->deadline)->format('d.m.')}}</h4>
+                                            <p>{{\Carbon\Carbon::parse($classe->deadline)->format('h:m')}} h</p>
+                                            <p style="padding-top: 15px;"></p>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <h4 class="header" style="margin-top: 50px; vertical-align: middle;">
+                                                Laboratorijske vježbe</h4>
+                                        </div>
+                                        <div class="col-lg-2" style="margin-top: 15px;">
+                                            <a href="{{route('attendances')}}/{{$classe->id}}"
+                                               class="btn btn-danger btn-block"
+                                               style="align-self: flex-start; border-radius: 50px; margin-top: 25px;">Prisutnost</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+            <div class="tab-pane fade" id="student-data" style="padding-top:15px">
+                @foreach($collegiums->user as $user)
+                    <div class="list-group-item"
+                         style="margin-bottom: 10px; border-left:solid  #d9534f 6px;">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <h4 class="header" style="margin-top: 25px;">{{$user->name}}</h4>
+                            </div>
+                            <div class="col-lg-2">
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
+    </div>
+    </div>
+    </div>
     </div>
 
 @endsection

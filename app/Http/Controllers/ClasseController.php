@@ -43,7 +43,7 @@ class ClasseController extends Controller
         $classes->fill($request->all());
         $classes->save();
 
-        return redirect('classes/create')->with('success', 'Kreirano ');
+        return back()->with('success', 'Kreirano ');
     }
 
     /**

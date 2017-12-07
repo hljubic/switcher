@@ -33,7 +33,7 @@ Route::get('/users/delete')->name('user_delete');
 Route::get('/users/delete/{id}', 'UserController@destroy');
 
 //ATTENDANCES
-Route::get('/attendances', 'AttendanceController@index');
+Route::get('/attendances', 'AttendanceController@index')->name('attendances');
 Route::get('/attendances/{id}', 'AttendanceController@show')->where('id', '[0-9]+');
 //create attendance
 Route::get('/attendances/create', 'AttendanceController@create')->name('attendance_create');

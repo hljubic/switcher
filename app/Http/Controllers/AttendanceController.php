@@ -40,11 +40,15 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        $attendances = new Attendance();
-        $attendances->fill($request->all());
-        $attendances->save();
 
-        return redirect('attendances/create')->with('success', 'Kreirano ');
+        foreach($request->users as $user_id){
+            $attendances = new Attendance();
+            $attendances->user_id = $user_id;
+            $attendances->class_id = $request->class_id;
+            $attendances->save();
+        }
+
+        return back()->with('success', 'Kreirano ');
     }
 
     /**
@@ -55,7 +59,10 @@ class AttendanceController extends Controller
      */
     public function show($id)
     {
-        return Attendance::find($id);
+        $attendances = Attendance::where('class_id', '=', $id)->get();
+        $classe = Classe::find($id);
+        $collegiums = $classe->collegium;
+        return view('attendance.show', array('attendances'=>$attendances, 'classe'=>$classe, 'collegiums'=>$collegiums));
     }
 
     /**

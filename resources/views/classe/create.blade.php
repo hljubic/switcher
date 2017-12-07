@@ -9,7 +9,7 @@
                 <div class="form-group">
                     <label for="select" class="col-lg-2 control-label">Tip nastave</label>
                     <div class="col-lg-10">
-                        <select class="form-control" id="select" name="title">
+                        <select class="form-control" id="select" name="type">
                             <option value="lecture">lecture</option>
                             <option value="exercises">exercises</option>
                         </select>

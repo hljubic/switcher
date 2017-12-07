@@ -36,7 +36,7 @@
                                         Uredi</a></td>
                                 @elseif($followButton == true)
                                     <div class="row">
-                                        <a href="{{route('unfollow')}}/{{Auth::user()->id}}"
+                                        <a href="{{route('unfollow')}}/{{$user->id}}"
                                            class="btn btn-success btn-sm col-lg-6"
                                            style="width: 120px; margin-left: 16px;">
                                             Unfollow</a>

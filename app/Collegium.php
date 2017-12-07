@@ -37,4 +37,8 @@ class Collegium extends Model
     public function tasks(){
         return $this->hasMany('App\Task');
     }
+
+    public function classe(){
+        return $this->hasMany('App\Classe')->orderBy('id','desc');
+    }
 }
