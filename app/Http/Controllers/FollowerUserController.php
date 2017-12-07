@@ -113,7 +113,7 @@ class FollowerUserController extends Controller
 
     public function unfollow($id)
     {
-        $followers = FollowerUser::where('follower_id', '=', $id);
+        $followers = FollowerUser::where('follower_id', '=', Auth::user()->id)->where('user_id','=',$id);
         $followers->delete();
         return redirect()->back()->with('success', 'Otpratili ste korisnika.');
     }

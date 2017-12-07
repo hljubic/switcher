@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Classe extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['type', 'collegium_id'];
+    protected $fillable = ['type', 'collegium_id', 'created_at'];
 
     public function collegium()
     {
