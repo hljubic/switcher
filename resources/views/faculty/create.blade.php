@@ -7,7 +7,7 @@
                 <h3 class="panel-title">Dodaj novi fakultet</h3>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" action="{{ route('faculty_create') }}" method="POST">
+                <form class="form-horizontal" action="{{ route('faculties_create') }}" method="POST">
                     {{csrf_field()}}
                     <fieldset>
                         <legend></legend>

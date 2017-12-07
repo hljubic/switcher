@@ -5,7 +5,7 @@
         <div id="page-content-wrapper">
             <ul class="nav nav-pills nav-justified" style=" border: 3px;">
                 <li><a href="#table_view" data-toggle="tab">Pregled pratitelja</a></li>
-                <li><a href="{{route('follower_create')}}" class="btn">Dodaj</a></li>
+                <li><a href="{{route('followers_create')}}" class="btn">Dodaj</a></li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="table_view" style="padding-top:35px">
@@ -23,9 +23,9 @@
                                 <td>{{$follower->id}}</td>
                                 <td>{{$follower-> user->name}}</td>
                                 <td>{{$follower-> follower -> name}}</td>
-                                <td><a href="{{route('follower_edit')}}/{{$follower->id}}"
+                                <td><a href="{{route('followers_edit')}}/{{$follower->id}}"
                                        class="btn btn-primary btn-xs">Uredi</a></td>
-                                <td><a href="{{route('follower_delete')}}/{{$follower->id}}"
+                                <td><a href="{{route('followers_delete')}}/{{$follower->id}}"
                                        class="btn btn-danger btn-xs">Izbriši</a>
                                 </td>
                             </tr>

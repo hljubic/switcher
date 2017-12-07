@@ -138,7 +138,7 @@
                             <div class="list-group col-lg-10 col-lg-offset-1">
                                 <div class="list-group-item ">
                                     <div class="panel-default" style="width: 100%;">
-                                        <form class="form-horizontal" action="{{route ('post_create')}}"
+                                        <form class="form-horizontal" action="{{route ('posts_create')}}"
                                               method="POST">
                                             {{ csrf_field() }}
                                             <fieldset>

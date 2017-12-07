@@ -6,7 +6,7 @@
         <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
             <ul class="nav nav-pills nav-justified">
                 <li><a href="#table_view" data-toggle="tab">Fakulteti</a></li>
-                <li><a href="{{route('faculty_create')}}">Dodaj</a></li>
+                <li><a href="{{route('faculties_create')}}">Dodaj</a></li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="table_view" style="padding-top:35px">
@@ -35,9 +35,9 @@
 
                                 <td><a href="{{route('faculties')}}/{{$faculty->id}}" class="btn btn-warning btn-xs">Prikaz</a>
                                 </td>
-                                <td><a href="{{route('faculty_edit')}}/{{$faculty->id}}" class="btn btn-primary btn-xs">Uredi</a>
+                                <td><a href="{{route('faculties_edit')}}/{{$faculty->id}}" class="btn btn-primary btn-xs">Uredi</a>
                                 </td>
-                                <td><a href="{{route('faculty_delete')}}/{{$faculty->id}}"
+                                <td><a href="{{route('faculties_delete')}}/{{$faculty->id}}"
                                        class="btn btn-danger btn-xs">Izbriši</a></td>
                             </tr>
                         @endforeach

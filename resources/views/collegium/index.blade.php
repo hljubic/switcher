@@ -5,7 +5,7 @@
         <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
             <ul class="nav nav-pills nav-justified" style=" border: 3px;">
                 <li><a href="#table_view" data-toggle="tab">Kolegiji</a></li>
-                <li><a href="{{route('collegium_create')}}" class="btn">Dodaj</a></li>
+                <li><a href="{{route('collegiums_create')}}" class="btn">Dodaj</a></li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="table_view" style="padding-top:35px">
@@ -32,9 +32,9 @@
 
                                 <td><a href="{{route('collegiums')}}/{{$collegium->id}}" class="btn btn-warning btn-xs">Prikaz</a>
                                 </td>
-                                <td><a href="{{route('collegium_edit')}}/{{$collegium->id}}"
+                                <td><a href="{{route('collegiums_edit')}}/{{$collegium->id}}"
                                        class="btn btn-primary btn-xs">Uredi</a></td>
-                                <td><a href="{{route('collegium_delete')}}/{{$collegium->id}}"
+                                <td><a href="{{route('collegiums_delete')}}/{{$collegium->id}}"
                                        class="btn btn-danger btn-xs">Izbriši</a></td>
                             </tr>
                         @endforeach

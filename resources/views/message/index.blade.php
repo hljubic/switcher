@@ -5,7 +5,7 @@
         <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
             <ul class="nav nav-pills nav-justified" style=" border: 3px;">
                 <li><a href="#table_view" data-toggle="tab">Pregled poruka</a></li>
-                <li><a href="{{route('message_create')}}" class="btn">Dodaj</a></li>
+                <li><a href="{{route('messages_create')}}" class="btn">Dodaj</a></li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="table_view" style="padding-top:35px">
@@ -29,9 +29,9 @@
                                 <td>{{$message->created_at}}</td>
                                 <td>{{$message->conversation->title}}</td>
                                 <td>{{$message->user->name}}</td>
-                                <td><a href="{{route('message_edit')}}/{{$message->id}}" class="btn btn-primary btn-xs">Uredi</a>
+                                <td><a href="{{route('messages_edit')}}/{{$message->id}}" class="btn btn-primary btn-xs">Uredi</a>
                                 </td>
-                                <td><a href="{{route('message_delete')}}/{{$message->id}}"
+                                <td><a href="{{route('messages_delete')}}/{{$message->id}}"
                                        class="btn btn-danger btn-xs">Izbriši</a>
                                 </td>
                             </tr>

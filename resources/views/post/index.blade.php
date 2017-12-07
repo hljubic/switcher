@@ -5,7 +5,7 @@
         <div id="page-content-wrapper"class="panel-default" style="margin-top: 50px;">
             <ul class="nav nav-pills nav-justified" style=" border: 3px;">
                 <li><a href="#table_view" data-toggle="tab">Objave</a></li>
-                <li><a href="{{route('post_create')}}" class="btn">Dodaj</a></li>
+                <li><a href="{{route('posts_create')}}" class="btn">Dodaj</a></li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="table_view" style="padding-top:35px">
@@ -23,10 +23,10 @@
                                 <td>{{$post->id}}</td>
                                 <td>{{$post->content}}</td>
                                 <td>{{$post->created_at}}</td>
-                                <td><a href="{{route('post_edit')}}/{{$post->id}}"
+                                <td><a href="{{route('posts_edit')}}/{{$post->id}}"
                                        class="btn btn-primary btn-xs">Uredi</a>
                                 </td>
-                                <td><a href="{{route('post_delete')}}/{{$post->id}}"
+                                <td><a href="{{route('posts_delete')}}/{{$post->id}}"
                                        class="btn btn-danger btn-xs">Izbriši</a></td>
                             </tr>
                         @endforeach

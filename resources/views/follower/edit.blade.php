@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="col-md-8 col-md-offset-2">
-        <form class="form-horizontal" action="{{ route('follower_edit') }}/{{$followers->id}}" method="POST">
+        <form class="form-horizontal" action="{{ route('followers_edit') }}/{{$followers->id}}" method="POST">
             {{method_field("PATCH")}}
             {{csrf_field()}}
             <fieldset>

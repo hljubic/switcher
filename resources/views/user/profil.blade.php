@@ -31,7 +31,7 @@
                                 </div>
                                 <br>
                                 @if(Auth::user()->id == $user->id)
-                                    <a href="{{route('user_edit')}}/{{$user->id}}" class="btn btn-success btn-sm"
+                                    <a href="{{route('users_edit')}}/{{$user->id}}" class="btn btn-success btn-sm"
                                        style="width: 100%;">
                                         Uredi</a></td>
                                 @elseif($followButton == true)

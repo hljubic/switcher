@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col col-md-8 col-md-offset-2">
-        <form class="form-horizontal" action="{{ route('classe_create') }}" method="POST">
+        <form class="form-horizontal" action="{{ route('classes_create') }}" method="POST">
             {{ csrf_field() }}
             <fieldset>
                 <legend>Dodaj nesto</legend>

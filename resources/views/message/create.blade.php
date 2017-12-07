@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-lg-8 col-lg-offset-2">
-        <form class="form-horizontal" action="{{route('message_create')}}" method="POST">
+        <form class="form-horizontal" action="{{route('messages_create')}}" method="POST">
             {{ csrf_field() }}
             <fieldset>
                 <legend>Kreiraj poruku</legend>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-lg-8 col-lg-offset-2">
-        <form class="form-horizontal" action="{{ route('user_create') }}" method="POST">
+        <form class="form-horizontal" action="{{ route('users_create') }}" method="POST">
             {{ csrf_field() }}
             <fieldset>
                 <legend>Kreiraj korisnika</legend>
