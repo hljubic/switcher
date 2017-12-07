@@ -47,22 +47,22 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                   <li>
-                       <form class="navbar-form navbar-left" role="search">
+                    <li>
+                        <form class="navbar-form navbar-left" role="search">
 
-                           <div class="form-group ">
-                               <input type="text" class="form-control input-sm" placeholder="Pretraga"
-                                      style="border-radius:50px; background-color:rgba(179, 179, 179,0.3); border:none; color:#fff;">
-                               <button type="submit" class="btn btn-default"
-                                       style="background-color: #313335; border-color: #313335;"><i
-                                           class="fa fa-search"
-                                           aria-hidden="true"></i>
-                               </button>
-                           </div>
+                            <div class="form-group ">
+                                <input type="text" class="form-control input-sm" placeholder="Pretraga"
+                                       style="border-radius:50px; background-color:rgba(179, 179, 179,0.3); border:none; color:#fff;">
+                                <button type="submit" class="btn btn-default"
+                                        style="background-color: #313335; border-color: #313335;"><i
+                                            class="fa fa-search"
+                                            aria-hidden="true"></i>
+                                </button>
+                            </div>
 
 
-                       </form>
-                   </li>
+                        </form>
+                    </li>
 
                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-graduation-cap"
                                                                                       aria-hidden="true"></i>
@@ -73,10 +73,8 @@
                             </ul>
                         </a>
                     </li>
-                    <li><a href="#"><i class="fa fa-exclamation" aria-hidden="true"></i></a></li>
                     <li><a href="#"><i class="fa fa-comments" aria-hidden="true"></i><span
                                     class="badge">3</span></a></li>
-                    <li><a href="#"><i class="fa fa-users" aria-hidden="true"></i></a></li>
                     <li><a href="{{route('imenik')}}"><i class="fa fa-address-book" aria-hidden="true"></i></a>
                 </ul>
 
@@ -153,9 +151,9 @@
         $('[data-toggle="tooltip"]').tooltip(options)
     })
 
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('[data-toggle="popover"]').popover({
-            placement : 'bottom'
+            placement: 'bottom'
         });
     });
 

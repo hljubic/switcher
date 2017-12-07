@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-8 col-md-offset-2">
         <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
-            <form class="form-horizontal" action="{{ route('attendance_create') }}" method="POST">
+            <form class="form-horizontal" action="{{ route('attendances_create') }}" method="POST">
                 {{ csrf_field() }}
                 <fieldset>
                     <div class="row">
