@@ -119,6 +119,7 @@
 
     @include('inc.sidebar',['faculties',$faculties],['studies',$studies],['collegiums',$collegiums])
     @include('layouts.messages')
+
     @yield('content')
 </div>
 
@@ -162,10 +163,7 @@
         checkbox.attr('checked', !checkbox.attr('checked'));
     });
 
-    $(document).ready(function () {
-        $('[data-toggle="collapse"]').collapse({
-        });
-    });
+
 
 </script>
 

@@ -21,6 +21,9 @@
                         <h3 class="header" style="padding-top: 5px;">{{$tasks->name}}</h3>
                         <p>{{$tasks->type}}</p>
                     </div>
+                    @php
+                        $taskuser = App\TaskUser::where('user_id','=', Auth::user()->id)->where('task_id','=',$tasks->id)->first();
+                    @endphp
                     <div class="col-lg-1" style="text-align: center; padding-top: 13px; ">
                         <div class="btn-group btn-block">
                             <a href="#" class="btn btn-sm btn-success btn-block dropdown-toggle" data-toggle="dropdown"><i
@@ -28,7 +31,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{route('taskuser_create')}}">Dodaj studente</a></li>
                                 <li><a href="{{route('tasks_edit')}}/{{$tasks->id}}">Ažuriraj zadatak</a></li>
-                                <li><a href="{{route('taskuser_edit')}}/{{$taskuser->id}}">Ažuriraj stanje</a></li>
+                                <li><a href="#">Ažuriraj stanje</a></li>
 
                             </ul>
                         </div>
@@ -112,12 +115,19 @@
                     </div>
                     <!-- status button-->
                     <div class="col-lg-4 nopadding">
-
+                        @if(count($taskuser) > 0 )
                         <button type="button" class="btn btn-secondary btn-block " data-container="body"
                                 data-toggle="popover" title="Status Vašeg zadatka ..." data-content="{{$taskuser->status}}"
                                 style="border-radius: 0px; background-color: rgba(24, 188, 156,0.4); color: #fff;">
                             <i class="fa fa-spinner" aria-hidden="true" style="font-size: 20px;"></i>
                         </button>
+                            @else
+                            <button type="button" class="btn btn-secondary btn-block " data-container="body"
+                                    data-toggle="popover" title="Status Vašeg zadatka ..." data-content="Niste upisani na zadatak"
+                                    style="border-radius: 0px; background-color: rgba(24, 188, 156,0.4); color: #fff;">
+                                <i class="fa fa-spinner" aria-hidden="true" style="font-size: 20px;"></i>
+                            </button>
+                        @endif
                     </div>
 
                 </div>
