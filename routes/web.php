@@ -83,4 +83,8 @@ Route::get('/chat/conversations', 'ChatController@getConversations')->name('conv
 Route::get('/chat/messages/{conversation_id}', 'ChatController@getMessages')->name('messages'); //vraća sve poruke u razgovoru čiji id je proslijeđen
 Route::get('/chat/participants/{conversation_id}', 'ChatController@getParticipants')->name('participants'); //vraća sve sudionike u razgovoru čiji id je proslijeđen
 Route::get('/chat/conversation/{user_id}', 'ChatController@createConversation'); //kreira novi razgovor sa korisnikom čiji id je proslijeđen
-Route::get('/chat/messages', 'ChatController@createMessage'); //kreira novu poruku u razgovoru
+Route::post('/chat/messages', 'ChatController@createMessage')->name('create_message'); //kreira novu poruku u razgovoru
+
+
+//search
+Route::get('/searchUsers','UserController@searchUsers')->name('search_user');
