@@ -31,7 +31,7 @@ class Collegium extends Model
     }
 
     public function posts(){
-        return $this->hasMany('App\Post');
+        return $this->hasMany('App\Post')->orderBy('id', 'desc');
     }
 
     public function tasks(){

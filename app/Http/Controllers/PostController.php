@@ -6,6 +6,7 @@ use App\Collegium;
 use App\Conversation;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -41,11 +42,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $conversation = new Conversation();
+        $conversation->title = "Post";
+        $conversation->creator_id = Auth::user()->id;
+        $conversation->save();
+
         $post = new Post();
-        $post->fill($request->all());
+        $post->fill($request->except(['user_id']));
+        $post->user_id = Auth::user()->id;
+        $post->conversation_id = $conversation->id;
         $post->save();
 
-        return redirect('/posts')->with('success', 'Objava uspješno kreirana.');
+        return back();
     }
 
     /**
@@ -101,6 +109,6 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->delete();
 
-        return redirect('/posts')->with('success', 'Objava izbrisana.');
+        return back();
     }
 }

@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="col-lg-3" style="text-align: center; font-weight: bold;">
                                         <small>Objave</small>
-                                        <h5>{{$posts->count()}}</h5>
+                                        <h5>{{$user->posts->count()}}</h5>
                                     </div>
                                 </div>
                                 <br>
@@ -91,33 +91,105 @@
                             <!-- objave -->
                             <div class="tab-pane fade active in" id="objave">
                                 <div class="list-group col-lg-10 col-lg-offset-1">
-                                    @foreach($posts as $post)
+                                    @foreach($user->posts as $post)
                                         <div class="list-group-item" style="margin-bottom: 10px;">
                                             <div class="panel panel-default ">
-
-
                                                 <div class="panel-body">
-                                                    <p>{{$post->content}}</p>
-                                                    <small>by {{$post->user->name}},</small>
-                                                    <br>
-                                                    <small>{{$post->created_at}}</small>
-
-                                                </div>
-                                                <div class="panel-footer">
-                                                    <form class="form-horizontal">
-                                                        <div class="row">
-                                                            <div class="col-lg-9">
-                                                                <input class="form-control"
-                                                                       style="margin-bottom: 5px; border-radius: 50px;"
-                                                                       id="focusedInput" type="text"
-                                                                       placeholder="Napisi komentar...">
-                                                            </div>
-                                                            <div class="col-lg-2">
-                                                                <button type="button" class="btn btn-success"
-                                                                        style="border-radius: 50px;">Komentiraj
-                                                                </button>
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <p>{{$post->content}}</p>
+                                                        </div>
+                                                        <div class="col-lg-6" style="text-align: right;">
+                                                            <small><a href="{{route('posts_delete')}}/{{$post->id}}"
+                                                                      style="color: #ecf0f1;;"
+                                                                      class="btn btn-xs fa fa-times"
+                                                                      aria-hidden="true"></a></small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <small><i class="fa fa-user"
+                                                                      aria-hidden="true"></i> {{$post->user->name}}
+                                                            </small>
+                                                            <br>
+                                                            <small><i class="fa fa-clock-o"
+                                                                      aria-hidden="true"></i> {{$post->created_at}}
+                                                            </small>
+                                                        </div>
+                                                        <div class="col-lg-6"
+                                                             style="text-align: right; margin-top: 10px;">
+                                                            <button type="button" class="btn btn-default btn-xs"
+                                                                    data-toggle="collapse" data-target="#{{$post->id}}">
+                                                                Komentari
+                                                            </button>
+                                                        </div>
+                                                        @php
+                                                            $comments = \App\Message::where('conversation_id','=', $post->conversation_id)->get();
+                                                        @endphp
+                                                        <div class="col-lg-12">
+                                                            <div id="{{$post->id}}" class="collapse">
+                                                                <br>
+                                                                <ul class="list-group">
+                                                                    @foreach($comments as $comment)
+                                                                        <li class="list-group-item">
+                                                                            <div class="row">
+                                                                                <div class="col-lg-6">
+                                                                                    <h5>{{$comment->content}}</h5>
+                                                                                </div>
+                                                                                <div class="col-lg-6"
+                                                                                     style="text-align: right;">
+                                                                                    <small>
+                                                                                        <a href="{{route('messages_delete')}}/{{$comment->id}}"
+                                                                                           style="color: #ecf0f1;"
+                                                                                           class="btn btn-xs fa fa-times"
+                                                                                           aria-hidden="true"></a>
+                                                                                    </small>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-lg-6">
+                                                                                    <small><i class="fa fa-user"
+                                                                                              aria-hidden="true"></i> {{$comment->user->name}}
+                                                                                    </small>
+                                                                                </div>
+                                                                                <div class="col-lg-6"
+                                                                                     style="text-align: right;">
+                                                                                    <small><i class="fa fa-clock-o"
+                                                                                              aria-hidden="true"></i> {{$comment->created_at}}
+                                                                                    </small>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="panel-footer">
+                                                    <form class="form-horizontal"
+                                                          action="{{route('messages_create')}}"
+                                                          method="POST">
+                                                        {{ csrf_field() }}
+                                                        <fieldset>
+                                                            <div class="col-lg-10" style="height: 35px;">
+                                                                <input class="form-control"
+                                                                       style="margin-bottom: 5px; height: 37px;"
+                                                                       id="focusedInput" type="text" name="content"
+                                                                       placeholder="Napisi komentar...">
+                                                            </div>
+                                                            <input type="hidden" name="created_at"
+                                                                   value="{{ date('d-m-y') }}">
+                                                            <input type="hidden" name="conversation_id"
+                                                                   value="{{$post->conversation_id}}">
+                                                            <div class="col-lg-2">
+                                                                <button type="submit"
+                                                                        class="btn btn-success btn btn-sm">
+                                                                    Komentiraj
+                                                                </button>
+                                                            </div>
+                                                        </fieldset>
                                                     </form>
                                                 </div>
                                             </div>
@@ -129,7 +201,8 @@
                             <div class="tab-pane fade" id="kolegiji" style="margin-bottom: 100px;">
                                 @foreach($collegiums as $collegium)
                                     <li class="list-group-item">
-                                        <a href="#" style="color:#303030;">{{$collegium->name}}</a>
+                                        <a href="{{route('collegiums')}}/{{$collegium->id}}"
+                                           style="color:#303030;">{{$collegium->name}}</a>
                                     </li>
                                 @endforeach
                             </div>

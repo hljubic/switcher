@@ -157,6 +157,12 @@
         });
     });
 
+    //table
+    $("tr").click(function () {
+        var checkbox = $(this).find("input[type='checkbox']");
+        checkbox.attr('checked', !checkbox.attr('checked'));
+    });
+
 
 </script>
 
