@@ -68,16 +68,15 @@ class UserController extends Controller
         $collegiums = Collegium::where('prof_id', '=', $id)->orWhere('assist_id', '=', $id)->orwhereHas('user', function ($q) use ($id) {
             $q->where('user_id', '=', $id);
         })->get();
-        $posts = Post::where('user_id', '=', $id)->get();
 
-        if (FollowerUser::where('follower_id', '=', Auth::user()->id)->where('user_id','=',$id)->exists()) {
+        if (FollowerUser::where('follower_id', '=', Auth::user()->id)->where('user_id', '=', $id)->exists()) {
             $followButton = true;
         } else {
             $followButton = false;
         }
 
         return view('user.profil', array('user' => $user, 'followers' => $followers, 'following' => $following,
-            'collegiums' => $collegiums, 'posts' => $posts, 'followButton' => $followButton));
+            'collegiums' => $collegiums, 'followButton' => $followButton));
     }
 
     /**

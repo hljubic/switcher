@@ -6,6 +6,7 @@ use App\Conversation;
 use App\Message;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -43,10 +44,11 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $message = new Message();
-        $message->fill($request->all());
+        $message->fill($request->except(['sender_id']));
+        $message->sender_id = Auth::user()->id;
         $message->save();
 
-        return redirect('/messages')->with('success', 'Poruka kreirana.');
+        return back();
 
     }
 
@@ -104,6 +106,6 @@ class MessageController extends Controller
 
         $message->delete();
 
-        return redirect('/messages')->with('success', 'Poruka izbrisana.');
+        return back();
     }
 }

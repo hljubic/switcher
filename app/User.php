@@ -1,7 +1,10 @@
 <?php
+
 namespace App;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
+
 class User extends Authenticatable
 {
     //use Notifiable;
@@ -22,6 +25,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
     //funkcija koja postavlja kriptiranu lozinku
     public function setPasswordAttribute($password)
     {
@@ -33,13 +37,20 @@ class User extends Authenticatable
         return $this->belongsTo('App\Study');
     }
 
-    public function task(){
+    public function task()
+    {
 
         return $this->belongsToMany('App\Task');
     }
 
-    public function collegium(){
+    public function collegium()
+    {
 
         return $this->belongsToMany('App\Collegium');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Post')->orderBy('id', 'desc');
     }
 }

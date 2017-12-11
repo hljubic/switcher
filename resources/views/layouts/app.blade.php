@@ -156,6 +156,12 @@
         });
     });
 
+    //table for attendances
+    $("tr").click(function () {
+        var checkbox = $(this).find("input[type='checkbox']");
+        checkbox.attr('checked', !checkbox.attr('checked'));
+    });
+
     $(document).ready(function () {
         $('[data-toggle="collapse"]').collapse({
         });
