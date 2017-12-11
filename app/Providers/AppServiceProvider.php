@@ -6,6 +6,7 @@ use App\Collegium;
 use App\Faculty;
 use App\Study;
 use App\Task;
+use App\TaskUser;
 use Illuminate\Support\ServiceProvider;
 use View;
 

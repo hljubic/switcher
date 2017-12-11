@@ -21,6 +21,21 @@ body {
 .panel-collapse div.list-group .list-group a.list-group-item {border-top: 1px solid #ddd !important;border-bottom: 0;padding-left: 30px;}
 .panel-collapse .list-group-item li.list-group-item {border-top: 1px solid #DDD !important;}
 
+#timer {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  color: #999;
+  letter-spacing: 0px;
+}
+#timer span {
+  font-size: 60px;
+  color: #333;
+  margin: 0 3px 0 15px;
+}
+#timer span:first-child {
+  margin-left: 0;
+}
+
 .nopadding{
   padding: 0 !important;
   margin: 0 !important;
@@ -94,7 +109,7 @@ body {
 .sidebar-nav li a:hover {
   text-decoration: none;
   color:#18BC9C;
-  background: rgba(255, 255, 255, 0.2);
+
 }
 
 .sidebar-nav li a:active, .sidebar-nav li a:focus {

@@ -39,7 +39,6 @@
                         <li><a href="#posts-data" data-toggle="tab">Obavijesti</a></li>
                         <li><a href="#tasks-data" data-toggle="tab">Zadaci</a></li>
                         <li><a href="#classes-data" data-toggle="tab">Predavanja / Vježbe </a></li>
-                        <li><a href="#attendances-data" data-toggle="tab">Prisutnost</a></li>
                         <li><a href="#student-data" data-toggle="tab">Studenti</a></li>
 
                     </ul>
@@ -251,7 +250,7 @@
                                             <div class="col-lg-2"
                                                  style="border-right: solid #ecf0f1; text-align: center;">
                                                 <h4 class="header"
-                                                    style="padding-top:20px;">{{\Carbon\Carbon::parse($task->deadline)->format('d.m')}}</h4>
+                                                    style="padding-top:25px;">{{\Carbon\Carbon::parse($task->deadline)->format('d.m')}}</h4>
                                                 <p style="padding-top:20px;"></p>
                                             </div>
                                             <div class="col-lg-8">
@@ -403,7 +402,7 @@
         </div>
 
 
-        </div>
+    </div>
     </div>
     </div>
     </div>

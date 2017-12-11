@@ -46,7 +46,7 @@ class TaskUserController extends Controller
         $taskusers->fill($request->all());
         $taskusers->save();
 
-        return redirect('/team')->with('success', 'Tim uspješno kreiran.');
+        return redirect('/taskuser')->with('success', 'Tim uspješno kreiran.');
 
     }
 
@@ -90,7 +90,7 @@ class TaskUserController extends Controller
         $taskuser->fill(array_filter($request->all(), 'strlen'));
         $taskuser->save();
 
-        return redirect('/team')->with('success', 'Podaci ažurirani.');
+        return redirect('/taskuser')->with('success', 'Podaci ažurirani.');
     }
 
     /**
@@ -104,7 +104,7 @@ class TaskUserController extends Controller
         $taskuser = TaskUser::find($id);
         $taskuser->delete();
 
-        return redirect('/team')->with('success', 'Tim izbrisan.');
+        return redirect('/taskuser')->with('success', 'Tim izbrisan.');
     }
 
     public function AddMeToTask($id){
@@ -118,4 +118,6 @@ class TaskUserController extends Controller
 
 
     }
+
+
 }

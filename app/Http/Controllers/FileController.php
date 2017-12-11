@@ -100,4 +100,36 @@ class FileController extends Controller
         $files->delete();
         return redirect('/files')->with('success', 'Izbrisano ');
     }
+
+    public function showFile() {
+
+        return view('task.show');
+    }
+
+    public function  storeFile(Request $request){
+
+
+        if($request->hasFile('file')){
+
+            $filename = $request->file->getClientOriginalName();
+            $filesize = $request->file->getClientSize();
+            $filepath = $request->file->getPath();
+            $filedesc = $request['description'];
+            $tasks = $request['task_id'];
+
+
+            $request->file->storeAs('/',$filename);
+
+            $files = new File;
+            $files->name = $filename;
+            $files->size = $filesize;
+            $files->path = $filepath;
+            $files->description = $filedesc;
+            $files->task_id = $tasks;
+
+            $files->save();
+        }
+
+        return redirect()->back()->with('success','Učitali ste datoteku');
+    }
 }

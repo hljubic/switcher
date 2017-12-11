@@ -15,12 +15,29 @@
 
                     <ul class="collapse list-unstyled" id="facultiesSubmenu">
                         @foreach($faculties as $faculty)
-                            <li>
-                                <a href="#studiesSubmenu{{ $faculty->id }}" data-toggle="collapse">{{$faculty->short_name}}</a>
+                            <li >
+                                <div class="row col-lg-12 nopadding">
+                                    <div class="col-lg-10 nopadding">
+                                        <a href="#studiesSubmenu{{ $faculty->id }}" data-toggle="collapse">{{$faculty->short_name}}</a>
+                                    </div>
+
+                                    <div class="col-lg-2 nopadding ">
+                                        <b><a href="{{route('faculties')}}/{{$faculty->id}}" class="btn " style="border-radius: 0px; color: #18BC9C; padding-left:0px; font-size: 12px; ">. . .</a></b>
+                                    </div>
+                                </div>
+
                                 <ul class="collapse list-unstyled" id="studiesSubmenu{{ $faculty->id }}">
                                     @foreach($faculty->studies as $study)
                                         <li>
-                                            <a href="#collegiumsSubmenu{{ $study->id }}" data-toggle="collapse">{{$study->name}}</a>
+                                            <div class="row col-lg-12 nopadding">
+                                                <div class="col-lg-10 nopadding">
+                                                    <a href="#collegiumsSubmenu{{ $study->id }}" data-toggle="collapse">{{$study->name}}</a>
+                                                </div>
+                                                <div class="col-lg-2 nopadding ">
+                                                    <b><a href="{{route('studies')}}/{{$study->id}}" class="btn" style="border-radius: 0px; color: #18BC9C; padding-left:0px; font-size: 12px; ">. . .</a></b>
+                                                </div>
+                                            </div>
+
                                             <ul class="collapse list-unstyled" id="collegiumsSubmenu{{ $study->id }}">
                                                 @foreach($study->collegiums as $collegium)
                                                     <li>

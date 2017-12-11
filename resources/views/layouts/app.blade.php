@@ -119,7 +119,6 @@
 
     @include('inc.sidebar',['faculties',$faculties],['studies',$studies],['collegiums',$collegiums])
     @include('layouts.messages')
-
     @yield('content')
 </div>
 
@@ -149,7 +148,7 @@
 
     $(function () {
         $('[data-toggle="tooltip"]').tooltip(options)
-    })
+    });
 
     $(document).ready(function () {
         $('[data-toggle="popover"]').popover({
@@ -157,6 +156,10 @@
         });
     });
 
+    $(document).ready(function () {
+        $('[data-toggle="collapse"]').collapse({
+        });
+    });
 
 </script>
 
