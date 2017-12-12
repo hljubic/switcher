@@ -33,6 +33,8 @@
                                 <td>{{$task->collegium->name}}</td>
                                 <td>{{$task->created_at}}</td>
 
+                                 <td><a href="{{route('tasks')}}/{{$task->id}}" class="btn btn-warning btn-xs">Prikaz</a>
+                                                                </td>
                                 <td><a href="{{route('tasks_edit')}}/{{$task->id}}"
                                        class="btn btn-primary btn-xs">Uredi</a></td>
                                 <td><a href="{{route('tasks_delete')}}/{{$task->id}}" class="btn btn-danger btn-xs">Izbriši</a>

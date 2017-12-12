@@ -39,6 +39,8 @@
                                 <td>{{$user->is_active}}</td>
                                 <td>{{$user->study->name}}</td>
 
+                                <td><a href="{{route('users')}}/{{$user->id}}"
+                                 class="btn btn-warning btn-xs">Prikaz</a></td>
                                 <td><a href="{{route('users_edit')}}/{{$user->id}}"
                                        class="btn btn-primary btn-xs">Uredi</a></td>
                                 <td><a href="{{route('users_delete')}}/{{$user->id}}" class="btn btn-danger btn-xs">Izbriši</a>

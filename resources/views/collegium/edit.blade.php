@@ -4,14 +4,14 @@
     <div class="col-lg-4 col-lg-offset-4">
         <div class="panel panel-default" style="margin-top: 50px;">
             <div class="panel-heading">
-                <h3 class="panel-title">Dodaj novi fakultet</h3>
+                <h3 class="panel-title">Uredi kolegij</h3>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" action="{{route('collegiums_edit')}}/{{$collegium->id}}" method="POST">
                     {{ method_field("PATCH") }}
                     {{ csrf_field() }}
                     <fieldset>
-                        <legend>Uredi kolegij</legend>
+                        <legend></legend>
                         <div class="form-group">
                             <label for="inputName" class="col-lg-2 control-label">Naziv kolegija</label>
                             <div class="col-lg-10">
