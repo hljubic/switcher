@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class File extends Model
 {
-    protected $fillable=['name','path','description','size','task_id','post_id'];
+    protected $fillable=['name','path','description','size','task_id'];
     public $timestamps = true;
 
     public function task()
@@ -14,8 +14,4 @@ class File extends Model
         return $this->belongsTo('App\Task', 'task_id');
     }
 
-    public function post()
-    {
-        return $this->belongsTo ('App\Post', 'post_id');
-    }
 }

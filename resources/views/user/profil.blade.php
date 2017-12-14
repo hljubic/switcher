@@ -98,6 +98,11 @@
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <p>{{$post->content}}</p>
+                                                            @if($post->file)
+                                                                <a style="color: #18bc9c; font-size:17px;" target="_blank"
+                                                                   href="{{ asset('uploaded_files/' . $post->file->name) }}">{{$post->file->name}}</a>
+
+                                                            @endif
                                                         </div>
                                                         <div class="col-lg-6" style="text-align: right;">
                                                             <small><a href="{{route('posts_delete')}}/{{$post->id}}"
@@ -173,19 +178,20 @@
                                                           method="POST">
                                                         {{ csrf_field() }}
                                                         <fieldset>
-                                                            <div class="col-lg-10" style="height: 35px;">
+                                                            <div class="col-lg-9" style="height: 35px;">
                                                                 <input class="form-control"
                                                                        style="margin-bottom: 5px; height: 37px;"
                                                                        id="focusedInput" type="text" name="content"
                                                                        placeholder="Napisi komentar...">
+                                                                <input type="hidden" name="created_at"
+                                                                       value="{{ date('d-m-y') }}">
+                                                                <input type="hidden" name="conversation_id"
+                                                                       value="{{$post->conversation_id}}">
                                                             </div>
-                                                            <input type="hidden" name="created_at"
-                                                                   value="{{ date('d-m-y') }}">
-                                                            <input type="hidden" name="conversation_id"
-                                                                   value="{{$post->conversation_id}}">
+
                                                             <div class="col-lg-2">
                                                                 <button type="submit"
-                                                                        class="btn btn-success btn btn-sm">
+                                                                        class="btn btn-success  btn-sm">
                                                                     Komentiraj
                                                                 </button>
                                                             </div>

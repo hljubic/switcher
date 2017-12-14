@@ -21,6 +21,9 @@
                         <h3 class="header" style="padding-top: 5px;">{{$tasks->name}}</h3>
                         <p>{{$tasks->type}}</p>
                     </div>
+                    @php
+                        $taskuser = App\TaskUser::where('user_id','=', Auth::user()->id)->where('task_id','=',$tasks->id)->first();
+                    @endphp
                     <div class="col-lg-1" style="text-align: center; padding-top: 13px; ">
                         <div class="btn-group btn-block">
                             <a href="#" class="btn btn-sm btn-success btn-block dropdown-toggle" data-toggle="dropdown"><i
@@ -28,7 +31,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{route('taskuser_create')}}">Dodaj studente</a></li>
                                 <li><a href="{{route('tasks_edit')}}/{{$tasks->id}}">Ažuriraj zadatak</a></li>
-                                <li><a href="{{route('taskuser_edit')}}/{{$taskuser->id}}">Ažuriraj stanje</a></li>
+                                <li><a href="#">Ažuriraj stanje</a></li>
 
                             </ul>
                         </div>
@@ -86,7 +89,7 @@
                             <button type="submit" class="btn btn-block disabled"
                                     data-toggle="tooltip" data-placement="bottom" title="Vec ste dodijeljeni na zadatak"
                                     style="border-radius: 0px; background-color: #128770; color: #fff;">
-                                <i class="fa fa-user-circle" aria-hidden="true" style="font-size: 20px;"></i></button>
+                                <i class="fa fa-edit" aria-hidden="true" style="font-size: 20px;"></i></button>
                         @else
                             <form class="form-horizontal"
                                   action="{{route('followTask')}}/{{$tasks->id}}"
@@ -96,7 +99,7 @@
                                     <button type="submit" class="btn btn-block"
                                             data-toggle="tooltip" data-placement="bottom" title="Dodijeli mi zadatak"
                                             style="border-radius: 0px; background-color: #128770; color: #fff;">
-                                        <i class="fa fa-user-circle" aria-hidden="true" style="font-size: 20px;"></i></button>
+                                        <i class="fa fa-edit" aria-hidden="true" style="font-size: 20px;"></i></button>
                                 </fieldset>
                             </form>
                         @endif
@@ -112,36 +115,43 @@
                     </div>
                     <!-- status button-->
                     <div class="col-lg-4 nopadding">
-
+                        @if(count($taskuser) > 0 )
                         <button type="button" class="btn btn-secondary btn-block " data-container="body"
                                 data-toggle="popover" title="Status Vašeg zadatka ..." data-content="{{$taskuser->status}}"
                                 style="border-radius: 0px; background-color: rgba(24, 188, 156,0.4); color: #fff;">
                             <i class="fa fa-spinner" aria-hidden="true" style="font-size: 20px;"></i>
                         </button>
+                            @else
+                            <button type="button" class="btn btn-secondary btn-block " data-container="body"
+                                    data-toggle="popover" title="Status Vašeg zadatka ..." data-content="Niste upisani na zadatak"
+                                    style="border-radius: 0px; background-color: rgba(24, 188, 156,0.4); color: #fff;">
+                                <i class="fa fa-spinner" aria-hidden="true" style="font-size: 20px;"></i>
+                            </button>
+                        @endif
                     </div>
 
                 </div>
             </div>
             <!-- upload file form -->
             <div class="collapse" id="collapseExample">
-                <div class="container col-lg-12" style="padding-top: 35px;">
+                <div class="container col-lg-12" style="padding-top: 25px;">
                     <div class="card card-body">
                         <div class="row">
                             <div class="panel panel-deafult col-lg-12">
                                 <form action="{{route('upload_file')}}" enctype="multipart/form-data" method="post"
-                                      class="form-control-file col-lg-10 col-lg-offset-1 ">
+                                      class="form-control-file col-lg-7 ">
                                     {{csrf_field()}}
-                                    <h2>Učitajte datoteku</h2>
+                                    <h4>Učitajte datoteku</h4>
                                     <small></small>
                                     <br>
-                                    <input type="file" name="file" class="form-control nopadding success">
+                                    <input type="file" name="file" class="form-control nopadding success input-sm">
                                     <br>
-                                    <input type="text" class="form-control" id="description" name="description"
+                                    <input type="text" class="form-control input-sm" id="description" name="description"
                                            placeholder="Postavite opis datoteke...">
                                     <input type="hidden" name="task_id" id="task_id" value="{{$tasks->id}}">
                                     <br>
-                                    <div class="col-lg-4 col-lg-offset-8">
-                                        <button type="submit" class="btn btn-success btn-block"><i
+                                    <div class="col-lg-3 col-lg-offset-9">
+                                        <button type="submit" class="btn btn-success btn-block btn-sm"><i
                                                     class="fa fa-cloud-upload" aria-hidden="true"></i>
                                             Upload
                                         </button>
@@ -164,7 +174,7 @@
     <div class="col-lg-3 " style="margin-top: 70px;">
         <div class="container">
             <div class="row">
-                <div class="col-xs-4 col-xs-4">
+                <div class="col-xs-3 col-xs-3">
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -233,6 +243,11 @@
                 document.getElementById("timer").innerHTML = "ZAVRŠENO";
             }
         }, 1000);
+
+        $(document).ready(function () {
+            $('[data-toggle="collapse"]').collapse({
+            });
+        });
     </script>
     @stack('scripts')
 

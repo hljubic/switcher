@@ -100,4 +100,5 @@ class ClasseController extends Controller
         $classes->delete();
         return redirect('/classes')->with('success', 'Izbrisano ');
     }
+
 }

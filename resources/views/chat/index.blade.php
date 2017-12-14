@@ -198,7 +198,7 @@
                 };
                 $.ajax({
                     type: "POST",
-                    url: "{{route("message_create")}}",
+                    url: "{{route("messages_create")}}",
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     data: date
                 });

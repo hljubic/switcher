@@ -11,29 +11,29 @@
                             <h3 style="">{{$collegiums->name}}</h3>
                         </div>
                         <div class="col-lg-3">
-                            <div class="row">
-                                @if($followButton == true)
-                                    <a href="{{route('unfollowCollegium')}}/{{$collegiums->id}}"
-                                       class="btn btn-success btn-sm">Unfollow</a>
-                                @else
-                                    <form class="form-horizontal"
-                                          action="{{route('followCollegium')}}/{{$collegiums->id}}"
-                                          method="POST">
-                                        {{csrf_field()}}
-                                        <fieldset>
-                                            <button type="submit" class="btn btn-success btn-sm">Follow
-                                            </button>
-                                        </fieldset>
-                                    </form>
+                            <form class="form-horizontal"
+                                  action="{{route('followCollegium')}}/{{$collegiums->id}}"
+                                  method="POST">
+                                {{csrf_field()}}
+                                <div class="row">
+                                    @if($followButton == true)
+                                        <a href="{{route('unfollowCollegium')}}/{{$collegiums->id}}"
+                                           class="btn btn-success btn-sm">Unfollow</a>
+                                    @else
 
-                                @endif
-                                <a href="#" class="btn btn-sm btn-success">Dodaj u razgovor</a>
-                            </div>
+                                        <button type="submit" class="btn btn-success btn-sm">Follow
+                                        </button>
+
+
+                                    @endif
+                                    <a href="#" class="btn btn-sm btn-success">Dodaj u razgovor</a>
+                                </div>
+                            </form>
 
                         </div>
                     </div>
 
-                    <ul class="nav nav-pills nav-justified" style=" border: 3px; ">
+                    <ul class="nav nav-pills nav-justified" style=" border: 3px;">
                         <li><a href="#general-data" data-toggle="tab">Osnovni podaci</a></li>
                         <li><a href="#studies-data" data-toggle="tab">Studiji</a></li>
                         <li><a href="#posts-data" data-toggle="tab">Obavijesti</a></li>
@@ -125,7 +125,7 @@
                                         <div class="col-lg-2">
                                             <a href="{{route('studies')}}/{{$study->id}}"
                                                class="btn btn-success btn-block"
-                                               style="align-self: flex-start; border-radius: 50px; margin-top: 10px;">Više</a>
+                                               style="align-self: flex-start; margin-top: 10px;">Više</a>
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +138,7 @@
                                 <div class="list-group-item ">
                                     <div class="panel-default" style="width: 100%;">
                                         <form class="form-horizontal" action="{{route ('posts_create')}}"
-                                              method="POST">
+                                              method="POST" enctype="multipart/form-data">
                                             {{ csrf_field() }}
                                             <fieldset>
                                                 <div class="panel-body">
@@ -155,21 +155,26 @@
                                                     <div class="row">
                                                         <div class="col-md-1">
                                                             <a href="#" class="btn btn-sm btn-block"
-                                                               style="border-radius:50px;"><i
-                                                                        class="fa fa-link" style="font-size:23px;"></i>
+                                                               data-toggle="collapse" data-target="#collapseFile3"
+                                                               style="border-radius:50px;"><i class="fa fa-link"
+                                                                                              style="font-size:23px;"></i>
                                                             </a>
                                                         </div>
                                                         <div class="col-md-9"></div>
                                                         <div class="col-md-2"
                                                              style="margin-bottom: 0px; max-height:100%;">
                                                             <button type="submit"
-                                                                    class="btn btn-sm btn-success btn-block " [>
+                                                                    class="btn btn-sm btn-success btn-block ">
                                                                 <i class="fa fa-check" style="font-size:21px;"></i>
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="collapse" id="collapseFile3">
+                                                    <input type="file" name="file"
+                                                           class="form-control nopadding success input-sm">
 
+                                                </div>
                                             </fieldset>
                                         </form>
                                     </div>
@@ -177,6 +182,7 @@
                                 </div>
                             </div>
 
+                            <!-- end create post-->
                             <div class="list-group col-lg-10 col-lg-offset-1">
                                 @foreach($collegiums->posts as $post)
                                     <div class="list-group-item" style="margin-bottom: 10px;">
@@ -185,6 +191,11 @@
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <p>{{$post->content}}</p>
+                                                        @if($post->file)
+                                                            <a style="color: #18bc9c; font-size:17px;" target="_blank"
+                                                               href="{{ asset('uploaded_files/' . $post->file->name) }}">{{$post->file->name}}</a>
+
+                                                        @endif
                                                     </div>
                                                     <div class="col-lg-6" style="text-align: right;">
                                                         <small><a href="{{route('posts_delete')}}/{{$post->id}}"
@@ -283,6 +294,78 @@
                         <!-- prikaz taskova na kolegiju -->
                         <div class="tab-pane fade" id="tasks-data" style="padding-top:15px">
 
+                            <button type="button" class="btn btn-sm btn-success"
+                                    data-toggle="collapse" data-target="#collapseExample">Novi zadatak
+                            </button>
+
+                            <div class="collapse" id="collapseExample">
+                                <div class="container col-lg-12" style="padding-top: 35px;">
+                                    <div class="card card-body">
+                                        <div class="row">
+                                            <div class="panel panel-deafult col-lg-12">
+                                                <form class="form-horizontal" action="{{ route('tasks_create') }}"
+                                                      method="POST">
+                                                    {{ csrf_field() }}
+                                                    <fieldset>
+                                                        <div class="row">
+                                                            <div class="row col-lg-12" style="padding-bottom:10px;">
+                                                                <div class="col-lg-6">
+                                                                    <input type="text" class="form-control"
+                                                                           id="inputName" name="name"
+                                                                           placeholder="Naslov">
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <input type="text" class="form-control datepicker"
+                                                                           id="inputDate"
+                                                                           name="deadline"
+                                                                           placeholder="Datum i vrijeme">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row col-lg-12 " style="padding-bottom:10px;">
+                                                                <div class="col-lg-6">
+                                             <textarea class="form-control" rows="3" id="textArea" name="description"
+                                                       placeholder="Opis zadatka"></textarea>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <select class="form-control" id="select"
+                                                                            name="type">
+                                                                        <option value="seminar paper">Seminarski rad
+                                                                        </option>
+                                                                        <option value="homework">Zadaća</option>
+                                                                        <option value="project">Projektni zadatak
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row col-lg-12">
+                                                                <div class="col-lg-10"
+                                                                     style="align-content: flex-start;">
+                                                                    <input type="hidden" name="collegium_id"
+                                                                           value="{{$collegiums->id}}">
+                                                                    <input type="hidden" name="created_at"
+                                                                           value="{{ date('y-m-d h:i:s') }}">
+                                                                </div>
+                                                                <div class="col-lg-2">
+                                                                    <button type="submit"
+                                                                            class="btn btn-primary btn-sm btn-block">
+                                                                        Spremi
+                                                                    </button>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- seminraski radovi -->
                             <h3>Seminarski radovi</h3>
                             <hr>
                             @foreach($collegiums->tasks as $task)
@@ -302,15 +385,19 @@
                                                 <p>{{$task->type}}</p>
                                             </div>
                                             <div class="col-lg-2">
-                                                <a href="{{route('tasks')}}/{{$task->id}}"
-                                                   class="btn btn-success btn-block"
-                                                   style="align-self: flex-start; border-radius: 50px; margin-top: 25px;">Više</a>
+                                                <a href="{{route('tasks')}}/{{$task->id}}" data-toggle="tooltip"
+                                                   data-placement="bottom" title="Pregledaj zadatak"
+                                                   class=" btn btn-block btn-sm"
+                                                   style="align-self: flex-start; margin-top: 25px; color:#18BC9C;  border-color:#18BC9C;"><i
+                                                            class="fa fa-tasks" style="font-size: 15px;"></i> </a>
+
                                             </div>
                                         </div>
                                     </div>
 
                                 @endif
                             @endforeach
+                        <!-- projekti -->
                             <h3 style="margin-top: 25px;">Projektni zadaci</h3>
                             <hr>
                             @foreach($collegiums->tasks as $task)
@@ -330,14 +417,18 @@
                                                 <p>{{$task->type}}</p>
                                             </div>
                                             <div class="col-lg-2">
-                                                <a href="{{route('tasks')}}/{{$task->id}}"
-                                                   class=" btn btn-warning btn-block"
-                                                   style="align-self: flex-start; border-radius: 50px; margin-top: 25px;">Više</a>
+
+                                                <a href="{{route('tasks')}}/{{$task->id}}" data-toggle="tooltip"
+                                                   data-placement="bottom" title="Pregledaj zadatak"
+                                                   class=" btn btn-block btn-sm"
+                                                   style="align-self: flex-start; margin-top: 25px; color:#ec971f;  border-color:#ec971f;"><i
+                                                            class="fa fa-tasks" style="font-size: 15px;"></i> </a>
                                             </div>
                                         </div>
                                     </div>
                                 @endif
                             @endforeach
+                        <!--zadaće -->
                             <h3 style="margin-top: 25px;">Zadaća</h3>
                             <hr>
                             @foreach($collegiums->tasks as $task)
@@ -356,9 +447,14 @@
                                                 <p>{{$task->type}}</p>
                                             </div>
                                             <div class="col-lg-2">
-                                                <a href="{{route('tasks')}}/{{$task->id}}"
-                                                   class="btn btn-danger btn-block"
-                                                   style="align-self: flex-start; border-radius: 50px; margin-top: 25px;">Više</a>
+
+                                                <a href="{{route('tasks')}}/{{$task->id}}" data-toggle="tooltip"
+                                                   data-placement="bottom" title="Pregledaj zadatak"
+                                                   class=" btn btn-block btn-sm"
+                                                   style="align-self: flex-start; margin-top: 25px; color:#d9534f;  border-color:#d9534f;"><i
+                                                            class="fa fa-tasks" style="font-size: 15px;"></i> </a>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -456,13 +552,118 @@
                         <!-- lista studenata na kolegiju-->
                         <div class="tab-pane fade" id="student-data" style="padding-top:15px">
                             @foreach($collegiums->user as $user)
+                                @php
+                                    $classes = App\Classe::with('collegium')->where('collegium_id','=',$collegiums->id)->get(['classes.id'])->count();
+                                    $class = App\Classe::with('collegium')->leftJoin('attendances','attendances.class_id','=','classes.id')->where('collegium_id','=',$collegiums->id)->where('user_id','=',$user->id)->get(['classes.id'])->count();
+
+                                    if($classes > 0){
+
+                                        $percentage = ($class / $classes) * 100;
+                                    }
+                                @endphp
                                 <div class="list-group-item"
-                                     style="margin-bottom: 10px; border-left:solid  #d9534f 6px;">
+                                     style="margin-bottom: 10px; border-left:solid  #ecf0f1 6px;">
                                     <div class="row">
-                                        <div class="col-lg-9">
-                                            <h4 class="header" style="margin-top: 25px;">{{$user->name}}</h4>
+                                        <div class="col-lg-1">
+                                            <div class="item">
+                                                <div id="profileCol">{{substr($user->name,0,1)}}</div>
+                                            </div>
                                         </div>
+                                        <div class="col-lg-9">
+                                            <h4 class="header" id="storename"
+                                                style="padding-top: 30px; padding-left: 15px;">{{$user->name}}</h4>
+                                        </div>
+                                        <!-- postotak prisutnosti-->
                                         <div class="col-lg-2">
+                                            @if($classes > 0)
+                                                <div class="flex-wrapper" data-toggle="tooltip "
+                                                     title=" Prisutnost za  {{$collegiums->name}}"
+                                                     style="padding-top: 12px;">
+                                                    @if($percentage >= 0 and $percentage < 50)
+                                                        <div class="single-chart">
+                                                            <svg viewbox="0 0 36 36" class="circular-chart red">
+                                                                <path class="circle-bg"
+                                                                      d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                                />
+                                                                <path class="circle"
+                                                                      stroke-dasharray="30, 100"
+                                                                      d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                                />
+                                                                <text x="18" y="20.35"
+                                                                      class="percentage">{{ number_format((float)$percentage, 2, '.', '')}}
+                                                                    %
+                                                                </text>
+                                                            </svg>
+                                                        </div>
+                                                    @elseif($percentage >= 50 and $percentage < 75)
+                                                        <div class="single-chart">
+                                                            <svg viewbox="0 0 36 36" class="circular-chart yellow">
+                                                                <path class="circle-bg"
+                                                                      d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                                />
+                                                                <path class="circle"
+                                                                      stroke-dasharray="60, 100"
+                                                                      d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                                />
+                                                                <text x="18" y="20.35"
+                                                                      class="percentage">{{ number_format((float)$percentage, 2, '.', '')}}
+                                                                    %
+                                                                </text>
+                                                            </svg>
+                                                        </div>
+                                                    @elseif($percentage >= 75 and $percentage < 99)
+                                                        <div class="single-chart">
+                                                            <svg viewbox="0 0 36 36" class="circular-chart green">
+                                                                <path class="circle-bg"
+                                                                      d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                                />
+                                                                <path class="circle"
+                                                                      stroke-dasharray="90, 100"
+                                                                      d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                                />
+                                                                <text x="18" y="20.35"
+                                                                      class="percentage">{{ number_format((float)$percentage, 2, '.', '')}}
+                                                                    %
+                                                                </text>
+                                                            </svg>
+                                                        </div>
+                                                    @else
+                                                        <div class="single-chart">
+                                                            <svg viewbox="0 0 36 36" class="circular-chart green">
+                                                                <path class="circle-bg"
+                                                                      d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                                />
+                                                                <path class="circle"
+                                                                      stroke-dasharray="100, 100"
+                                                                      d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                                />
+                                                                <text x="18" y="20.35"
+                                                                      class="percentage">{{ number_format((float)$percentage, 2, '.', '')}}
+                                                                    %
+                                                                </text>
+                                                            </svg>
+                                                        </div>
+                                                    @endif
+
+                                                </div>
+                                            @endif
+
                                         </div>
                                     </div>
                                 </div>
@@ -472,12 +673,17 @@
                 </div>
             </div>
         </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var storename = $('#storename').text();
+            var intials = $('#storename').text().charAt(0);
+            var profile = $('#profileCol').text(intials);
+        });
 
-
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-
+        $(document).ready(function () {
+            $('[data-toggle="collapse"]').collapse({});
+        });
+    </script>
+    @stack('scripts')
 @endsection

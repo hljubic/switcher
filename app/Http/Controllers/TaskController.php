@@ -46,7 +46,7 @@ class TaskController extends Controller
         $tasks->fill($request->all());
         $tasks->save();
 
-        return redirect('/tasks')->with('success', 'Zadatak uspješno kreiran.');
+        return redirect()->back()->with('success','Dodali ste novi zadatak!');
     }
 
     /**

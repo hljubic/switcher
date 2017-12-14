@@ -20,7 +20,7 @@ class FilesTableSeeder extends Seeder
                 'description' => 'Kao neki seminarski',
                 'size' => '23',
                 'task_id' => 2,
-                'post_id' => 1,
+
 
             ],
 
@@ -30,7 +30,7 @@ class FilesTableSeeder extends Seeder
                 'description' => 'Kao neki zavrsni',
                 'size' => '23',
                 'task_id' => 1,
-                'post_id' => 2,
+
 
             ]
         ];

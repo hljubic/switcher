@@ -15,8 +15,7 @@
                             <th>ID</th>
                             <th>Rad</th>
                             <th>Opis</th>
-                            <th>Post</th>
-                            <th>Naziv</th>
+                            <th>Naziv zadatka</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -25,7 +24,6 @@
                                 <td>{{$file->id}}</td>
                                 <td>{{$file->name}}</td>
                                 <td>{{$file->description}}</td>
-                                <td>{{$file->post->content}}</td>
                                 <td>{{$file->task->name}}</td>
                                 <td><a href="{{route('files_edit')}}/{{$file->id}}"
                                        class="btn btn-primary btn-xs">Uredi</a></td>
