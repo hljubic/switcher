@@ -111,17 +111,20 @@ class FileController extends Controller
 
         if($request->hasFile('file')){
 
-            $filename = $request->file->getClientOriginalName();
+            $filenameWithExt = $request->file->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
+            $extension = $request->file->getClientOriginalExtension();
             $filesize = $request->file->getClientSize();
             $filepath = $request->file->getPath();
             $filedesc = $request['description'];
             $tasks = $request['task_id'];
 
+            $filenameToStore = $filename.'_'.time().'.'.$extension;
 
-            $request->file->storeAs('/',$filename);
+            $request->file->storeAs('/',$filenameToStore);
 
             $files = new File;
-            $files->name = $filename;
+            $files->name = $filenameWithExt;
             $files->size = $filesize;
             $files->path = $filepath;
             $files->description = $filedesc;
@@ -130,6 +133,7 @@ class FileController extends Controller
             $files->save();
         }
 
-        return redirect()->back()->with('success','Učitali ste datoteku');
+        return redirect()->back()->with('success','Datoteka je učitana');
     }
+
 }

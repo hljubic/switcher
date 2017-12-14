@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/dashboard', function (){
     return view('dashboard');
-});
+})->name('dashboard');
 
 $routes = [
     'users' => 'UserController',
@@ -80,6 +80,7 @@ Route::post('/followTask/{id}','TaskUserController@AddMeToTask');
 //uploading file
 Route::get('/files/upload','FileController@showFile')->name('upload_file');
 Route::post('/files/upload','FileController@storeFile');
+
 
 // Chat
 Route::get('/chat', 'ChatController@index');

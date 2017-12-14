@@ -24,7 +24,7 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0;  background-color: #3C3F41;">
+    <nav class="navbar navbar-default navbar-static-top nav-justified" style="margin-bottom: 0;  background-color: #3C3F41;">
 
         <div class="container">
             <div class="navbar-header">
@@ -64,7 +64,7 @@
                         </form>
                     </li>
 
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-graduation-cap"
+                    <li><a href="#" class="dropdown-toggle nav-justified" data-toggle="dropdown"><i class="fa fa-graduation-cap"
                                                                                       aria-hidden="true"></i>
                             <ul class="dropdown-menu">
                                 <li><a href="{{route('faculties')}}">Fakulteti</a></li>
@@ -107,6 +107,9 @@
                                               style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('dashboard')}}">Dashboard</a>
                                     </li>
                                 </ul>
                             </li>

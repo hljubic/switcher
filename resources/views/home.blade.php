@@ -19,7 +19,7 @@
                                 <div class="list-group-item ">
                                     <div class="panel-default" style="width: 100%;">
                                         <form class="form-horizontal" action="{{route ('posts_create')}}"
-                                              method="POST">
+                                              method="POST" enctype="multipart/form-data">
                                             {{ csrf_field() }}
                                             <fieldset>
                                                 <div class="panel-body">
@@ -27,18 +27,22 @@
                                                                           id="content-body" name="content"
                                                                           placeholder="Napišite objavu"
                                                                           style="margin-bottom: 0px; border:none;"></textarea>
+
                                                     <input type="hidden" name="created_at" id="inputDate"
                                                            value="{{ date('y-m-d h:i:s') }}">
                                                 </div>
                                                 <div class="panel-footer" style="">
                                                     <div class="row">
                                                         <div class="col-md-1">
-                                                            <a href="#" class="btn btn-sm btn-block"
-                                                               style="border-radius:50px;"><i
-                                                                        class="fa fa-link" style="font-size:23px;"></i>
+                                                            <a href="#" class="btn btn-sm btn-block "  data-toggle="collapse" data-target="#collapseFile3"
+                                                               style="border-radius:50px;"><i class="fa fa-link"
+                                                                                              style="font-size:23px;"></i>
+
                                                             </a>
                                                         </div>
-                                                        <div class="col-md-9"></div>
+                                                        <div class="col-md-9">
+
+                                                        </div>
                                                         <div class="col-md-2"
                                                              style="margin-bottom: 0px; max-height:100%;">
                                                             <button type="submit"
@@ -46,9 +50,14 @@
                                                                 <i class="fa fa-check" style="font-size:21px;"></i>
                                                             </button>
                                                         </div>
+
                                                     </div>
                                                 </div>
+                                                <div class="collapse" id="collapseFile3">
+                                                    <input type="file" name="file"
+                                                           class="form-control nopadding success input-sm">
 
+                                                </div>
                                             </fieldset>
                                         </form>
                                     </div>
@@ -64,6 +73,11 @@
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <p>{{$post->content}}</p>
+                                                        @if($post->file)
+                                                            <a style="color: #18bc9c; font-size:17px;"
+                                                               target="_blank" href="{{ asset('uploaded_files/' . $post->file->name) }}">{{$post->file->name}}</a>
+
+                                                        @endif
                                                     </div>
                                                     <div class="col-lg-6" style="text-align: right;">
                                                         <small><a href="{{route('posts_delete')}}/{{$post->id}}"

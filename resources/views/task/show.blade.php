@@ -89,7 +89,7 @@
                             <button type="submit" class="btn btn-block disabled"
                                     data-toggle="tooltip" data-placement="bottom" title="Vec ste dodijeljeni na zadatak"
                                     style="border-radius: 0px; background-color: #128770; color: #fff;">
-                                <i class="fa fa-user-circle" aria-hidden="true" style="font-size: 20px;"></i></button>
+                                <i class="fa fa-edit" aria-hidden="true" style="font-size: 20px;"></i></button>
                         @else
                             <form class="form-horizontal"
                                   action="{{route('followTask')}}/{{$tasks->id}}"
@@ -99,7 +99,7 @@
                                     <button type="submit" class="btn btn-block"
                                             data-toggle="tooltip" data-placement="bottom" title="Dodijeli mi zadatak"
                                             style="border-radius: 0px; background-color: #128770; color: #fff;">
-                                        <i class="fa fa-user-circle" aria-hidden="true" style="font-size: 20px;"></i></button>
+                                        <i class="fa fa-edit" aria-hidden="true" style="font-size: 20px;"></i></button>
                                 </fieldset>
                             </form>
                         @endif
@@ -134,24 +134,24 @@
             </div>
             <!-- upload file form -->
             <div class="collapse" id="collapseExample">
-                <div class="container col-lg-12" style="padding-top: 35px;">
+                <div class="container col-lg-12" style="padding-top: 25px;">
                     <div class="card card-body">
                         <div class="row">
                             <div class="panel panel-deafult col-lg-12">
                                 <form action="{{route('upload_file')}}" enctype="multipart/form-data" method="post"
-                                      class="form-control-file col-lg-10 col-lg-offset-1 ">
+                                      class="form-control-file col-lg-7 ">
                                     {{csrf_field()}}
-                                    <h2>Učitajte datoteku</h2>
+                                    <h4>Učitajte datoteku</h4>
                                     <small></small>
                                     <br>
-                                    <input type="file" name="file" class="form-control nopadding success">
+                                    <input type="file" name="file" class="form-control nopadding success input-sm">
                                     <br>
-                                    <input type="text" class="form-control" id="description" name="description"
+                                    <input type="text" class="form-control input-sm" id="description" name="description"
                                            placeholder="Postavite opis datoteke...">
                                     <input type="hidden" name="task_id" id="task_id" value="{{$tasks->id}}">
                                     <br>
-                                    <div class="col-lg-4 col-lg-offset-8">
-                                        <button type="submit" class="btn btn-success btn-block"><i
+                                    <div class="col-lg-3 col-lg-offset-9">
+                                        <button type="submit" class="btn btn-success btn-block btn-sm"><i
                                                     class="fa fa-cloud-upload" aria-hidden="true"></i>
                                             Upload
                                         </button>
@@ -174,7 +174,7 @@
     <div class="col-lg-3 " style="margin-top: 70px;">
         <div class="container">
             <div class="row">
-                <div class="col-xs-4 col-xs-4">
+                <div class="col-xs-3 col-xs-3">
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -243,6 +243,11 @@
                 document.getElementById("timer").innerHTML = "ZAVRŠENO";
             }
         }, 1000);
+
+        $(document).ready(function () {
+            $('[data-toggle="collapse"]').collapse({
+            });
+        });
     </script>
     @stack('scripts')
 
