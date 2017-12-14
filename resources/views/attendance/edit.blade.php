@@ -1,39 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-lg-8 col-lg-offset-2">
-        <form class="form-horizontal" action="{{route('attendances_edit')}}/{{$attendances->id}}" method="POST">
-            {{ method_field("PATCH") }}
-            {{ csrf_field() }}
-            <fieldset>
-                <legend>Uredi nastavu</legend>
-                <div class="form-group">
-                    <label for="select" class="col-lg-2 control-label">Tip nastave</label>
-                    <div class="col-lg-10">
-                        <select class="form-control" id="select" name="class_id">
-                            @foreach($classes as $classe)
-                                <option value="{{ $classe->id }}" {{($attendances->class_id == $classe->id) ? 'selected' : ''}}>{{ $classe->type }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="select" class="col-lg-2 control-label">Korisnik</label>
-                    <div class="col-lg-10">
-                        <select class="form-control" id="select" name="user_id">
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}" {{ ($attendances->user_id == $user->id) ? 'selected' : '' }}>{{ $user->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                        <button type="reset" class="btn btn-default">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
+<div class="col-md-4 col-md-offset-4">
+        <div class="panel panel-default" style="margin-top: 50px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Uredi prisutnost korisnika</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" action="{{route('attendances_edit')}}/{{$attendances->id}}" method="POST">
+                    {{method_field("PATCH")}}
+                    {{csrf_field()}}
+                    <fieldset>
+                        <legend></legend>
+                        <div class="form-group">
+                            <label for="inputName" class="col-lg-2 control-label">Naziv nastave</label>
+                            <div class="col-lg-10">
+                                <select class="form-control" id="select" name="class_id">
+                                 @foreach($classes as $classe)
+                                  <option value="{{ $classe->id }}" {{($attendances->class_id == $classe->id) ? 'selected' : ''}}>{{ $classe->type }}</option>
+                                  @endforeach
+                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputShortName" class="col-lg-2 control-label">Korsinik</label>
+                            <div class="col-lg-10">
+                              <select class="form-control" id="select" name="user_id">
+                             @foreach($users as $user)
+                          <option value="{{ $user->id }}" {{ ($attendances->user_id == $user->id) ? 'selected' : '' }}>{{ $user->name }}</option>
+                          @endforeach
+                          </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12" style="margin-top: 30px;">
+                                <div class="col-md-6">
+                                    <button type="reset" class="btn btn-default  btn-block">Cancel</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
+
+
 @endsection

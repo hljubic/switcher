@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
 
 
-        $faculties = Faculty::all();
+       $faculties = Faculty::all();
         view()->share('faculties', $faculties);
         $studies = Study::all();
         view()->share('studies', $studies);

@@ -41,7 +41,7 @@ class AttendanceController extends Controller
     public function store(Request $request)
     {
 
-        foreach($request->users as $user_id){
+        foreach($request->users as $user_id) {
             $attendances = new Attendance();
             $attendances->user_id = $user_id;
             $attendances->class_id = $request->class_id;
