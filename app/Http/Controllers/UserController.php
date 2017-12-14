@@ -141,4 +141,8 @@ class UserController extends Controller
     {
         return 'App\\Models\\' . static::$model;
     }*/
+    public  function searchUsers(){
+
+        return User::orderBy('name','asc')->get();
+    }
 }
