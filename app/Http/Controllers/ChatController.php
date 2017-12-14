@@ -40,8 +40,21 @@ class ChatController extends Controller
     //vraća sve razgovore prijavljenog korisnika
     public function getConversations()
     {
-        return Conversation::whereHas('participants', function ($q) {
+        $conversations = Conversation::whereHas('participants', function ($q) {
             $q->where('user_id', '=', Auth::user()->id);})->orderBy('id', 'desc')->get();
+
+        foreach ($conversations as $conversation) {
+            $participants = Participant::where('conversation_id', $conversation->id)->get();
+
+            $users = [];
+            foreach ($participants as $participant) {
+                array_push($users, User::find($participant->user_id));
+            }
+
+            $conversation->participants = $users;
+        }
+
+        return $conversations;
     }
 
     //vraća sve poruke u razgovoru čiji id je proslijeđen

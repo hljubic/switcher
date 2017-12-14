@@ -132,6 +132,10 @@
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+<script src="{{asset('https://code.jquery.com/jquery-1.11.1.js')}}"></script>
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="{{asset('js/ang_app.js')}}"></script>
 
 <script>
     //datepicker
@@ -158,34 +162,10 @@
         });
     });
 
-
-
-</script>
-{{--<script>--}}
-    {{--//datepicker--}}
-    {{--$('.datepicker').datepicker({--}}
-        {{--format: 'yyyy-mm-dd',--}}
-    {{--});--}}
-
-    {{--//sidebar toggle function--}}
-    {{--$("#menu-toggle").click(function (e) {--}}
-        {{--e.preventDefault();--}}
-        {{--$("#wrapper").toggleClass("toggled");--}}
-    {{--});--}}
-
-    {{--//pills--}}
-
-{{--</script>--}}
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
-<script src="{{asset('https://code.jquery.com/jquery-1.11.1.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="{{asset('js/ang_app.js')}}"></script>
-<script>
     var API_USERS = '{{route('search_user')}}';
-    var API_MESSAGES = '{{ route('messages', 1) }}';
-    var API_PARTICIPANTS = '{{route('participants', 3)}}';
-    var API_CONVERSATIONS = '{{route('conversations')}}';
+    var API_MESSAGES = '{{ route('messages1', 1) }}';
+    {{--var API_PARTICIPANTS = '{{route('participants', 3)}}';--}}
+    var API_CONVERSATIONS = '{{route('conversations1')}}';
 
 </script>
 

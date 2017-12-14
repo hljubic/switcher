@@ -32,9 +32,9 @@ body{
     z-index: 2;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #313335;
     padding-left: 0;
     padding-right: 0;
+    border-left: solid 5px #ecf0f1;
     height: 100vh;
 }
 
@@ -42,10 +42,10 @@ body{
     margin-bottom: 20px;
 }
 
-.swt-sidebar .nav-item {
+.swt-sidebar .swt-list-group-item{
     width: 100%;
-    color: #fff;
-    font-family: 'Josefin Slab', serif;
+    color: black;
+    /*font-family: 'Josefin Slab', serif;*/
     font-size: 20px;
     margin-left: 0;
     margin-top: 1px;
@@ -63,7 +63,7 @@ body{
 .swt-sidebar .nav-item::first-letter{
     font-size: 36px;
     color: #20c997;
-    font-family: 'Lobster', cursive;
+    /*font-family: 'Lobster', cursive;*/
     margin-right: 2px;
 }
 
@@ -77,27 +77,27 @@ body{
 
 .swt-conversations-label{
     color: #fff;
-    font-family: 'Josefin Slab', serif;
-    font-style: italic;
+    /*font-family: 'Josefin Slab', serif;*/
+    /*font-style: italic;*/
 }
 
 .swt-chat-window{
     position: relative;
     padding-left: 0;
     padding-right: 0;
-    height: 90vh;
-    overflow-x: hidden;
-    overflow-y: auto;
+    height: 85vh;
+    /*overflow-x: hidden;*/
+    /*overflow-y: auto;*/
 }
 
 .swt-chat-window h3{
-    font-family: 'Josefin Slab', serif;
-    font-style: oblique;
+    /*font-family: 'Josefin Slab', serif;*/
+    /*font-style: oblique;*/
     padding-left: 25px;
 }
 
 .swt-current-conversation-contact{
-    font-family: 'Indie Flower', cursive;
+    /*font-family: 'Indie Flower', cursive;*/
     color: #20c997;
 }
 
@@ -117,10 +117,10 @@ body{
 }
 
 .swt-chat-window .swt-chat-messages-area .swt-msg-wrapper{
-    width: 300px;
+
     padding: 10px;
-    border-radius: 10px;
-    font-family: 'Indie Flower', cursive;
+    border-radius: 25px;
+    /*font-family: 'Indie Flower', cursive;*/
     font-size: 18px;
 }
 
@@ -153,7 +153,7 @@ body{
     height: 600px;
     background-color: #FFFFFF;
     overflow-y: scroll;
-
+    overflow-x: hidden;
 }
 .swt-users-messages::-webkit-scrollbar-track
 {
@@ -182,3 +182,22 @@ body{
 .swt-btn{
     background-color: #20c997;
 }
+.swt-nav-item:hover{
+
+    background-color: #F0F0F0;
+    color: #000;
+    cursor: pointer;
+}
+.selected-conversation{
+    background: #F0F0F0 !important ;
+}
+div.fixed {
+    position: fixed;
+}
+.createMessage{
+    top:-15px !important;
+}
+/*.div.hidden{*/
+    /*display: none;*/
+    /*border: none;*/
+/*}*/
