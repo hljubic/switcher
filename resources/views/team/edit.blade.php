@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="select" class="col-lg-2 control-label">Nositelj kolegija</label>
+                    <label for="select" class="col-lg-2 control-label">Student</label>
                     <div class="col-lg-10">
                         <select class="form-control" id="select" name="user_id">
                             @foreach($users as $user)
