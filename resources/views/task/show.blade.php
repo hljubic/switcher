@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 
 @section('content')
-    <div class="well col-lg-7 col-lg-offset-2" style="margin-top: 50px; background-color: #fff;">
+    <div class="well col-lg-6 col-lg-offset-2" style="margin-top: 50px; background-color: #fff;">
         <div class="list-group">
             <div class="list-group-item " style="border-left: solid #18BC9C;">
                 <div class="row">
@@ -171,10 +171,10 @@
         </div>
     </div>
 
-    <div class="col-lg-3 " style="margin-top: 70px;">
+    <div class="col-lg-4 " style="margin-top: 70px;">
         <div class="container">
             <div class="row">
-                <div class="col-xs-3 col-xs-3">
+                <div class="col-xs-4 ">
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -246,6 +246,12 @@
 
         $(document).ready(function () {
             $('[data-toggle="collapse"]').collapse({
+            });
+        });
+
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover({
+                placement: 'bottom'
             });
         });
     </script>

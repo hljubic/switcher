@@ -124,7 +124,7 @@ class FileController extends Controller
             $request->file->storeAs('/',$filenameToStore);
 
             $files = new File;
-            $files->name = $filenameWithExt;
+            $files->name = $filenameToStore;
             $files->size = $filesize;
             $files->path = $filepath;
             $files->description = $filedesc;

@@ -60,7 +60,7 @@ class PostController extends Controller
 
 
             $file = new File;
-            $file->name = $filenameWithExt;
+            $file->name = $filenameToStore;
             $file->size = $filesize;
             $file->path = $filepath;
             $file->task_id = $tasks;
@@ -95,10 +95,6 @@ class PostController extends Controller
             $post->save();
 
         }
-
-
-
-
         return back();
     }
 

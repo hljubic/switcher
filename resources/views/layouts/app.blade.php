@@ -65,8 +65,9 @@
                                 </span>
                                 </div>
                             </div>
-                        </form>
 
+
+                        </form>
                     </li>
 
                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-graduation-cap"
@@ -78,7 +79,7 @@
                             </ul>
                         </a>
                     </li>
-                    <li><a href="#"><i class="fa fa-comments" aria-hidden="true"></i><span
+                    <li><a href="{{route('chat')}}"><i class="fa fa-comments" aria-hidden="true"></i><span
                                     class="badge">3</span></a></li>
                     <li><a href="{{route('imenik')}}"><i class="fa fa-address-book" aria-hidden="true"></i></a>
                 </ul>
@@ -136,8 +137,6 @@
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
-<script src="{{asset('https://code.jquery.com/jquery-1.11.1.js')}}"></script>
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="{{asset('js/ang_app.js')}}"></script>
 
 <script>
@@ -172,14 +171,13 @@
         checkbox.attr('checked', !checkbox.attr('checked'));
     });
 
-
-
-
-
+</script>
+<script>
     var API_USERS = '{{route('search_user')}}';
-    var API_MESSAGES = '{{ route('messages', 1) }}';
-    var API_PARTICIPANTS = '{{route('participants', 3)}}';
-    var API_CONVERSATIONS = '{{route('conversations')}}';
+    var API_MESSAGES = '{{ route('messages1', 1) }}';
+    var API_PARTICIPANTS = '{{route('participants1', 3)}}';
+    var API_CONVERSATIONS = '{{route('conversations1')}}';
+
 
 </script>
 

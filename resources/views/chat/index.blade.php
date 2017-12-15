@@ -1,152 +1,123 @@
 @extends('layouts.app')
 
 @section('content')
-    <div  ng-cloak>
+    <div  ng-cloak >
         <div class="container-fluid">
             <div class="row">
 
-                <div class="col-xs-3 swt-sidebar">
-                    <ul class="nav nav-pills">
+                <div class="col-lg-3 swt-sidebar" >
+                    <div class="row">
+                        <div class="col-lg-6 col-lg-offset-3" style="padding-bottom: 10px; padding-top:20px; text-align: center;">
+                            <h4>Conversations</h4>
+                        </div>
+                        <div class="col-lg-3" style="padding-bottom: 10px; padding-top:17px; text-align: center;">
+                            <a href="" data-toggle="tooltip" data-placement="bottom" title="Novi razgovor" class="btn"><i class="fa fa-edit" style="color:#18BC9C; font-size:25px;"></i></a>
+                        </div>
+                    </div>
+                    <hr class="nopadding">
+                    <div class="list-group-item">
 
-                        <h2 class="swt-conversations-label">Conversations</h2>
+                        <div class="input-group input-group-sm ">
+                            <input type="text" class="form-control" placeholder="Search " list="browsers" name="browser"
+                                   style="border-radius:0px; background-color:rgba(179, 179, 179,0.3); border:none; color:#fff;">
+                            <datalist id="browsers">
+                                <option ng-repeat="user in users" value="<%user.name%>">
 
-                        {{--<a  ng-click="getMessages()">TEST</a>--}}
+                            </datalist>
+                            <span class="input-group-btn">
+                                     <button class="btn btn-secondary" type="button">Go!</button>
+                                </span>
+                        </div>
 
-                        {{--<li class="nav-item active">--}}
-                        {{--<% current_conv %>--}}
-                        {{--</li>--}}
-                        {{--<div ng-repeat="participant in participants">--}}
-                        {{--<li class="nav-item"  ng-repeat="user in users"--}}
-                        {{--ng-if="participant.user_id == user.id" >--}}
-                        {{--<% user.name %>--}}
-                        {{--</li>--}}
-                        {{--</div>--}}
-                        <li class="nav-item" ng-repeat="conv in conversations" ng-click="selectConversation(conv)">
-                            <% conv.title %>
-                        </li>
+                    </div>
+                    <div class="list-group">
+                        <div ng-repeat="conv in conversations">
+                            <div ng-repeat="par in conv.participants">
+                                <ul href="#" class="list-group-item swt-nav-item"
+                                    ng-click="selectConversation(conv)"
+                                    ng-class="{'selected-conversation':conv.id == selectedConversation.id}"
+                                >
 
-                    </ul>
+                                    <li  style="list-style-type: none;" >
+                                        <h4 class="list-group-item-heading" style="padding-bottom:5px;"><% conv.title %></h4>
+                                        <p class="list-group-item-text" style="padding-bottom:5px; color:#20c997;"
+                                           ng-if="par.id != {{Auth::user()->id}}">
+                                            <%par.name%></p>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <br/>
                     <br/>
                 </div> <!-- swt-sidebar -->
 
-                <div class="col-xs-9 swt-chat-window">
-                    <h3>Messages with <span class="swt-current-conversation-contact"><% selectedConversation.title %></span></h3>
-                    <hr>
+                <div class="col-lg-6 nopadding">
+                    <div class="swt-chat-window ">
+                        <div class="col-lg-12 " style="padding-bottom: 16px; padding-top:20px; text-align: center; border-bottom: solid 2px #18BC9C;">
+                            <h4>Messages with <span class="swt-current-conversation-contact"><% selectedConversation.title %></span></h4>
+                        </div>
 
-                    <div class="swt-chat-messages-area swt-users-messages">
-                        <div ng-repeat="msg in messages">
+
+                        <div id = "message-content" class="swt-chat-messages-area swt-users-messages" style="padding-top: 10px;">
+                            <div ng-repeat="msg in messages">
 
 
-                            <div ng-if="msg.sender_id != {{Auth::user()->id}}">
-                                <div>
-                                    <p>
-                                    <div class="swt-msg-wrapper swt-others-msg">
-                                        <% msg.content %>
+                                <div ng-if="msg.sender_id != {{Auth::user()->id}}">
+                                    <div>
 
-                                    </div>
-                                    </p>
-
-                                </div>
-                            </div>
-
-                            <div ng-if="msg.sender_id == {{Auth::user()->id}}">
-                                <div class="row">
-                                    <div class="col-xs-8 swt-remove-padding"></div>
-                                    <div class="col-xs-4 swt-remove-padding">
-
-                                        <p class="text-right">
-                                        <div class="swt-msg-wrapper swt-my-msg">
+                                        <div class=" col-lg-4 swt-msg-wrapper swt-others-msg">
                                             <% msg.content %>
 
                                         </div>
-                                        </p>
-                                    </div>
+                                        <div class="col-lg-8"></div>
 
+                                    </div>
+                                </div>
+
+                                <div ng-if="msg.sender_id == {{Auth::user()->id}}">
+                                    <div class="row ">
+
+                                        <div class="col-xs-4 col-lg-offset-8">
+
+                                            <div class="swt-msg-wrapper swt-my-msg" style="margin-bottom: 3px;" >
+                                                <% msg.content %>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
 
                     </div>
-                    <div class="swt-input-messager">
+                    <div class="row col-lg-10 col-lg-offset-1 createMessage">
+                        <div class="col-lg-10 ">
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Enter new message"
+                                   ng-model="newMessage">
+                        </div>
+                        <div class="col-lg-2 nopadding">
+                            <button class="btn  btn-block btn-success"
+                                    ng-click="sendNewMessage()">
+                                Send
+                            </button>
+                        </div>
+                    </div><!-- swt-chat-window -->
+                </div>
 
-                        <input type="text"
-                               class="form-control"
-                               placeholder="Enter new message"
-                               ng-model="newMessage">
-
-                        <button class="btn swt-btn"
-                                ng-click="sendNewMessage()">
-                            Send
-                        </button>
-
-                    </div>
-
-
-                </div> <!-- swt-chat-window -->
-                <div class="swt-send-messages-area">
-
+                <div class="col-lg-3 swt-sidebar" >
 
                 </div>
 
             </div>
         </div>
     </div>
-
-    {{--<div class="container-fluid" ng-controller="MainCtrl">--}}
-        {{--<div class="row">--}}
-            {{--<nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">--}}
-                {{--<ul class="nav nav-pills flex-column">--}}
-
-                    {{--<h3 class="conversations-label">Conversations</h3>--}}
-
-                    {{--<li class="nav-item">--}}
-                        {{--<!-- dodaje klasu active -->--}}
-                        {{--<a class="nav-link active" href="#"><% current_conv %><span class="sr-only">(current)</span></a>--}}
-                    {{--</li>--}}
-
-                    {{--<li class="nav-item" ng-repeat="user in users track by $index">--}}
-                        {{--<a class="nav-link" href="#" ng-click="change_conv()"><% user %></a>--}}
-                    {{--</li>--}}
-
-                {{--</ul>--}}
-            {{--</nav>--}}
-
-            {{--<main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">--}}
-                {{--<h3>Dashboard</h3>--}}
-                {{--<hr>--}}
-
-
-
-                {{--<div class="media mb-3" ng-repeat="message in messages track by $index">--}}
-
-                    {{--<div class="media-body" ng-if="message.creator_id == 2 && message.conversation_id == current">--}}
-                        {{--<img class="mr-4 swt-no-break-img" src="https://cdn.jsdelivr.net/emojione/assets/png/1f439.png" alt="Generic placeholder image">--}}
-                        {{--<div class="row">--}}
-                            {{--<div class="col-3 bg-dark text-white swt-message-rounded">--}}
-
-                                {{--<p class="font-weight-bold"><% message.content %></p>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
-
-                    {{--<div class="media-body" ng-if="message.sender_id != 2 && message.conversation_id == current">--}}
-                        {{--<div class="row">--}}
-                            {{--<div class="col-8"></div>--}}
-                            {{--<div class="col-3 bg-info text-white swt-message-rounded">--}}
-                                {{--<p class="font-weight-bold text-right"><% message.content %></p>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-1">--}}
-                                {{--<img class="align-self-start mr-4" src="https://cdn.jsdelivr.net/emojione/assets/png/1f439.png" alt="Generic placeholder image">--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
-                {{--</div>--}}
-            {{--</main>--}}
-        {{--</div>--}}
-    {{--</div>--}}
 
 @endsection
 
@@ -156,150 +127,79 @@
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 
-
     <script>
-        <!-- ANGULAR -->
-
-
-        <!-- kraj angulara-->
-
-        {{--$(function () {--}}
-            {{--var socket = io('localhost:3000');--}}
-            {{--$('form').submit(function () {--}}
-                {{--socket.emit('send_message', $('#m').val());--}}
-                {{--var date = {--}}
-                    {{--'content': $('#m').val(),--}}
-                    {{--'conversation_id': $('#conversation_id').val(),--}}
-                    {{--'sender_id': $('#sender_id').val(),--}}
-                    {{--'created_at': $('#created_at').val()--}}
-                {{--};--}}
-                {{--$.ajax({--}}
-                    {{--type: "POST",--}}
-                    {{--url: "{{route("message_create")}}",--}}
-                    {{--headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},--}}
-                    {{--data: date--}}
-                {{--});--}}
-                {{--$('#m').val('');--}}
-                {{--//socket.emit('typing', 0);--}}
-                {{--return false;--}}
-            {{--});--}}
-            {{--$('#m').on('keyup', function () {--}}
-                {{--if (($('#m').val() === '')) {--}}
-                    {{--socket.emit('typing', 0);--}}
-                {{--} else {--}}
-                    {{--socket.emit('typing', 1);--}}
-                {{--}--}}
-            {{--});--}}
-            {{--socket.on('typing', function (msg) {--}}
-                {{--if (msg === 1) {--}}
-                    {{--$('#typing').show();--}}
-                {{--}--}}
-                {{--else {--}}
-                    {{--$('#typing').hide();--}}
-                {{--}--}}
-            {{--});--}}
-            {{--socket.on('receive_message', function (msg) {--}}
-                {{--var date = new Date();--}}
-                {{--var nova_poruka = "<li class=" + 'me' + " id=" + 'id' + " >" +--}}
-                    {{--//"<div class=\'message-user1-icon\'></div>"+--}}
-                    {{--"<div class='list-group-item' >" + '{{ Auth::user()->name }}' +--}}
-                    {{--"<div class=\"message-time help-block\">" + date.getYear() + "-" + date.getMonth() + "-" + date.getDay() + " " + date.getHours() + ':' + date.getMinutes() +--}}
-                    {{--"</div>" +--}}
-                    {{--"<div  class='messager-right div left'>" + msg +--}}
-                    {{--"</div>" +--}}
-                    {{--"<div class='clear'></div>" +--}}
-                    {{--"</div>" +--}}
-                    {{--//'<p>' + msg + '</p>' +--}}
-                    {{--"</li>";--}}
-                {{--// nova_poruka.find('p').text(msg);--}}
-                {{--$('#poruke').append(nova_poruka);--}}
-                {{--//$('#poruke').append($('<li>').html('{{ Auth::user()->name }} at ' + date.getHours() + ':' + date.getMinutes() + ' sent : <strong>' + msg + '</strong>'));--}}
-            {{--});--}}
-        {{--});--}}
-    </script>
-    <script>
-        {{--var API_MESSAGES = '{{ route('messages', 1) }}'--}}
-        var API_PARTICIPANTS = '{{route('participants', 3)}}';
-        var API_CONVERSATIONS = '{{route('conversations')}}';
+                {{--var API_MESSAGES = '{{ route('messages', 1) }}'--}}
+                {{--var API_PARTICIPANTS = '{{route('participants', 3)}}';--}}
+        var API_CONVERSATIONS = '{{route('conversations1')}}';
         var API_NEW_MESSAGE = '{{route('create_message')}}';
-
         (function(){
-
             angular.module("swtSearchApp", [])
-
                 .config(['$interpolateProvider', function($interpolateProvider) {
                     $interpolateProvider.startSymbol('<%');
                     $interpolateProvider.endSymbol('%>');
                 }])
-
                 .controller("swtSearchMainController", function($scope, $http){
                     var API_MESSAGES
+//                    var API_PARTICIPANTS
+                    var element = document.getElementById("message-content");
                     $scope.selectConversation = function (con) {
                         $scope.selectedConversation = con;
-                        console.log($scope.selectedConversation.id)
-                        API_MESSAGES = '{{ route('messages','')}}' + '/' +  $scope.selectedConversation.id
-                        console.log(API_MESSAGES)
+//                        console.log($scope.selectedConversation.id)
+                        API_MESSAGES = '{{ route('messages1','')}}' + '/' +  $scope.selectedConversation.id
+                        element.scrollTop = element.scrollHeight;
                         $scope.getMessages();
-                        //console.log($scope.selectedConversation)
                     }
-
                     $scope.init = function () {
-
                         // Ulazna točka aplikacije
-
                         $scope.getMessages();
-                        $scope.getParticipants();
+//                        $scope.getParticipants();
                         $scope.getConversations();
                         $scope.getUsers();
-//                        $scope.reload = function () {
-//                            $http.get('http://localhost/switcher/public/chat').
-//                            success(function (data) {
-//                                $scope.todos = data.todos;
-//                                console.log("radi")
-//                            });
-//                        };
+                        {{--API_PARTICIPANTS = '{{route('participants', '')}}' + '/' +  $scope.selectedConversation.id--}}
+                        //                        $scope.reload = function () {
+                        //                            $http.get('http://localhost/switcher/public/chat').
+                        //                            success(function (data) {
+                        //                                $scope.todos = data.todos;
+                        //                                console.log("radi")
+                        //                            });
+                        //                        };
                         setInterval(function(){ $scope.getMessages(); }, 2000);
-                        $scope.reload();
+//                        $scope.reload();
 //                        $timeout($scope.getMessages(), 3000)
                         console.log('pozvanInit')
                     };
-
-                    $scope.sendNewMessage = function() {
-
+                    {{--API_PARTICIPANTS = '{{route('participants', '')}}' + '/' +  {'nesto': $scope.conv.id}--}}
+                        $scope.sendNewMessage = function() {
                         $newMessage = {'content_msg' :$scope.newMessage, 'conversation_id': $scope.selectedConversation.id};
-
                         $http({
                             method: 'POST',
                             url: API_NEW_MESSAGE,
                             data: JSON.stringify($newMessage)
                         }).then(function successCallback(response) {
                             $scope.messages = response.data;
-
                         }, function errorCallback(response) {
                             console.log("greška prilokom slanj poruke!")
                             // called asynchronously if an error occurs
                             // or server returns response with an error status.
                         });
-
                         $scope.newMessage = "";
+                        element.scrollTop = element.scrollHeight;
                     };
-
                     console.log($scope.newMessage)
-                    $scope.getParticipants = function () {
-
-                        $http({
-                            method: 'GET',
-                            url: API_PARTICIPANTS
-                        }).then(function successCallback(response) {
-                            $scope.participants = response.data;
-                            console.log($scope.participants)
-                        }, function errorCallback(response) {
-                            // called asynchronously if an error occurs
-                            // or server returns response with an error status.
-                        });
-                    }
+//                    $scope.getParticipants = function () {
+//
+//                        $http({
+//                            method: 'GET',
+//                            url: API_PARTICIPANTS
+//                        }).then(function successCallback(response) {
+//                            $scope.participants = response.data;
+//                            console.log($scope.participants)
+//                        }, function errorCallback(response) {
+//                            // called asynchronously if an error occurs
+//                            // or server returns response with an error status.
+//                        });
+//                    }
                     $scope.getConversations = function () {
-
                         $http({
                             method: 'GET',
                             url: API_CONVERSATIONS
@@ -312,20 +212,18 @@
                         });
                     }
                     $scope.getMessages = function () {
-
                         $http({
                             method: 'GET',
                             url: API_MESSAGES
                         }).then(function successCallback(response) {
                             $scope.messages = response.data;
-                            console.log($scope.messages)
+                            //console.log($scope.messages)
                         }, function errorCallback(response) {
                             // called asynchronously if an error occurs
                             // or server returns response with an error status.
                         });
                     }
                     $scope.getUsers = function () {
-
                         $http({
                             method: 'GET',
                             url: API_USERS
@@ -336,7 +234,6 @@
                             // or server returns response with an error status.
                         });
                     }
-
                 })
         })();
     </script>
