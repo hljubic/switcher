@@ -11,7 +11,7 @@
                     {{method_field("PATCH")}}
                     {{csrf_field()}}
                     <fieldset>
-                        <legend>Uredi studij</legend>
+                        <legend></legend>
                         <div class="form-group">
                             <label for="inputName" class="col-lg-2 control-label">Naziv studija</label>
                             <div class="col-lg-10">
