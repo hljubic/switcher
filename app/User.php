@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Post')->orderBy('id', 'desc');
     }
+
+    public  function  classe(){
+
+        return $this->belongsToMany('App\Classe');
+    }
 }

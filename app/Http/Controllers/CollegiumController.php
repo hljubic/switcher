@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Attendance;
+use App\Classe;
 use App\Collegium;
 use App\CollegiumUser;
 use App\Conversation;
@@ -61,6 +63,10 @@ class CollegiumController extends Controller
     public function show($id)
     {
         $collegiums = Collegium::find($id);
+
+
+
+
         if (CollegiumUser::where('user_id', '=', Auth::user()->id)->where('collegium_id','=',$id)->exists()) {
             $followButton = true;
         } else {

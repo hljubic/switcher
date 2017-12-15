@@ -87,8 +87,11 @@ class ChatController extends Controller
     //kreira novu poruku u razgovoru
     public function createMessage(Request $request){
         $message = new Message();
-        $message->fill($request->except('sender_id'));
+        $message->content = $request->content_msg;
+        $message->conversation_id = $request->conversation_id;
         $message->sender_id = Auth::user()->id;
         $message->save();
+
+        return self::getMessages($request->conversation_id);
     }
 }

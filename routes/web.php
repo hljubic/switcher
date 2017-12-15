@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/dashboard', function (){
     return view('dashboard');
-});
+})->name('dashboard');
 
 $routes = [
     'users' => 'UserController',
@@ -81,10 +81,27 @@ Route::post('/followTask/{id}','TaskUserController@AddMeToTask');
 Route::get('/files/upload','FileController@showFile')->name('upload_file');
 Route::post('/files/upload','FileController@storeFile');
 
+
 // Chat
 Route::get('/chat', 'ChatController@index');
 Route::get('/chat/conversations', 'ChatController@getConversations')->name('conversations'); //vraća sve razgovore prijavljenog korisnika
 Route::get('/chat/messages/{conversation_id}', 'ChatController@getMessages')->name('messages'); //vraća sve poruke u razgovoru čiji id je proslijeđen
 Route::get('/chat/participants/{conversation_id}', 'ChatController@getParticipants')->name('participants'); //vraća sve sudionike u razgovoru čiji id je proslijeđen
 Route::get('/chat/conversation/{user_id}', 'ChatController@createConversation'); //kreira novi razgovor sa korisnikom čiji id je proslijeđen
-Route::get('/chat/messages', 'ChatController@createMessage'); //kreira novu poruku u razgovoru
+Route::post('/chat/messages', 'ChatController@createMessage')->name('create_message'); //kreira novu poruku u razgovoru
+
+
+//search
+Route::get('/searchUsers','UserController@searchUsers')->name('search_user');
+//Add users in attendances
+Route::post('/class_user', 'AttendanceController@storeUsers')->name('class_user');
+
+//Ažuriranje statusa studenata na zadatku
+Route::get('/task_user', 'TaskController@editUsers')->name('task_user');
+Route::get('/task_user/edit/{task_id}', 'TaskController@editUsers'); //otvara formu za promijenu statusa studenata na nekom zadatku
+Route::patch('task_user/edit/{task_id}', 'TaskController@updateUsers'); //ažurira status studenata na nekom zadatku
+
+//Dodavanje liste studenata na zadatak
+Route::get('/task_user/create/{task_id}', 'TaskController@createUsers');
+Route::post('/task_user/create/{task_id}', 'TaskController@storeUsers');
+

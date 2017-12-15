@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(ConversationsTableSeeder::class);
         $this->call(CollegiumsTableSeeder::class);
-        $this->call(PostsTableSeeder::class);
         $this->call(TasksTableSeeder::class);
         $this->call(TaskUserTableSeeder::class);
         $this->call(MessagesTableSeeder::class);
@@ -27,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FilesTableSeeder::class);
         $this->call(FollowersUsersTableSeeder::class);
         $this->call(CollegiumUserTableSeeder::class);
+        $this->call(PostsTableSeeder::class);
 
     }
 }

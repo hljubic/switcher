@@ -1,0 +1,184 @@
+/* CHAT Style */
+
+/*
+
+    Dodat send button negdje dole i input field
+    Napravit poruke da idu u desno kako treba
+    Vidit responzivnost
+
+    Napravit angular sve
+    
+
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Josefin+Slab:400,600i');
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
+body{
+    overflow-y: hidden;
+}
+
+.swt-noone{
+    color: green;
+}
+
+/*
+ * Sidebar
+ */
+
+.swt-sidebar {
+    position: relative;
+    z-index: 2;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #313335;
+    padding-left: 0;
+    padding-right: 0;
+    height: 100vh;
+}
+
+.swt-sidebar .nav {
+    margin-bottom: 20px;
+}
+
+.swt-sidebar .nav-item {
+    width: 100%;
+    color: #fff;
+    font-family: 'Josefin Slab', serif;
+    font-size: 20px;
+    margin-left: 0;
+    margin-top: 1px;
+    padding: 0 0 0 10px;
+    border-top: 1px solid grey;
+    transition: all 0.4s linear;
+}
+
+.swt-sidebar .nav-item:hover{
+    background-color: white;
+    color: #000;
+    cursor: pointer;
+}
+
+.swt-sidebar .nav-item::first-letter{
+    font-size: 36px;
+    color: #20c997;
+    font-family: 'Lobster', cursive;
+    margin-right: 2px;
+}
+
+.swt-sidebar .nav-item:hover::first-letter{
+    color: #2980b9;
+}
+
+.swt-sidebar .nav-link {
+    border-radius: 0;
+}
+
+.swt-conversations-label{
+    color: #fff;
+    font-family: 'Josefin Slab', serif;
+    font-style: italic;
+}
+
+.swt-chat-window{
+    position: relative;
+    padding-left: 0;
+    padding-right: 0;
+    height: 90vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.swt-chat-window h3{
+    font-family: 'Josefin Slab', serif;
+    font-style: oblique;
+    padding-left: 25px;
+}
+
+.swt-current-conversation-contact{
+    font-family: 'Indie Flower', cursive;
+    color: #20c997;
+}
+
+.swt-chat-window hr{
+    margin-bottom: 0;
+    border-top: 2px groove #777;
+}
+
+.swt-chat-window .swt-chat-messages-area{
+    background-color: #F2F7F7;
+}
+
+.swt-chat-window .swt-chat-messages-area p{
+    padding: 5px;
+    margin: 0;
+    
+}
+
+.swt-chat-window .swt-chat-messages-area .swt-msg-wrapper{
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    font-family: 'Indie Flower', cursive;
+    font-size: 18px;
+}
+
+.swt-chat-window .swt-chat-messages-area .swt-others-msg{
+    background-color: #fff;
+    margin-left: 10px;
+    color: #777;
+}
+
+.swt-chat-window .swt-chat-messages-area .swt-my-msg{
+    background-color: #20c997;
+    color: #fff;
+    text-align: right;
+}
+
+.swt-chat-window .swt-chat-messages-area .swt-remove-padding{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+
+.swt-new-message{
+    margin-top:15px;
+}
+.swt-users-messages
+{
+    float: left;
+    width: 100%;
+    height: 600px;
+    background-color: #FFFFFF;
+    overflow-y: scroll;
+
+}
+.swt-users-messages::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important;
+    border-radius: 10px !important;
+    background-color: #F5F5F5 !important;
+}
+.swt-users-messages::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5 !important;
+}
+.swt-user-message
+{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 100px;
+    font-size: 18px;
+    background-color: #d0d4d7;
+}
+.swt-input-messager
+{
+    height: 550px !important;
+}
+.swt-btn{
+    background-color: #20c997;
+}

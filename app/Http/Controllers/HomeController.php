@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Collegium;
+use App\File;
 use App\FollowerUser;
 use App\Post;
 use App\Task;

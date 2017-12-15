@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" ng-app="swtSearchApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,11 +18,13 @@
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <!-- style for sidebar -->
     <link href="{{asset('css/simple-sidebar.css') }}" rel="stylesheet">
+    <!-- style for CHAT -->
+    <link href="{{asset('css/chat-style.css') }}" rel="stylesheet">
 
     @stack('stylesheets')
 
 </head>
-<body>
+<body ng-controller="swtSearchMainController" ng-init="init()">
 <div id="app">
     <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0;  background-color: #3C3F41;">
 
@@ -45,23 +47,26 @@
                 </a>
 
             </div>
+            <!-- search in navbar-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav ">
                     <li>
-                        <form class="navbar-form navbar-left" role="search">
+                        <form class="navbar-form navbar-left col-lg-12" role="search" >
+                            <div class=" form-group">
+                                <div class="input-group input-group-sm ">
+                                    <input type="text" class="form-control" placeholder="Search " list="browsers" name="browser"
+                                           style="border-radius:0px; background-color:rgba(179, 179, 179,0.3); border:none; color:#fff;">
+                                    <datalist id="browsers">
+                                        <option ng-repeat="user in users" value="<%user.name%>">
 
-                            <div class="form-group ">
-                                <input type="text" class="form-control input-sm" placeholder="Pretraga"
-                                       style="border-radius:50px; background-color:rgba(179, 179, 179,0.3); border:none; color:#fff;">
-                                <button type="submit" class="btn btn-default"
-                                        style="background-color: #313335; border-color: #313335;"><i
-                                            class="fa fa-search"
-                                            aria-hidden="true"></i>
-                                </button>
+                                    </datalist>
+                                    <span class="input-group-btn">
+                                     <button class="btn btn-secondary" type="button">Go!</button>
+                                </span>
+                                </div>
                             </div>
-
-
                         </form>
+
                     </li>
 
                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-graduation-cap"
@@ -108,6 +113,9 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    <li>
+                                        <a href="{{route('dashboard')}}">Dashboard</a>
+                                    </li>
                                 </ul>
                             </li>
                             @endguest
@@ -127,26 +135,27 @@
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+<script src="{{asset('https://code.jquery.com/jquery-1.11.1.js')}}"></script>
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="{{asset('js/ang_app.js')}}"></script>
 
 <script>
     //datepicker
     $('.datepicker').datepicker({
         format: 'yyyy-mm-dd',
     });
-
     //sidebar toggle function
     $("#menu-toggle").click(function (e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-
     //profile picture
     $(document).ready(function () {
         var storename = $('#storename').text();
         var intials = $('#storename').text().charAt(0);
         var profile = $('#profile').text(intials);
     });
-
     $(function () {
         $('[data-toggle="tooltip"]').tooltip(options)
     });
@@ -164,6 +173,13 @@
     });
 
 
+
+
+
+    var API_USERS = '{{route('search_user')}}';
+    var API_MESSAGES = '{{ route('messages', 1) }}';
+    var API_PARTICIPANTS = '{{route('participants', 3)}}';
+    var API_CONVERSATIONS = '{{route('conversations')}}';
 
 </script>
 

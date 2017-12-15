@@ -43,3 +43,4 @@ class PostsTableSeeder extends Seeder
             Post::create($post);
     }
 }
+

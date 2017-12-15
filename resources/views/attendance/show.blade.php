@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-8 col-md-offset-2">
         <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
-            <form class="form-horizontal" action="{{ route('attendances_create') }}" method="POST">
+            <form class="form-horizontal" action="{{ route('class_user') }}" method="POST">
                 {{ csrf_field() }}
                 <fieldset>
                     <div class="row">
@@ -18,13 +18,11 @@
                                     h
                                 </small>
                             </div>
-                            @if(count($attendances) == 0)
                                 <div class="col-lg-6">
                                     <br>
-                                    <button type="submit" class="col-lg-offset-10 btn btn-default btn-sm">Spremi
+                                    <button type="submit" class="col-lg-offset-10 btn btn-success btn-sm">Spremi
                                     </button>
                                 </div>
-                            @endif
                         @elseif($classe->type == 'exercises')
                             <div class="col-lg-6" style="color: #ec971f;">
                                 <h4>Vježbe</h4>
@@ -36,13 +34,11 @@
                                     h
                                 </small>
                             </div>
-                            @if(count($attendances) == 0)
                                 <div class="col-lg-6">
                                     <br>
                                     <button type="submit" class="col-lg-offset-10 btn btn-warning btn-sm">Spremi
                                     </button>
                                 </div>
-                            @endif
                         @else
                             <div class="col-lg-6" style="color: #d9534f;">
                                 <h4>Laboratorijske vježbe</h4>
@@ -54,12 +50,11 @@
                                     h
                                 </small>
                             </div>
-                            @if(count($attendances) == 0)
-                                <div class="col-lg-6">
-                                    <br>
-                                    <button type="submit" class="col-lg-offset-10 btn btn-danger btn-sm">Spremi</button>
-                                </div>
-                            @endif
+
+                            <div class="col-lg-6">
+                                <br>
+                                <button type="submit" class="col-lg-offset-10 btn btn-danger btn-sm">Spremi</button>
+                            </div>
                         @endif
                     </div>
                     <br><br>
@@ -74,15 +69,25 @@
                         </thead>
                         <tbody>
                         @if(count($attendances)>0)
-                            @foreach($attendances as $attendance)
-                                <tr>
-                                    <td>{{$attendance->user->name}}</td>
-                                    <td>{{$attendance->user->index_number}}</td>
-                                    <td>{{$attendance->user->study->name}}</td>
-                                    <td>
-                                        <small><i class="fa fa-check" aria-hidden="true"></i></small>
-                                    </td>
-                                </tr>
+                            @foreach($collegiums->user as $key => $user)
+                                @if(isset($attendances[$key]->user))
+                                    <tr>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->index_number}}</td>
+                                        <td>{{$user->study->name}}</td>
+                                        <td>
+                                            <small><i class="fa fa-check" aria-hidden="true"></i></small>
+                                        </td>
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->index_number}}</td>
+                                        <td>{{$user->study->name}}</td>
+                                        <td><input class="field" type="checkbox" name="users[]" value="{{$user->id}}"></td>
+                                        <td><input class="hidden" name="class_id" value="{{$classe->id}}"></td>
+                                    </tr>
+                                @endif
                             @endforeach
                         @else
                             @foreach($collegiums->user as $user)
@@ -97,6 +102,7 @@
                         @endif
                         </tbody>
                     </table>
+                    <input class="hidden" name="collegium_id" value="{{$collegiums->id}}">
                 </fieldset>
             </form>
         </div>
