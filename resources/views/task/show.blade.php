@@ -29,9 +29,9 @@
                             <a href="#" class="btn btn-sm btn-success btn-block dropdown-toggle" data-toggle="dropdown"><i
                                         class="fa fa-cogs"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{route('taskuser_create')}}">Dodaj studente</a></li>
+                                <li><a href="{{route('task_user')}}/create/{{$tasks->id}}">Dodaj studente</a></li>
                                 <li><a href="{{route('tasks_edit')}}/{{$tasks->id}}">Ažuriraj zadatak</a></li>
-                                <li><a href="#">Ažuriraj stanje</a></li>
+                                <li><a href="{{route('task_user')}}/edit/{{$tasks->id}}">Ažuriraj stanje</a></li>
 
                             </ul>
                         </div>

@@ -93,3 +93,15 @@ Route::post('/chat/messages', 'ChatController@createMessage')->name('create_mess
 
 //search
 Route::get('/searchUsers','UserController@searchUsers')->name('search_user');
+//Add users in attendances
+Route::post('/class_user', 'AttendanceController@storeUsers')->name('class_user');
+
+//Ažuriranje statusa studenata na zadatku
+Route::get('/task_user', 'TaskController@editUsers')->name('task_user');
+Route::get('/task_user/edit/{task_id}', 'TaskController@editUsers'); //otvara formu za promijenu statusa studenata na nekom zadatku
+Route::patch('task_user/edit/{task_id}', 'TaskController@updateUsers'); //ažurira status studenata na nekom zadatku
+
+//Dodavanje liste studenata na zadatak
+Route::get('/task_user/create/{task_id}', 'TaskController@createUsers');
+Route::post('/task_user/create/{task_id}', 'TaskController@storeUsers');
+

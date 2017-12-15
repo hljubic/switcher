@@ -41,12 +41,9 @@ class AttendanceController extends Controller
     public function store(Request $request)
     {
 
-        foreach($request->users as $user_id) {
-            $attendances = new Attendance();
-            $attendances->user_id = $user_id;
-            $attendances->class_id = $request->class_id;
-            $attendances->save();
-        }
+        $attendances = new Attendance();
+        $attendances->fill($request->all());
+        $attendances->save();
 
         return back()->with('success', 'Kreirano ');
     }
@@ -62,7 +59,7 @@ class AttendanceController extends Controller
         $attendances = Attendance::where('class_id', '=', $id)->get();
         $classe = Classe::find($id);
         $collegiums = $classe->collegium;
-        return view('attendance.show', array('attendances'=>$attendances, 'classe'=>$classe, 'collegiums'=>$collegiums));
+        return view('attendance.show', array('attendances' => $attendances, 'classe' => $classe, 'collegiums' => $collegiums));
     }
 
     /**
@@ -107,5 +104,21 @@ class AttendanceController extends Controller
         return redirect('/attendances')->with('success', 'Izbrisano ');
 
 
+    }
+
+    public function storeUsers(Request $request)
+    {
+        if($request->has('users')){
+            foreach ($request->users as $user_id) {
+                $attendances = new Attendance();
+                $attendances->user_id = $user_id;
+                $attendances->class_id = $request->class_id;
+                $attendances->save();
+            }
+
+            return redirect('/collegiums/'.$request->collegium_id);
+        }else {
+            return redirect('/collegiums/'.$request->collegium_id);
+        }
     }
 }
