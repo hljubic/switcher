@@ -34,7 +34,8 @@
                                                 <div class="panel-footer" style="">
                                                     <div class="row">
                                                         <div class="col-md-1">
-                                                            <a href="#" class="btn btn-sm btn-block "  data-toggle="collapse" data-target="#collapseFile3"
+                                                            <a href="#" class="btn btn-sm btn-block "
+                                                               data-toggle="collapse" data-target="#collapseFile3"
                                                                style="border-radius:50px;"><i class="fa fa-link"
                                                                                               style="font-size:23px;"></i>
 
@@ -46,7 +47,7 @@
                                                         <div class="col-md-2"
                                                              style="margin-bottom: 0px; max-height:100%;">
                                                             <button type="submit"
-                                                                    class="btn btn-sm btn-success btn-block ">
+                                                                    class="btn noborder btn-sm btn-success btn-block ">
                                                                 <i class="fa fa-check" style="font-size:21px;"></i>
                                                             </button>
                                                         </div>
@@ -75,7 +76,8 @@
                                                         <p>{{$post->content}}</p>
                                                         @if($post->file)
                                                             <a style="color: #18bc9c; font-size:17px;"
-                                                               target="_blank" href="{{ asset('uploaded_files/' . $post->file->name) }}">{{$post->file->name}}</a>
+                                                               target="_blank"
+                                                               href="{{ asset('uploaded_files/' . $post->file->name) }}">{{$post->file->name}}</a>
 
                                                         @endif
                                                     </div>
@@ -92,17 +94,21 @@
                                                                   aria-hidden="true"></i> {{$post->user->name}}</small>
                                                         <br>
                                                         <small><i class="fa fa-clock-o"
-                                                                  aria-hidden="true"></i> {{$post->created_at}}</small>
-                                                    </div>
-                                                    <div class="col-lg-6" style="text-align: right; margin-top: 10px;">
-                                                        <button type="button" class="btn btn-default btn-xs"
-                                                                data-toggle="collapse" data-target="#{{$post->id}}">
-                                                            Komentari
-                                                        </button>
+                                                                  aria-hidden="true"></i>{{\Carbon\Carbon::parse($post->created_at)->format('d.m.y h:m:s')}}
+                                                        </small>
                                                     </div>
                                                     @php
                                                         $comments = \App\Message::where('conversation_id','=', $post->conversation_id)->get();
+                                                        $numcomments = count($comments);
                                                     @endphp
+                                                    <div class="col-lg-6" style="text-align: right; margin-top: 10px;">
+                                                        <button type="button" class="btn noborder btn-default btn-xs"
+                                                                data-toggle="collapse" data-target="#{{$post->id}}">
+                                                            Komentari <span class="badge"
+                                                                            style=" font-size: 12px; width: 20px;"> {{$numcomments}}</span>
+                                                        </button>
+                                                    </div>
+
                                                     <div class="col-lg-12">
                                                         <div id="{{$post->id}}" class="collapse">
                                                             <br>
@@ -131,7 +137,7 @@
                                                                             <div class="col-lg-6"
                                                                                  style="text-align: right;">
                                                                                 <small><i class="fa fa-clock-o"
-                                                                                          aria-hidden="true"></i> {{$comment->created_at}}
+                                                                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($comment->created_at)->format('d.m.y h:m:s')}}
                                                                                 </small>
                                                                             </div>
                                                                         </div>
@@ -157,12 +163,12 @@
                                                                    placeholder="Napisi komentar...">
                                                         </div>
                                                         <input type="hidden" name="created_at"
-                                                               value="{{ date('d-m-y') }}">
+                                                               value="{{ date('y-m-d h:m:s') }}">
                                                         <input type="hidden" name="conversation_id"
                                                                value="{{$post->conversation_id}}">
-                                                        <div class="col-lg-2" style="text-align: right;">
+                                                        <div class="col-lg-2">
                                                             <button type="submit"
-                                                                    class="btn btn-success btn btn-sm">
+                                                                    class="btn noborder btn-success btn-sm">
                                                                 Komentiraj
                                                             </button>
                                                         </div>

@@ -2,11 +2,9 @@
     <!-- Sidebar -->
     <div class="list-group" id="sidebar-wrapper">
         <ul class="sidebar-nav ">
-            <li class="sidebar-brand">
+            <li class="sidebar-brand col-lg-8 col-lg-offset-2" style="padding-top: 10px;">
                 <a href="{{route('home')}}">
-                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-
-                    Switcher
+                    <img style="width:65px;" src="{{ asset('/images/switcher_logoB.png') }}">
                 </a>
             </li>
             @if(isset($faculties))
@@ -15,26 +13,31 @@
 
                     <ul class="collapse list-unstyled" id="facultiesSubmenu">
                         @foreach($faculties as $faculty)
-                            <li >
+                            <li>
                                 <div class="row col-lg-12 nopadding">
-                                    <div class="col-lg-10 nopadding">
+                                    <div class="col-lg-9 nopadding">
                                         <a href="#studiesSubmenu{{ $faculty->id }}" data-toggle="collapse">{{$faculty->short_name}}</a>
                                     </div>
-
-                                    <div class="col-lg-2 nopadding ">
-                                        <b><a href="{{route('faculties')}}/{{$faculty->id}}" class="btn " style="border-radius: 0px; color: #18BC9C; padding-left:0px; font-size: 12px; ">. . .</a></b>
+                                    <div class="col-lg-3 nopadding">
+                                        <a href="{{route('faculties')}}/{{$faculty->id}}"
+                                           style="color: #18BC9C; padding-top:13px; display: inline-flex;">
+                                            <i class="fa fa-angle-double-right" style="font-size: 13px;"></i></a>
                                     </div>
+
                                 </div>
 
                                 <ul class="collapse list-unstyled" id="studiesSubmenu{{ $faculty->id }}">
                                     @foreach($faculty->studies as $study)
                                         <li>
                                             <div class="row col-lg-12 nopadding">
-                                                <div class="col-lg-10 nopadding">
-                                                    <a href="#collegiumsSubmenu{{ $study->id }}" data-toggle="collapse">{{$study->name}}</a>
+                                                <div class="col-lg-9 nopadding">
+                                                    <a href="#collegiumsSubmenu{{ $study->id }}"
+                                                       data-toggle="collapse">{{$study->name}}</a>
                                                 </div>
-                                                <div class="col-lg-2 nopadding ">
-                                                    <b><a href="{{route('studies')}}/{{$study->id}}" class="btn" style="border-radius: 0px; color: #18BC9C; padding-left:0px; font-size: 12px; ">. . .</a></b>
+                                                <div class="col-lg-3 nopadding">
+                                                    <a href="{{route('studies')}}/{{$study->id}}"
+                                                          style="color: #18BC9C; padding-top:13px; display: inline-flex;">
+                                                            <i class="fa fa-angle-double-right" style="font-size: 13px;"></i></a>
                                                 </div>
                                             </div>
 

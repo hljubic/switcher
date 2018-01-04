@@ -4,7 +4,8 @@
 <div class="col-md-4 col-md-offset-4">
         <div class="panel panel-default" style="margin-top: 50px;">
             <div class="panel-heading">
-                <h3 class="panel-title">Dodaj rad</h3>
+                <a href="{{route('files')}}"><i class="fa fa-chevron-left"></i></a>
+                <h5 class="panel-title" style="text-align: center;">Dodaj rad</h5>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" action="{{ route('files_create') }}" method="POST">
@@ -12,33 +13,33 @@
                     <fieldset>
                         <legend></legend>
                          <div class="form-group">
-                            <label for="inputPath" class="col-lg-2 control-label">Naziv</label>
+                            <label for="inputPath" class="col-lg-2 control-label small">Naziv</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="naziv">
+                                <input type="text" class="form-control noborder" id="name" name="name" placeholder="naziv">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPath" class="col-lg-2 control-label">Putanja</label>
+                            <label for="inputPath" class="col-lg-2 control-label small">Putanja</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="path" name="path" placeholder="putanja">
+                                <input type="text" class="form-control noborder" id="path" name="path" placeholder="putanja">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword" class="col-lg-2 control-label">Opis</label>
+                            <label for="inputPassword" class="col-lg-2 control-label small">Opis</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="description" name="description" placeholder="Opis">
+                                <input type="text" class="form-control noborder" id="description" name="description" placeholder="Opis">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword" class="col-lg-2 control-label">Size</label>
+                            <label for="inputPassword" class="col-lg-2 control-label small">Veličina</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="size" name="size" placeholder="size">
+                                <input type="text" class="form-control noborder" id="size" name="size" placeholder="size">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="select" class="col-lg-2 control-label">Post</label>
+                            <label for="select" class="col-lg-2 control-label small">Post</label>
                             <div class="col-lg-10">
-                                <select class="form-control" id="select" name="post_id">
+                                <select class="form-control noborder" id="select" name="post_id">
                                     @foreach($posts as $post)
                                         <option value="{{ $post->id }}">{{ $post->content }}</option>
                                     @endforeach
@@ -46,9 +47,9 @@
                             </div>
                         </div>
                          <div class="form-group">
-                            <label for="select" class="col-lg-2 control-label">Task</label>
+                            <label for="select" class="col-lg-2 control-label small">Task</label>
                             <div class="col-lg-10">
-                                <select class="form-control" id="select" name="task_id">
+                                <select class="form-control noborder" id="select" name="task_id">
                                     @foreach($tasks as $task)
                                         <option value="{{ $task->id }}">{{ $task->name }}</option>
                                     @endforeach
@@ -59,10 +60,10 @@
                         <div class="form-group">
                         <div class="col-md-12" style="margin-top: 30px;">
                          <div class="col-md-6">
-                          <button type="reset" class="btn btn-default  btn-block">Cancel</button>
+                          <button type="reset" class="btn btn-sm swt-button-default  btn-block">Odustani</button>
                            </div>
                           <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            <button type="submit" class="btn btn-sm swt-button-prim btn-block">Spremi</button>
                               </div>
                              </div>
                                 </div>

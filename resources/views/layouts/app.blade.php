@@ -42,9 +42,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/home') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+
+
+                    <a class="navbar-brand" href="{{ url('/home') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
 
             </div>
             <!-- search in navbar-->
@@ -53,7 +55,7 @@
                     <li>
                         <form class="navbar-form navbar-left col-lg-12" role="search" >
                             <div class=" form-group">
-                                <div class="input-group input-group-sm ">
+                                <div class="input-group input-group-sm " style="padding-top:5px; ">
                                     <input type="text" class="form-control" placeholder="Search " list="browsers" name="browser"
                                            style="border-radius:0px; background-color:rgba(179, 179, 179,0.3); border:none; color:#fff;">
                                     <datalist id="browsers">
@@ -61,7 +63,7 @@
 
                                     </datalist>
                                     <span class="input-group-btn">
-                                     <button class="btn btn-secondary" type="button">Go!</button>
+                                     <button class="btn " type="button" style="background-color:rgba(179, 179, 179,0.3); border-radius:0px;"><i class="fa fa-search" style="color: white;"></i></button>
                                 </span>
                                 </div>
                             </div>

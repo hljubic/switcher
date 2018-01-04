@@ -9,8 +9,8 @@
 
                         <div class="card col-lg-12" style="text-align: center;">
 
-                            <h3 id="deadline"
-                                style="padding-top: 15px; padding-bottom: 10px;">{{\Carbon\Carbon::parse($tasks->deadline)->format('d.m')}}</h3>
+                            <h4 id="deadline"
+                                style="padding-top: 15px; padding-bottom: 10px;">{{\Carbon\Carbon::parse($tasks->deadline)->format('d.m')}}</h4>
                         </div>
 
                         <div class="panel panel-default col-lg-12" style="border: solid #d9534f 2px;">
@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        <h3 class="header" style="padding-top: 5px;">{{$tasks->name}}</h3>
+                        <h4 class="header" style="padding-top: 5px;">{{$tasks->name}}</h4>
                         <p>{{$tasks->type}}</p>
                     </div>
                     @php
@@ -26,8 +26,7 @@
                     @endphp
                     <div class="col-lg-1" style="text-align: center; padding-top: 13px; ">
                         <div class="btn-group btn-block">
-                            <a href="#" class="btn btn-sm btn-success btn-block dropdown-toggle" data-toggle="dropdown"><i
-                                        class="fa fa-cogs"></i></a>
+                            <a href="#" class="btn btn-sm btn-success  dropdown-toggle pull-right" data-toggle="dropdown"><i class="fa fa-cogs"></i></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{route('task_user')}}/create/{{$tasks->id}}">Dodaj studente</a></li>
                                 <li><a href="{{route('tasks_edit')}}/{{$tasks->id}}">Ažuriraj zadatak</a></li>
@@ -59,16 +58,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" >
                         <h4 class="col-lg-12 "><i class="fa fa-users" aria-hidden="true"
                                                   style="padding-top: 20px;"></i>
                             Sudionici</h4>
                         @foreach($tasks->user as $user)
                             <div class="col-lg-12 " style="margin-top: 10px;">
-                                <div class="list-group-item" style="margin-bottom: 3px;">
+                                <div class="list-group-item" style="padding-bottom: 3px;">
                                     <div class="row">
-                                        <div class="col-lg-10">
-                                            <p style="padding-top: 13px;">{{$user->name}}</p>
+                                        <div class="col-lg-9">
+                                            <p style="padding-top: 7px;">{{$user->name}}</p>
                                         </div>
                                         <div class="col-lg-2">
                                             <a style="color: #18bc9c;" class="glyphicon glyphicon-comment btn"
@@ -150,7 +149,7 @@
                                            placeholder="Postavite opis datoteke...">
                                     <input type="hidden" name="task_id" id="task_id" value="{{$tasks->id}}">
                                     <br>
-                                    <div class="col-lg-3 col-lg-offset-9">
+                                    <div class="col-lg-4 col-lg-offset-8">
                                         <button type="submit" class="btn btn-success btn-block btn-sm"><i
                                                     class="fa fa-cloud-upload" aria-hidden="true"></i>
                                             Upload

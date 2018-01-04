@@ -21,9 +21,9 @@
                     <div class="list-group-item nopadding">
                         <div class="col-lg-6 nopadding">
 
-                            <a href="{{route('faculties')}}"  class="btn btn-sm btn-block "
+                            <a href="{{route('faculties')}}"  class="btn btn-sm btn-block noborder"
                                     data-toggle="tooltip" data-placement="bottom" title="Prikaz fakulteta u tablici"
-                                    style="border-radius: 0px; background-color: #128770; color: #fff;">
+                                    style="background-color: #128770; color: #fff;">
                                 <i class="fa fa-window-maximize" aria-hidden="true"></i>
 
                             </a>
@@ -31,9 +31,9 @@
 
                         <div class="col-lg-6 nopadding">
 
-                            <a href="{{route('faculties_create')}}"  class="btn btn-sm btn-block " data-container="body"
+                            <a href="{{route('faculties_create')}}"  class="btn btn-sm btn-block noborder " data-container="body"
                                     data-toggle="tooltip" data-placement="bottom" title="Dodaj novi fakultet"
-                                    style="border-radius: 0px; background-color: #18BC9C; color: #fff;">
+                                    style="background-color: #18BC9C; color: #fff;">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -299,7 +299,7 @@
                     <div class="list-group-item nopadding">
                         <div class="col-lg-6 nopadding">
 
-                            <a href="" type="button" class="btn btn-sm btn-block "
+                            <a href="{{route('participants')}}" type="button" class="btn btn-sm btn-block "
                                     data-toggle="tooltip" data-placement="bottom" title="Prikaz fakulteta u tablici"
                                     style="border-radius: 0px; background-color: #A84440; color: #fff;">
                                 <i class="fa fa-window-maximize" aria-hidden="true"></i>
@@ -336,7 +336,7 @@
                     <div class="list-group-item nopadding">
                         <div class="col-lg-6 nopadding">
 
-                            <a href="#"  class="btn btn-sm btn-block "
+                            <a href="{{route('conversations')}}"  class="btn btn-sm btn-block "
                                data-toggle="tooltip" data-placement="bottom" title="Prikaz korisnika u tablici"
                                style="border-radius: 0px; background-color: #128770; color: #fff;">
                                 <i class="fa fa-window-maximize" aria-hidden="true"></i>
@@ -370,7 +370,7 @@
                     <div class="list-group-item nopadding">
                         <div class="col-lg-6 nopadding">
 
-                            <a href="#" class="btn btn-sm btn-block "
+                            <a href="{{route('messages')}}" class="btn btn-sm btn-block "
                                data-toggle="tooltip" data-placement="bottom" title="Prikaz pretitelja u tablici"
                                style="border-radius: 0px; background-color: #a4651c; color: #fff;">
                                 <i class="fa fa-window-maximize" aria-hidden="true"></i>
@@ -404,7 +404,7 @@
                     <div class="list-group-item nopadding">
                         <div class="col-lg-6 nopadding">
 
-                            <a href="" type="button" class="btn btn-sm btn-block "
+                            <a href="{{route('attendances')}}" type="button" class="btn btn-sm btn-block "
                                data-toggle="tooltip" data-placement="bottom" title="Prikaz fakulteta u tablici"
                                style="border-radius: 0px; background-color: #A84440; color: #fff;">
                                 <i class="fa fa-window-maximize" aria-hidden="true"></i>

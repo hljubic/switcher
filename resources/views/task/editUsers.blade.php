@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <button type="submit"
-                                       class="btn btn-success btn-block btn-sm"
+                                       class="btn noborder btn-success btn-block btn-sm"
                                        style="align-self: flex-start; margin-top: 30px;">Spremi</button>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <button type="submit"
-                                       class=" btn btn-warning btn-block btn-sm"
+                                       class=" btn noborder btn-warning btn-block btn-sm"
                                        style="align-self: flex-start; margin-top: 30px;">Spremi</button>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <button type="submit"
-                                       class="btn btn-danger btn-block btn-sm"
+                                       class="btn noborder btn-danger btn-block btn-sm"
                                        style="align-self: flex-start; margin-top: 30px;">Spremi</button>
                                 </div>
                             </div>

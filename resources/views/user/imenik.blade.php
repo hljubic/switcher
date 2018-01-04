@@ -8,8 +8,8 @@
                 <br>
                 <form class="navbar-form navbar-left" role="search" method="GET">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search" style="height: 35px; width:220px;">
-                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
+                        <input type="text" class="form-control noborder" placeholder="Search" style="height: 35px; width:220px;">
+                        <button type="submit" class="btn noborder btn-success btn-sm"><i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </div>
                     <br>
@@ -27,7 +27,7 @@
                                 <i class="fa fa-phone" aria-hidden="true"></i> {{$user->phone}}
                             </div>
                             <div class="panel-footer">
-                                <a href="{{route('users')}}/{{$user->id}}" class="btn btn-success btn-sm">Profil</a>
+                                <a href="{{route('users')}}/{{$user->id}}" class="btn noborder btn-success btn-sm">Profil</a>
                             </div>
                         </div>
                     </div>

@@ -109,6 +109,7 @@ class FileController extends Controller
     public function  storeFile(Request $request){
 
 
+
         if($request->hasFile('file')){
 
             $filenameWithExt = $request->file->getClientOriginalName();
@@ -131,6 +132,10 @@ class FileController extends Controller
             $files->task_id = $tasks;
 
             $files->save();
+        }
+        else{
+
+            return redirect()->back()->with('warning', 'Niste odabrali datoteku');
         }
 
         return redirect()->back()->with('success','Datoteka je učitana');

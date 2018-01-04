@@ -3,7 +3,8 @@
 <div class="col-md-4 col-md-offset-4">
         <div class="panel panel-default" style="margin-top: 50px;">
             <div class="panel-heading">
-                <h3 class="panel-title">Uredi rad</h3>
+                <a href="{{route('files')}}"><i class="fa fa-chevron-left"></i></a>
+                <h5 class="panel-title" style="text-align: center;">Uredi rad</h5>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" action="{{route('files_edit')}}/{{$files->id}}" method="POST">

@@ -4,7 +4,7 @@
 
     <div class="col-md-8 col-md-offset-2">
         <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
-            <ul class="nav nav-pills nav-justified" style="">
+            <ul class="nav swt-nav-pills nav-justified" style="">
                 <li><a href="#table_view" data-toggle="tab">Studiji</a></li>
                 <li><a href="{{route('studies_create')}}" class="btn">Dodaj</a></li>
             </ul>
@@ -30,10 +30,10 @@
                                 <td></td>
 
                                 <td><a href="{{route('studies')}}/{{$study->id}}"
-                                       class="btn btn-warning btn-xs">Prikaz</a></td>
-                                <td><a href="{{route('studies_edit')}}/{{$study->id}}" class="btn btn-primary btn-xs">Uredi</a>
+                                       class="btn noborder btn-warning btn-xs">Prikaz</a></td>
+                                <td><a href="{{route('studies_edit')}}/{{$study->id}}" class="btn swt-button-prim btn-xs">Uredi</a>
                                 </td>
-                                <td><a href="{{route('studies_delete')}}/{{$study->id}}" class="btn btn-danger btn-xs">Izbriši</a>
+                                <td><a href="{{route('studies_delete')}}/{{$study->id}}" class="btn noborder btn-danger btn-xs">Izbriši</a>
                                 </td>
                             </tr>
                         @endforeach

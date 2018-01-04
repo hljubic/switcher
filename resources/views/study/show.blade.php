@@ -7,7 +7,7 @@
                 <div id="page-content-wrapper">
 
                     <legend style="">{{$studies->name}}</legend>
-                    <ul class="nav nav-pills" style=" border: 3px;">
+                    <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
                         <li><a href="#general-data" data-toggle="tab">Osnovni podaci</a></li>
                         <li><a href="#studies-data" data-toggle="tab">Kolegiji</a></li>
                     </ul>
@@ -72,8 +72,8 @@
                                         </div>
                                         <div class="col-lg-2">
                                             <a href="{{route('collegiums')}}/{{$collegium->id}}"
-                                               class="btn btn-success btn-block"
-                                               style="align-self: flex-start; border-radius: 50px; margin-top: 10px;">Više</a>
+                                               class="btn btn-sm btn-success btn-block noborder"
+                                               style="align-self: flex-start;margin-top: 15px;">Više</a>
                                         </div>
                                     </div>
                                 </div>

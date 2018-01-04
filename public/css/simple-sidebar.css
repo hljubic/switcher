@@ -3,9 +3,15 @@
  * Copyright 2013-2017 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
+html{
+  overflow-y: scroll;
 
+}
 body {
   overflow-x: hidden;
+  color:#3C3F41 ;
+ /* background-color: #f9faff;*/
+
 }
 #accordion .glyphicon { margin-right:10px; }
 .panel-collapse>.list-group .list-group-item:first-child {border-top-right-radius: 0;border-top-left-radius: 0;}
@@ -154,17 +160,17 @@ body {
   }
 
   #profile {
-    width: 130px;
-    height: 130px;
+    width: 95px;
+    height: 95px;
     border-radius: 50%;
-    border-style: double;
+    border-tyle: double;
     background: #dde1e2;
-    font-size: 60px;
+    font-size: 53px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #ffffff;
     text-align: center;
-    line-height: 130px;
-    margin: 25px 15px;
+    line-height: 95px;
+    margin: 37px 5px;
   }
 
   #profileCol {
@@ -235,5 +241,37 @@ body {
     font-family: sans-serif;
     font-size: 0.4em;
     text-anchor: middle;
+  }
+
+  .swt-input{
+
+    border: none;
+    border-radius: 0 !important;
+    border-bottom: solid 2px #3C3F41;
+  }
+
+  .noborder{
+    border-radius: 0 !important;
+  }
+
+  .swt-button-prim{
+    border-radius: 0 !important;
+    background-color: #3C3F41;
+    color: #fff;
+  }
+
+  .swt-button-default{
+    border-radius: 0 !important;
+    background-color: #95A5A6;
+    color: #fff;
+  }
+
+  .swt-nav-pills >li.active > a,
+  .swt-nav-pills > li.active >a:hover,
+  .swt-nav-pills > li.active >a:focus {
+    margin-bottom: 25px;
+    color:#3C3F41;
+    background-color: #fff;
+    border-bottom: solid 3px #18BC9C;
   }
 }

@@ -5,10 +5,9 @@
         <div class="panel panel-default" style="margin-top: 50px;">
             <div class="panel-body">
                 <div id="page-content-wrapper">
-
                     <div class="row">
                         <div class="col-lg-9">
-                            <h3 style="">{{$collegiums->name}}</h3>
+                            <h3>{{$collegiums->name}}</h3>
                         </div>
                         <div class="col-lg-3">
                             <form class="form-horizontal"
@@ -18,35 +17,38 @@
                                 <div class="row">
                                     @if($followButton == true)
                                         <a href="{{route('unfollowCollegium')}}/{{$collegiums->id}}"
-                                           class="btn btn-success btn-sm">Unfollow</a>
+                                           class="btn btn-success noborder btn-sm">Napusti</a>
                                     @else
 
-                                        <button type="submit" class="btn btn-success btn-sm">Follow
+                                        <button type="submit" class="btn btn-success noborder btn-sm">Pristupi
                                         </button>
 
 
                                     @endif
-                                    <a href="#" class="btn btn-sm btn-success">Dodaj u razgovor</a>
+                                    <a href="#" class="btn btn-sm noborder btn-success">Dodaj u razgovor</a>
                                 </div>
                             </form>
 
                         </div>
                     </div>
+                    @php
 
-                    <ul class="nav nav-pills nav-justified" style=" border: 3px;">
+                        $numuser = count($collegiums->user);
+
+                    @endphp
+
+                    <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
                         <li><a href="#general-data" data-toggle="tab">Osnovni podaci</a></li>
                         <li><a href="#studies-data" data-toggle="tab">Studiji</a></li>
                         <li><a href="#posts-data" data-toggle="tab">Obavijesti</a></li>
                         <li><a href="#tasks-data" data-toggle="tab">Zadaci</a></li>
                         <li><a href="#classes-data" data-toggle="tab">Predavanja / Vježbe </a></li>
-                        <li><a href="#student-data" data-toggle="tab">Studenti</a></li>
+                        <li><a href="#student-data" data-toggle="tab">Studenti <span class="badge"
+                                                                                     style="background-color:#18BC9C; font-size: 15px; width: 27px;"> {{$numuser}} </span></a>
+                        </li>
+                        <li><a href="#file-data" data-toggle="tab">Datoteke</a></li>
 
                     </ul>
-                    <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade active in" id="table_view" style="padding-top:35px">
-
-                        </div>
-                    </div>
 
                     <div class="tab-content">
                         <!-- prikaz osnovnih podataka  za neki kolegij-->
@@ -124,8 +126,8 @@
                                         </div>
                                         <div class="col-lg-2">
                                             <a href="{{route('studies')}}/{{$study->id}}"
-                                               class="btn btn-success btn-block"
-                                               style="align-self: flex-start; margin-top: 10px;">Više</a>
+                                               class="btn btn-success btn-sm noborder btn-block"
+                                               style="align-self: flex-start; margin-top: 13px;">Više</a>
                                         </div>
                                     </div>
                                 </div>
@@ -164,7 +166,7 @@
                                                         <div class="col-md-2"
                                                              style="margin-bottom: 0px; max-height:100%;">
                                                             <button type="submit"
-                                                                    class="btn btn-sm btn-success btn-block ">
+                                                                    class="btn btn-sm  noborder btn-success btn-block ">
                                                                 <i class="fa fa-check" style="font-size:21px;"></i>
                                                             </button>
                                                         </div>
@@ -210,17 +212,21 @@
                                                                   aria-hidden="true"></i> {{$post->user->name}}</small>
                                                         <br>
                                                         <small><i class="fa fa-clock-o"
-                                                                  aria-hidden="true"></i> {{$post->created_at}}</small>
-                                                    </div>
-                                                    <div class="col-lg-6" style="text-align: right; margin-top: 10px;">
-                                                        <button type="button" class="btn btn-default btn-xs"
-                                                                data-toggle="collapse" data-target="#{{$post->id}}">
-                                                            Komentari
-                                                        </button>
+                                                                  aria-hidden="true"></i>{{\Carbon\Carbon::parse($post->created_at)->format('d.m.y h:m:s')}}
+                                                        </small>
                                                     </div>
                                                     @php
                                                         $comments = \App\Message::where('conversation_id','=', $post->conversation_id)->get();
+                                                        $numcomments = count($comments);
                                                     @endphp
+                                                    <div class="col-lg-6" style="text-align: right; margin-top: 10px;">
+                                                        <button type="button" class="btn noborder btn-default btn-xs"
+                                                                data-toggle="collapse" data-target="#{{$post->id}}">
+                                                            Komentari <span class="badge"
+                                                                            style=" font-size: 12px; width: 20px;"> {{$numcomments}}</span>
+                                                        </button>
+                                                    </div>
+
                                                     <div class="col-lg-12">
                                                         <div id="{{$post->id}}" class="collapse">
                                                             <br>
@@ -249,7 +255,7 @@
                                                                             <div class="col-lg-6"
                                                                                  style="text-align: right;">
                                                                                 <small><i class="fa fa-clock-o"
-                                                                                          aria-hidden="true"></i> {{$comment->created_at}}
+                                                                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($comment->created_at)->format('d.m.y h:m:s')}}
                                                                                 </small>
                                                                             </div>
                                                                         </div>
@@ -274,12 +280,12 @@
                                                                    placeholder="Napisi komentar...">
                                                         </div>
                                                         <input type="hidden" name="created_at"
-                                                               value="{{ date('d-m-y') }}">
+                                                               value="{{date('y-m-d h:m:s')}}">
                                                         <input type="hidden" name="conversation_id"
                                                                value="{{$post->conversation_id}}">
                                                         <div class="col-lg-2">
                                                             <button type="submit"
-                                                                    class="btn btn-success btn btn-sm">
+                                                                    class="btn noborder btn-success btn-sm">
                                                                 Komentiraj
                                                             </button>
                                                         </div>
@@ -294,7 +300,7 @@
                         <!-- prikaz taskova na kolegiju -->
                         <div class="tab-pane fade" id="tasks-data" style="padding-top:15px">
 
-                            <button type="button" class="btn btn-sm btn-success"
+                            <button type="button" class="btn btn-sm btn-success noborder"
                                     data-toggle="collapse" data-target="#collapseExample">Novi zadatak
                             </button>
 
@@ -310,12 +316,13 @@
                                                         <div class="row">
                                                             <div class="row col-lg-12" style="padding-bottom:10px;">
                                                                 <div class="col-lg-6">
-                                                                    <input type="text" class="form-control"
+                                                                    <input type="text" class="form-control noborder"
                                                                            id="inputName" name="name"
                                                                            placeholder="Naslov">
                                                                 </div>
                                                                 <div class="col-lg-6">
-                                                                    <input type="text" class="form-control datepicker"
+                                                                    <input type="text"
+                                                                           class="form-control datepicker noborder"
                                                                            id="inputDate"
                                                                            name="deadline"
                                                                            placeholder="Datum i vrijeme">
@@ -323,11 +330,12 @@
                                                             </div>
                                                             <div class="row col-lg-12 " style="padding-bottom:10px;">
                                                                 <div class="col-lg-6">
-                                             <textarea class="form-control" rows="3" id="textArea" name="description"
+                                             <textarea class="form-control noborder" rows="3" id="textArea"
+                                                       name="description"
                                                        placeholder="Opis zadatka"></textarea>
                                                                 </div>
                                                                 <div class="col-lg-6">
-                                                                    <select class="form-control" id="select"
+                                                                    <select class="form-control noborder" id="select"
                                                                             name="type">
                                                                         <option value="seminar paper">Seminarski rad
                                                                         </option>
@@ -347,7 +355,7 @@
                                                                 </div>
                                                                 <div class="col-lg-2">
                                                                     <button type="submit"
-                                                                            class="btn btn-primary btn-sm btn-block">
+                                                                            class="btn swt-button-prim btn-sm btn-block">
                                                                         Spremi
                                                                     </button>
 
@@ -387,9 +395,8 @@
                                             <div class="col-lg-2">
                                                 <a href="{{route('tasks')}}/{{$task->id}}" data-toggle="tooltip"
                                                    data-placement="bottom" title="Pregledaj zadatak"
-                                                   class=" btn btn-block btn-sm"
-                                                   style="align-self: flex-start; margin-top: 25px; color:#18BC9C;  border-color:#18BC9C;"><i
-                                                            class="fa fa-tasks" style="font-size: 15px;"></i> </a>
+                                                   class=" btn  noborder btn-success btn-block btn-sm"
+                                                   style="align-self: flex-start; margin-top: 25px;">Više </a>
 
                                             </div>
                                         </div>
@@ -420,9 +427,8 @@
 
                                                 <a href="{{route('tasks')}}/{{$task->id}}" data-toggle="tooltip"
                                                    data-placement="bottom" title="Pregledaj zadatak"
-                                                   class=" btn btn-block btn-sm"
-                                                   style="align-self: flex-start; margin-top: 25px; color:#ec971f;  border-color:#ec971f;"><i
-                                                            class="fa fa-tasks" style="font-size: 15px;"></i> </a>
+                                                   class=" btn noborder btn-warning btn-block btn-sm"
+                                                   style="align-self: flex-start; margin-top: 25px;">Više</a>
                                             </div>
                                         </div>
                                     </div>
@@ -450,9 +456,8 @@
 
                                                 <a href="{{route('tasks')}}/{{$task->id}}" data-toggle="tooltip"
                                                    data-placement="bottom" title="Pregledaj zadatak"
-                                                   class=" btn btn-block btn-sm"
-                                                   style="align-self: flex-start; margin-top: 25px; color:#d9534f;  border-color:#d9534f;"><i
-                                                            class="fa fa-tasks" style="font-size: 15px;"></i> </a>
+                                                   class=" btn noborder btn-danger btn-block btn-sm"
+                                                   style="align-self: flex-start; margin-top: 25px;">Više</a>
 
 
                                             </div>
@@ -467,8 +472,8 @@
                                 {{ csrf_field() }}
                                 <fieldset>
                                     <div class="row">
-                                        <div class="col-lg-3">
-                                            <select class="form-control" id="select" name="type">
+                                        <div class="col-lg-4">
+                                            <select class="form-control noborder" id="select" name="type">
                                                 <option value="lecture">Predavanja</option>
                                                 <option value="exercises">Vježbe</option>
                                                 <option value="laboratory exercises">Laboratorijske vježbe</option>
@@ -477,7 +482,7 @@
                                         <input type="hidden" name="collegium_id" value="{{$collegiums->id}}">
                                         <input type="hidden" name="created_at" value="{{ date('y-m-d h:i:s') }}">
                                         <div class="col-lg-6">
-                                            <button type="submit" class="btn btn-primary">Dodaj</button>
+                                            <button type="submit" class="btn swt-button-prim">Dodaj</button>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -499,8 +504,8 @@
                                             </div>
                                             <div class="col-lg-2" style="margin-top: 15px;">
                                                 <a href="{{route('attendances')}}/{{$classe->id}}"
-                                                   class="btn btn-success btn-block"
-                                                   style="align-self: flex-start; border-radius: 50px; margin-top: 25px;">Prisutnost</a>
+                                                   class="btn btn-sm noborder btn-success btn-block"
+                                                   style="align-self: flex-start; margin-top: 32px;">Prisutnost</a>
                                             </div>
                                         </div>
                                     </div>
@@ -520,8 +525,8 @@
                                             </div>
                                             <div class="col-lg-2" style="margin-top: 15px;">
                                                 <a href="{{route('attendances')}}/{{$classe->id}}"
-                                                   class="btn btn-warning btn-block"
-                                                   style="align-self: flex-start; border-radius: 50px; margin-top: 25px;">Prisutnost</a>
+                                                   class="btn btn-sm noborder btn-warning btn-block"
+                                                   style="align-self: flex-start; margin-top: 32px;">Prisutnost</a>
                                             </div>
                                         </div>
                                     </div>
@@ -541,8 +546,8 @@
                                             </div>
                                             <div class="col-lg-2" style="margin-top: 15px;">
                                                 <a href="{{route('attendances')}}/{{$classe->id}}"
-                                                   class="btn btn-danger btn-block"
-                                                   style="align-self: flex-start; border-radius: 50px; margin-top: 25px;">Prisutnost</a>
+                                                   class="btn btn-sm btn-danger noborder btn-block"
+                                                   style="align-self: flex-start; margin-top: 32px;">Prisutnost</a>
                                             </div>
                                         </div>
                                     </div>
@@ -667,6 +672,19 @@
                                         </div>
                                     </div>
                                 </div>
+                            @endforeach
+                        </div>
+                        <div class="tab-pane fade" id="file-data" style="padding-top:15px">
+                            @foreach($collegiums->posts as $post)
+                                @if($post->file)
+                                    <div class="list-group-item"
+                                         style="margin-bottom: 10px; border-left:solid  #ecf0f1 6px;">
+                                        <a style="color: #18bc9c; font-size:17px;" target="_blank"
+                                           href="{{ asset('uploaded_files/' . $post->file->name) }}">{{$post->file->name}}</a>
+                                        <br>
+                                        <small>{{$post->user->name}}</small>
+                                    </div>
+                                @endif
                             @endforeach
                         </div>
                     </div>

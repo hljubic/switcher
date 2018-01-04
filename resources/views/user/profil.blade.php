@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-2">
                                 <div class="item">
                                     <div id="profile">{{substr($user->name,0,1)}}</div>
                                 </div>
@@ -31,16 +31,17 @@
                                 </div>
                                 <br>
                                 @if(Auth::user()->id == $user->id)
-                                    <a href="{{route('users_edit')}}/{{$user->id}}" class="btn btn-success btn-sm"
+                                    <a href="{{route('users_edit')}}/{{$user->id}}"
+                                       class="btn noborder btn-success btn-sm"
                                        style="width: 100%;">
                                         Uredi</a></td>
                                 @elseif($followButton == true)
                                     <div class="row">
                                         <a href="{{route('unfollow')}}/{{$user->id}}"
-                                           class="btn btn-success btn-sm col-lg-6"
+                                           class="btn noborder btn-success btn-sm col-lg-6"
                                            style="width: 120px; margin-left: 16px;">
-                                            Unfollow</a>
-                                        <a href="#" class="btn btn-success disabled btn-sm col-lg-6"
+                                            Prestani pratiti</a>
+                                        <a href="#" class="btn noborder btn-success disabled btn-sm col-lg-6"
                                            style="width: 120px; margin-left: 20px;">Poruka</a>
                                     </div>
                                 @else
@@ -50,23 +51,26 @@
                                               method="POST">
                                             {{csrf_field()}}
                                             <fieldset>
-                                                <button type="submit" class="btn btn-success btn-sm"
+                                                <button type="submit" class="btn noborder btn-success btn-sm"
                                                         style="width: 120px;">
-                                                    Follow
+                                                    Prati
                                                 </button>
                                             </fieldset>
                                         </form>
-                                        <a href="#" class="btn btn-success disabled btn-sm col-lg-4"
+                                        <a href="#" class="btn noborder btn-success disabled btn-sm col-lg-4"
                                            style="width: 120px;">Poruka</a>
                                     </div>
                                 @endif
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-5">
                                 <blockquote>
                                     <h5><i class="fa fa-graduation-cap" aria-hidden="true"></i> {{$user->type}}</h5>
                                     <h5><i class="fa fa-envelope" aria-hidden="true"></i> {{$user->email}}</h5>
                                     <h5><i class="fa fa-phone" aria-hidden="true"></i> {{$user->phone}}</h5>
-                                    <h5><i class="fa fa-book" aria-hidden="true"></i> {{$user->index_number}}</h5>
+                                    @if($user->type == 'student')
+                                        <h5><i class="fa fa-book" aria-hidden="true"></i> {{$user->index_number}}</h5>
+                                    @endif
+
                                     <h5><i class="fa fa-university" aria-hidden="true"></i> {{$user->study->name}}</h5>
                                 </blockquote>
                             </div>
@@ -99,7 +103,8 @@
                                                         <div class="col-lg-6">
                                                             <p>{{$post->content}}</p>
                                                             @if($post->file)
-                                                                <a style="color: #18bc9c; font-size:17px;" target="_blank"
+                                                                <a style="color: #18bc9c; font-size:17px;"
+                                                                   target="_blank"
                                                                    href="{{ asset('uploaded_files/' . $post->file->name) }}">{{$post->file->name}}</a>
 
                                                             @endif
@@ -118,19 +123,22 @@
                                                             </small>
                                                             <br>
                                                             <small><i class="fa fa-clock-o"
-                                                                      aria-hidden="true"></i> {{$post->created_at}}
+                                                                      aria-hidden="true"></i>{{\Carbon\Carbon::parse($post->created_at)->format('d.m.y h:m:s')}}
                                                             </small>
-                                                        </div>
-                                                        <div class="col-lg-6"
-                                                             style="text-align: right; margin-top: 10px;">
-                                                            <button type="button" class="btn btn-default btn-xs"
-                                                                    data-toggle="collapse" data-target="#{{$post->id}}">
-                                                                Komentari
-                                                            </button>
                                                         </div>
                                                         @php
                                                             $comments = \App\Message::where('conversation_id','=', $post->conversation_id)->get();
+                                                            $numcomments = count($comments);
                                                         @endphp
+                                                        <div class="col-lg-6"
+                                                             style="text-align: right; margin-top: 10px;">
+                                                            <button type="button" class="btn noborder btn-default btn-xs"
+                                                                    data-toggle="collapse" data-target="#{{$post->id}}">
+                                                                Komentari <span class="badge"
+                                                                                style=" font-size: 12px; width: 20px;"> {{$numcomments}}</span>
+                                                            </button>
+                                                        </div>
+
                                                         <div class="col-lg-12">
                                                             <div id="{{$post->id}}" class="collapse">
                                                                 <br>
@@ -160,7 +168,7 @@
                                                                                 <div class="col-lg-6"
                                                                                      style="text-align: right;">
                                                                                     <small><i class="fa fa-clock-o"
-                                                                                              aria-hidden="true"></i> {{$comment->created_at}}
+                                                                                              aria-hidden="true"></i> {{\Carbon\Carbon::parse($comment->created_at)->format('d.m.y h:m:s')}}
                                                                                     </small>
                                                                                 </div>
                                                                             </div>
@@ -184,14 +192,14 @@
                                                                        id="focusedInput" type="text" name="content"
                                                                        placeholder="Napisi komentar...">
                                                                 <input type="hidden" name="created_at"
-                                                                       value="{{ date('d-m-y') }}">
+                                                                       value="{{date('y-m-d h:m:s')}}">
                                                                 <input type="hidden" name="conversation_id"
                                                                        value="{{$post->conversation_id}}">
                                                             </div>
 
                                                             <div class="col-lg-2">
                                                                 <button type="submit"
-                                                                        class="btn btn-success  btn-sm">
+                                                                        class="btn btn-success noborder  btn-sm">
                                                                     Komentiraj
                                                                 </button>
                                                             </div>

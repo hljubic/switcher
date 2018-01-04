@@ -4,7 +4,7 @@
 
     <div class="col-md-8 col-md-offset-2 ">
         <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
-            <ul class="nav nav-pills nav-justified">
+            <ul class="nav swt-nav-pills nav-justified">
                 <li><a href="#table_view" data-toggle="tab">Fakulteti</a></li>
                 <li><a href="{{route('faculties_create')}}">Dodaj</a></li>
             </ul>
@@ -33,12 +33,12 @@
                                 <td>{{$faculty->email}}</td>
                                 <td>{{$faculty->phone}}</td>
 
-                                <td><a href="{{route('faculties')}}/{{$faculty->id}}" class="btn btn-warning btn-xs">Prikaz</a>
+                                <td><a href="{{route('faculties')}}/{{$faculty->id}}" class="btn noborder btn-warning btn-xs">Prikaz</a>
                                 </td>
-                                <td><a href="{{route('faculties_edit')}}/{{$faculty->id}}" class="btn btn-primary btn-xs">Uredi</a>
+                                <td><a href="{{route('faculties_edit')}}/{{$faculty->id}}" class="btn swt-button-prim btn-xs">Uredi</a>
                                 </td>
                                 <td><a href="{{route('faculties_delete')}}/{{$faculty->id}}"
-                                       class="btn btn-danger btn-xs">Izbriši</a></td>
+                                       class="btn noborder btn-danger btn-xs">Izbriši</a></td>
                             </tr>
                         @endforeach
                         </tbody>

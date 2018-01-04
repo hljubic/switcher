@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-8 col-md-offset-2">
         <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
-            <ul class="nav nav-pills nav-justified" style=" border: 3px;">
+            <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
                 <li><a href="#table_view" data-toggle="tab">Pregled razgovora</a></li>
                 <li><a href="{{route('conversations_create')}}" class="btn">Dodaj</a></li>
             </ul>
@@ -27,9 +27,9 @@
                                 <td>{{$conversation->title}}</td>
                                 <td>{{$conversation->user->name}}</td>
                                 <td><a href="{{route('conversations_edit')}}/{{$conversation->id}}"
-                                       class="btn btn-primary btn-xs">Uredi</a></td>
+                                       class="btn swt-button-prim btn-xs">Uredi</a></td>
                                 <td><a href="{{route('conversations_delete')}}/{{$conversation->id}}"
-                                       class="btn btn-danger btn-xs">Izbriši</a>
+                                       class="btn noborder btn-danger btn-xs">Izbriši</a>
                                 </td>
                             </tr>
                         @endforeach

@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-8 col-md-offset-2">
         <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
-            <ul class="nav nav-pills nav-justified" style=" border: 3px;">
+            <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
                 <li><a href="#table_view" data-toggle="tab">Tim</a></li>
                 <li><a href="{{route('taskuser_create')}}" class="btn">Dodaj</a></li>
             </ul>
@@ -29,8 +29,8 @@
 
 
                                 <td><a href="{{route('taskuser_edit')}}/{{$team->id}}"
-                                       class="btn btn-primary btn-xs">Uredi</a></td>
-                                <td><a href="{{route('taskuser_delete')}}/{{$team->id}}" class="btn btn-danger btn-xs">Izbriši</a>
+                                       class="btn swt-button-prim btn-xs">Uredi</a></td>
+                                <td><a href="{{route('taskuser_delete')}}/{{$team->id}}" class="btn noborder btn-danger btn-xs">Izbriši</a>
                                 </td>
                             </tr>
                         @endforeach

@@ -52,7 +52,7 @@
         .links > a {
             color: #636b6f;
             padding: 0 25px;
-            font-size: 12px;
+            font-size: 16px;
             font-weight: 600;
             letter-spacing: .1rem;
             text-decoration: none;
@@ -66,22 +66,24 @@
 </head>
 <body>
 <div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ url('/home') }}">Home</a>
-                @else
-                    <a href="{{ route('login') }}">Login</a>
-                    <a href="{{ route('register') }}">Register</a>
-                    @endauth
-        </div>
-    @endif
 
     <div class="content">
-        <div class="title m-b-md">
-            Switcher
+        <div class="col-lg-8 col-lg-offset-2" style="padding-bottom: 40px;" >
+            <img  style="width:400px;" src="{{ asset('/images/switcher_logoL.png') }}">
         </div>
-
+        <div>
+            <b><p style="font-size: 20px; padding-bottom: 30px;">Dobro došli na Switcher. Switcher je stranica namijenjena studentima.</p></b>
+        </div>
+        @if (Route::has('login'))
+            <div class="top-left links">
+                @auth
+                    <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">PRIJAVA</a>
+                        <a href="{{ route('register') }}">REGISTRACIJA</a>
+                        @endauth
+            </div>
+        @endif
     </div>
 </div>
 </body>

@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-8 col-md-offset-2">
         <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
-            <ul class="nav nav-pills nav-justified" style=" border: 3px;">
+            <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
                 <li><a href="#table_view" data-toggle="tab">Pregled sati</a></li>
                 <li><a href="{{route('classes_create')}}" class="btn">Dodaj</a></li>
             </ul>
@@ -15,8 +15,6 @@
                             <th>ID</th>
                             <th>Tip</th>
                             <th>Kolegij</th>
-                            <th>Uredi</th>
-                            <th>Izbriši</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -25,10 +23,12 @@
                                 <td>{{$classe->id}}</td>
                                 <td>{{$classe->type}}</td>
                                 <td>{{$classe->collegium->name}}</td>
+                                <td><a href="{{route('classes')}}/{{$classe->id}}"
+                                       class="btn noborder btn-warning btn-xs">Prikaz</a></td>
                                 <td><a href="{{route('classes_edit')}}/{{$classe->id}}"
-                                       class="btn btn-primary btn-xs">Uredi</a></td>
+                                       class="btn swt-button-prim btn-xs">Uredi</a></td>
                                 <td><a href="{{route('classes_delete')}}/{{$classe->id}}"
-                                       class="btn btn-danger btn-xs">Izbriši</a>
+                                       class="btn btn-danger noborder btn-xs">Izbriši</a>
                                 </td>
                             </tr>
                         @endforeach

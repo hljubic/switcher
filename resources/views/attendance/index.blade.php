@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-8 col-md-offset-2">
         <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
-            <ul class="nav nav-pills nav-justified" style=" border: 3px;">
+            <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
                 <li><a href="#table_view" data-toggle="tab">Prisutnost</a></li>
                 <li><a href="{{route('attendances_create')}}" class="btn">Dodaj</a></li>
             </ul>
@@ -24,11 +24,11 @@
                                 <td>{{$attendance->id}}</td>
                                 <td>{{$attendance->classe->type}}</td>
                                 <td>{{$attendance->user->name}}</td>
-                                <td><a href="{{route('attendances')}}/{{$attendance->id}}" class="btn btn-warning btn-xs">Prikaz</a>
+                                <td><a href="{{route('attendances')}}/{{$attendance->id}}" class="btn noborder btn-warning btn-xs">Prikaz</a>
                                 </td>
                                 <td><a href="{{route('attendances_edit')}}/{{$attendance->id}}"
-                                       class="btn btn-primary btn-xs">Uredi</a></td>
-                                <td><a href="{{route('attendances_delete')}}/{{$attendance->id}}" class="btn btn-danger btn-xs">Izbriši</a>
+                                       class="btn swt-button-prim btn-xs">Uredi</a></td>
+                                <td><a href="{{route('attendances_delete')}}/{{$attendance->id}}" class="btn noborder btn-danger btn-xs">Izbriši</a>
                                 </td>
                             </tr>
                         @endforeach

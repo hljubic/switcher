@@ -7,9 +7,9 @@
                 <div id="page-content-wrapper">
 
                     <legend style="">{{$faculties->name}}</legend>
-                    <ul class="nav nav-pills" style=" border: 3px;">
+                    <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
                         <li><a href="#general-data" data-toggle="tab">Osnovni podaci</a></li>
-                        <li><a href="#studies-data" data-toggle="tab">Studiji {{$faculties->short_name}}-a</a></li>
+                        <li><a href="#studies-data" data-toggle="tab">Studiji</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade active in" id="table_view" style="padding-top:35px">
@@ -107,6 +107,7 @@
 
 
                         </div>
+                        <!-- studies on faculzty-->
                         <div class="tab-pane fade" id="studies-data" style="padding-top:15px">
                             @foreach($faculties->studies as $study)
                                 <div class="list-group-item" style="margin-bottom: 10px;">
@@ -116,8 +117,8 @@
                                         </div>
                                         <div class="col-lg-2">
                                             <a href="{{route('studies')}}/{{$study->id}}"
-                                               class="btn btn-success btn-block"
-                                               style="align-self: flex-start; border-radius: 50px; margin-top: 10px;">Više</a>
+                                               class="btn  noborder btn-sm btn-success btn-block"
+                                               style="align-self: flex-start;margin-top: 15px;">Više</a>
                                         </div>
 
                                     </div>

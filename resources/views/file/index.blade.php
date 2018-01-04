@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-8 col-md-offset-2">
         <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
-            <ul class="nav nav-pills nav-justified" style=" border: 3px;">
+            <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
                 <li><a href="#table_view" data-toggle="tab">Pregled datoteka</a></li>
                 <li><a href="{{route('files_create')}}" class="btn">Dodaj</a></li>
             </ul>
@@ -14,8 +14,9 @@
                         <tr>
                             <th>ID</th>
                             <th>Rad</th>
+                            <th>Veličina</th>
                             <th>Opis</th>
-                            <th>Naziv zadatka</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -23,12 +24,13 @@
                             <tr>
                                 <td>{{$file->id}}</td>
                                 <td>{{$file->name}}</td>
+                                <td>{{$file->size}}</td>
                                 <td>{{$file->description}}</td>
-                                <td>{{$file->task->name}}</td>
                                 <td><a href="{{route('files_edit')}}/{{$file->id}}"
-                                       class="btn btn-primary btn-xs">Uredi</a></td>
-                                <td><a href="{{route('files_delete')}}/{{$file->id}}" class="btn btn-danger btn-xs">Izbriši</a>
+                                       class="btn swt-button-prim btn-xs">Uredi</a></td>
+                                <td><a href="{{route('files_delete')}}/{{$file->id}}" class="btn noborder btn-danger btn-xs">Izbriši</a>
                                 </td>
+
                             </tr>
                         @endforeach
                         </tbody>

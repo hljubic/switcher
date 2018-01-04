@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-8 col-md-offset-2">
         <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
-            <ul class="nav nav-pills nav-justified" style=" border: 3px;">
+            <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
                 <li><a href="#table_view" data-toggle="tab">Zadaci</a></li>
                 <li><a href="{{route('tasks_create')}}" class="btn">Dodaj</a></li>
             </ul>
@@ -33,11 +33,11 @@
                                 <td>{{$task->collegium->name}}</td>
                                 <td>{{$task->created_at}}</td>
 
-                                 <td><a href="{{route('tasks')}}/{{$task->id}}" class="btn btn-warning btn-xs">Prikaz</a>
+                                 <td><a href="{{route('tasks')}}/{{$task->id}}" class="btn noborder btn-warning btn-xs">Prikaz</a>
                                                                 </td>
                                 <td><a href="{{route('tasks_edit')}}/{{$task->id}}"
-                                       class="btn btn-primary btn-xs">Uredi</a></td>
-                                <td><a href="{{route('tasks_delete')}}/{{$task->id}}" class="btn btn-danger btn-xs">Izbriši</a>
+                                       class="btn swt-button-prim btn-xs">Uredi</a></td>
+                                <td><a href="{{route('tasks_delete')}}/{{$task->id}}" class="btn noborder btn-danger btn-xs">Izbriši</a>
                                 </td>
                             </tr>
                         @endforeach
