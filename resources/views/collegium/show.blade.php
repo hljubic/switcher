@@ -12,20 +12,30 @@
                         <div class="col-lg-3">
                             <form class="form-horizontal"
                                   action="{{route('followCollegium')}}/{{$collegiums->id}}"
+
                                   method="POST">
                                 {{csrf_field()}}
                                 <div class="row">
+
                                     @if($followButton == true)
+                                        @can('prikazi',$collegiums)
                                         <a href="{{route('unfollowCollegium')}}/{{$collegiums->id}}"
-                                           class="btn btn-success noborder btn-sm">Napusti</a>
+                                           class="btn btn-success noborder btn-sm">Napusti</a>@endcan
                                     @else
 
+
+
+                                        @can('prikazi',$collegiums)
                                         <button type="submit" class="btn btn-success noborder btn-sm">Pristupi
-                                        </button>
+                                        </button>@endcan
 
 
                                     @endif
+                                    @can('create',App\Conversation::class)
+
                                     <a href="#" class="btn btn-sm noborder btn-success">Dodaj u razgovor</a>
+                                    @endcan
+
                                 </div>
                             </form>
 
@@ -199,13 +209,16 @@
 
                                                         @endif
                                                     </div>
+
                                                     <div class="col-lg-6" style="text-align: right;">
+                                                    @can('delete',$post)
                                                         <small><a href="{{route('posts_delete')}}/{{$post->id}}"
                                                                   style="color: #ecf0f1;;"
                                                                   class="btn btn-xs fa fa-times"
-                                                                  aria-hidden="true"></a></small>
+                                                                  aria-hidden="true"></a></small>@endcan
                                                     </div>
                                                 </div>
+
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <small><i class="fa fa-user"
@@ -239,11 +252,15 @@
                                                                             </div>
                                                                             <div class="col-lg-6"
                                                                                  style="text-align: right;">
+                                                                                 @can('delete', $comment)
+
                                                                                 <small>
                                                                                     <a href="{{route('messages_delete')}}/{{$comment->id}}"
                                                                                        style="color: #ecf0f1;"
                                                                                        class="btn btn-xs fa fa-times"
                                                                                        aria-hidden="true"></a></small>
+
+                                                                                @endcan
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
@@ -299,16 +316,20 @@
                         </div>
                         <!-- prikaz taskova na kolegiju -->
                         <div class="tab-pane fade" id="tasks-data" style="padding-top:15px">
+                        @can('create', App\Task::class)
+
 
                             <button type="button" class="btn btn-sm btn-success noborder"
                                     data-toggle="collapse" data-target="#collapseExample">Novi zadatak
                             </button>
 
+                            @endcan
                             <div class="collapse" id="collapseExample">
                                 <div class="container col-lg-12" style="padding-top: 35px;">
                                     <div class="card card-body">
                                         <div class="row">
                                             <div class="panel panel-deafult col-lg-12">
+
                                                 <form class="form-horizontal" action="{{ route('tasks_create') }}"
                                                       method="POST">
                                                     {{ csrf_field() }}
@@ -472,6 +493,7 @@
                                 {{ csrf_field() }}
                                 <fieldset>
                                     <div class="row">
+                                        @can('create',App\Classe::class)
                                         <div class="col-lg-4">
                                             <select class="form-control noborder" id="select" name="type">
                                                 <option value="lecture">Predavanja</option>
@@ -484,6 +506,7 @@
                                         <div class="col-lg-6">
                                             <button type="submit" class="btn swt-button-prim">Dodaj</button>
                                         </div>
+                                        @endcan
                                     </div>
                                 </fieldset>
                             </form>
@@ -500,12 +523,15 @@
                                                 <p style="padding-top: 15px;"></p>
                                             </div>
                                             <div class="col-lg-8">
+
                                                 <h4 class="header" style="margin-top: 50px;">Predavanje</h4>
                                             </div>
                                             <div class="col-lg-2" style="margin-top: 15px;">
+                                            @can('store',$classe)
+
                                                 <a href="{{route('attendances')}}/{{$classe->id}}"
                                                    class="btn btn-sm noborder btn-success btn-block"
-                                                   style="align-self: flex-start; margin-top: 32px;">Prisutnost</a>
+                                                   style="align-self: flex-start; margin-top: 32px;">Prisutnost</a>@endcan
                                             </div>
                                         </div>
                                     </div>
@@ -524,9 +550,11 @@
                                                     Vježbe</h4>
                                             </div>
                                             <div class="col-lg-2" style="margin-top: 15px;">
+                                            @can('store',$classe)
+
                                                 <a href="{{route('attendances')}}/{{$classe->id}}"
                                                    class="btn btn-sm noborder btn-warning btn-block"
-                                                   style="align-self: flex-start; margin-top: 32px;">Prisutnost</a>
+                                                   style="align-self: flex-start; margin-top: 32px;">Prisutnost</a>@endcan
                                             </div>
                                         </div>
                                     </div>
@@ -545,9 +573,10 @@
                                                     Laboratorijske vježbe</h4>
                                             </div>
                                             <div class="col-lg-2" style="margin-top: 15px;">
+                                            @can('store',$classe)
                                                 <a href="{{route('attendances')}}/{{$classe->id}}"
                                                    class="btn btn-sm btn-danger noborder btn-block"
-                                                   style="align-self: flex-start; margin-top: 32px;">Prisutnost</a>
+                                                   style="align-self: flex-start; margin-top: 32px;">Prisutnost</a>@endcan
                                             </div>
                                         </div>
                                     </div>

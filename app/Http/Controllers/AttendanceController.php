@@ -56,7 +56,9 @@ class AttendanceController extends Controller
      */
     public function show($id)
     {
+
         $attendances = Attendance::where('class_id', '=', $id)->get();
+
         $classe = Classe::find($id);
         $collegiums = $classe->collegium;
         return view('attendance.show', array('attendances' => $attendances, 'classe' => $classe, 'collegiums' => $collegiums));

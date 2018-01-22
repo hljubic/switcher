@@ -21,6 +21,7 @@ class CollegiumController extends Controller
      */
     public function index()
     {
+
         $collegiums = Collegium::all();
         return view('collegium.index')->with('collegiums', $collegiums);
     }
@@ -65,6 +66,7 @@ class CollegiumController extends Controller
         $collegiums = Collegium::find($id);
 
 
+       //$this->authorize('show', $collegiums);
 
 
         if (CollegiumUser::where('user_id', '=', Auth::user()->id)->where('collegium_id','=',$id)->exists()) {
@@ -119,4 +121,5 @@ class CollegiumController extends Controller
 
         return redirect('/collegiums')->with('success', 'Kolegij izbrisan.');
     }
+
 }

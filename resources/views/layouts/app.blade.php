@@ -26,6 +26,7 @@
 </head>
 <body ng-controller="swtSearchMainController" ng-init="init()">
 <div id="app">
+@if($user=Auth::user())
     <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0;  background-color: #3C3F41;">
 
         <div class="container">
@@ -72,15 +73,7 @@
                         </form>
                     </li>
 
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-graduation-cap"
-                                                                                      aria-hidden="true"></i>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{route('faculties')}}">Fakulteti</a></li>
-                                <li><a href="{{route('studies')}}">Studijske grupe</a></li>
-                                <li><a href="{{route('collegiums')}}">Kolegiji</a></li>
-                            </ul>
-                        </a>
-                    </li>
+
                     <li><a href="{{route('chat')}}"><i class="fa fa-comments" aria-hidden="true"></i><span
                                     class="badge">3</span></a></li>
                     <li><a href="{{route('imenik')}}"><i class="fa fa-address-book" aria-hidden="true"></i></a>
@@ -116,9 +109,10 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    @if($user->type=='admin')
                                     <li>
                                         <a href="{{route('dashboard')}}">Dashboard</a>
-                                    </li>
+                                    </li>@endif
                                 </ul>
                             </li>
                             @endguest
@@ -127,7 +121,7 @@
         </div>
 
     </nav>
-
+@endif
     @include('inc.sidebar',['faculties',$faculties],['studies',$studies],['collegiums',$collegiums])
     @include('layouts.messages')
 

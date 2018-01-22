@@ -25,6 +25,7 @@
                         $taskuser = App\TaskUser::where('user_id','=', Auth::user()->id)->where('task_id','=',$tasks->id)->first();
                     @endphp
                     <div class="col-lg-1" style="text-align: center; padding-top: 13px; ">
+                        @can('update',$tasks)
                         <div class="btn-group btn-block">
                             <a href="#" class="btn btn-sm btn-success  dropdown-toggle pull-right" data-toggle="dropdown"><i class="fa fa-cogs"></i></a>
                             <ul class="dropdown-menu">
@@ -34,6 +35,7 @@
 
                             </ul>
                         </div>
+                        @endcan
                     </div>
                 </div>
             </div>

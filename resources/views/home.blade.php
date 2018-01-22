@@ -82,10 +82,11 @@
                                                         @endif
                                                     </div>
                                                     <div class="col-lg-6" style="text-align: right;">
+                                                    @can('delete',$post)
                                                         <small><a href="{{route('posts_delete')}}/{{$post->id}}"
                                                                   style="color: #ecf0f1;;"
                                                                   class="btn btn-xs fa fa-times"
-                                                                  aria-hidden="true"></a></small>
+                                                                  aria-hidden="true"></a></small>@endcan
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -121,11 +122,13 @@
                                                                             </div>
                                                                             <div class="col-lg-6"
                                                                                  style="text-align: right;">
+                                                                                 @can('delete',$comment)
                                                                                 <small>
                                                                                     <a href="{{route('messages_delete')}}/{{$comment->id}}"
                                                                                        style="color: #ecf0f1;"
                                                                                        class="btn btn-xs fa fa-times"
                                                                                        aria-hidden="true"></a></small>
+                                                                                       @endcan
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">

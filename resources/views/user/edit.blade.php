@@ -5,7 +5,7 @@
           <div class="panel panel-default" style="margin-top: 50px;">
               <div class="panel-heading">
 
-                  <a href="{{route('users')}}"><i class="fa fa-chevron-left"></i></a>
+                  <a href="{{route('users')}}/{{$user->id}}"><i class="fa fa-chevron-left"></i></a>
                   <h5 class="panel-title" style="text-align: center;">Uredi korisnika</h5>
               </div>
               <div class="panel-body">
@@ -39,6 +39,7 @@
                                          value="{{$user->index_number}}">
                               </div>
                           </div>
+
                           <div class="form-group">
                               <label for="select" class="col-lg-2 control-label small">Titula</label>
                               <div class="col-lg-10">
