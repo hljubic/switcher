@@ -35,7 +35,6 @@ $routes = [
     'followers' => 'FollowerUserController',
     'messages' => 'MessageController',
     'participants' => 'ParticipantController',
-    'posts' => 'PostController',
     'studies' => 'StudyController',
     'tasks' => 'TaskController',
     'taskuser' => 'TaskUserController',
@@ -59,6 +58,21 @@ foreach ($routes as $key => $value) {
     Route::get('/' . $key . '/delete')->name($key . '_delete');
     Route::get('/' . $key . '/delete/{id}', $value . '@destroy');
 }
+
+
+//Postovi izbaceni zbog pristupa normalnim korisnicima
+// Retrieve all data from table
+Route::get('/posts/{id}', 'PostController@show')->where('id', '[0-9]+'); // Retrieve user which corresponds to passed ID
+////Create
+Route::get('/posts/create','PostController@create')->name('posts_create');
+Route::post('/posts/create', 'PostController@store');
+//Update
+Route::get('/posts/edit')->name('posts_edit');
+Route::get('/posts/edit/{id}', 'PostController@edit');
+Route::patch('/posts/edit/{id}', 'PostController@update');
+//Destroy
+Route::get('/posts/delete')->name('posts_delete');
+Route::get('/posts/delete/{id}', 'PostController@destroy');
 
 //imenik
 Route::get('/imenik', 'UserController@imenik')->name('imenik');
@@ -103,3 +117,29 @@ Route::patch('task_user/edit/{task_id}', 'TaskController@updateUsers'); //ažuri
 Route::get('/task_user/create/{task_id}', 'TaskController@createUsers');
 Route::post('/task_user/create/{task_id}', 'TaskController@storeUsers');
 
+//Admin middleware za zabranu pristupa odredenim rutama
+Route::group(['middleware' => ['auth', 'admin']], function() {
+
+    $routes = [
+        'users' => 'UserController',
+        'attendances' => 'AttendanceController',
+        'classes' => 'ClasseController',
+        'collegiums' => 'CollegiumController',
+        'collegium_study' => 'CollegiumStudyController',
+        'conversations' => 'ConversationController',
+        'faculties' => 'FacultyController',
+        'files' => 'FileController',
+        'followers' => 'FollowerUserController',
+        'messages' => 'MessageController',
+        'participants' => 'ParticipantController',
+        'studies' => 'StudyController',
+        'tasks' => 'TaskController',
+        'taskuser' => 'TaskUserController',
+        'collegium_user' => 'CollegiumUserController',
+    ];
+
+    foreach ($routes as $key => $value) {
+        Route::get('/posts','PostController@index')->name('post');
+        Route::get('/' . $key, $value . '@index')->name($key); // Retrieve all data from table
+
+    }});

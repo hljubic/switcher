@@ -33,6 +33,7 @@
                                        class="btn noborder btn-warning btn-xs">Prikaz</a></td>
                                 <td><a href="{{route('studies_edit')}}/{{$study->id}}" class="btn swt-button-prim btn-xs">Uredi</a>
                                 </td>
+
                                 <td><a href="{{route('studies_delete')}}/{{$study->id}}" class="btn noborder btn-danger btn-xs">Izbriši</a>
                                 </td>
                             </tr>

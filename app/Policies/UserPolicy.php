@@ -18,9 +18,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        if($user->type=='admin'){
-            return true;
-        }
+
     }
 
     /**
@@ -43,6 +41,9 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
+        if($user->type=='admin'){
+            return true;
+        }
 
     }
 

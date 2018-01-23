@@ -39,6 +39,7 @@
                                          value="{{$user->index_number}}">
                               </div>
                           </div>
+                         @can('update',$user)
 
                           <div class="form-group">
                               <label for="select" class="col-lg-2 control-label small">Titula</label>
@@ -52,13 +53,14 @@
                                       </option>
                                   </select>
                               </div>
-                          </div>
+                          </div>@endcan
                           <div class="form-group">
                               <label for="inputPhone" class="col-lg-2 control-label small">Broj telefona</label>
                               <div class="col-lg-10">
                                   <input type="text" class="form-control noborder" id="inputPhone" name="phone" value="{{$user->phone}}">
                               </div>
                           </div>
+                          @can('update',$user)
                           <div class="form-group">
                               <label for="select" class="col-lg-2 control-label small">Tip korisnika</label>
                               <div class="col-lg-10">
@@ -71,7 +73,8 @@
                                       </option>
                                   </select>
                               </div>
-                          </div>
+                          </div>@endcan
+                          @can('update',$user)
                           <div class="form-group">
                               <label for="select" class="col-lg-2 control-label small">Aktivan</label>
                               <div class="col-lg-10">
@@ -80,7 +83,7 @@
                                       <option value="0" {{ ($user->is_active == 0) ? 'selected' : ''}}>Neaktivan</option>
                                   </select>
                               </div>
-                          </div>
+                          </div>@endcan
                           <div class="form-group">
                               <label for="select" class="col-lg-2 control-label small">Studij</label>
                               <div class="col-lg-10">

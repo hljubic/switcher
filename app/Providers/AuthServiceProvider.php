@@ -14,8 +14,10 @@ use App\Policies\ConversationPolicy;
 use App\Policies\MessagePolicy;
 use App\Policies\PostPolicy;
 use App\Policies\TaskPolicy;
+use App\Policies\UserPolicy;
 use App\Post;
 use App\Task;
+use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -33,6 +35,7 @@ class AuthServiceProvider extends ServiceProvider
         Conversation::class => ConversationPolicy::class,
         Classe::class => ClassePolicy::class,
         Attendance::class => AttendancePolicy::class,
+        User::class=>UserPolicy::class
     );
 
     /**
