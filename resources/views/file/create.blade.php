@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="col-md-4 col-md-offset-4">
+    <div class="col-md-4 col-md-offset-4">
         <div class="panel panel-default" style="margin-top: 50px;">
             <div class="panel-heading">
                 <a href="{{route('files')}}"><i class="fa fa-chevron-left"></i></a>
@@ -12,64 +12,77 @@
                     {{csrf_field()}}
                     <fieldset>
                         <legend></legend>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label for="inputPath" class="col-lg-2 control-label small">Naziv</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control noborder" id="name" name="name" placeholder="naziv">
+                                <input type="text" class="form-control noborder" id="name" name="name"
+                                       placeholder="naziv" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPath" class="col-lg-2 control-label small">Putanja</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control noborder" id="path" name="path" placeholder="putanja">
+                                <input type="text" class="form-control noborder" id="path" name="path"
+                                       placeholder="putanja" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword" class="col-lg-2 control-label small">Opis</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control noborder" id="description" name="description" placeholder="Opis">
+                                <input type="text" class="form-control noborder" id="description" name="description"
+                                       placeholder="Opis" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword" class="col-lg-2 control-label small">Veličina</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control noborder" id="size" name="size" placeholder="size">
+                                <input type="text" class="form-control noborder" id="size" name="size"
+                                       placeholder="size" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="select" class="col-lg-2 control-label small">Post</label>
                             <div class="col-lg-10">
-                                <select class="form-control noborder" id="select" name="post_id">
-                                    @foreach($posts as $post)
-                                        <option value="{{ $post->id }}">{{ $post->content }}</option>
-                                    @endforeach
-                                </select>
+                                @if(count($posts)>0)
+                                    <select class="form-control noborder" id="select" name="post_id">
+                                        @foreach($posts as $post)
+                                            <option value="{{ $post->id }}">{{ $post->content }}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <label>Prvo dodajte objavu.</label>
+                                @endif
                             </div>
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label for="select" class="col-lg-2 control-label small">Task</label>
                             <div class="col-lg-10">
-                                <select class="form-control noborder" id="select" name="task_id">
-                                    @foreach($tasks as $task)
-                                        <option value="{{ $task->id }}">{{ $task->name }}</option>
-                                    @endforeach
-                                </select>
+                                @if(count($tasks)>0)
+                                    <select class="form-control noborder" id="select" name="task_id">
+                                        @foreach($tasks as $task)
+                                            <option value="{{ $task->id }}">{{ $task->name }}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <label>Prvo dodajte zadatak.</label>
+                                @endif
                             </div>
                         </div>
 
                         <div class="form-group">
-                        <div class="col-md-12" style="margin-top: 30px;">
-                         <div class="col-md-6">
-                          <button type="reset" class="btn btn-sm swt-button-default  btn-block">Odustani</button>
-                           </div>
-                          <div class="col-md-6">
-                            <button type="submit" class="btn btn-sm swt-button-prim btn-block">Spremi</button>
-                              </div>
-                             </div>
+                            <div class="col-md-12" style="margin-top: 30px;">
+                                <div class="col-md-6">
+                                    <button type="reset" class="btn btn-sm swt-button-default  btn-block">Odustani
+                                    </button>
                                 </div>
-                 </fieldset>
-               </form>
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-sm swt-button-prim btn-block">Spremi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
-          </div>
-          </div>
+        </div>
+    </div>
 @endsection

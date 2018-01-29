@@ -16,41 +16,41 @@
                             <label for="inputName" class="col-lg-2 control-label small ">Naziv fakulteta</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control noborder" id="inputName" name="name"
-                                       placeholder="Naziv fakuleta">
+                                       placeholder="Naziv fakuleta" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputShortName" class="col-lg-2 control-label small ">Kratica</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control noborder" id="inputShortName" name="short_name"
-                                       placeholder="Kratica">
+                                       placeholder="Kratica" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputAdress" class="col-lg-2 control-label small ">Adresa</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control noborder" id="inputAdress" name="address"
-                                       placeholder="Adresa">
+                                       placeholder="Adresa" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputWeb" class="col-lg-2 control-label small ">Web</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control noborder" id="inputWeb" name="web" placeholder="Web">
+                                <input type="text" class="form-control noborder" id="inputWeb" name="web" placeholder="Web" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputIndex" class="col-lg-2 control-label small ">Email</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control noborder" id="inputEmail" name="email"
-                                       placeholder="Email">
+                                       placeholder="Email" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPhone" class="col-lg-2 control-label small ">Broj telefona</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control noborder" id="inputPhone" name="phone"
-                                       placeholder="Broj telefona">
+                                       placeholder="Broj telefona" required>
                             </div>
                         </div>
                         <div class="form-group">

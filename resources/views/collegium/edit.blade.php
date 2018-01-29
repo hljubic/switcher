@@ -17,34 +17,42 @@
                             <label for="inputName" class="col-lg-2 control-label small">Naziv kolegija</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control noborder" id="inputName" name="name"
-                                       value="{{$collegium->name}}">
+                                       value="{{$collegium->name}}" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail" class="col-lg-2 control-label small">Opis</label>
                             <div class="col-lg-10">
                         <textarea class="form-control noborder" rows="3" id="textArea" name="description"
-                                  value="{{$collegium->description}}"></textarea>
+                                  value="{{$collegium->description}}" required></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="select" class="col-lg-2 control-label small">Nositelj kolegija</label>
                             <div class="col-lg-10">
-                                <select class="form-control noborder" id="select" name="prof_id">
-                                    @foreach($users as $user)
-                                        <option value="{{ $user->id }}" {{ ($collegium->prof_id == $user->id) ? 'selected' : '' }}>{{$user->title}} {{ $user->name }}</option>
-                                    @endforeach
-                                </select>
+                                @if(count($users)>0)
+                                    <select class="form-control noborder" id="select" name="prof_id">
+                                        @foreach($users as $user)
+                                            <option value="{{ $user->id }}" {{ ($collegium->prof_id == $user->id) ? 'selected' : '' }}>{{$user->title}} {{ $user->name }}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <label>Prvo dodajte korisnika.</label>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="select" class="col-lg-2 control-label small">Asistent</label>
                             <div class="col-lg-10">
-                                <select class="form-control noborder" id="select" name="assist_id">
-                                    @foreach($users as $user)
-                                        <option value="{{ $user->id }}" {{ ($collegium->assist_id == $user->id) ? 'selected' : '' }}>{{$user->title}} {{ $user->name }}</option>
-                                    @endforeach
-                                </select>
+                                @if(count($users)>0)
+                                    <select class="form-control noborder" id="select" name="assist_id">
+                                        @foreach($users as $user)
+                                            <option value="{{ $user->id }}" {{ ($collegium->assist_id == $user->id) ? 'selected' : '' }}>{{$user->title}} {{ $user->name }}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <label>Prvo dodajte korisnika.</label>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">

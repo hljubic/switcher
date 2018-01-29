@@ -18,14 +18,14 @@
                             <div class="col-lg-10">
                                 <input type="text" class="form-control noborder" id="inputName" name="name"
                                        placeholder="Naziv fakuleta"
-                                       value="{{$faculties->name}}">
+                                       value="{{$faculties->name}}" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputShortName" class="col-lg-2 control-label  small">Kratica</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control noborder" id="inputShortName" name="short_name"
-                                       placeholder="Kratica" value="{{$faculties->short_name}}">
+                                       placeholder="Kratica" value="{{$faculties->short_name}}" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -33,28 +33,28 @@
                             <div class="col-lg-10">
                                 <input type="text" class="form-control noborder" id="inputAdress" name="address"
                                        placeholder="Adresa"
-                                       value="{{$faculties->address}}">
+                                       value="{{$faculties->address}}" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputWeb" class="col-lg-2 control-label  small">Web</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control noborder" id="inputWeb" name="web" placeholder="Web"
-                                       value="{{$faculties->web}}">
+                                       value="{{$faculties->web}}" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputIndex" class="col-lg-2 control-label  small">Email</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control noborder" id="inputEmail" name="email" placeholder="Email"
-                                       value="{{$faculties->email}}">
+                                       value="{{$faculties->email}}" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPhone" class="col-lg-2 control-label  small">Broj telefona</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control noborder" id="inputPhone" name="phone"
-                                       placeholder="Broj telefona" value="{{$faculties->phone}}">
+                                       placeholder="Broj telefona" value="{{$faculties->phone}}" required>
                             </div>
                         </div>
                         <div class="form-group">

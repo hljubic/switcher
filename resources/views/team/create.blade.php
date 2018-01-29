@@ -5,7 +5,7 @@
         <div class="panel panel-default" style="margin-top: 50px;">
             <div class="panel-heading">
                 <a href="{{route('taskuser')}}"><i class="fa fa-chevron-left"></i></a>
-                <h5 class="panel-title" style="text-align: center;">Dodijeli studentu zadatak</h3>
+                <h5 class="panel-title" style="text-align: center;">Dodijeli studentu zadatak</h5>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" action="{{route ('taskuser_create')}}" method="POST">
@@ -25,23 +25,32 @@
                         <div class="form-group">
                             <label for="inputName" class="col-lg-2 control-label small">Zadatak</label>
                             <div class="col-lg-10">
-                                <select class="form-control noborder" id="select" name="task_id">
-                                    @foreach($tasks as $task)
-                                        <option value="{{ $task->id }}">{{ $task->name }}, {{ $task->type }}</option>
-                                    @endforeach
-                                </select>
+                                @if(count($tasks)>0)
+                                    <select class="form-control noborder" id="select" name="task_id">
+                                        @foreach($tasks as $task)
+                                            <option value="{{ $task->id }}">{{ $task->name }}
+                                                , {{ $task->type }}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <label>Prvo dodajte zadatak.</label>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputShortName" class="col-lg-2 control-label small">Student</label>
                             <div class="col-lg-10">
-                                <select class="form-control noborder" id="select" name="user_id">
-                                    @foreach($users as $user)
-                                        @if($user->type == 'student')
-                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
+                                @if(count($users)>0)
+                                    <select class="form-control noborder" id="select" name="user_id">
+                                        @foreach($users as $user)
+                                            @if($user->type == 'student')
+                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <label>Prvo dodajte studenta.</label>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
