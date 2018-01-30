@@ -16,10 +16,10 @@ class CreateTaskUserTable extends Migration
         Schema::create('task_user', function (Blueprint $table) {
             $table->increments('id');
             $table->enum("status", array("in progress", "finished", "not finished"));
-            $table->integer("task_id")->unsigned()->index();
-            $table->integer("user_id")->unsigned()->index();
-            $table->foreign("task_id")->references("id")->on("tasks");
-            $table->foreign("user_id")->references("id")->on("users");
+            $table->integer("task_id")->unsigned()->index()->nullable();
+            $table->integer("user_id")->unsigned()->index()->nullable();
+            $table->foreign("task_id")->references("id")->on("tasks")->onDelete('set null');
+            $table->foreign("user_id")->references("id")->on("users")->onDelete('set null');
             $table->timestamps();
         });
     }

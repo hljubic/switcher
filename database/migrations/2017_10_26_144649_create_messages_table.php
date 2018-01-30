@@ -16,10 +16,10 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
             $table->longText('content');
-            $table->integer('conversation_id')->unsigned()->index();
-            $table->foreign('conversation_id')->references('id')->on('conversations');
-            $table->integer('sender_id')->unsigned()->index();
-            $table->foreign('sender_id')->references('id')->on('users');
+            $table->integer('conversation_id')->unsigned()->index()->nullable();
+            $table->foreign('conversation_id')->references('id')->on('conversations')->onDelete('set null');
+            $table->integer('sender_id')->unsigned()->index()->nullable();
+            $table->foreign('sender_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
 
         });

@@ -17,7 +17,7 @@ class CreateClassesTable extends Migration
             $table->increments('id');
             $table->enum("type",array("lecture","exercises","laboratory exercises"));
             $table->integer("collegium_id")->unsigned()->index()->nullable();
-            $table->foreign("collegium_id")->references("id")->on("collegiums");
+            $table->foreign("collegium_id")->references("id")->on("collegiums")->onDelete('set null');
             $table->timestamps();
         });
     }

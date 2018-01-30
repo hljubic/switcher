@@ -18,7 +18,7 @@ class CreateStudiesTable extends Migration
             $table->string('name', 50);
             $table->mediumText('description');
             $table->integer('faculty_id')->unsigned()->index()->nullable();
-            $table->foreign('faculty_id')->references('id')->on('faculties');
+            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('set null');
             $table->timestamps();
 
         });

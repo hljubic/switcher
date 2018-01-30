@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->enum('type', array("admin", "professor", "student", "moderator"))->default('student');
             $table->boolean('is_active')->nullable();
             $table->integer('study_id')->unsigned()->index()->nullable();
-            $table->foreign('study_id')->references('id')->on('studies');
+            $table->foreign('study_id')->references('id')->on('studies')->onDelete('set null');
             $table->rememberToken();
             $table->timestamps();
         });

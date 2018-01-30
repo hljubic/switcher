@@ -17,12 +17,12 @@ class CreateCollegiumsTable extends Migration
             $table->increments('id');
             $table->string('name', 50);
             $table->mediumText('description');
-            $table->integer('prof_id')->unsigned()->index();
-            $table->foreign('prof_id')->references('id')->on('users');
-            $table->integer('assist_id')->unsigned()->index();
-            $table->foreign('assist_id')->references('id')->on('users');
+            $table->integer('prof_id')->unsigned()->index()->nullable();
+            $table->foreign('prof_id')->references('id')->on('users')->onDelete('set null');
+            $table->integer('assist_id')->unsigned()->index()->nullable();
+            $table->foreign('assist_id')->references('id')->on('users')->onDelete('set null');
             $table->integer('conversation_id')->unsigned()->index()->nullable();
-            $table->foreign('conversation_id')->references('id')->on('conversations');
+            $table->foreign('conversation_id')->references('id')->on('conversations')->onDelete('set null');
             $table->timestamps();
 
         });

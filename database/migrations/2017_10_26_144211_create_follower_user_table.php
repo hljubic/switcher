@@ -15,10 +15,10 @@ class CreateFollowerUserTable extends Migration
     {
         Schema::create('follower_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('follower_id')->unsigned()->index();
-            $table->foreign('follower_id')->references('id')->on('users');
+            $table->integer('user_id')->unsigned()->index()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->integer('follower_id')->unsigned()->index()->nullable();
+            $table->foreign('follower_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
 
         });

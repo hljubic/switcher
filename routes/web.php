@@ -139,7 +139,7 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
     ];
 
     foreach ($routes as $key => $value) {
-        Route::get('/posts','PostController@index')->name('post');
+        Route::get('/posts','PostController@index')->name('posts');
         Route::get('/' . $key, $value . '@index')->name($key); // Retrieve all data from table
 
     }});

@@ -1,45 +1,73 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-md-8 col-md-offset-2">
-        <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
-            <ul class="nav nav-pills nav-justified" style=" border: 3px;">
-                <li><a href="#table_view" data-toggle="tab">Pregled poruka</a></li>
-                <li><a href="{{route('messages_create')}}" class="btn">Dodaj</a></li>
-            </ul>
-            <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade active in" id="table_view" style="padding-top:35px">
-                    <table class="table table-striped table-hover ">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Sadržaj poruke</th>
-                            <th>Datum i vrijeme</th>
-                            <th>Razgovor</th>
-                            <th>Ime i prezime pošiljatelja</th>
-                            <th>Uredi</th>
-                            <th>Izbriši</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($messages as $message)
+    @if(count($messages)>0)
+        <div class="col-md-8 col-md-offset-2">
+            <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
+                <ul class="nav nav-pills nav-justified" style=" border: 3px;">
+                    <li><a href="#table_view" data-toggle="tab">Pregled poruka</a></li>
+                    <li><a href="{{route('messages_create')}}" class="btn">Dodaj</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active in" id="table_view" style="padding-top:35px">
+                        <table class="table table-striped table-hover ">
+                            <thead>
                             <tr>
-                                <td>{{$message->id}}</td>
-                                <td>{{$message->content}}</td>
-                                <td>{{$message->created_at}}</td>
-                                <td>{{$message->conversation->title}}</td>
-                                <td>{{$message->user->name}}</td>
-                                <td><a href="{{route('messages_edit')}}/{{$message->id}}" class="btn btn-primary btn-xs">Uredi</a>
-                                </td>
-                                <td><a href="{{route('messages_delete')}}/{{$message->id}}"
-                                       class="btn btn-danger btn-xs">Izbriši</a>
-                                </td>
+                                <th>ID</th>
+                                <th>Sadržaj poruke</th>
+                                <th>Datum i vrijeme</th>
+                                <th>Razgovor</th>
+                                <th>Ime i prezime pošiljatelja</th>
+                                <th>Uredi</th>
+                                <th>Izbriši</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach($messages as $message)
+                                <tr>
+                                    <td>{{$message->id}}</td>
+                                    <td>{{$message->content}}</td>
+                                    <td>{{$message->created_at}}</td>
+                                    @if(count($message->conversation) > 0 )
+                                        <td>{{$message->conversation->title}}</td>
+                                    @endif
+                                    @if(count($message->user) > 0 )
+                                        <td>{{$message->user->name}}</td>
+                                    @endif
+
+
+                                    <td><a href="{{route('messages_edit')}}/{{$message->id}}"
+                                           class="btn btn-primary btn-xs">Uredi</a>
+                                    </td>
+                                    <td><a href="{{route('messages_delete')}}/{{$message->id}}"
+                                           class="btn btn-danger btn-xs">Izbriši</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @else
+        <div class="col-lg-8 col-md-offset-2">
+            <div class="panel panel-default" style="margin-top: 50px;">
+                <div class="panel-body">
+                    <div id="page-content-wrapper">
+
+                        <p style="font-size: 20px; padding-bottom: 30px; font-family: 'Raleway', sans-serif;
+                          font-weight: 100; color: #636b6f; text-align: center;">Tablica "messages" nema nikakvih
+                            podataka</p>
+                        <div class="row">
+                            <a href="{{route('messages_create')}}"
+                               class="btn btn-success noborder col-lg-offset-5 col-lg-2">Dodaj poruku</a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 @endsection

@@ -16,9 +16,9 @@ class CreateCollegiumUserTable extends Migration
         Schema::create('collegium_user', function (Blueprint $table) {
             $table->increments('id');
             $table->integer("collegium_id")->unsigned()->index()->nullable();
-            $table->foreign("collegium_id")->references("id")->on("collegiums");
+            $table->foreign("collegium_id")->references("id")->on("collegiums")->onDelete('set null');
             $table->integer("user_id")->unsigned()->index()->nullable();
-            $table->foreign("user_id")->references("id")->on("users");
+            $table->foreign("user_id")->references("id")->on("users")->onDelete('set null');
             $table->timestamps();
         });
     }

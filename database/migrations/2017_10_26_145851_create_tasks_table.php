@@ -20,7 +20,7 @@ class CreateTasksTable extends Migration
             $table->mediumText("description");
             $table->enum("type", array("seminar paper", "homework", "project"));
             $table->integer("collegium_id")->unsigned()->index()->nullable();
-            $table->foreign("collegium_id")->references("id")->on("collegiums");
+            $table->foreign("collegium_id")->references("id")->on("collegiums")->onDelete('set null');
             $table->timestamps();
         });
     }

@@ -20,7 +20,7 @@ class CreateFilesTable extends Migration
             $table->mediumText("description")->nullable();
             $table->bigInteger("size")->unsigned()->index();
             $table->integer("task_id")->unsigned()->index()->nullable();
-            $table->foreign("task_id")->references("id")->on("tasks");
+            $table->foreign("task_id")->references("id")->on("tasks")->onDelete('set null');
             $table->timestamps();
         });
     }

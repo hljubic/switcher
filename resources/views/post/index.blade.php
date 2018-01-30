@@ -1,6 +1,7 @@
 @extends ('layouts.app')
 
 @section('content')
+    @if(count($posts) > 0)
     <div class="col-md-8 col-md-offset-2">
         <div id="page-content-wrapper"class="panel-default" style="margin-top: 50px;">
             <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
@@ -36,4 +37,23 @@
             </div>
         </div>
     </div>
+    @else
+        <div class="col-lg-8 col-md-offset-2">
+            <div class="panel panel-default" style="margin-top: 50px;">
+                <div class="panel-body">
+                    <div id="page-content-wrapper">
+
+                        <p style="font-size: 20px; padding-bottom: 30px; font-family: 'Raleway', sans-serif;
+                          font-weight: 100; color: #636b6f; text-align: center;">Tablica "posts" nema nikakvih podataka</p>
+                        <div class="row">
+                            <a href="{{route('posts_create')}}" class="btn btn-success noborder col-lg-offset-5 col-lg-2">Dodaj objavu</a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    @endif
 @endsection

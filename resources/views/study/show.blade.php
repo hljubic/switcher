@@ -24,7 +24,8 @@
                                 <div class="list-group-item" style="border:none; align-content: center;">
                                     <div class="row">
                                         <div class="col-lg-1" style="margin:0px;">
-                                            <i class="fa fa-bars" aria-hidden="true" style="margin:6px; font-size: 25px;"></i>
+                                            <i class="fa fa-bars" aria-hidden="true"
+                                               style="margin:6px; font-size: 25px;"></i>
                                             <br>
                                         </div>
                                         <div class="col-lg-11" style="padding-top: 8px;">
@@ -39,7 +40,8 @@
                                 <div class="list-group-item" style="border:none; align-content: center;">
                                     <div class="row">
                                         <div class="col-lg-1" style="margin:0px;">
-                                            <i class="fa fa-university" aria-hidden="true" style="margin:6px; font-size: 25px;"></i>
+                                            <i class="fa fa-university" aria-hidden="true"
+                                               style="margin:6px; font-size: 25px;"></i>
                                             <br>
                                         </div>
                                         <div class="col-lg-11" style="padding-top: 8px;">
@@ -53,7 +55,8 @@
                                 <div class="list-group-item" style="border:none; align-content: center;">
                                     <div class="row">
                                         <div class="col-lg-1" style="margin:0px;">
-                                            <i class="fa fa-align-center" aria-hidden="true" style="margin:6px; font-size: 25px;"></i>
+                                            <i class="fa fa-align-center" aria-hidden="true"
+                                               style="margin:6px; font-size: 25px;"></i>
                                             <br>
                                         </div>
                                         <div class="col-lg-11" style="padding-top: 8px;">
@@ -64,20 +67,42 @@
                             </blockquote>
                         </div>
                         <div class="tab-pane fade" id="studies-data" style="padding-top:15px">
-                            @foreach($studies->collegiums as $collegium)
-                                <div class="list-group-item" style="margin-bottom: 10px;">
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <h3 class="header" style="margin-bottom: 20px;">{{$collegium->name}}</h3>
+                            @if(count($studies->collegiums) > 0)
+                                @foreach($studies->collegiums as $collegium)
+                                    <div class="list-group-item" style="margin-bottom: 10px;">
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <h3 class="header"
+                                                    style="margin-bottom: 20px;">{{$collegium->name}}</h3>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <a href="{{route('collegiums')}}/{{$collegium->id}}"
+                                                   class="btn btn-sm btn-success btn-block noborder"
+                                                   style="align-self: flex-start;margin-top: 15px;">Više</a>
+                                            </div>
                                         </div>
-                                        <div class="col-lg-2">
-                                            <a href="{{route('collegiums')}}/{{$collegium->id}}"
-                                               class="btn btn-sm btn-success btn-block noborder"
-                                               style="align-self: flex-start;margin-top: 15px;">Više</a>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="col-lg-12 ">
+                                    <div class="panel panel-default" style="margin-top: 50px;">
+                                        <div class="panel-body">
+                                            <div id="page-content-wrapper">
+
+                                                <p style="font-size: 20px; padding-bottom: 30px; font-family: 'Raleway', sans-serif;
+                          font-weight: 100; color: #636b6f; text-align: center;">Nema kolegija na studiju</p>
+                                                <div class="row">
+                                                    <a href="{{route('collegium_study_create')}}"
+                                                       class="btn btn-success noborder col-lg-offset-5 col-lg-2">Dodaj kolegij</a>
+                                                </div>
+
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+
+                            @endif
                         </div>
                     </div>
                 </div>

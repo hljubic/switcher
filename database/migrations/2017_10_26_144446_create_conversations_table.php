@@ -16,8 +16,8 @@ class CreateConversationsTable extends Migration
         Schema::create('conversations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 50);
-            $table->integer('creator_id')->unsigned()->index();
-            $table->foreign('creator_id')->references('id')->on('users');
+            $table->integer('creator_id')->unsigned()->index()->nullable();
+            $table->foreign('creator_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
 
         });

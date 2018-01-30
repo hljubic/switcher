@@ -1,11 +1,13 @@
 @extends ('layouts.app')
 
 @section('content')
+
     <div class="col-md-8 col-md-offset-2">
         <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
             <form class="form-horizontal" action="{{ route('class_user') }}" method="POST">
                 {{ csrf_field() }}
                 <fieldset>
+
                     <div class="row">
                         @if($classe->type == 'lecture')
                             <div class="col-lg-6" style="color: #18BC9C;">
@@ -18,11 +20,11 @@
                                     h
                                 </small>
                             </div>
-                                <div class="col-lg-6">
-                                    <br>
-                                    <button type="submit" class="col-lg-offset-10 btn btn-success btn-sm">Spremi
-                                    </button>
-                                </div>
+                            <div class="col-lg-6">
+                                <br>
+                                <button type="submit" class="col-lg-offset-10 btn btn-success btn-sm">Spremi
+                                </button>
+                            </div>
                         @elseif($classe->type == 'exercises')
                             <div class="col-lg-6" style="color: #ec971f;">
                                 <h4>Vježbe</h4>
@@ -34,11 +36,11 @@
                                     h
                                 </small>
                             </div>
-                                <div class="col-lg-6">
-                                    <br>
-                                    <button type="submit" class="col-lg-offset-10 btn btn-warning btn-sm">Spremi
-                                    </button>
-                                </div>
+                            <div class="col-lg-6">
+                                <br>
+                                <button type="submit" class="col-lg-offset-10 btn btn-warning btn-sm">Spremi
+                                </button>
+                            </div>
                         @else
                             <div class="col-lg-6" style="color: #d9534f;">
                                 <h4>Laboratorijske vježbe</h4>
@@ -57,6 +59,7 @@
                             </div>
                         @endif
                     </div>
+
                     <br><br>
                     <table class="table table-striped table-hover ">
                         <thead>
@@ -84,7 +87,8 @@
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->index_number}}</td>
                                         <td>{{$user->study->name}}</td>
-                                        <td><input class="field" type="checkbox" name="users[]" value="{{$user->id}}"></td>
+                                        <td><input class="field" type="checkbox" name="users[]" value="{{$user->id}}">
+                                        </td>
                                         <td><input class="hidden" name="class_id" value="{{$classe->id}}"></td>
                                     </tr>
                                 @endif
@@ -107,4 +111,5 @@
             </form>
         </div>
     </div>
+
 @endsection

@@ -24,8 +24,9 @@
                                 <div class="list-group-item" style="border:none; align-content: center;">
                                     <div class="row">
                                         <div class="col-lg-1" style="margin:0px;">
-                                            <i class="fa fa-university" aria-hidden="true" style="margin:6px; font-size: 25px;"></i>
-                                           <br>
+                                            <i class="fa fa-university" aria-hidden="true"
+                                               style="margin:6px; font-size: 25px;"></i>
+                                            <br>
                                         </div>
                                         <div class="col-lg-11" style="padding-top: 8px;">
                                             <p>{{$faculties->name}}</p>
@@ -39,7 +40,8 @@
                                 <div class="list-group-item" style="border:none; align-content: center;">
                                     <div class="row">
                                         <div class="col-lg-1" style="margin:0px;">
-                                            <i class="fa fa-bars" aria-hidden="true" style="margin:6px; font-size: 25px;"></i>
+                                            <i class="fa fa-bars" aria-hidden="true"
+                                               style="margin:6px; font-size: 25px;"></i>
                                             <br>
                                         </div>
                                         <div class="col-lg-11" style="padding-top: 8px;">
@@ -53,7 +55,8 @@
                                 <div class="list-group-item" style="border:none; align-content: center;">
                                     <div class="row">
                                         <div class="col-lg-1" style="margin:0px;">
-                                            <i class="fa fa-map-marker" aria-hidden="true" style="margin:6px; font-size: 25px;"></i>
+                                            <i class="fa fa-map-marker" aria-hidden="true"
+                                               style="margin:6px; font-size: 25px;"></i>
                                             <br>
                                         </div>
                                         <div class="col-lg-11" style="padding-top: 8px;">
@@ -67,7 +70,8 @@
                                 <div class="list-group-item" style="border:none; align-content: center;">
                                     <div class="row">
                                         <div class="col-lg-1" style="margin:0px;">
-                                            <i class="fa fa-window-restore" aria-hidden="true" style="margin:6px; font-size: 25px;"></i>
+                                            <i class="fa fa-window-restore" aria-hidden="true"
+                                               style="margin:6px; font-size: 25px;"></i>
                                             <br>
                                         </div>
                                         <div class="col-lg-11" style="padding-top: 8px;">
@@ -81,7 +85,8 @@
                                 <div class="list-group-item" style="border:none; align-content: center;">
                                     <div class="row">
                                         <div class="col-lg-1" style="margin:0px;">
-                                            <i class="fa fa-envelope" aria-hidden="true" style="margin:6px; font-size: 25px;"></i>
+                                            <i class="fa fa-envelope" aria-hidden="true"
+                                               style="margin:6px; font-size: 25px;"></i>
                                             <br>
                                         </div>
                                         <div class="col-lg-11" style="padding-top: 8px;">
@@ -95,7 +100,8 @@
                                 <div class="list-group-item" style="border:none; align-content: center;">
                                     <div class="row">
                                         <div class="col-lg-1" style="margin:0px;">
-                                            <i class="fa fa-phone" aria-hidden="true" style="margin:6px; font-size: 25px;"></i>
+                                            <i class="fa fa-phone" aria-hidden="true"
+                                               style="margin:6px; font-size: 25px;"></i>
                                             <br>
                                         </div>
                                         <div class="col-lg-11" style="padding-top: 8px;">
@@ -109,21 +115,41 @@
                         </div>
                         <!-- studies on faculzty-->
                         <div class="tab-pane fade" id="studies-data" style="padding-top:15px">
-                            @foreach($faculties->studies as $study)
-                                <div class="list-group-item" style="margin-bottom: 10px;">
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <h3 class="header" style="margin-bottom: 20px;">{{$study->name}}</h3>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <a href="{{route('studies')}}/{{$study->id}}"
-                                               class="btn  noborder btn-sm btn-success btn-block"
-                                               style="align-self: flex-start;margin-top: 15px;">Više</a>
-                                        </div>
+                            @if(count($faculties->studies) > 0)
+                                @foreach($faculties->studies as $study)
+                                    <div class="list-group-item" style="margin-bottom: 10px;">
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <h3 class="header" style="margin-bottom: 20px;">{{$study->name}}</h3>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <a href="{{route('studies')}}/{{$study->id}}"
+                                                   class="btn  noborder btn-sm btn-success btn-block"
+                                                   style="align-self: flex-start;margin-top: 15px;">Više</a>
+                                            </div>
 
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="col-lg-12 ">
+                                    <div class="panel panel-default" style="margin-top: 50px;">
+                                        <div class="panel-body">
+                                            <div id="page-content-wrapper">
+
+                                                <p style="font-size: 20px; padding-bottom: 30px; font-family: 'Raleway', sans-serif;
+                          font-weight: 100; color: #636b6f; text-align: center;">Nema studija na fakultetu</p>
+                                                <div class="row">
+                                                    <a href="{{route('studies_create')}}"
+                                                       class="btn btn-success noborder col-lg-offset-5 col-lg-2">Dodaj
+                                                        studij</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            @endforeach
+
+                            @endif
                         </div>
                     </div>
                 </div>
