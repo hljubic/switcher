@@ -187,7 +187,7 @@
                                                                 <textarea class="form-control" rows="2"
                                                                           id="content-body" name="content"
                                                                           placeholder="Napišite objavu"
-                                                                          style="margin-bottom: 0px; border:none;"></textarea>
+                                                                          style="margin-bottom: 0px; border:none;" required></textarea>
                                                         <input type="hidden" name="created_at" id="inputDate"
                                                                value="{{ date('y-m-d h:i:s') }}">
                                                         <input type="hidden" name="collegium_id"
