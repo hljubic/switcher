@@ -16,7 +16,7 @@
                             <label for="content-body" class="col-lg-2 control-label small">Sadržaj</label>
                             <div class="col-lg-10">
                             <textarea class="form-control noborder" rows="4" id="content-body" name="content"
-                                      placeholder="Sadržaj objave"></textarea>
+                                      placeholder="Sadržaj objave" required></textarea>
                             </div>
                         </div>
 

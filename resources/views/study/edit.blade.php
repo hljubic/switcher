@@ -18,30 +18,36 @@
                             <div class="col-lg-10">
                                 <input type="text" class="form-control noborder" id="inputName" name="name"
                                        placeholder="Naziv studija"
-                                       value="{{$studies->name}}">
+                                       value="{{$studies->name}}" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputShortName" class="col-lg-2 control-label small" >Opis</label>
+                            <label for="inputShortName" class="col-lg-2 control-label small">Opis</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control noborder" id="inputDescription" name="description"
-                                       placeholder="Opis" value="{{$studies->description}}">
+                                <input type="text" class="form-control noborder" id="inputDescription"
+                                       name="description"
+                                       placeholder="Opis" value="{{$studies->description}}" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="select" class="col-lg-2 control-label small">Fakulteti</label>
                             <div class="col-lg-10">
-                                <select class="form-control noborder" id="select" name="faculty_id">
-                                    @foreach($faculties as $faculty)
-                                        <option value="{{$faculty->id}}" {{$studies -> faculty_id == $faculty->id ? 'selected' : ''}}>{{$faculty->name}}</option>
-                                    @endforeach
-                                </select>
+                                @if(count($faculties)>0)
+                                    <select class="form-control noborder" id="select" name="faculty_id">
+                                        @foreach($faculties as $faculty)
+                                            <option value="{{$faculty->id}}" {{$studies -> faculty_id == $faculty->id ? 'selected' : ''}}>{{$faculty->name}}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <label>Prvo dodajte fakultete.</label>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-12" style="margin-top: 30px;">
                                 <div class="col-md-6">
-                                    <button type="reset" class="btn btn-sm swt-button-default  btn-block">Odustani</button>
+                                    <button type="reset" class="btn btn-sm swt-button-default  btn-block">Odustani
+                                    </button>
                                 </div>
                                 <div class="col-md-6">
                                     <button type="submit" class="btn btn-sm swt-button-prim btn-block">Spremi</button>

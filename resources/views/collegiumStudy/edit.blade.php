@@ -16,21 +16,29 @@
                         <div class="form-group">
                             <label for="inputName" class="col-lg-2 control-label small">Kolegij</label>
                             <div class="col-lg-10">
-                                <select class="form-control noborder" id="select" name="collegium_id">
-                                    @foreach($collegiums as $collegium)
-                                        <option value="{{ $collegium->id }}"{{ ($collegium_study->collegium_id == $collegium->id) ? 'selected' : '' }}>{{ $collegium->name }}</option>
-                                    @endforeach
-                                </select>
+                                @if(count($collegiums)>0)
+                                    <select class="form-control noborder" id="select" name="collegium_id">
+                                        @foreach($collegiums as $collegium)
+                                            <option value="{{ $collegium->id }}"{{ ($collegium_study->collegium_id == $collegium->id) ? 'selected' : '' }}>{{ $collegium->name }}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <label>Prvo dodajte kolegij.</label>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputShortName" class="col-lg-2 control-label small">Studij</label>
                             <div class="col-lg-10">
-                                <select class="form-control noborder" id="select" name="study_id">
-                                    @foreach($studies as $study)
-                                        <option value="{{ $study->id }}" {{ ($collegium_study->study_id == $study->id) ? 'selected' : '' }}>{{ $study->name }}</option>
-                                    @endforeach
-                                </select>
+                                @if(count($studies)>0)
+                                    <select class="form-control noborder" id="select" name="study_id">
+                                        @foreach($studies as $study)
+                                            <option value="{{ $study->id }}" {{ ($collegium_study->study_id == $study->id) ? 'selected' : '' }}>{{ $study->name }}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <label>Prvo dodajte studij.</label>
+                                @endif
                             </div>
                         </div>
 

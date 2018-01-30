@@ -17,7 +17,7 @@
                             <label for="inputContent" class="col-lg-2 control-label small">Sadržaj</label>
                             <div class="col-lg-10">
                              <input type="text" class="form-control noborder" id="inputContent" name="content" placeholder="Sadržaj"
-                               value="{{$post->content}}">
+                               value="{{$post->content}}" required>
                             </div>
                         </div>
 
@@ -26,7 +26,7 @@
                     <label for="inputDate" class="col-lg-2 control-label small">Datum i vrijeme</label>
                     <div class="col-lg-10">
                         <input type="text" class="form-control datepicker noborder" id="inputDate" name="created_at"
-                               placeholder="Datum i vrijeme" value="{{$post->created_at}}">
+                               placeholder="Datum i vrijeme" value="{{$post->created_at}}" required>
                     </div>
                 </div>
                         <div class="form-group">

@@ -15,21 +15,29 @@
                         <div class="form-group">
                             <label for="inputName" class="col-lg-2 control-label small">Korisnik</label>
                             <div class="col-lg-10">
-                                <select class="form-control noborder" id="select" name="user_id">
-                                    @foreach($users as $user)
-                                        <option value="{{$user->id}}">{{$user->name}}</option>
-                                    @endforeach
-                                </select>
+                                @if(count($users)>0)
+                                    <select class="form-control noborder" id="select" name="user_id">
+                                        @foreach($users as $user)
+                                            <option value="{{$user->id}}">{{$user->name}}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <label>Prvo dodajte korisnika.</label>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputShortName" class="col-lg-2 control-label small">Pratitelj</label>
                             <div class="col-lg-10">
-                                <select class="form-control noborder" id="select" name="follower_id">
-                                    @foreach($users as $user)
-                                        <option value="{{$user->id}}">{{$user->name}}</option>
-                                    @endforeach
-                                </select>
+                                @if(count($users)>0)
+                                    <select class="form-control noborder" id="select" name="follower_id">
+                                        @foreach($users as $user)
+                                            <option value="{{$user->id}}">{{$user->name}}</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <label>Prvo dodajte korisnika.</label>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
