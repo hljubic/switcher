@@ -34,7 +34,7 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
         if ($this->auth->getUser()->type !== "admin") {
-            abort(403, 'Unauthorized action. Dara i Jozo');
+            abort(403, 'Unauthorized action. Switcher team.');
         }
 
         return $next($request);
