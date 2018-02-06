@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(count($participants) >0)
+    @if($participants)
         <div class="col-md-8 col-md-offset-2">
             <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
                 <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
@@ -22,10 +22,10 @@
                             @foreach($participants as $participant)
                                 <tr>
                                     <td>{{$participant->id}}</td>
-                                    @if(count($participant->conversation) > 0 )
+                                    @if($participant->conversation)
                                         <td>{{$participant->conversation->title}}</td>
                                     @endif
-                                    @if(count($participant->user) > 0 )
+                                    @if($participant->user)
                                         <td>{{$participant->user->name}}</td>
                                     @endif
 

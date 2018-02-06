@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 
 @section('content')
-    @if(count($tasks) > 0)
+    @if($tasks)
         <div class="col-md-8 col-md-offset-2">
             <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
                 <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
@@ -31,7 +31,7 @@
                                     <td>{{$task->deadline}}</td>
                                     <td>{{$task->description}}</td>
                                     <td>{{$task->type}}</td>
-                                    @if(count($task->collegium) > 0 )
+                                    @if($task->collegium)
                                         <td>{{$task->collegium->name}}</td>
                                     @endif
                                     <td>{{$task->created_at}}</td>

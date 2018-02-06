@@ -15,7 +15,7 @@
                         <div class="form-group">
                             <label for="inputName" class="col-lg-2 control-label small">Tip nastave</label>
                             <div class="col-lg-10">
-                                @if(count($classes)>0)
+                                @if($classes)
                                     <select class="form-control noborder" id="select" name="class_id">
                                         @foreach($classes as $classe)
                                             <option value="{{ $classe->id }}">{{ $classe->type }}, {{$classe->created_at}}, {{$classe->collegium->name}}</option>
@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <label for="inputShortName" class="col-lg-2 control-label small">Korisnik</label>
                             <div class="col-lg-10">
-                                @if(count($users)>0)
+                                @if($users)
                                     <select class="form-control noborder" id="select" name="user_id">
                                         @foreach($users as $user)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(count($followers)>0)
+    @if($followers)
         <div class="col-md-8 col-md-offset-2" class="panel-default" style="margin-top: 50px;">
             <div id="page-content-wrapper">
                 <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
@@ -22,10 +22,10 @@
                             @foreach($followers as $follower)
                                 <tr>
                                     <td>{{$follower->id}}</td>
-                                    @if(count($follower->user) > 0)
+                                    @if($follower->user)
                                         <td>{{$follower->user->name}}</td>
                                     @endif
-                                    @if(count($follower->follower) > 0)
+                                    @if($follower->follower)
                                         <td>{{$follower->follower->name}}</td>
                                     @endif
 

@@ -27,17 +27,18 @@
                                             @if($followButton == true)
                                                 @can('prikazi',$collegiums)
                                                     <a href="{{route('unfollowCollegium')}}/{{$collegiums->id}}"
-                                                       class="btn btn-success noborder btn-sm">Prestani pratiti</a>@endcan
+                                                       class="btn btn-success noborder btn-sm">Prestani
+                                                        pratiti</a>@endcan
                                             @else
 
                                                 @can('prikazi',$collegiums)
-                                                    <button type="submit" class="btn btn-success noborder btn-sm">Prati kolegij
+                                                    <button type="submit" class="btn btn-success noborder btn-sm">Prati
+                                                        kolegij
                                                     </button>@endcan
 
 
                                             @endif
                                         </div>
-
 
 
                                     </div>
@@ -134,7 +135,7 @@
                             </div>
                             <!-- prikaz studija na kojima se kolegij nalazi-->
                             <div class="tab-pane fade" id="studies-data" style="padding-top:15px">
-                                @if($collegiums)
+                                @if($collegiums->studies)
                                     @foreach($collegiums->studies as $study)
                                         <div class="list-group-item" style="margin-bottom: 10px;">
                                             <div class="row">
@@ -188,7 +189,8 @@
                                                                 <textarea class="form-control" rows="2"
                                                                           id="content-body" name="content"
                                                                           placeholder="Napišite objavu"
-                                                                          style="margin-bottom: 0px; border:none;" required></textarea>
+                                                                          style="margin-bottom: 0px; border:none;"
+                                                                          required></textarea>
                                                         <input type="hidden" name="created_at" id="inputDate"
                                                                value="{{ date('y-m-d h:i:s') }}">
                                                         <input type="hidden" name="collegium_id"
@@ -318,7 +320,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="panel-footer">
                                                     <form class="form-horizontal"
                                                           action="{{route('messages_create')}}"
@@ -351,7 +352,7 @@
                             </div>
                             <!-- prikaz taskova na kolegiju -->
                             <div class="tab-pane fade" id="tasks-data" style="padding-top:15px">
-                                @if($collegiums)
+                                @if($collegiums->tasks)
                                     @can('create', App\Task::class)
 
 
@@ -436,7 +437,6 @@
                                         </div>
 
                                     </div>
-
 
 
                                     <!-- seminraski radovi -->
@@ -559,7 +559,7 @@
                             </div>
                             <!-- classes -->
                             <div class="tab-pane fade" id="classes-data" style="padding-top:15px">
-                                @if($collegiums)
+                                @if($collegiums->classe)
                                     <form class="form-horizontal" action="{{ route('classes_create') }}" method="POST">
                                         {{ csrf_field() }}
                                         <fieldset>
@@ -686,7 +686,7 @@
                             </div>
                             <!-- lista studenata na kolegiju-->
                             <div class="tab-pane fade" id="student-data" style="padding-top:15px">
-                                @if($collegiums)
+                                @if($collegiums->user)
                                     @foreach($collegiums->user as $user)
                                         @php
                                             $classes = App\Classe::with('collegium')->where('collegium_id','=',$collegiums->id)->get(['classes.id'])->count();
@@ -825,7 +825,7 @@
                             </div>
                             <!-- datoteke na kolegiju-->
                             <div class="tab-pane fade" id="file-data" style="padding-top:15px">
-                                @if($collegiums)
+                                @if($collegiums->posts)
                                     @foreach($collegiums->posts as $post)
                                         @if($post->file)
                                             <div class="list-group-item"

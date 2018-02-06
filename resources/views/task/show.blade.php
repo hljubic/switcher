@@ -116,7 +116,7 @@
                     </div>
                     <!-- status button-->
                     <div class="col-lg-4 nopadding">
-                        @if(count($taskuser) > 0 )
+                        @if($taskuser)
                         <button type="button" class="btn btn-secondary btn-block " data-container="body"
                                 data-toggle="popover" title="Status Vašeg zadatka ..." data-content="{{$taskuser->status}}"
                                 style="border-radius: 0px; background-color: rgba(24, 188, 156,0.4); color: #fff;">

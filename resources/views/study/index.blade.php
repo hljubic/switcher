@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(count($studies) > 0)
+    @if($studies)
         <div class="col-md-8 col-md-offset-2">
             <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
                 <ul class="nav swt-nav-pills nav-justified" style="">
@@ -26,7 +26,7 @@
                                     <td>{{$study->id}}</td>
                                     <td>{{$study->name}}</td>
                                     <td>{{$study->description}}</td>
-                                    @if(count($study->faculty) > 0)
+                                    @if($study->faculty)
                                         <td>{{$study->faculty->name}}</td>
                                     @endif
                                     <td></td>
