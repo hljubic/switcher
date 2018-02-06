@@ -44,7 +44,7 @@ class ChatController extends Controller
             $q->where('user_id', '=', Auth::user()->id);})->orderBy('id', 'desc')->get();
 
         foreach ($conversations as $conversation) {
-            $participants = Participant::where('conversation_id', $conversation->id)->get();
+            $participants = Participant::where('conversation_id', $conversation->id)->where('user_id','!=',Auth::user()->id)->get();
 
             $users = [];
             foreach ($participants as $participant) {
@@ -77,23 +77,26 @@ class ChatController extends Controller
     }
 
     //kreira novi razgovor sa korisnikom čiji id je proslijeđen
-    public function createConversation($id)
+    public function createConversation(Request $request)
     {
-        $user=User::find($id);
+        //$user=User::find($request);
         $conversation = new Conversation();
-        $conversation->title = $user->name.', '.Auth::user()->name;
+        $conversation->title = "Razgovor 9";
+            //$user->name.', '.Auth::user()->name;
         $conversation->creator_id = Auth::user()->id;
         $conversation->save();
 
         $participant = new Participant();
         $participant->conversation_id = $conversation->id;
-        $participant->user_id = $user->id;
+        $participant->user_id = $request->user_id;
         $participant->save();
 
         $participant = new Participant();
         $participant->conversation_id = $conversation->id;
         $participant->user_id = Auth::user()->id;
         $participant->save();
+
+        return $this->getConversations();
 
     }
 
@@ -102,6 +105,7 @@ class ChatController extends Controller
         $message = new Message();
         $message->content = $request->content_msg;
         $message->conversation_id = $request->conversation_id;
+        $message->created_at = $request->created_at;
         $message->sender_id = Auth::user()->id;
         $message->save();
 

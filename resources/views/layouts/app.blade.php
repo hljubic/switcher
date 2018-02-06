@@ -51,17 +51,19 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav ">
                     <li>
-                        <form class="navbar-form navbar-left col-lg-12" role="search" >
+                        <form class="navbar-form navbar-left col-lg-12" role="search">
                             <div class=" form-group">
                                 <div class="input-group input-group-sm ">
-                                    <input type="text" class="form-control" placeholder="Search " list="browsers" name="browser"
-                                           style="border-radius:0px; background-color:rgba(179, 179, 179,0.3); border:none; color:#fff;">
+                                    <input type="text" class="form-control" placeholder="Search " list="browsers"
+                                           name="browser"
+                                           style="border-radius:0px; background-color:rgba(179, 179, 179,0.3); border:none; color:#fff;"
+                                           ng-model="searchText">
                                     <datalist id="browsers">
-                                        <option ng-repeat="user in users" value="<%user.name%>">
-
+                                        <option ng-repeat="user in users | filter: searchText"
+                                                value="<%user.name%>" ng-model="select_user(user.id)">
                                     </datalist>
                                     <span class="input-group-btn">
-                                     <button class="btn btn-secondary" type="button">Go!</button>
+                                     <a href="{{route('users')}}/<%selected_user%>" class="btn btn-secondary" type="button">Go!</a>
                                 </span>
                                 </div>
                             </div>
@@ -161,11 +163,12 @@
             placement: 'bottom'
         });
     });
-
+</script>
+<script>
     var API_USERS = '{{route('search_user')}}';
-    var API_MESSAGES = '{{ route('messages1', 1) }}';
-    {{--var API_PARTICIPANTS = '{{route('participants', 3)}}';--}}
-    var API_CONVERSATIONS = '{{route('conversations1')}}';
+    {{--var API_MESSAGES = '{{ route('messages1', 1) }}';--}}
+            {{--var API_PARTICIPANTS = '{{route('participants', 3)}}';--}}
+    {{--var API_CONVERSATIONS = '{{route('conversations1')}}';--}}
 
 </script>
 
