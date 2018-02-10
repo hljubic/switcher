@@ -26,102 +26,105 @@
 </head>
 <body ng-controller="swtSearchMainController" ng-init="init()">
 <div id="app">
-@if($user=Auth::user())
-    <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0;  background-color: #3C3F41;">
+    @if($user=Auth::user())
+        <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0;  background-color: #3C3F41;">
 
-        <div class="container">
-            <div class="navbar-header">
+            <div class="container">
+                <div class="navbar-header">
 
-                <!-- sidebar button -->
-                <a href="#menu-toggle" class="btn navbar-btn" id="menu-toggle">
-                    <i class="glyphicon glyphicon-align-left"></i></a>
-
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
 
 
                     <a class="navbar-brand" href="{{ url('/home') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
 
-            </div>
-            <!-- search in navbar-->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav ">
-                    <li>
-                        <form class="navbar-form navbar-left col-lg-12" role="search" >
-                            <div class=" form-group">
-                                <div class="input-group input-group-sm " style="padding-top:5px; ">
-                                    <input type="text" class="form-control" placeholder="Search " list="browsers" name="browser"
-                                           style="border-radius:0px; background-color:rgba(179, 179, 179,0.3); border:none; color:#fff;">
-                                    <datalist id="browsers">
-                                        <option ng-repeat="user in users" value="<%user.name%>">
-
-                                    </datalist>
-                                    <span class="input-group-btn">
-                                     <button class="btn " type="button" style="background-color:rgba(179, 179, 179,0.3); border-radius:0px;"><i class="fa fa-search" style="color: white;"></i></button>
+                </div>
+                <!-- search in navbar-->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav ">
+                        <li>
+                            <form class="navbar-form navbar-left col-lg-12" role="search">
+                                <div class=" form-group">
+                                    <div class="input-group input-group-sm " style="padding-top:5px; ">
+                                        <input type="text" class="form-control" placeholder="Search " list="browsers"
+                                               name="browser"
+                                               style="border-radius:0px; background-color:rgba(179, 179, 179,0.3); border:none; color:#fff;"
+                                               ng-model="searchText">
+                                        <datalist id="browsers">
+                                            <option ng-repeat="user in users | filter: searchText"
+                                                    value="<%user.name%>" ng-model="select_user(user.id)">
+                                        </datalist>
+                                        <span class="input-group-btn">
+                                            <a href="{{route('users')}}/<%selected_user%>" class="btn btn-secondary"
+                                               type="button"
+                                               style="background-color:rgba(179, 179, 179,0.3); border-radius:0px;"><i
+                                                        class="fa fa-search" style="color: white;"></i></a>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
+
+                        </li>
+
+                        <!-- sidebar button -->
+                        <li><a href="#menu-toggle" class="btn " id="menu-toggle">
+                                <i class="fa fa-graduation-cap"></i></a></li>
+
+                        <li><a href="{{route('chat')}}"><i class="fa fa-comments" aria-hidden="true"></i><span
+                                        class="badge">3</span></a></li>
+                        <li><a href="{{route('imenik')}}"><i class="fa fa-address-book" aria-hidden="true"></i></a>
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li>
+                            @else
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-expanded="false" aria-haspopup="true">
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
 
 
-                        </form>
-                    </li>
-
-
-                    <li><a href="{{route('chat')}}"><i class="fa fa-comments" aria-hidden="true"></i><span
-                                    class="badge">3</span></a></li>
-                    <li><a href="{{route('imenik')}}"><i class="fa fa-address-book" aria-hidden="true"></i></a>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @guest
-                        <li><a href="{{ route('login') }}">Login</a></li>
-                        <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{route('users')}}/{{Auth::user()->id}}">{{Auth::user()->name}}</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="{{route('users')}}/{{Auth::user()->id}}">{{Auth::user()->name}}</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                                                Logout
+                                            </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                              style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                    @if($user->type=='admin')
-                                    <li>
-                                        <a href="{{route('dashboard')}}">Dashboard</a>
-                                    </li>@endif
-                                </ul>
-                            </li>
-                            @endguest
-                </ul>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                  style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
+                                        @if($user->type=='admin')
+                                            <li>
+                                                <a href="{{route('dashboard')}}">Dashboard</a>
+                                            </li>@endif
+                                    </ul>
+                                </li>
+                                @endguest
+                    </ul>
+                </div>
             </div>
-        </div>
 
-    </nav>
-@endif
+        </nav>
+    @endif
     @include('inc.sidebar',['faculties',$faculties],['studies',$studies],['collegiums',$collegiums])
     @include('layouts.messages')
 

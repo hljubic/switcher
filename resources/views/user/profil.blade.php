@@ -123,7 +123,7 @@
                                                             </small>
                                                             <br>
                                                             <small><i class="fa fa-clock-o"
-                                                                      aria-hidden="true"></i>{{\Carbon\Carbon::parse($post->created_at)->format('d.m.y h:m:s')}}
+                                                                      aria-hidden="true"></i>{{\Carbon\Carbon::parse($post->created_at)->format('d.m.y h:i:s')}}
                                                             </small>
                                                         </div>
                                                         @php
@@ -168,7 +168,7 @@
                                                                                 <div class="col-lg-6"
                                                                                      style="text-align: right;">
                                                                                     <small><i class="fa fa-clock-o"
-                                                                                              aria-hidden="true"></i> {{\Carbon\Carbon::parse($comment->created_at)->format('d.m.y h:m:s')}}
+                                                                                              aria-hidden="true"></i> {{\Carbon\Carbon::parse($comment->created_at)->format('d.m.y h:i:s')}}
                                                                                     </small>
                                                                                 </div>
                                                                             </div>
@@ -192,7 +192,7 @@
                                                                        id="focusedInput" type="text" name="content"
                                                                        placeholder="Napisi komentar...">
                                                                 <input type="hidden" name="created_at"
-                                                                       value="{{date('y-m-d h:m:s')}}">
+                                                                       value="{{date('y-m-d h:i:s')}}">
                                                                 <input type="hidden" name="conversation_id"
                                                                        value="{{$post->conversation_id}}">
                                                             </div>

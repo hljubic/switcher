@@ -16,6 +16,7 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
             $table->longText('content');
+            $table->boolean('seen/unseen')->nullable();
             $table->integer('conversation_id')->unsigned()->index()->nullable();
             $table->foreign('conversation_id')->references('id')->on('conversations')->onDelete('set null');
             $table->integer('sender_id')->unsigned()->index()->nullable();

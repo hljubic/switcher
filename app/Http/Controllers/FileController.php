@@ -9,22 +9,14 @@ use Illuminate\Http\Request;
 
 class FileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $files = File::all();
         return view('file.index', ['files' => $files]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $posts = Post::all();
@@ -32,12 +24,7 @@ class FileController extends Controller
         return view('file.create', ['posts' => $posts], ['tasks' => $tasks]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $files = new File();
@@ -47,23 +34,13 @@ class FileController extends Controller
         return redirect('files/create')->with('success', 'Kreirano ');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         return File::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $files = File::find($id);
@@ -72,33 +49,22 @@ class FileController extends Controller
         return view('file.edit', ['files' => $files, 'posts' => $posts, 'tasks' => $tasks]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         $files = File::find($id);
         $files->fill($request->all());
         $files->save();
 
-        return redirect('/files')->with('success', 'Ažurirano ');
+        return redirect('/files')->with('warning', 'Ažurirano ');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $files = File::find($id);
         $files->delete();
-        return redirect('/files')->with('success', 'Izbrisano ');
+        return redirect('/files')->with('danger', 'Izbrisano ');
     }
 
     public function showFile() {

@@ -8,7 +8,7 @@ class Message extends Model
 {
     public $timestamps = false;
 
-    protected $fillable = ['content', 'conversation_id', 'sender_id', 'created_at'];
+    protected $fillable = ['content','seen/unseen', 'conversation_id', 'sender_id', 'created_at'];
 
     public function user()
     {

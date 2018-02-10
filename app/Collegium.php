@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Collegium extends Model
 {
+
+
+    use  Notifiable;
     public $timestamps = false;
     protected $table = 'collegiums';
     protected $fillable = ['name', 'description', 'prof_id', 'assist_id', 'conversation_id'];

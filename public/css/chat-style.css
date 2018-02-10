@@ -147,7 +147,7 @@ body{
 {
     float: left;
     width: 100%;
-    height: 600px;
+    height: 85%;
     background-color: #FFFFFF;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -192,7 +192,7 @@ div.fixed {
     position: fixed;
 }
 .createMessage{
-    top:-15px !important;
+    top:-10px !important;
 }
 /*.div.hidden{*/
 /*display: none;*/

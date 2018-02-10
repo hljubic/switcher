@@ -9,6 +9,7 @@ use App\Task;
 use App\TaskUser;
 use Illuminate\Support\ServiceProvider;
 use View;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
        $faculties = Faculty::all();
         view()->share('faculties', $faculties);
         $studies = Study::all();

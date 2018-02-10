@@ -3,25 +3,19 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
-    //use Notifiable;
+    use Notifiable;
+
     public $timestamps = false;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
     protected $fillable = [
         'name', 'email', 'password', 'index_number', 'title', 'phone', 'type', 'is_active', 'study_id'
     ];
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+
     protected $hidden = [
         'password', 'remember_token',
     ];
@@ -57,5 +51,10 @@ class User extends Authenticatable
     public  function  classe(){
 
         return $this->belongsToMany('App\Classe');
+    }
+
+    public function conversation(){
+
+        return $this->belongsToMany('App\Conversation');
     }
 }

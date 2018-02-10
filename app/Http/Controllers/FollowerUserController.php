@@ -3,17 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\FollowerUser;
+use App\Notifications\NewFollower;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
 
 class FollowerUserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $followers = FollowerUser::all();
@@ -21,48 +18,32 @@ class FollowerUserController extends Controller
         return view('follower.index', ['followers' => $followers]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $users = User::all();
         return view('follower.create', ['users' => $users]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $followers = new FollowerUser();
         $followers->fill($request->all());
         $followers->save();
-        return redirect()->back()->with('success', 'Zapratili ste korisnika.');
+
+
+
+        return redirect()->back()->with('success', 'Pratite  korisnika.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         return FollowerUser::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $followers = FollowerUser::find($id);
@@ -71,35 +52,24 @@ class FollowerUserController extends Controller
         return view('follower.edit', array('followers' => $followers, 'users' => $users));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         $followers = FollowerUser::find($id);
         $followers->fill($request->all());
         $followers->save();
 
-        return redirect('home')->with('success', 'Podatci azurirani.');
+        return redirect('home')->with('warning', 'Ažurirano.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $followers = FollowerUser::find($id);
 
         $followers->delete();
 
-        return redirect('/followers')->with('success', "Pratitelj izbrisan.");
+        return redirect('/followers')->with('danger', "Izbrisano");
     }
 
     public function follow($id)
@@ -108,14 +78,26 @@ class FollowerUserController extends Controller
         $followers->user_id = $id;
         $followers->follower_id = Auth::user()->id;
         $followers->save();
-        return redirect()->back()->with('success', 'Zapratili ste korisnika.');
+
+        //notification data -> user gets notifications if other user starts to follow him
+
+        $users = User::leftJoin('follower_user','users.id','=','follower_user.user_id')
+            ->where('follower_user.follower_id','=',auth()->user()->id)
+            ->where('follower_user.user_id','=',$id)->get(['users.*']);
+
+        foreach ($users as $user)
+        {
+            $user->notify(new NewFollower($followers));
+        }
+
+        return redirect()->back()->with('success', 'Pratite korisnika.');
     }
 
     public function unfollow($id)
     {
         $followers = FollowerUser::where('follower_id', '=', Auth::user()->id)->where('user_id','=',$id);
         $followers->delete();
-        return redirect()->back()->with('success', 'Otpratili ste korisnika.');
+        return redirect()->back()->with('warning', 'Prestali ste pratiti korisnika.');
     }
 
 

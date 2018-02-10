@@ -8,27 +8,13 @@ use Illuminate\Http\Request;
 
 class StudyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-//    public function index()
-//    {
-//        $studies = Study::all();
-//        return view('study.index', ['studies' => $studies]);
-//    }
 
     public function index(){
         $studies = Study::all();
         return view('study.index', ['studies' => $studies]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $faculties = Faculty::all(); //FK from faculty
@@ -36,12 +22,7 @@ class StudyController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $studies = new Study();
@@ -50,24 +31,13 @@ class StudyController extends Controller
         return redirect('/studies/create')->with('success', 'Studij kreiran.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $studies = Study::find($id);
         return view('study.show')->with('studies',$studies);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $studies = Study::find($id);
@@ -77,13 +47,7 @@ class StudyController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         $studies = Study::find($id); //finding study with
@@ -93,12 +57,7 @@ class StudyController extends Controller
         return redirect('home')->with('success', 'Podatci azurirani.'); //returns to create form
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $studies = Study::find($id);

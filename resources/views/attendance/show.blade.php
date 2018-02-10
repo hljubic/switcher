@@ -8,20 +8,22 @@
                 {{ csrf_field() }}
                 <fieldset>
 
+
                     <div class="row">
                         @if($classe->type == 'lecture')
                             <div class="col-lg-6" style="color: #18BC9C;">
                                 <h4>Predavanje</h4>
                                 <small><i class="fa fa-calendar"
-                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->deadline)->format('d.m.')}}
+                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->created_at)->format('d.m.')}}
                                 </small>
                                 <small><i class="fa fa-clock-o"
-                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->deadline)->format('h:m')}}
+                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->created_at)->format('h:i')}}
                                     h
                                 </small>
                             </div>
                             <div class="col-lg-6">
                                 <br>
+
                                 <button type="submit" class="col-lg-offset-10 btn btn-success btn-sm">Spremi
                                 </button>
                             </div>
@@ -29,10 +31,10 @@
                             <div class="col-lg-6" style="color: #ec971f;">
                                 <h4>Vježbe</h4>
                                 <small><i class="fa fa-calendar"
-                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->deadline)->format('d.m.')}}
+                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->created_at)->format('d.m.')}}
                                 </small>
                                 <small><i class="fa fa-clock-o"
-                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->deadline)->format('h:m')}}
+                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->created_at)->format('h:i')}}
                                     h
                                 </small>
                             </div>
@@ -45,10 +47,10 @@
                             <div class="col-lg-6" style="color: #d9534f;">
                                 <h4>Laboratorijske vježbe</h4>
                                 <small><i class="fa fa-calendar"
-                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->deadline)->format('d.m.')}}
+                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->created_at)->format('d.m.')}}
                                 </small>
                                 <small><i class="fa fa-clock-o"
-                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->deadline)->format('h:m')}}
+                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->created_at)->format('h:i')}}
                                     h
                                 </small>
                             </div>

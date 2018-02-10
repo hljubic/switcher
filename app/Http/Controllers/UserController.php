@@ -8,15 +8,13 @@ use App\Post;
 use App\Study;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    use Notifiable;
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -24,27 +22,17 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::orderBy('name','asc')->get();
+        $users = User::orderBy('name', 'asc')->get();
         return view('user.index', ['users' => $users]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $studies = Study::all();
         return view('user.create', ['studies' => $studies]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $user = new User();
@@ -54,20 +42,17 @@ class UserController extends Controller
         return redirect('/users')->with('success', 'Korisnik kreiran.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $user = User::find($id);
         $followers = FollowerUser::where('user_id', '=', $id)->count();
         $following = FollowerUser::where('follower_id', '=', $id)->count();
-        $collegiums = Collegium::where('prof_id', '=', $id)->orWhere('assist_id', '=', $id)->orwhereHas('user', function ($q) use ($id) {
-            $q->where('user_id', '=', $id);
-        })->get();
+
+        $collegiums = Collegium::where('prof_id', '=', $id)->orWhere('assist_id', '=', $id)
+            ->orwhereHas('user', function ($q) use ($id) {
+                $q->where('user_id', '=', $id);
+            })->get();
 
         if (FollowerUser::where('follower_id', '=', Auth::user()->id)->where('user_id', '=', $id)->exists()) {
             $followButton = true;
@@ -79,12 +64,6 @@ class UserController extends Controller
             'collegiums' => $collegiums, 'followButton' => $followButton));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         /*$model = $this->getModel();
@@ -96,13 +75,6 @@ class UserController extends Controller
         return view("user.edit", ['user' => $user], ['studies' => $studies]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
 
@@ -114,20 +86,15 @@ class UserController extends Controller
             $user->fill(array_filter($request->all(), 'strlen'));
         }
         $user->save();
-        return redirect('/users')->with('success', 'Podatci korisnika ažurirani.');
+        return redirect('/users')->with('warning', 'Ažurirano.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $user = User::find($id);
         $user->delete();
-        return redirect('/users')->with('success', 'Korisnik izbrisan.');
+        return redirect('/users')->with('danger', 'Izbrisano');
     }
 
     public function imenik()
@@ -137,12 +104,10 @@ class UserController extends Controller
         return view('user.imenik', ['users' => $users]);
     }
 
-    /*public function getModel()
-    {
-        return 'App\\Models\\' . static::$model;
-    }*/
-    public  function searchUsers(){
 
-        return User::orderBy('name','asc')->get();
+    public function searchUsers()
+    {
+
+        return User::orderBy('name', 'asc')->get();
     }
 }

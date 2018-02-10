@@ -8,7 +8,7 @@ class Conversation extends Model
 {
     public $timestamps = false;
 
-    protected $fillable = ['title', 'creator_id'];
+    protected $fillable = ['title','last_message_time', 'creator_id'];
 
 
     public function user()

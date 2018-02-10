@@ -150,6 +150,7 @@
                                     <input type="text" class="form-control input-sm" id="description" name="description"
                                            placeholder="Postavite opis datoteke...">
                                     <input type="hidden" name="task_id" id="task_id" value="{{$tasks->id}}">
+
                                     <br>
                                     <div class="col-lg-4 col-lg-offset-8">
                                         <button type="submit" class="btn btn-success btn-block btn-sm"><i
@@ -193,7 +194,10 @@
                                             <div class="row">
                                                 <div class="col-lg-9">
                                                     <h5> {{$file->name}}</h5>
-                                                    <h6>{{$file->created_at}}</h6>
+                                                    <h6>
+                                                        {{\Carbon\Carbon::parse($file->created_at)->format('h:i:s')}} ,
+                                                        {{\Carbon\Carbon::parse($file->created_at)->format('d.m.y')}}
+                                                    </h6>
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <a style="color: #18bc9c; font-size:17px;" class="glyphicon glyphicon-cloud-download btn"

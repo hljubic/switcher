@@ -27,17 +27,18 @@
                                             @if($followButton == true)
                                                 @can('prikazi',$collegiums)
                                                     <a href="{{route('unfollowCollegium')}}/{{$collegiums->id}}"
-                                                       class="btn btn-success noborder btn-sm">Prestani pratiti</a>@endcan
+                                                       class="btn btn-success noborder btn-sm">Prestani
+                                                        pratiti</a>@endcan
                                             @else
 
                                                 @can('prikazi',$collegiums)
-                                                    <button type="submit" class="btn btn-success noborder btn-sm">Prati kolegij
+                                                    <button type="submit" class="btn btn-success noborder btn-sm">Prati
+                                                        kolegij
                                                     </button>@endcan
 
 
                                             @endif
                                         </div>
-
 
 
                                     </div>
@@ -52,11 +53,11 @@
                         @endphp
 
                         <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
-                            <li><a href="#general-data" data-toggle="tab">Osnovni podaci</a></li>
+                            <li><a href="#general-data" data-toggle="tab">Osnovno</a></li>
                             <li><a href="#studies-data" data-toggle="tab">Studiji</a></li>
                             <li><a href="#posts-data" data-toggle="tab">Obavijesti</a></li>
                             <li><a href="#tasks-data" data-toggle="tab">Zadaci</a></li>
-                            <li><a href="#classes-data" data-toggle="tab">Predavanja / Vježbe </a></li>
+                            <li><a href="#classes-data" data-toggle="tab">Izbvedba</a></li>
                             <li><a href="#student-data" data-toggle="tab">Studenti
                                     @if($collegiums->user) <span class="badge"
                                                                  style="background-color:#18BC9C; font-size: 15px; width: 27px;"> {{$numuser}} </span> @endif
@@ -187,7 +188,8 @@
                                                                 <textarea class="form-control" rows="2"
                                                                           id="content-body" name="content"
                                                                           placeholder="Napišite objavu"
-                                                                          style="margin-bottom: 0px; border:none;" required></textarea>
+                                                                          style="margin-bottom: 0px; border:none;"
+                                                                          required></textarea>
                                                         <input type="hidden" name="created_at" id="inputDate"
                                                                value="{{ date('y-m-d h:i:s') }}">
                                                         <input type="hidden" name="collegium_id"

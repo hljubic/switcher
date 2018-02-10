@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Classe;
+
 use App\Collegium;
-use App\File;
+use App\CollegiumUser;
+use App\Notifications\NewTask;
 use App\Task;
 use App\TaskUser;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class TaskController extends Controller
 {
@@ -35,27 +38,31 @@ class TaskController extends Controller
         return view('task.create', ['collegiums' => $collegiums]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $tasks = new Task();
         $tasks->fill($request->all());
         $tasks->save();
 
-        return redirect()->back()->with('success','Dodali ste novi zadatak!');
+        //notifications for students who are enrolled in collegium where task has been created
+        $taskColl = CollegiumUser::
+        where('collegium_id', '=', $tasks->collegium->id)->get();
+
+        for ($index = 0; $index < count($taskColl); $index++) {
+
+            $users = User::where('users.id', '=', $taskColl[$index]["user_id"])->get();
+
+            foreach ($users as $user) {
+
+                $user->notify(new NewTask($tasks));
+            }
+        }
+
+        return redirect()->back()->with('success', 'Kreirano.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $tasks = Task::find($id);
@@ -70,12 +77,7 @@ class TaskController extends Controller
         return view('task.show', array('tasks' => $tasks, 'followButton' => $followButton, 'taskuser' => $taskuser));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $task = Task::find($id);
@@ -84,35 +86,22 @@ class TaskController extends Controller
         return view('/task.edit', ['task' => $task], ['collegiums' => $collegiums]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         $task = Task::find($id);
         $task->fill(array_filter($request->all(), 'strlen'));
         $task->save();
 
-        return redirect('/tasks')->with('success', 'Podaci zadatka ažurirani.');
+        return redirect('/tasks')->with('warning', 'Ažurirano.');
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $task = Task::find($id);
         $task->delete();
 
-        return redirect('/tasks')->with('success', 'Zadatak izbrisan.');
+        return redirect('/tasks')->with('danger', 'Izbrisano.');
     }
 
     //funkcija koja otvara formu za dodavanje liste studenata na neki zadatak
@@ -137,7 +126,7 @@ class TaskController extends Controller
                 $taskuser->save();
             }
             return redirect('/tasks/' . $request->task_id);
-        }else{
+        } else {
             return redirect('/tasks/' . $request->task_id);
         }
     }
