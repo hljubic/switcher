@@ -98,7 +98,7 @@ Route::post('/files/upload','FileController@storeFile');
 
 
 // Chat
-Route::get('/chat', 'ChatController@index');
+Route::get('/chat', 'ChatController@index')->name('chat');
 Route::get('/chat/conversations', 'ChatController@getConversations')->name('conversations1'); //vraća sve razgovore prijavljenog korisnika
 Route::get('/chat/messages/{conversation_id}', 'ChatController@getMessages')->name('messages1'); //vraća sve poruke u razgovoru čiji id je proslijeđen
 Route::get('/chat/participants/{conversation_id}', 'ChatController@getParticipants')->name('participants1'); //vraća sve sudionike u razgovoru čiji id je proslijeđen
@@ -133,7 +133,7 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
         'faculties' => 'FacultyController',
         'files' => 'FileController',
         'followers' => 'FollowerUserController',
-        'messages' => 'MessageController',
+        //'messages' => 'MessageController',
         'participants' => 'ParticipantController',
         'studies' => 'StudyController',
         'tasks' => 'TaskController',

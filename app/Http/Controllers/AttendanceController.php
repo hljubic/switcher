@@ -8,7 +8,7 @@ use App\CollegiumUser;
 use App\User;
 use function foo\func;
 use Illuminate\Http\Request;
-use Excel;
+
 
 class AttendanceController extends Controller
 {
