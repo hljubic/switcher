@@ -79,11 +79,30 @@ class ChatController extends Controller
     //kreira novi razgovor sa korisnikom čiji id je proslijeđen
     public function createConversation(Request $request)
     {
-        //$user=User::find($request);
+//        $id_korisnika = $request->user_id;
+        $participants1 = Participant::where('user_id', '=', $request->user_id)->get();
+        $participants2 = Participant::where('user_id', '=', Auth::user()->id)->get();
+
+        foreach ($participants1 as $part1){
+            foreach ($participants2 as $part2){
+                if($part1->conversation_id == $part2->conversation_id){
+//                    return $part1->conversation_id;
+                    $conversation = Conversation::where('id', '=', $part1->conversation_id)->get();
+                    return $conversation;
+//                    foreach ($conversation as $conv){
+//                        if($part1->conversation_id == $conv->$id){
+//                            return $conv;
+//                        }
+//                    }
+//                    return false;
+                }
+            }
+        }
+        $user = User::find($request->user_id);
         $conversation = new Conversation();
-        $conversation->title = "Razgovor 9";
-            //$user->name.', '.Auth::user()->name;
+        $conversation->title = $user->name . ' - ' . Auth::user()->name;
         $conversation->creator_id = Auth::user()->id;
+        $conversation->created_at = $request->created_at;
         $conversation->save();
 
         $participant = new Participant();

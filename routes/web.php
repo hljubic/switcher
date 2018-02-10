@@ -85,6 +85,5 @@ Route::get('/chat/participants/{conversation_id}', 'ChatController@getParticipan
 Route::post('/chat/conversation', 'ChatController@createConversation')->name('create_conversation1'); //kreira novi razgovor sa korisnikom čiji id je proslijeđen
 Route::post('/chat/messages', 'ChatController@createMessage')->name('create_message'); //kreira novu poruku u razgovoru
 
-
 //search
 Route::get('/searchUsers','UserController@searchUsers')->name('search_user');
