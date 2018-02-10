@@ -4,41 +4,49 @@
     <div  ng-cloak >
         <div class="container-fluid">
             <div class="row">
+
                 <div class="col-lg-3 swt-sidebar" >
                     <div class="row">
                         <div class="col-lg-6 col-lg-offset-3" style="padding-bottom: 10px; padding-top:20px; text-align: center;">
-                            <h4>Razgovori</h4>
+                            <h4>Conversations</h4>
                         </div>
-                        <div class="col-lg-3 text-right" style="padding-bottom: 13px; padding-top:20px; text-align: center;">
-                            <a type="button" data-toggle="modal" data-target="#newConversation" title="Novi razgovor" class="btn">
-                                <i class="fa fa-edit" style=" background-color:transparent; color:#18BC9C; font-size:20px;"></i>
-                            </a>
+                        <div class="col-lg-3 text-right" style="padding-bottom: 10px; padding-top:17px; text-align: center;">
+                            <button type="button" data-toggle="modal" data-target="#newConversation" title="Novi razgovor" class="btn">
+                                <i class="fa fa-edit" style="color:#18BC9C; font-size:25px;"></i>
+                            </button>
                         </div>
                     </div>
                     <hr class="nopadding">
                     <div class="list-group-item">
-                        <div class="input-group input-group-sm ">
-                            <input type="text" class="form-control" placeholder="Search conversation"
-                                   style="border-radius: 2px; background-color:rgba(179, 179, 179,0.3); border:none; color:#000000; width: 390px"
-                                   ng-model="searchText1">
-                        </div>
+
+                            <div class="input-group input-group-sm ">
+                                <input type="text" class="form-control" placeholder="Search " list="browsers" name="browser"
+                                       style="border-radius:0px; background-color:rgba(179, 179, 179,0.3); border:none; color:#fff;">
+                                <datalist id="browsers">
+                                    <option ng-repeat="user in users" value="<%user.name%>">
+
+                                </datalist>
+                                <span class="input-group-btn">
+                                     <button class="btn btn-secondary" type="button">Go!</button>
+                                </span>
+                            </div>
+
                     </div>
                     <div id="lista_razgovora" class="list-group">
                         <div ng-repeat="conv in conversations" >
-                            <ul href="#" class="list-group-item swt-nav-item"
-                                ng-click="selectConversation(conv)"
-                                ng-class="{'selected-conversation':conv.id == selectedConversation.id}"
-                                ng-repeat="par in conv.participants | filter: searchText1">
+                        <ul href="#" class="list-group-item swt-nav-item"
+                            ng-click="selectConversation(conv)"
+                            ng-class="{'selected-conversation':conv.id == selectedConversation.id}"
+                            ng-repeat="par in conv.participants">
 
-                                <li style="list-style-type: none;">
-                                    <h4 class="list-group-item-heading" style="padding-bottom:5px; color:#20c997;" ng-if="par.id != {{Auth::user()->id}}"><% par.name %></h4>
-                                    <p class="list-group-item-text" style="padding-bottom:5px; color: lightslategray;"
-                                       ng-if="par.id != {{Auth::user()->id}}" >
-                                        <% conv.title %>
-                                    </p>
-                                </li>
+                            <li  style="list-style-type: none;" >
+                                <h4 class="list-group-item-heading" style="padding-bottom:5px;" ng-if="par.id != {{Auth::user()->id}}"><% par.name %></h4>
+                                <p class="list-group-item-text" style="padding-bottom:5px; color:#20c997;"
+                                   ng-if="par.id != {{Auth::user()->id}}">
+                                    <%par.name%></p>
+                            </li>
 
-                            </ul>
+                        </ul>
                         </div>
                     </div>
                     <br/>
@@ -48,25 +56,27 @@
                 <div class="col-lg-6 nopadding">
                     <div class="swt-chat-window ">
                         <div class="col-lg-12 " style="padding-bottom: 16px; padding-top:20px; text-align: center; border-bottom: solid 2px #18BC9C;" >
-                            <h4>Messages with
-                                <span class="swt-current-conversation-contact" ng-repeat="par in selectedConversation.participants">
-                                    <% par.name %></span>
-                            </h4>
+                            <h4>Messages with <span class="swt-current-conversation-contact">
+                                    <% selectedConversation.title %></span></h4>
                         </div>
 
-                        <div id = "message-content" class="swt-chat-messages-area swt-users-messages" style="padding-top: 10px; overflow: scroll;" scroll-bottom="bottom">
+
+                        <div id = "message-content" class="swt-chat-messages-area swt-users-messages"
+                             style="padding-top: 10px; overflow: scroll;" scroll-bottom="bottom">
                             <div ng-repeat="msg in messages">
+
+
                                 <div ng-if="msg.sender_id != {{Auth::user()->id}}">
                                     <div class="row" style="margin-left: 10px">
                                         <div style="position: relative; bottom: 0px; margin-left: 10px">
-                                            <div ng-repeat="user in users">
-                                                <p style="color: lightslategray; font-size: small" ng-if="msg.sender_id == user.id">
-                                                    <%msg.created_at %>  @<%user.name%></p></div>
+                                            <p style="color: lightslategray; font-size: small"><%msg.created_at %></p>
                                         </div>
+
                                         <div class=" col-lg-4 swt-msg-wrapper swt-others-msg" style="margin-bottom: 3px;">
                                             <% msg.content %>
                                         </div>
                                         <div class="col-lg-8"></div>
+
                                     </div>
                                 </div>
 
@@ -77,25 +87,30 @@
                                             <div style="position: relative; bottom: 0px">
                                                 <p style="color: lightslategray; font-size: small; text-align: right"><%msg.created_at %></p>
                                             </div>
+
                                             <div class="swt-msg-wrapper swt-my-msg" style="margin-bottom: 3px;" >
                                                 <% msg.content %>
                                             </div>
+
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+
                     </div>
                     <div class="row col-lg-10 col-lg-offset-1 createMessage">
-                        <div class="col-lg-10 " >
+                        <div class="col-lg-10 ">
                             <input type="text"
                                    class="form-control"
                                    placeholder="Enter new message"
-                                   ng-model="newMessage" ng-submit="sendNewMessage()">
+                                   ng-model="newMessage">
                         </div>
                         <div class="col-lg-2 nopadding">
                             <button class="btn  btn-block btn-success"
-                                    ng-click="sendNewMessage()" >
+                                    ng-click="sendNewMessage()">
                                 Send
                             </button>
                         </div>
@@ -103,29 +118,9 @@
                 </div>
 
                 <div class="col-lg-3 swt-sidebar" >
-                    <div class="row">
-                        <div class="col-lg-12 " style="padding-bottom: 16px; padding-top:20px; text-align: center; border-bottom: solid 2px #18BC9C;" >
-                            <h4>Participants of the conversation</h4>
-                        </div>
-                    </div>
-                    <div class="list-group">
-                        <div ng-repeat="par in selectedConversation.participants">
-                            <ul href="#" class="list-group-item swt-nav-item">
-                                <li  style="list-style-type: none; height: 50px" >
-                                    <div class="col-lg-8">
-                                        <h4 class="list-group-item-heading" style=" color:#20c997;"
 
-                                            ng-model="select_user(par.id)" ng-if="par.id != {{Auth::user()->id}}">
-                                            <% par.name %></h4>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <a href="{{route('users')}}/<%selected_user%>" class="btn btn-success" type="button">Profile</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -143,10 +138,13 @@
                 <div class="modal-body">
                     <form action="">
                         <div class="form-group">
+                            {{--<input placeholder="User name" type="text" class="form-control" ng-model="new_conversation">--}}
+
                             <input placeholder="User name" type="text" class="form-control"  name="browser"
-                                   style="border-radius:0px; background-color:rgba(179, 179, 179,0.3); border:none; color:#000000;" ng-model="searchText2">
+                                   style="border-radius:0px; background-color:rgba(179, 179, 179,0.3); border:none; color:#000000;"
+                                   ng-model="searchText">
                             <datalist id="browsers">
-                                <option ng-repeat="user in users | filter: searchText2"
+                                <option ng-repeat="user in users | filter: searchText"
                                         value="<%user.name%>"  ng-model="select_user(user.id)">
                             </datalist>
                         </div>
@@ -154,12 +152,8 @@
                     <p style="visibility: hidden; position: fixed" value="<%selected_user%>"></p>
                 </div>
                 <div class="modal-footer">
-                    {{--<div ng-repeat="pr in provjera" ng-model="select(pr)"></div>--}}
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success"
-
-                            {{--ng-model = "radi()"--}}
-                            ng-click="addNewConversation()" data-dismiss="modal">Save changes</button>
+                    <button type="button" class="btn btn-success" ng-click="addNewConversation()" data-dismiss="modal">Save changes</button>
                 </div>
             </div>
         </div>
@@ -176,85 +170,109 @@
     {{--<script src="//bootstrap/dist/js/bootstrap.min.js"></script>--}}
 
     <script>
+        {{--var API_MESSAGES = '{{ route('messages', 1) }}'--}}
+        {{--var API_PARTICIPANTS = '{{route('participants', 3)}}';--}}
         var API_CONVERSATIONS = '{{route('conversations1')}}';
         var API_NEW_CONVERSATON = '{{route('create_conversation1')}}';
         var API_NEW_MESSAGE = '{{route('create_message')}}';
+
         (function(){
+
             angular.module("swtSearchApp", [])
+
                 .config(['$interpolateProvider', function($interpolateProvider) {
                     $interpolateProvider.startSymbol('<%');
                     $interpolateProvider.endSymbol('%>');
                 }])
+
                 .controller("swtSearchMainController", function($scope, $http){
                     var API_MESSAGES
+//                    var API_PARTICIPANTS
                     var element = document.getElementById("message-content");
                     $scope.selectConversation = function (con) {
                         $scope.selectedConversation = con;
-                        $scope.searchText1 = "";
+                        console.log($scope.selectedConversation)
+                        $scope.slectedName = function () {
+                            angular.forEach($scope.selectedConversation, function(value, key){
+                                if(value.participants.name != '{{Auth::user()->name}}'){
+                                    return value.participants.name;
+                                }
+                            });
+                        }
                         API_MESSAGES = '{{ route('messages1','')}}' + '/' +  $scope.selectedConversation.id
+
+
                         $scope.getMessages();
                     }
+
                     $scope.init = function () {
+
                         // Ulazna točka aplikacije
+
                         $scope.getMessages();
+//                        $scope.getParticipants();
                         $scope.getConversations();
                         $scope.getUsers();
+
+                        {{--API_PARTICIPANTS = '{{route('participants', '')}}' + '/' +  $scope.selectedConversation.id--}}
+
+//                        $scope.reload = function () {
+//                            $http.get('http://localhost/switcher/public/chat').
+//                            success(function (data) {
+//                                $scope.todos = data.todos;
+//                                console.log("radi")
+//                            });
+//                        };
                         setInterval(function(){ $scope.getMessages(); }, 3000);
 //                        $scope.reload();
 //                        $timeout($scope.getMessages(), 3000)
                         console.log('pozvanInit')
                     };
+
+
                     $scope.select_user = function (usr) {
                         $scope.selected_user = usr;
                     }
+
                     //dodavanje novog razgovora
                     $scope.addNewConversation = function(){
-                        var date = new Date().toLocaleString('en-US',{hour12:false}).split(" ");
-                        //razdvajanje na datum i vrijeme
-                        var time = date[1];
-                        var mdy = date[0];
-                        // korigiranje dijelova za spremanje u bazu
-                        mdy = mdy.split('/');
-                        var month = parseInt(mdy[0]);
-                        var day = parseInt(mdy[1]);
-                        var year = parseInt(mdy[2]);
-                        var formattedDate = year + '/' + month + '/' + day + ' ' + time;
-                        $new_conversation = {'user_id': $scope.selected_user, 'created_at': formattedDate};
+
+                        $new_conversation = {'user_id': $scope.selected_user};
                         $http({
                             method: 'POST',
                             url: API_NEW_CONVERSATON,
                             data: JSON.stringify($new_conversation)
                         }).then(function successCallback(response) {
                             $scope.conversations = response.data;
-//                            console.log(response.data[0].id);
-                            if($scope.conversations != $scope.selected_user){
-//                                alert("Razgovor već postoji")
-                                $scope.selectedConversation = response.data[0];
-                                API_MESSAGES = '{{ route('messages1','')}}' + '/' +  response.data[0].id;
-                                $scope.getMessages();
-                                $scope.getConversations();
-                            }
+
                         }, function errorCallback(response) {
                             console.log("greška prilokom kreiranja razgvora!")
                             // called asynchronously if an error occurs
                             // or server returns response with an error status.
                         });
-                        $scope.searchText2 = ""
+                        //console.log( $scope.selected_user)
                     };
+
                     $scope.sendNewMessage = function() {
+
                         var date = new Date().toLocaleString('en-US',{hour12:false}).split(" ");
+
                         //razdvajanje na datum i vrijeme
                         var time = date[1];
                         var mdy = date[0];
+
                         // korigiranje dijelova za spremanje u bazu
                         mdy = mdy.split('/');
                         var month = parseInt(mdy[0]);
                         var day = parseInt(mdy[1]);
                         var year = parseInt(mdy[2]);
+
                         var formattedDate = year + '/' + month + '/' + day + ' ' + time;
-//                        console.log(formattedDate);
+                        console.log(formattedDate);
+
                         $newMessage = {'content_msg': $scope.newMessage, 'conversation_id': $scope.selectedConversation.id,
-                            'created_at': formattedDate};
+                        'created_at': formattedDate};
+
                         $http({
                             method: 'POST',
                             url: API_NEW_MESSAGE,
@@ -264,6 +282,7 @@
                             setTimeout(function () {
                                 element.scrollTop = element.scrollHeight;
                             }, 100)
+
                         }, function errorCallback(response) {
                             console.log("greška prilokom slanja poruke!")
                             if ($scope.newMessage == ""){
@@ -272,9 +291,26 @@
                             // called asynchronously if an error occurs
                             // or server returns response with an error status.
                         });
+
                         $scope.newMessage = "";
+
                     };
+
+//                    $scope.getParticipants = function () {
+//
+//                        $http({
+//                            method: 'GET',
+//                            url: API_PARTICIPANTS
+//                        }).then(function successCallback(response) {
+//                            $scope.participants = response.data;
+//                            console.log($scope.participants)
+//                        }, function errorCallback(response) {
+//                            // called asynchronously if an error occurs
+//                            // or server returns response with an error status.
+//                        });
+//                    }
                     $scope.getConversations = function () {
+
                         $http({
                             method: 'GET',
                             url: API_CONVERSATIONS
@@ -286,6 +322,7 @@
                         });
                     }
                     $scope.getMessages = function () {
+
                         $http({
                             method: 'GET',
                             url: API_MESSAGES
@@ -300,6 +337,7 @@
                         }, 100)
                     }
                     $scope.getUsers = function () {
+
                         $http({
                             method: 'GET',
                             url: API_USERS
@@ -310,8 +348,8 @@
                             // or server returns response with an error status.
                         });
                     }
+
                 })
         })();
     </script>
 @endpush
-

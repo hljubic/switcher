@@ -1,10 +1,13 @@
 /* CHAT Style */
 
 /*
+
     Dodat send button negdje dole i input field
     Napravit poruke da idu u desno kako treba
     Vidit responzivnost
+
     Napravit angular sve
+    
 
  */
 
@@ -110,7 +113,7 @@ body{
 .swt-chat-window .swt-chat-messages-area p{
     padding: 5px;
     margin: 0;
-
+    
 }
 
 .swt-chat-window .swt-chat-messages-area .swt-msg-wrapper{
@@ -147,7 +150,7 @@ body{
 {
     float: left;
     width: 100%;
-    height: 85%;
+    height: 600px;
     background-color: #FFFFFF;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -192,9 +195,9 @@ div.fixed {
     position: fixed;
 }
 .createMessage{
-    top:-10px !important;
+    top:-15px !important;
 }
 /*.div.hidden{*/
-/*display: none;*/
-/*border: none;*/
+    /*display: none;*/
+    /*border: none;*/
 /*}*/
