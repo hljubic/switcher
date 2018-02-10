@@ -32,6 +32,7 @@
                 // Ulazna točka aplikacije
 
                 $scope.getUsers();
+                $scope.getProfessors();
 
                 console.log('pozvanInit')
             };
@@ -43,6 +44,19 @@
                     url: API_USERS
                 }).then(function successCallback(response) {
                     $scope.users = response.data;
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+            }
+            
+            $scope.getProfessors = function () {
+
+                $http({
+                    method: 'GET',
+                    url: API_GET_PROFESORS
+                }).then(function successCallback(response) {
+                    $scope.professors = response.data;
                 }, function errorCallback(response) {
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.

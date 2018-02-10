@@ -108,6 +108,7 @@ Route::post('/chat/messages', 'ChatController@createMessage')->name('create_mess
 
 //search
 Route::get('/searchUsers','UserController@searchUsers')->name('search_user');
+Route::get('/searchProfessors','UserController@getProfessors')->name('search_professors');
 //Add users in attendances
 Route::post('/class_user', 'AttendanceController@storeUsers')->name('class_user');
 
@@ -127,7 +128,7 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
         'users' => 'UserController',
         'attendances' => 'AttendanceController',
         'classes' => 'ClasseController',
-        'collegiums' => 'CollegiumController',
+        //'collegiums' => 'CollegiumController',
         'collegium_study' => 'CollegiumStudyController',
         'conversations' => 'ConversationController',
         'faculties' => 'FacultyController',

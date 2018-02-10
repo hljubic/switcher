@@ -104,6 +104,10 @@ class UserController extends Controller
         return view('user.imenik', ['users' => $users]);
     }
 
+    public function getProfessors()
+    {
+        return User::where('type', '=', 'professor')->orderBy('name', 'asc')->get();
+    }
 
     public function searchUsers()
     {
