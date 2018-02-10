@@ -6,10 +6,12 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "fico7489/laravel-eloquent-join": "*",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "unisharp/laravel-ckeditor": "^4.6"
+        "unisharp/laravel-ckeditor": "^4.6",
+        "usmanhalalit/laracsv": "1.*@dev"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

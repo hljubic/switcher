@@ -123,4 +123,10 @@ class AttendanceController extends Controller
             return redirect('/collegiums/'.$request->collegium_id);
         }
     }
+
+    public function downloadCsv($id){
+        $attendances = Attendance::where('class_id', '=', $id)->with('user')->get();
+        $csvExporter = new \Laracsv\Export();
+        $csvExporter->build($attendances, ['user.name', 'user.email', 'user.index_number', 'user.study.name'])->download();
+    }
 }

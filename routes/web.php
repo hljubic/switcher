@@ -143,3 +143,7 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::get('/' . $key, $value . '@index')->name($key); // Retrieve all data from table
 
     }});
+
+Route::get('/download','AttendanceController@downloadCsv')->name('download');
+Route::get('/download/{id}','AttendanceController@downloadCsv');
+
