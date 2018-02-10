@@ -54,7 +54,8 @@
                             </h4>
                         </div>
 
-                        <div id = "message-content" class="swt-chat-messages-area swt-users-messages" style="padding-top: 10px; overflow: scroll;" scroll-bottom="bottom">
+                        <div id = "message-content" class="swt-chat-messages-area swt-users-messages"
+                             style="padding-top: 10px; overflow: scroll;" scroll-bottom="bottom">
                             <div ng-repeat="msg in messages">
                                 <div ng-if="msg.sender_id != {{Auth::user()->id}}">
                                     <div class="row" style="margin-left: 10px">
@@ -115,11 +116,11 @@
                                     <div class="col-lg-8">
                                         <h4 class="list-group-item-heading" style=" color:#20c997;"
 
-                                            ng-model="select_user(par.id)" ng-if="par.id != {{Auth::user()->id}}">
+                                            ng-model="select_user1(par.id)" ng-if="par.id != {{Auth::user()->id}}">
                                             <% par.name %></h4>
                                     </div>
                                     <div class="col-lg-4">
-                                        <a href="{{route('users')}}/<%selected_user%>" class="btn btn-success" type="button">Profile</a>
+                                        <a href="{{route('users')}}/<%selected_user1%>" class="btn btn-success" type="button">Profile</a>
                                     </div>
                                 </li>
                             </ul>
@@ -217,6 +218,10 @@
 
                     $scope.select_user = function (usr) {
                         $scope.selected_user = usr;
+                    }
+
+                    $scope.select_user1 = function (usr) {
+                        $scope.selected_user1 = usr;
                     }
 
                     //dodavanje novog razgovora

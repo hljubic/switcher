@@ -166,6 +166,8 @@
 </script>
 <script>
     var API_USERS = '{{route('search_user')}}';
+    var API_GET_PROFESORS = "{{route('search_professors')}}"
+
     {{--var API_MESSAGES = '{{ route('messages1', 1) }}';--}}
             {{--var API_PARTICIPANTS = '{{route('participants', 3)}}';--}}
     {{--var API_CONVERSATIONS = '{{route('conversations1')}}';--}}

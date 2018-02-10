@@ -10,6 +10,7 @@
         .controller("swtSearchMainController", function($scope, $http){
 
             var API_USER
+            // var API_GET_PROFESORS = "{{route('search_professors')}}"
 
             $scope.selectUser = function (user) {
                 $scope.selectedUser = user;
@@ -18,20 +19,21 @@
             $scope.select_user = function (usr) {
                 $scope.selected_user = usr;
                 // console.log($scope.selected_user);
-                // API_USER = "{{ route('users','')}}" + '/' +  $scope.selected_user
+                API_USER = "{{ route('users','')}}" + '/' +  $scope.selected_user
             }
 
-            $scope.search = function(){
-                $http.post("http://localhost/switcher/public/users/1").success(function(data) {
-                    $scope.users = eval(data);// Update Model-- Line X
-                });
-            }
+            // $scope.search = function(){
+            //     $http.post("http://localhost/switcher/public/users/1").success(function(data) {
+            //         $scope.users = eval(data);// Update Model-- Line X
+            //     });
+            // }
 
             $scope.init = function () {
 
                 // Ulazna točka aplikacije
 
                 $scope.getUsers();
+                $scope.getProfessor();
 
                 console.log('pozvanInit')
             };
@@ -43,6 +45,18 @@
                     url: API_USERS
                 }).then(function successCallback(response) {
                     $scope.users = response.data;
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+            }
+            $scope.getProfessor = function () {
+
+                $http({
+                    method: 'GET',
+                    url: API_GET_PROFESORS
+                }).then(function successCallback(response) {
+                    $scope.professors = response.data;
                 }, function errorCallback(response) {
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.

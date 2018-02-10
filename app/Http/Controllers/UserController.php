@@ -146,4 +146,9 @@ class UserController extends Controller
 
         return User::orderBy('name','asc')->get();
     }
+
+    public function getProfessors()
+    {
+        return User::where('type', '=', 'professor')->orderBy('name', 'asc')->get();
+    }
 }

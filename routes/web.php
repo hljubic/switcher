@@ -87,3 +87,4 @@ Route::post('/chat/messages', 'ChatController@createMessage')->name('create_mess
 
 //search
 Route::get('/searchUsers','UserController@searchUsers')->name('search_user');
+Route::get('/searchProfessors','UserController@getProfessors')->name('search_professors');
