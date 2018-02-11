@@ -42,7 +42,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        if($user->type=='admin'){
+        if($user->type=='admin' or  auth()->user()->id == $user->id){
             return true;
         }
 

@@ -147,3 +147,12 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::get('/' . $key, $value . '@index')->name($key); // Retrieve all data from table
 
     }});
+
+//Ruta za notifikacije
+Route::get('/markAsRead',function(){
+
+    auth()->user()->unreadNotifications->markAsRead();
+
+    return redirect()->back();
+
+})->name('markRead');
