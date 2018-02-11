@@ -1,15 +1,11 @@
 <?php
-
 namespace App\Policies;
-
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
-
 class UserPolicy
 {
     use HandlesAuthorization;
-
     /**
      * Determine whether the user can view the model.
      *
@@ -19,9 +15,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-
     }
-
     /**
      * Determine whether the user can create models.
      *
@@ -32,7 +26,6 @@ class UserPolicy
     {
         //
     }
-
     /**
      * Determine whether the user can update the model.
      *
@@ -42,12 +35,10 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        if($user->type=='admin' or  auth()->user()->id == $user->id){
+        if($user->type == 'admin' || auth()->user()->id == $user->id){
             return true;
         }
-
     }
-
     /**
      * Determine whether the user can delete the model.
      *

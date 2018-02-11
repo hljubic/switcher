@@ -12,6 +12,7 @@
                                     <div id="profile">{{substr($user->name,0,1)}}</div>
                                 </div>
                             </div>
+                            <!--pratitelji, objave, pratim -->
                             <div class="col-lg-5">
                                 <h4 id="storename">{{$user->name}}</h4>
 
@@ -39,10 +40,17 @@
                                 </div>
                                 <br>
                                 @if(Auth::user()->id == $user->id)
+                                    @if(Auth::user()->type == 'admin' or Auth::user()->type == 'professor')   {{--Provjerava tip logiranog korisnika --}}
                                     <a href="{{route('users_edit')}}/{{$user->id}}"
                                        class="btn noborder btn-success btn-sm"
                                        style="width: 100%;">
                                         Uredi</a></td>
+                                    @else
+                                        <a href="{{route('student_edit')}}"
+                                           class="btn noborder btn-success btn-sm"
+                                           style="width: 100%;">
+                                            Uredi</a>
+                                    @endif
                                 @elseif($followButton == true)
                                     <div class="row">
                                         <a href="{{route('unfollow')}}/{{$user->id}}"

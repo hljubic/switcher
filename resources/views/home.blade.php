@@ -87,7 +87,10 @@
                                                             <small><a href="{{route('posts_delete')}}/{{$post->id}}"
                                                                       style="color: #ecf0f1;;"
                                                                       class="btn btn-xs fa fa-times"
-                                                                      aria-hidden="true"></a></small>@endcan
+                                                                      aria-hidden="true">
+                                                                </a>
+                                                            </small>
+                                                        @endcan
                                                     </div>
                                                 </div>
                                                 <div class="row">
