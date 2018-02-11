@@ -35,7 +35,6 @@ $routes = [
     'followers' => 'FollowerUserController',
     'messages' => 'MessageController',
     'participants' => 'ParticipantController',
-    'posts' => 'PostController',
     'studies' => 'StudyController',
     'tasks' => 'TaskController',
     'taskuser' => 'TaskUserController',
@@ -123,27 +122,44 @@ Route::post('/task_user/create/{task_id}', 'TaskController@storeUsers');
 
 //Admin middleware za zabranu pristupa odredenim rutama
 Route::group(['middleware' => ['auth', 'admin']], function() {
-
     $routes = [
         'users' => 'UserController',
         'attendances' => 'AttendanceController',
         'classes' => 'ClasseController',
-        //'collegiums' => 'CollegiumController',
+//        'collegiums' => 'CollegiumController',
         'collegium_study' => 'CollegiumStudyController',
         'conversations' => 'ConversationController',
         'faculties' => 'FacultyController',
         'files' => 'FileController',
         'followers' => 'FollowerUserController',
-        //'messages' => 'MessageController',
+//        'messages' => 'MessageController',
         'participants' => 'ParticipantController',
         'studies' => 'StudyController',
         'tasks' => 'TaskController',
         'taskuser' => 'TaskUserController',
         'collegium_user' => 'CollegiumUserController',
     ];
-
     foreach ($routes as $key => $value) {
         Route::get('/posts','PostController@index')->name('posts');
         Route::get('/' . $key, $value . '@index')->name($key); // Retrieve all data from table
+        //Create
+        Route::get('/' . $key . '/create', $value . '@create')->name($key . '_create');
+        Route::post('/' . $key . '/create', $value . '@store');
+        //Update
+        Route::get('/' . $key . '/edit')->name($key . '_edit');
+        Route::get('/' . $key . '/edit/{id}', $value . '@edit');
+        Route::patch('/' . $key . '/edit/{id}', $value . '@update');
+        //Destroy
+        Route::get('/' . $key . '/delete')->name($key . '_delete');
+        Route::get('/' . $key . '/delete/{id}', $value . '@destroy');
+    }
+});
 
-    }});
+//Ruta za notifikacije
+Route::get('/markAsRead',function(){
+
+    auth()->user()->unreadNotifications->markAsRead();
+
+    return redirect()->back();
+
+})->name('markRead');

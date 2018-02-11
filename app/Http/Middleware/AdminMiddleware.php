@@ -1,9 +1,7 @@
 <?php namespace App\Http\Middleware;
-
 use App\Article;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-
 class AdminMiddleware
 {
     /**
@@ -12,7 +10,6 @@ class AdminMiddleware
      * @var Guard
      */
     protected $auth;
-
     /**
      * Create a new filter instance.
      *
@@ -23,7 +20,6 @@ class AdminMiddleware
     {
         $this->auth = $auth;
     }
-
     /**
      * Handle an incoming request.
      *
@@ -34,9 +30,8 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
         if ($this->auth->getUser()->type !== "admin") {
-            abort(403, 'Unauthorized action. Dara i Jozo');
+            abort(403, 'Unauthorized action.');
         }
-
         return $next($request);
     }
 }
