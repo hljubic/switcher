@@ -33,7 +33,7 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->getUser()->type !== "admin") {
+        if ($this->auth->getUser()->type !== "admin" and $this->auth->getUser()->type !== "professor") {
             abort(403, 'Unauthorized action.');
         }
 

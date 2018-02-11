@@ -23,6 +23,7 @@ Route::get('/dashboard', function (){
     return view('dashboard');
 })->name('dashboard');
 
+
 $routes = [
     'users' => 'UserController',
     'attendances' => 'AttendanceController',
@@ -57,8 +58,9 @@ foreach ($routes as $key => $value) {
 //Destroy
     Route::get('/' . $key . '/delete')->name($key . '_delete');
     Route::get('/' . $key . '/delete/{id}', $value . '@destroy');
-}
 
+
+}
 
 
 // Retrieve all data from table
@@ -117,14 +119,23 @@ Route::patch('task_user/edit/{task_id}', 'TaskController@updateUsers'); //ažuri
 Route::get('/task_user/create/{task_id}', 'TaskController@createUsers');
 Route::post('/task_user/create/{task_id}', 'TaskController@storeUsers');
 
+
+//rute za edit profila studenta
+Route::get('/profile', 'ProfileController@show');
+Route::get('/profile/edit', 'ProfileController@edit')->name('student_edit');
+
+
+
 //Admin middleware za zabranu pristupa odredenim rutama
 Route::group(['middleware' => ['auth', 'admin']], function() {
+
+
 
     $routes = [
         'users' => 'UserController',
         'attendances' => 'AttendanceController',
         'classes' => 'ClasseController',
-//        'collegiums' => 'CollegiumController',
+        'collegiums' => 'CollegiumController',
         'collegium_study' => 'CollegiumStudyController',
         'conversations' => 'ConversationController',
         'faculties' => 'FacultyController',
@@ -139,18 +150,20 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
     ];
 
     foreach ($routes as $key => $value) {
-        Route::get('/posts','PostController@index')->name('posts');
         Route::get('/' . $key, $value . '@index')->name($key); // Retrieve all data from table
-        //Create
+        //zakomentirana zbog pregleda profila
+       // Route::get('/' . $key . '/{id}', $value . '@show')->where('id', '[0-9]+'); // Retrieve user which corresponds to passed ID
+//Create
         Route::get('/' . $key . '/create', $value . '@create')->name($key . '_create');
         Route::post('/' . $key . '/create', $value . '@store');
-    //Update
+//Update
         Route::get('/' . $key . '/edit')->name($key . '_edit');
         Route::get('/' . $key . '/edit/{id}', $value . '@edit');
-        Route::patch('/' . $key . '/edit/{id}', $value . '@update');
-    //Destroy
+//        Route::patch('/' . $key . '/edit/{id}', $value . '@update');
+//Destroy
         Route::get('/' . $key . '/delete')->name($key . '_delete');
         Route::get('/' . $key . '/delete/{id}', $value . '@destroy');
+
 
     }
 

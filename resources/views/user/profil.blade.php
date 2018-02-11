@@ -31,36 +31,43 @@
                                 </div>
                                 <br>
                                 @if(Auth::user()->id == $user->id)
-                                    <a href="{{route('users_edit')}}/{{$user->id}}"
-                                       class="btn noborder btn-success btn-sm"
-                                       style="width: 100%;">
-                                        Uredi</a></td>
+                                    @if(Auth::user()->type == 'admin' or Auth::user()->type == 'professor')   {{--Provjerava tip logiranog korisnika --}}
+                                        <a href="{{route('users_edit')}}/{{$user->id}}"
+                                           class="btn noborder btn-success btn-sm"
+                                           style="width: 100%;">
+                                            Uredi</a></td>
+                                    @else
+                                        <a href="{{route('student_edit')}}"
+                                           class="btn noborder btn-success btn-sm"
+                                           style="width: 100%;">
+                                            Uredi</a>
+                                    @endif
                                 @elseif($followButton == true)
                                     <div class="row">
                                         <a href="{{route('unfollow')}}/{{$user->id}}"
-                                           class="btn noborder btn-success btn-sm col-lg-6"
-                                           style="width: 120px; margin-left: 16px;">
-                                            Prestani pratiti</a>
-                                        <a href="#" class="btn noborder btn-success disabled btn-sm col-lg-6"
-                                           style="width: 120px; margin-left: 20px;">Poruka</a>
-                                    </div>
-                                @else
-                                    <div class="row">
-                                        <form class="form-horizontal col-lg-6"
-                                              action="{{route('follow')}}/{{$user->id}}"
-                                              method="POST">
-                                            {{csrf_field()}}
-                                            <fieldset>
-                                                <button type="submit" class="btn noborder btn-success btn-sm"
-                                                        style="width: 120px;">
-                                                    Prati
-                                                </button>
-                                            </fieldset>
-                                        </form>
-                                        <a href="#" class="btn noborder btn-success disabled btn-sm col-lg-4"
-                                           style="width: 120px;">Poruka</a>
-                                    </div>
-                                @endif
+                                               class="btn noborder btn-success btn-sm col-lg-6"
+                                               style="width: 120px; margin-left: 16px;">
+                                                Prestani pratiti</a>
+                                            <a href="#" class="btn noborder btn-success disabled btn-sm col-lg-6"
+                                               style="width: 120px; margin-left: 20px;">Poruka</a>
+                                        </div>
+                                    @else
+                                        <div class="row">
+                                            <form class="form-horizontal col-lg-6"
+                                                  action="{{route('follow')}}/{{$user->id}}"
+                                                  method="POST">
+                                                {{csrf_field()}}
+                                                <fieldset>
+                                                    <button type="submit" class="btn noborder btn-success btn-sm"
+                                                            style="width: 120px;">
+                                                        Prati
+                                                    </button>
+                                                </fieldset>
+                                            </form>
+                                            <a href="#" class="btn noborder btn-success disabled btn-sm col-lg-4"
+                                               style="width: 120px;">Poruka</a>
+                                        </div>
+                                    @endif
                             </div>
                             <div class="col-lg-5">
                                 <blockquote>
@@ -132,7 +139,8 @@
                                                         @endphp
                                                         <div class="col-lg-6"
                                                              style="text-align: right; margin-top: 10px;">
-                                                            <button type="button" class="btn noborder btn-default btn-xs"
+                                                            <button type="button"
+                                                                    class="btn noborder btn-default btn-xs"
                                                                     data-toggle="collapse" data-target="#{{$post->id}}">
                                                                 Komentari <span class="badge"
                                                                                 style=" font-size: 12px; width: 20px;"> {{$numcomments}}</span>

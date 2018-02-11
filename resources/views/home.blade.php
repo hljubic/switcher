@@ -26,7 +26,8 @@
                                                                 <textarea class="form-control" rows="2"
                                                                           id="content-body" name="content"
                                                                           placeholder="Napišite objavu"
-                                                                          style="margin-bottom: 0px; border:none;" required></textarea>
+                                                                          style="margin-bottom: 0px; border:none;"
+                                                                          required></textarea>
 
                                                     <input type="hidden" name="created_at" id="inputDate"
                                                            value="{{ date('y-m-d h:i:s') }}">
@@ -82,11 +83,11 @@
                                                         @endif
                                                     </div>
                                                     <div class="col-lg-6" style="text-align: right;">
-                                                    @can('delete',$post)
-                                                        <small><a href="{{route('posts_delete')}}/{{$post->id}}"
-                                                                  style="color: #ecf0f1;;"
-                                                                  class="btn btn-xs fa fa-times"
-                                                                  aria-hidden="true"></a></small>@endcan
+                                                        @can('delete',$post)
+                                                            <small><a href="{{route('posts_delete')}}/{{$post->id}}"
+                                                                      style="color: #ecf0f1;;"
+                                                                      class="btn btn-xs fa fa-times"
+                                                                      aria-hidden="true"></a></small>@endcan
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -122,13 +123,14 @@
                                                                             </div>
                                                                             <div class="col-lg-6"
                                                                                  style="text-align: right;">
-                                                                                 @can('delete',$comment)
-                                                                                <small>
-                                                                                    <a href="{{route('messages_delete')}}/{{$comment->id}}"
-                                                                                       style="color: #ecf0f1;"
-                                                                                       class="btn btn-xs fa fa-times"
-                                                                                       aria-hidden="true"></a></small>
-                                                                                       @endcan
+                                                                                @can('delete',$comment)
+                                                                                    <small>
+                                                                                        <a href="{{route('messages_delete')}}/{{$comment->id}}"
+                                                                                           style="color: #ecf0f1;"
+                                                                                           class="btn btn-xs fa fa-times"
+                                                                                           aria-hidden="true"></a>
+                                                                                    </small>
+                                                                                @endcan
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">

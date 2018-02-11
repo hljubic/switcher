@@ -114,7 +114,12 @@ class UserController extends Controller
             $user->fill(array_filter($request->all(), 'strlen'));
         }
         $user->save();
-        return redirect('/users')->with('success', 'Podatci korisnika ažurirani.');
+
+
+        if($user->type !== "student")
+            return redirect('/users')->with('success', 'Podatci korisnika ažurirani.');
+        else
+            return redirect('/home')->with('success', 'Podatci korisnika ažurirani.');
     }
 
     /**
