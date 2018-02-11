@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 
 @section('content')
-    @if(count($collegiums) > 0)
+    @if($collegiums)
         <div class="col-md-8 col-md-offset-2">
             <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
                 <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
@@ -29,10 +29,10 @@
                                     <td>{{$collegium->id}}</td>
                                     <td>{{$collegium->name}}</td>
                                     <td>{{$collegium->description}}</td>
-                                    @if(count($collegium->professor) > 0)
+                                    @if($collegium->professor)
                                         <td>{{$collegium->professor->name}}</td>
                                     @endif
-                                    @if(count($collegium->assistent) > 0)
+                                    @if($collegium->assistent)
                                         <td>{{$collegium->assistent->name}}</td>
                                     @endif
                                     <td><a href="{{route('collegiums')}}/{{$collegium->id}}"

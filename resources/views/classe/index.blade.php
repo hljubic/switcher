@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(count($classes) > 0)
+    @if($classes)
         <div class="col-md-8 col-md-offset-2">
             <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
                 <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
@@ -19,13 +19,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if(count($classes)> 0)
+                            @if($classes)
                                 @foreach($classes as $classe)
 
                                     <tr>
                                         <td>{{$classe->id}}</td>
                                         <td>{{$classe->type}}</td>
-                                        @if(count($classe->collegium) > 0)
+                                        @if($classe->collegium)
                                             <td>{{$classe->collegium->name}}</td>
                                         @endif
                                         <td><a href="{{route('classes')}}/{{$classe->id}}"

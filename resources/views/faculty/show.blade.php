@@ -115,7 +115,7 @@
                         </div>
                         <!-- studies on faculzty-->
                         <div class="tab-pane fade" id="studies-data" style="padding-top:15px">
-                            @if(count($faculties->studies) > 0)
+                            @if($faculties->studies)
                                 @foreach($faculties->studies as $study)
                                     <div class="list-group-item" style="margin-bottom: 10px;">
                                         <div class="row">

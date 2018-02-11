@@ -60,7 +60,7 @@ foreach ($routes as $key => $value) {
 }
 
 
-//Postovi izbaceni zbog pristupa normalnim korisnicima
+
 // Retrieve all data from table
 Route::get('/posts/{id}', 'PostController@show')->where('id', '[0-9]+'); // Retrieve user which corresponds to passed ID
 ////Create

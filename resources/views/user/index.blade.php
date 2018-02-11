@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(count($users) > 0)
+    @if($users)
         <div class="col-md-8 col-md-offset-2">
             <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
                 <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
@@ -38,7 +38,7 @@
                                     <td>{{$user->phone}}</td>
                                     <td>{{$user->type}}</td>
                                     <td>{{$user->is_active}}</td>
-                                    @if(count($user->study) > 0 )
+                                    @if($user->study)
                                         <td>{{$user->study->name}}</td>
                                     @endif
 

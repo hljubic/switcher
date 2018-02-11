@@ -73,7 +73,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if(count($attendances)>0)
+                        @if($attendances)
                             @foreach($collegiums->user as $key => $user)
                                 @if(isset($attendances[$key]->user))
                                     <tr>

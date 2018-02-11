@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(count($conversations) > 0)
+    @if($conversations)
         <div class="col-md-8 col-md-offset-2">
             <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
                 <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
@@ -26,7 +26,7 @@
                                 <tr>
                                     <td>{{$conversation->id}}</td>
                                     <td>{{$conversation->title}}</td>
-                                    @if(count($conversation->user) > 0)
+                                    @if($conversation->user)
                                         <td>{{$conversation->user->name}}</td>
                                     @endif
                                     <td><a href="{{route('conversations_edit')}}/{{$conversation->id}}"

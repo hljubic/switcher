@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 
 @section('content')
-    @if(count($teams) > 0)
+    @if($teams)
         <div class="col-md-8 col-md-offset-2">
             <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
                 <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
@@ -25,10 +25,10 @@
                                 <tr>
                                     <td>{{$team->id}}</td>
                                     <td>{{$team->status}}</td>
-                                    @if(count($team->task) > 0 )
+                                    @if($team->task)
                                         <td>{{$team->task->name}}</td>
                                     @endif
-                                    @if(count($team->user) > 0 )
+                                    @if($team->user)
                                         <td>{{$team->user->name}}</td>
                                     @endif
                                     <td><a href="{{route('taskuser_edit')}}/{{$team->id}}"

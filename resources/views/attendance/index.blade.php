@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(count($attendances) > 0)
+    @if($attendances)
         <div class="col-md-8 col-md-offset-2">
             <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
                 <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
@@ -23,10 +23,10 @@
                             @foreach($attendances as $attendance)
                                 <tr>
                                     <td>{{$attendance->id}}</td>
-                                    @if(count($attendance->classe) > 0)
+                                    @if($attendance->classe)
                                         <td>{{$attendance->classe->type}}</td>
                                     @endif
-                                    @if(count($attendance->user) > 0)
+                                    @if($attendance->user)
                                         <td>{{$attendance->user->name}}</td>
                                     @endif
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(count($collegium_study) > 0)
+    @if($collegium_study)
         <div class="col-md-8 col-md-offset-2">
             <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
                 <ul class="nav swt-nav-pills nav-justified" style=" border: 3px;">
@@ -24,11 +24,11 @@
                             @foreach($collegium_study as $collegium_study)
                                 <tr>
                                     <td>{{$collegium_study->id}}</td>
-                                    @if(count($collegium_study->collegium) > 0)
+                                    @if($collegium_study->collegium)
                                         <td>{{$collegium_study->collegium->name}}</td>
                                     @endif
 
-                                    @if(count($collegium_study->study) > 0)
+                                    @if($collegium_study->study)
                                         <td>{{$collegium_study->study->name}}</td>
                                     @endif
 

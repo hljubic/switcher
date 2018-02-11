@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(count($messages)>0)
+    @if($messages)
         <div class="col-md-8 col-md-offset-2">
             <div id="page-content-wrapper" class="panel-default" style="margin-top: 50px;">
                 <ul class="nav nav-pills nav-justified" style=" border: 3px;">
@@ -28,10 +28,10 @@
                                     <td>{{$message->id}}</td>
                                     <td>{{$message->content}}</td>
                                     <td>{{$message->created_at}}</td>
-                                    @if(count($message->conversation) > 0 )
+                                    @if($message->conversation)
                                         <td>{{$message->conversation->title}}</td>
                                     @endif
-                                    @if(count($message->user) > 0 )
+                                    @if($message->user)
                                         <td>{{$message->user->name}}</td>
                                     @endif
 

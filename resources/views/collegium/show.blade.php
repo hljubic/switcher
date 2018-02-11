@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 
 @section('content')
-    @if(count($collegiums) > 0)
+    @if($collegiums)
         <div class="col-lg-8 col-md-offset-2">
             <div class="panel panel-default" style="margin-top: 50px;">
                 <div class="panel-body">
@@ -135,7 +135,7 @@
                             </div>
                             <!-- prikaz studija na kojima se kolegij nalazi-->
                             <div class="tab-pane fade" id="studies-data" style="padding-top:15px">
-                                @if(count($collegiums->studies) > 0)
+                                @if($collegiums->studies)
                                     @foreach($collegiums->studies as $study)
                                         <div class="list-group-item" style="margin-bottom: 10px;">
                                             <div class="row">
@@ -164,7 +164,8 @@
                                                         @can('create', App\Task::class)
                                                             <a href="{{route('collegium_study_create')}}"
                                                                class="btn btn-success noborder col-lg-offset-5 col-lg-2">Dodaj
-                                                                kolegij</a>  @endcan
+                                                                kolegij</a>
+                                                        @endcan
                                                     </div>
 
 
@@ -319,7 +320,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="panel-footer">
                                                     <form class="form-horizontal"
                                                           action="{{route('messages_create')}}"
@@ -352,7 +352,7 @@
                             </div>
                             <!-- prikaz taskova na kolegiju -->
                             <div class="tab-pane fade" id="tasks-data" style="padding-top:15px">
-                                @if(count($collegiums->tasks)>0)
+                                @if($collegiums->tasks)
                                     @can('create', App\Task::class)
 
 
@@ -437,7 +437,6 @@
                                         </div>
 
                                     </div>
-
 
 
                                     <!-- seminraski radovi -->
@@ -560,7 +559,7 @@
                             </div>
                             <!-- classes -->
                             <div class="tab-pane fade" id="classes-data" style="padding-top:15px">
-                                @if(count($collegiums->classe) > 0)
+                                @if($collegiums->classe)
                                     <form class="form-horizontal" action="{{ route('classes_create') }}" method="POST">
                                         {{ csrf_field() }}
                                         <fieldset>
@@ -687,7 +686,7 @@
                             </div>
                             <!-- lista studenata na kolegiju-->
                             <div class="tab-pane fade" id="student-data" style="padding-top:15px">
-                                @if(count($collegiums->user) > 0)
+                                @if($collegiums->user)
                                     @foreach($collegiums->user as $user)
                                         @php
                                             $classes = App\Classe::with('collegium')->where('collegium_id','=',$collegiums->id)->get(['classes.id'])->count();
@@ -826,7 +825,7 @@
                             </div>
                             <!-- datoteke na kolegiju-->
                             <div class="tab-pane fade" id="file-data" style="padding-top:15px">
-                                @if(count($collegiums->posts) > 0)
+                                @if($collegiums->posts)
                                     @foreach($collegiums->posts as $post)
                                         @if($post->file)
                                             <div class="list-group-item"

@@ -67,7 +67,7 @@
                             </blockquote>
                         </div>
                         <div class="tab-pane fade" id="studies-data" style="padding-top:15px">
-                            @if(count($studies->collegiums) > 0)
+                            @if($studies->collegiums)
                                 @foreach($studies->collegiums as $collegium)
                                     <div class="list-group-item" style="margin-bottom: 10px;">
                                         <div class="row">
