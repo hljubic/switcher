@@ -122,6 +122,7 @@ Route::post('/task_user/create/{task_id}', 'TaskController@storeUsers');
 
 //Admin middleware za zabranu pristupa odredenim rutama
 Route::group(['middleware' => ['auth', 'admin']], function() {
+
     $routes = [
         'users' => 'UserController',
         'attendances' => 'AttendanceController',
@@ -139,6 +140,7 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
         'taskuser' => 'TaskUserController',
         'collegium_user' => 'CollegiumUserController',
     ];
+
     foreach ($routes as $key => $value) {
         Route::get('/posts','PostController@index')->name('posts');
         Route::get('/' . $key, $value . '@index')->name($key); // Retrieve all data from table

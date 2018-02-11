@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Collegium;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 
@@ -24,11 +25,13 @@ class FollowedCollegium extends Notification
 
     public function toDatabase($notifiable)
     {
+        $collegium = Collegium::where('collegiums.id','=',$this->followers->collegium_id)->first();
         return [
 
             "collegiumFollower" => $this->followers,
             "user" =>$notifiable,
-            "follower"=> auth()->user()
+            "follower"=> auth()->user(),
+            "collegium"=>$collegium
         ];
     }
 }

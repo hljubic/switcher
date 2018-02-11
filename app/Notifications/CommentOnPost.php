@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -27,11 +28,12 @@ class CommentOnPost extends Notification
     public function toDatabase($notifiable)
     {
 
+        $post = Post::where('posts.conversation_id','=', $this->message->conversation_id)->first();
 
         return [
 
             "comment" => $this->message,
-            "post"=>$notifiable,
+            "post"=>$post,
             "user" => auth()->user()
 
         ];

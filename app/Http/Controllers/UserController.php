@@ -49,6 +49,9 @@ class UserController extends Controller
         $followers = FollowerUser::where('user_id', '=', $id)->count();
         $following = FollowerUser::where('follower_id', '=', $id)->count();
 
+        $myFollowers = FollowerUser::where('user_id', '=', $id)->get();
+        $myFollowings = FollowerUser::where('follower_id', '=', $id)->get();
+
         $collegiums = Collegium::where('prof_id', '=', $id)->orWhere('assist_id', '=', $id)
             ->orwhereHas('user', function ($q) use ($id) {
                 $q->where('user_id', '=', $id);
@@ -61,7 +64,7 @@ class UserController extends Controller
         }
 
         return view('user.profil', array('user' => $user, 'followers' => $followers, 'following' => $following,
-            'collegiums' => $collegiums, 'followButton' => $followButton));
+            'collegiums' => $collegiums, 'followButton' => $followButton, 'myFollowers' => $myFollowers, 'myFollowings' => $myFollowings));
     }
 
     public function edit($id)
