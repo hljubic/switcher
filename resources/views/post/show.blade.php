@@ -6,7 +6,7 @@
             <div class="panel-body">
                 <div id="page-content-wrapper">
 
-                    <legend style="">{{$posts->user->name}}</legend>
+                    <h4 style="">{{$posts->user->name}}</h4>
 
                     <div class="list-group col-lg-12">
                         <div class="list-group-item" style="margin-bottom: 10px;">
