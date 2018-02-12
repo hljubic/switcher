@@ -21,6 +21,17 @@
     <!-- style for CHAT -->
     <link href="{{asset('css/chat-style.css') }}" rel="stylesheet">
 
+    {{--<link rel="stylesheet" type="text/css" href="{{asset('css/multi-select.css')}}">--}}
+
+    <link href="{{asset('css/multiple-select.min.css') }}" rel="stylesheet">
+
+    {{--<link href="https://github.com/dbrekalo/fastselect/" rel="canonical" >--}}
+
+    {{--<link href="https://fonts.googleapis.com/css?family=Lato:400,300,700,900&subset=latin,latin-ext" rel='stylesheet' type='text/css'>--}}
+    {{--<link rel="stylesheet" href="https://rawgit.com/dbrekalo/attire/master/dist/css/build.min.css">--}}
+
+    {{--<link rel="stylesheet" href="{{asset('css/fastselect.min.css')}}">--}}
+
     @stack('stylesheets')
 
 </head>
@@ -137,6 +148,11 @@
 <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
 <script src="{{asset('js/ang_app.js')}}"></script>
+
+{{--<script src="{{asset('js/multiselect.js')}}"></script>--}}
+<script src="{{asset('js/multiple-select.min.js')}}"></script>
+{{--<script src="https://rawgit.com/dbrekalo/attire/master/dist/js/build.min.js"></script>--}}
+{{--<script src="{{asset('js/fastselect.standalone.js')}}"></script>--}}
 
 <script>
     //datepicker

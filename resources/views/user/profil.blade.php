@@ -12,37 +12,65 @@
                                     <div id="profile">{{substr($user->name,0,1)}}</div>
                                 </div>
                             </div>
+                            <!--pratitelji, objave, pratim -->
                             <div class="col-lg-5">
                                 <h4 id="storename">{{$user->name}}</h4>
 
                                 <div class="row">
-                                    <div class="col-lg-3" style="text-align: center; font-weight: bold;">
-                                        <small>Pratitelji</small>
-                                        <h5>{{$followers}}</h5>
+                                    <div class="col-lg-4" style="text-align: center; font-weight: bold;">
+                                        <small><a type="button" data-toggle="modal" data-target="#FollowersList"
+                                                  title="Pratitelji" class="btn "
+                                                  style="background-color: transparent; font-size:small; color: black;margin-top: 0px !important; padding-top: 0px;">
+                                                Pratitelji
+                                            </a></small>
+                                        <h5 style="margin-top: 0px !important; padding-top: 0px;">{{$followers}}</h5>
                                     </div>
-                                    <div class="col-lg-5" style="text-align: center; font-weight: bold;">
-                                        <small>Pratim</small>
-                                        <h5>{{$following}}</h5>
+                                    <div class="col-lg-4" style="text-align: center; font-weight: bold;">
+                                        <small><a type="button" data-toggle="modal" data-target="#FollowingList"
+                                                  title="Pratitelji" class="btn "
+                                                  style="background-color: transparent; font-size:small; color: black;margin-top: 0px !important; padding-top: 0px;">
+                                                Pratim
+                                            </a></small>
+                                        <h5 style="margin-top: 0px !important; padding-top: 0px;">{{$following}}</h5>
                                     </div>
-                                    <div class="col-lg-3" style="text-align: center; font-weight: bold;">
+                                    <div class="col-lg-4" style="text-align: center; font-weight: bold;">
                                         <small>Objave</small>
                                         <h5>{{$user->posts->count()}}</h5>
                                     </div>
                                 </div>
                                 <br>
                                 @if(Auth::user()->id == $user->id)
+                                    @if(Auth::user()->type == 'admin' or Auth::user()->type == 'professor')   {{--Provjerava tip logiranog korisnika --}}
                                     <a href="{{route('users_edit')}}/{{$user->id}}"
                                        class="btn noborder btn-success btn-sm"
                                        style="width: 100%;">
                                         Uredi</a></td>
+                                    @else
+                                        <a href="{{route('student_edit')}}"
+                                           class="btn noborder btn-success btn-sm"
+                                           style="width: 100%;">
+                                            Uredi</a>
+                                    @endif
                                 @elseif($followButton == true)
                                     <div class="row">
                                         <a href="{{route('unfollow')}}/{{$user->id}}"
                                            class="btn noborder btn-success btn-sm col-lg-6"
                                            style="width: 120px; margin-left: 16px;">
                                             Prestani pratiti</a>
-                                        <a href="#" class="btn noborder btn-success disabled btn-sm col-lg-6"
-                                           style="width: 120px; margin-left: 20px;">Poruka</a>
+                                        <form class="form-horizontal" action="{{route('create_conversation2')}}"
+                                              method="POST">
+                                            {{csrf_field()}}
+                                            <fieldset>
+                                                <input type="hidden" name="user_id"
+                                                       value="{{$user->id}}">
+                                                <input type="hidden" name="created_at"
+                                                       value="{{ date('y-m-d H:i:s') }}">
+                                                <button type="submit"
+                                                        class="btn noborder btn-success disabled btn-sm col-lg-4"
+                                                        style="width: 120px;">Poruka
+                                                </button>
+                                            </fieldset>
+                                        </form>
                                     </div>
                                 @else
                                     <div class="row">
@@ -57,8 +85,20 @@
                                                 </button>
                                             </fieldset>
                                         </form>
-                                        <a href="#" class="btn noborder btn-success disabled btn-sm col-lg-4"
-                                           style="width: 120px;">Poruka</a>
+                                        <form class="form-horizontal" action="{{route('create_conversation2')}}"
+                                              method="POST">
+                                            {{csrf_field()}}
+                                            <fieldset>
+                                                <input type="hidden" name="user_id"
+                                                       value="{{$user->id}}">
+                                                <input type="hidden" name="created_at"
+                                                       value="{{ date('y-m-d H:i:s') }}">
+                                                <button type="submit"
+                                                        class="btn noborder btn-success disabled btn-sm col-lg-4"
+                                                        style="width: 120px;">Poruka
+                                                </button>
+                                            </fieldset>
+                                        </form>
                                     </div>
                                 @endif
                             </div>
@@ -132,10 +172,11 @@
                                                         @endphp
                                                         <div class="col-lg-6"
                                                              style="text-align: right; margin-top: 10px;">
-                                                            <button type="button" class="btn noborder btn-default btn-xs"
+                                                            <button type="button"
+                                                                    class="btn noborder btn-default btn-xs"
                                                                     data-toggle="collapse" data-target="#{{$post->id}}">
                                                                 Komentari <span class="badge"
-                                                                                style=" font-size: 12px; width: 20px;"> {{$numcomments}}</span>
+                                                                                style=" font-size: 15px;"> {{$numcomments}}</span>
                                                             </button>
                                                         </div>
 
@@ -226,5 +267,113 @@
             </div>
         </div>
     </div>
+    </div>
+
+    <!-- modal for followers -->
+    <div class="modal fade " id="FollowersList" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document" style="width: 400px;">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #e3e7e8; color: #18BC9C;">
+                    <div class="row">
+                        <div class="col-lg-11" style="text-align: center;">
+                            <h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-user-o"
+                                                                              style="font-size: 20px;"></i> Pratitelji
+                            </h4>
+                        </div>
+                        <div class="col-lg-1 pull-right">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color: white; text-align: left;">
+                    @foreach($myFollowers as $myFollower)
+                        <div class="col-lg-12 " style="margin-top: 10px;">
+                            <div class="list-group-item noborder"
+                                 style="padding-bottom: 3px; border-left: solid 4px #18BC9C;">
+                                <div class="row">
+                                    <div class="col-lg-10">
+                                        <a href="{{route('users')}}/{{$myFollower->follower->id}}"><p
+                                                    style="padding-top: 7px;">{{$myFollower->follower->name}}</p></a>
+                                    </div>
+                                    <div class="col-lg-2" style="text-align: center;">
+                                        <form class="form-horizontal" action="{{route('create_conversation2')}}"
+                                              method="POST">
+                                            {{csrf_field()}}
+                                            <fieldset>
+                                                <input type="hidden" name="user_id"
+                                                       value="{{$myFollower->user->id}}">
+                                                <input type="hidden" name="created_at"
+                                                       value="{{ date('y-m-d H:i:s') }}">
+                                                <button type="submit" style="color: #18bc9c; background: transparent;"
+                                                        class="glyphicon glyphicon-comment btn btn-sm"></button>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+                <div style="height:35px;background-color: #e3e7e8;"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- modal for following-->
+    <div class="modal fade " id="FollowingList" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document" style="width: 400px;">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #e3e7e8; color: #18BC9C;">
+                    <div class="row">
+                        <div class="col-lg-11" style="text-align: center;">
+                            <h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-user-o"
+                                                                              style="font-size: 20px;"></i> Pratim
+                            </h4>
+                        </div>
+                        <div class="col-lg-1 pull-right">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color: white; text-align: left;">
+                    @foreach($myFollowings as $myFollowing)
+                        <div class="col-lg-12 " style="margin-top: 10px;">
+                            <div class="list-group-item noborder"
+                                 style="padding-bottom: 3px; border-left: solid 4px #18BC9C;">
+                                <div class="row">
+                                    <div class="col-lg-10">
+                                        <a href="{{route('users')}}/{{$myFollowing->user->id}}"><p
+                                                    style="padding-top: 7px;">{{$myFollowing->user->name}}</p></a>
+                                    </div>
+                                    <div class="col-lg-2" style="text-align: center;">
+                                        <form class="form-horizontal" action="{{route('create_conversation2')}}"
+                                              method="POST">
+                                            {{csrf_field()}}
+                                            <fieldset>
+                                                <input type="hidden" name="user_id"
+                                                       value="{{$myFollowing->user->id}}">
+                                                <input type="hidden" name="created_at"
+                                                       value="{{ date('y-m-d H:i:s') }}">
+                                                <button type="submit" style="color: #18bc9c; background: transparent;"
+                                                        class="glyphicon glyphicon-comment btn btn-sm"></button>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div style="height:35px;background-color: #e3e7e8;"></div>
+            </div>
+        </div>
     </div>
 @endsection

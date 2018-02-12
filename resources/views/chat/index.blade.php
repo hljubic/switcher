@@ -24,18 +24,31 @@
                         </div>
                     </div>
                     <div id="lista_razgovora" class="list-group">
-                        <div ng-repeat="conv in conversations" >
-                            <ul href="#" class="list-group-item swt-nav-item"
-                                ng-click="selectConversation(conv)"
+                        <div ng-repeat="conv in conversations | filter : searchText1">
+                            <ul class="list-group-item swt-nav-item" ng-click="selectConversation(conv)"
                                 ng-class="{'selected-conversation':conv.id == selectedConversation.id}"
-                                ng-repeat="par in conv.participants | filter: searchText1">
-
+                                ng-if="conv.participants.length >1">
                                 <li style="list-style-type: none;">
-                                    <h4 class="list-group-item-heading" style="padding-bottom:5px; color:#20c997;" ng-if="par.id != {{Auth::user()->id}}"><% par.name %></h4>
+                                    <h4 class="list-group-item-heading" style="padding-bottom:5px; color:#20c997;" ng-if="conv.participants.length > 1"><% conv.title %></h4>
                                     <p class="list-group-item-text" style="padding-bottom:5px; color: lightslategray;"
                                        ng-if="par.id != {{Auth::user()->id}}" >
-                                        <% conv.title %>
+                                        <% conv.message.content %>
                                     </p>
+                                </li>
+                            </ul>
+                            <ul class="list-group-item swt-nav-item"
+                                ng-click="selectConversation(conv)"
+                                ng-class="{'selected-conversation':conv.id == selectedConversation.id}"
+                                ng-repeat="par in conv.participants | filter: searchText1"
+                                ng-if="conv.participants.length == 1">
+
+                                <li style="list-style-type: none;" ng-if="conv.participants.length == 1">
+                                    <h4 class="list-group-item-heading" style="padding-bottom:5px; color:#20c997;" ng-if="par.id != {{Auth::user()->id}}"><% par.name %></h4>
+                                    <p class="list-group-item-text" style="padding-bottom:5px; color: lightslategray;"
+                                       ng-if="par.id != {{Auth::user()->id}}" ng-model="covnertDate(conv.message.created_at)">
+                                        <% conv.message.content | limitTo: 30 %>
+                                    </p>
+                                    <p ng-bind="date | date: 'HH:mm'"></p>
                                 </li>
 
                             </ul>
@@ -115,11 +128,11 @@
                                     <div class="col-lg-8">
                                         <h4 class="list-group-item-heading" style=" color:#20c997;"
 
-                                            ng-model="select_user(par.id)" ng-if="par.id != {{Auth::user()->id}}">
+                                            ng-model="select_user1(par.id)" ng-if="par.id != {{Auth::user()->id}}">
                                             <% par.name %></h4>
                                     </div>
                                     <div class="col-lg-4">
-                                        <a href="{{route('users')}}/<%selected_user%>" class="btn btn-success" type="button">Profile</a>
+                                        <a href="{{route('users')}}/<%selected_user1%>" class="btn btn-success" type="button">Profile</a>
                                     </div>
                                 </li>
                             </ul>
@@ -141,17 +154,28 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
-                        <div class="form-group">
-                            <input placeholder="User name" type="text" class="form-control"  name="browser"
-                                   style="border-radius:0px; background-color:rgba(179, 179, 179,0.3); border:none; color:#000000;" ng-model="searchText2">
-                            <datalist id="browsers">
-                                <option ng-repeat="user in users | filter: searchText2"
-                                        value="<%user.name%>"  ng-model="select_user(user.id)">
-                            </datalist>
+                    <form class="attireCodeToggleBlock" action="">
+                        <div class="demo-section k-content">
+                            <div>
+                                <input placeholder="Naziv razgovora" ng-model="naziv_razgovora">
+                            </div>
+                            {{--<input placeholder="User name" type="text" class="form-control"  name="browser"--}}
+                                   {{--style="border-radius:0px; background-color:rgba(179, 179, 179,0.3); border:none; color:#000000;" ng-model="searchText2">--}}
+                            {{--<datalist id="browsers">--}}
+                                {{--<option ng-repeat="user in users | filter: searchText2"--}}
+                                    {{--value="<%user.name%>"  ng-model="select_user2(user.id)">--}}
+                            {{--</datalist>--}}
+
+
+                            <multiple-autocomplete ng-model="selectedList"
+                                                   object-property="name"
+                                                   before-select-item="beforeSelectItem"
+                                                   suggestions-arr="optionsList">
+                            </multiple-autocomplete>
+
                         </div>
                     </form>
-                    <p style="visibility: hidden; position: fixed" value="<%selected_user%>"></p>
+                    <p style="visibility: hidden; position: fixed" value="<%selected_user2%>"></p>
                 </div>
                 <div class="modal-footer">
                     {{--<div ng-repeat="pr in provjera" ng-model="select(pr)"></div>--}}
@@ -164,6 +188,8 @@
             </div>
         </div>
     </div>
+
+
 
 @endsection
 
@@ -180,7 +206,7 @@
         var API_NEW_CONVERSATON = '{{route('create_conversation1')}}';
         var API_NEW_MESSAGE = '{{route('create_message')}}';
         (function(){
-            angular.module("swtSearchApp", [])
+            angular.module("swtSearchApp", ['multipleSelect'])
                 .config(['$interpolateProvider', function($interpolateProvider) {
                     $interpolateProvider.startSymbol('<%');
                     $interpolateProvider.endSymbol('%>');
@@ -194,6 +220,14 @@
                         API_MESSAGES = '{{ route('messages1','')}}' + '/' +  $scope.selectedConversation.id
                         $scope.getMessages();
                     }
+                    $scope.rezz = 2;
+                  $scope.covnertDate = function (dat) {
+                      $scope.date = dat.toString()
+                      console.log($scope.date)
+                    }
+
+
+
                     $scope.init = function () {
                         // Ulazna točka aplikacije
                         $scope.getMessages();
@@ -207,6 +241,12 @@
                     $scope.select_user = function (usr) {
                         $scope.selected_user = usr;
                     }
+                    $scope.select_user1 = function (usr) {
+                        $scope.selected_user1 = usr;
+                    }
+                    $scope.select_user2 = function (usr) {
+                        $scope.selected_user2 = usr;
+                    }
                     //dodavanje novog razgovora
                     $scope.addNewConversation = function(){
                         var date = new Date().toLocaleString('en-US',{hour12:false}).split(" ");
@@ -219,15 +259,25 @@
                         var day = parseInt(mdy[1]);
                         var year = parseInt(mdy[2]);
                         var formattedDate = year + '/' + month + '/' + day + ' ' + time;
-                        $new_conversation = {'user_id': $scope.selected_user, 'created_at': formattedDate};
+
+
+                        var result = $scope.selectedList.map(function(item) {
+                            return item.id;
+                        });
+
+                        var nazivR = $scope.naziv_razgovora;
+
+
+                        $new_conversation = {'title': nazivR, 'created_at': formattedDate, 'list_user': result};
                         $http({
                             method: 'POST',
                             url: API_NEW_CONVERSATON,
                             data: JSON.stringify($new_conversation)
                         }).then(function successCallback(response) {
                             $scope.conversations = response.data;
-//                            console.log(response.data[0].id);
-                            if($scope.conversations != $scope.selected_user){
+                            $scope.selected_user2 = result[0]
+                            console.log(result.length);
+                            if($scope.conversations != result[0] && result.length == 1){
 //                                alert("Razgovor već postoji")
                                 $scope.selectedConversation = response.data[0];
                                 API_MESSAGES = '{{ route('messages1','')}}' + '/' +  response.data[0].id;
@@ -240,6 +290,8 @@
                             // or server returns response with an error status.
                         });
                         $scope.searchText2 = ""
+                        $scope.naziv_razgovora=""
+                        $scope.selectedList =[]
                     };
                     $scope.sendNewMessage = function() {
                         var date = new Date().toLocaleString('en-US',{hour12:false}).split(" ");
@@ -261,6 +313,7 @@
                             data: JSON.stringify($newMessage)
                         }).then(function successCallback(response) {
                             $scope.messages = response.data;
+                            $scope.getConversations();
                             setTimeout(function () {
                                 element.scrollTop = element.scrollHeight;
                             }, 100)
@@ -272,6 +325,7 @@
                             // called asynchronously if an error occurs
                             // or server returns response with an error status.
                         });
+
                         $scope.newMessage = "";
                     };
                     $scope.getConversations = function () {
@@ -305,6 +359,14 @@
                             url: API_USERS
                         }).then(function successCallback(response) {
                             $scope.users = response.data;
+                            $scope.optionsList = response.data.filter(function (x) {
+                                if(x.id == {{Auth::user()->id}})
+                                    return false;
+
+                                return true;
+                            })
+
+
                         }, function errorCallback(response) {
                             // called asynchronously if an error occurs
                             // or server returns response with an error status.
