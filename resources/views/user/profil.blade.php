@@ -57,8 +57,20 @@
                                            class="btn noborder btn-success btn-sm col-lg-6"
                                            style="width: 120px; margin-left: 16px;">
                                             Prestani pratiti</a>
-                                        <a href="#" class="btn noborder btn-success disabled btn-sm col-lg-6"
-                                           style="width: 120px; margin-left: 20px;">Poruka</a>
+                                        <form class="form-horizontal" action="{{route('create_conversation2')}}"
+                                              method="POST">
+                                            {{csrf_field()}}
+                                            <fieldset>
+                                                <input type="hidden" name="user_id"
+                                                       value="{{$user->id}}">
+                                                <input type="hidden" name="created_at"
+                                                       value="{{ date('y-m-d H:i:s') }}">
+                                                <button type="submit"
+                                                        class="btn noborder btn-success disabled btn-sm col-lg-4"
+                                                        style="width: 120px;">Poruka
+                                                </button>
+                                            </fieldset>
+                                        </form>
                                     </div>
                                 @else
                                     <div class="row">
@@ -73,8 +85,20 @@
                                                 </button>
                                             </fieldset>
                                         </form>
-                                        <a href="#" class="btn noborder btn-success disabled btn-sm col-lg-4"
-                                           style="width: 120px;">Poruka</a>
+                                        <form class="form-horizontal" action="{{route('create_conversation2')}}"
+                                              method="POST">
+                                            {{csrf_field()}}
+                                            <fieldset>
+                                                <input type="hidden" name="user_id"
+                                                       value="{{$user->id}}">
+                                                <input type="hidden" name="created_at"
+                                                       value="{{ date('y-m-d H:i:s') }}">
+                                                <button type="submit"
+                                                        class="btn noborder btn-success disabled btn-sm col-lg-4"
+                                                        style="width: 120px;">Poruka
+                                                </button>
+                                            </fieldset>
+                                        </form>
                                     </div>
                                 @endif
                             </div>
@@ -275,8 +299,18 @@
                                                     style="padding-top: 7px;">{{$myFollower->follower->name}}</p></a>
                                     </div>
                                     <div class="col-lg-2" style="text-align: center;">
-                                        <a style="color: #18bc9c;" class="glyphicon glyphicon-comment btn"
-                                           href="#"></a>
+                                        <form class="form-horizontal" action="{{route('create_conversation2')}}"
+                                              method="POST">
+                                            {{csrf_field()}}
+                                            <fieldset>
+                                                <input type="hidden" name="user_id"
+                                                       value="{{$myFollower->user->id}}">
+                                                <input type="hidden" name="created_at"
+                                                       value="{{ date('y-m-d H:i:s') }}">
+                                                <button type="submit" style="color: #18bc9c; background: transparent;"
+                                                        class="glyphicon glyphicon-comment btn btn-sm"></button>
+                                            </fieldset>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -320,8 +354,18 @@
                                                     style="padding-top: 7px;">{{$myFollowing->user->name}}</p></a>
                                     </div>
                                     <div class="col-lg-2" style="text-align: center;">
-                                        <a style="color: #18bc9c;" class="glyphicon glyphicon-comment btn"
-                                           href="#"></a>
+                                        <form class="form-horizontal" action="{{route('create_conversation2')}}"
+                                              method="POST">
+                                            {{csrf_field()}}
+                                            <fieldset>
+                                                <input type="hidden" name="user_id"
+                                                       value="{{$myFollowing->user->id}}">
+                                                <input type="hidden" name="created_at"
+                                                       value="{{ date('y-m-d H:i:s') }}">
+                                                <button type="submit" style="color: #18bc9c; background: transparent;"
+                                                        class="glyphicon glyphicon-comment btn btn-sm"></button>
+                                            </fieldset>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

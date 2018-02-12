@@ -21,11 +21,15 @@
     <!-- style for CHAT -->
     <link href="{{asset('css/chat-style.css') }}" rel="stylesheet">
 
+
+    <link href="{{asset('css/multiple-select.min.css') }}" rel="stylesheet">
+
     @stack('stylesheets')
 
 </head>
 <body ng-controller="swtSearchMainController" ng-init="init()">
 <div id="app">
+
     @include('layouts.navbar')
     @include('inc.sidebar',['faculties',$faculties],['studies',$studies],['collegiums',$collegiums])
     @include('layouts.messages')
@@ -40,6 +44,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
 <script src="{{asset('js/ang_app.js')}}"></script>
 
+<script src="{{asset('js/multiple-select.min.js')}}"></script>
 
 <script>
     //datepicker

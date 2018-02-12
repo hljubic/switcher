@@ -57,11 +57,12 @@ foreach ($routes as $key => $value) {
 }
 
 
+//Postovi izbaceni zbog pristupa normalnim korisnicima
 // Retrieve all data from table
 Route::get('/posts','PostController@index')->name('posts');
 Route::get('/posts/{id}', 'PostController@show')->where('id', '[0-9]+'); // Retrieve user which corresponds to passed ID
 ////Create
-Route::get('/posts/create', 'PostController@create')->name('posts_create');
+Route::get('/posts/create','PostController@create')->name('posts_create');
 Route::post('/posts/create', 'PostController@store');
 //Update
 Route::get('/posts/edit')->name('posts_edit');
@@ -88,12 +89,12 @@ Route::get('/unfollowCollegium/{id}', 'CollegiumUserController@RemoveMeFromColle
 
 //task profile
 Route::get('/followTask')->name('followTask');
-Route::post('/followTask/{id}', 'TaskUserController@AddMeToTask');
+Route::post('/followTask/{id}','TaskUserController@AddMeToTask');
 
 
 //uploading file
-Route::get('/files/upload', 'FileController@showFile')->name('upload_file');
-Route::post('/files/upload', 'FileController@storeFile');
+Route::get('/files/upload','FileController@showFile')->name('upload_file');
+Route::post('/files/upload','FileController@storeFile');
 
 
 // Chat
@@ -103,6 +104,8 @@ Route::get('/chat/messages/{conversation_id}', 'ChatController@getMessages')->na
 Route::get('/chat/participants/{conversation_id}', 'ChatController@getParticipants')->name('participants1'); //vraća sve sudionike u razgovoru čiji id je proslijeđen
 Route::post('/chat/conversation', 'ChatController@createConversation')->name('create_conversation1'); //kreira novi razgovor sa korisnikom čiji id je proslijeđen
 Route::post('/chat/messages', 'ChatController@createMessage')->name('create_message'); //kreira novu poruku u razgovoru
+
+Route::post('/chat/conversation2', 'ChatController@createConversation2')->name('create_conversation2');
 
 //search
 Route::get('/searchUsers', 'UserController@searchUsers')->name('search_user');
@@ -128,6 +131,7 @@ Route::get('/profile/edit', 'ProfileController@edit')->name('student_edit');
 
 //Admin middleware za zabranu pristupa odredenim rutama
 Route::group(['middleware' => ['auth', 'admin']], function() {
+
     $routes = [
         'users' => 'UserController',
         'attendances' => 'AttendanceController',
@@ -138,13 +142,14 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
         'faculties' => 'FacultyController',
         'files' => 'FileController',
         'followers' => 'FollowerUserController',
-//        'messages' => 'MessageController',
+        //'messages' => 'MessageController',
         'participants' => 'ParticipantController',
         'studies' => 'StudyController',
         'tasks' => 'TaskController',
         'taskuser' => 'TaskUserController',
         'collegium_user' => 'CollegiumUserController',
     ];
+
     foreach ($routes as $key => $value) {
         Route::get('/' . $key, $value . '@index')->name($key); // Retrieve all data from table
         //zakomentirana zbog pregleda profila
