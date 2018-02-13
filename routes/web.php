@@ -42,6 +42,8 @@ $routes = [
 ];
 
 foreach ($routes as $key => $value) {
+
+
     Route::get('/' . $key, $value . '@index')->name($key); // Retrieve all data from table
     Route::get('/' . $key . '/{id}', $value . '@show')->where('id', '[0-9]+'); // Retrieve user which corresponds to passed ID
 //Create
@@ -59,7 +61,6 @@ foreach ($routes as $key => $value) {
 
 //Postovi izbaceni zbog pristupa normalnim korisnicima
 // Retrieve all data from table
-Route::get('/posts','PostController@index')->name('posts');
 Route::get('/posts/{id}', 'PostController@show')->where('id', '[0-9]+'); // Retrieve user which corresponds to passed ID
 ////Create
 Route::get('/posts/create','PostController@create')->name('posts_create');
@@ -72,14 +73,12 @@ Route::patch('/posts/edit/{id}', 'PostController@update');
 Route::get('/posts/delete')->name('posts_delete');
 Route::get('/posts/delete/{id}', 'PostController@destroy');
 
-
 //imenik
 Route::get('/imenik', 'UserController@imenik')->name('imenik');
 Route::get('/follow')->name('follow');
 Route::post('/follow/{id}', 'FollowerUserController@follow');
 Route::get('/unfollow')->name('unfollow');
 Route::get('/unfollow/{id}', 'FollowerUserController@unfollow');
-
 
 //collegium profile
 Route::get('/followCollegium')->name('followCollegium');
@@ -90,7 +89,6 @@ Route::get('/unfollowCollegium/{id}', 'CollegiumUserController@RemoveMeFromColle
 //task profile
 Route::get('/followTask')->name('followTask');
 Route::post('/followTask/{id}','TaskUserController@AddMeToTask');
-
 
 //uploading file
 Route::get('/files/upload','FileController@showFile')->name('upload_file');
@@ -151,6 +149,7 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
     ];
 
     foreach ($routes as $key => $value) {
+
         Route::get('/' . $key, $value . '@index')->name($key); // Retrieve all data from table
         //zakomentirana zbog pregleda profila
         // Route::get('/' . $key . '/{id}', $value . '@show')->where('id', '[0-9]+'); // Retrieve user which corresponds to passed ID
@@ -175,4 +174,8 @@ Route::get('/markAsRead', function () {
     return redirect()->back();
 
 })->name('markRead');
+
+
+Route::get('/download','AttendanceController@downloadCsv')->name('download');
+Route::get('/download/{id}','AttendanceController@downloadCsv');
 

@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Attendance;
 use App\Classe;
-use App\CollegiumUser;
 use App\User;
-use function foo\func;
 use Illuminate\Http\Request;
 
 
@@ -91,4 +89,9 @@ class AttendanceController extends Controller
         }
     }
 
+    public function downloadCsv($id){
+        $attendances = Attendance::where('class_id', '=', $id)->with('user')->get();
+        $csvExporter = new \Laracsv\Export();
+        $csvExporter->build($attendances, ['user.name', 'user.email', 'user.index_number', 'user.study.name'])->download();
+    }
 }
