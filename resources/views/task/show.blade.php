@@ -66,7 +66,7 @@
                             Sudionici</h4>
                         @foreach($tasks->user as $user)
                             <div class="col-lg-12 " style="margin-top: 10px;">
-                                <div class="list-group-item" style="padding-bottom: 3px;">
+                                <div class="list-group-item" style="padding-bottom:15px; padding-top: 15px;">
                                     <div class="row">
                                         <div class="col-lg-10">
                                             <a href="{{route('users')}}/{{$user->id}}" style="padding-top: 7px;">{{$user->name}}</a>

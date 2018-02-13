@@ -54,7 +54,7 @@
 
                     <!-- chat route-->
                     <li><a href="{{route('chat')}}"><i class="fa fa-comments" aria-hidden="true" title="Poruke"></i>
-                            <span class="badge">3</span></a></li>
+                            </a></li>
                     <!-- imenik route -->
                     <li><a href="{{route('imenik')}}"><i class="fa fa-address-book" aria-hidden="true" title="Imenik profesora"></i></a>
                 </ul>
