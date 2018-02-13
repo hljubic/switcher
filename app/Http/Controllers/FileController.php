@@ -75,8 +75,11 @@ class FileController extends Controller
     public function  storeFile(Request $request){
 
 
-
         if($request->hasFile('file')){
+
+            $request->validate([
+                'file' => 'max:2000',
+            ]);
 
             $filenameWithExt = $request->file->getClientOriginalName();
             $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);

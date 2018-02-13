@@ -33,7 +33,7 @@ body{
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     padding-left: 0;
-    padding-right: 0;
+    padding-right:0;
     border-left: solid 5px #ecf0f1;
     height: 100vh;
 }
@@ -62,7 +62,7 @@ body{
 
 .swt-sidebar .nav-item::first-letter{
     font-size: 36px;
-    color: #20c997;
+    color: #18BC9C;
     /*font-family: 'Lobster', cursive;*/
     margin-right: 2px;
 }
@@ -85,7 +85,7 @@ body{
     position: relative;
     padding-left: 0;
     padding-right: 0;
-    height: 85vh;
+    height: 85%;
     /*overflow-x: hidden;*/
     /*overflow-y: auto;*/
 }
@@ -98,7 +98,7 @@ body{
 
 .swt-current-conversation-contact{
     /*font-family: 'Indie Flower', cursive;*/
-    color: #20c997;
+    color: #18BC9C;
 }
 
 .swt-chat-window hr{
@@ -119,9 +119,9 @@ body{
 .swt-chat-window .swt-chat-messages-area .swt-msg-wrapper{
 
     padding: 10px;
-    border-radius: 25px;
+    border-radius: 20px;
     /*font-family: 'Indie Flower', cursive;*/
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .swt-chat-window .swt-chat-messages-area .swt-others-msg{
@@ -131,7 +131,7 @@ body{
 }
 
 .swt-chat-window .swt-chat-messages-area .swt-my-msg{
-    background-color: #20c997;
+    background-color: #18BC9C;
     color: #fff;
     text-align: right;
 }
@@ -150,7 +150,7 @@ body{
 {
     float: left;
     width: 100%;
-    height: 600px;
+    height: 548px;
     background-color: #FFFFFF;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -180,7 +180,7 @@ body{
     height: 550px !important;
 }
 .swt-btn{
-    background-color: #20c997;
+    background-color: #18BC9C;
 }
 .swt-nav-item:hover{
 
@@ -195,7 +195,7 @@ div.fixed {
     position: fixed;
 }
 .createMessage{
-    top:-15px !important;
+    top:2px !important;
 }
 /*.div.hidden{*/
     /*display: none;*/
@@ -225,3 +225,29 @@ div.fixed {
     /*padding: 3px 10px;*/
     /*cursor:pointer;*/
 /*}*/
+
+
+.swt-chat-nav-pills >li.active > a,
+.swt-chat-nav-pills > li.active >a:hover,
+.swt-chat-nav-pills > li.active >a:focus {
+    margin-bottom: 0 !important;
+    color:#3C3F41;
+    background-color: #fff;
+    border-bottom: solid 3px #18BC9C;
+}
+
+#profileChat {
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    border-style: double;
+    background: #dde1e2;
+    font-size: 17px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #ffffff;
+    text-align: center;
+    line-height: 40px;
+    margin: 20px;
+    margin-left: 10px;
+    margin-right: 0;
+}

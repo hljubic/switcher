@@ -99,7 +99,7 @@
                                                                   aria-hidden="true"></i> {{$post->user->name}}</small>
                                                         <br>
                                                         <small><i class="fa fa-clock-o"
-                                                                  aria-hidden="true"></i>{{\Carbon\Carbon::parse($post->created_at)->format('d.m.y h:i:s')}}
+                                                                  aria-hidden="true"></i>{{\Carbon\Carbon::parse($post->created_at)->format('d.m.y H:i:s')}}
                                                         </small>
                                                     </div>
                                                     @php

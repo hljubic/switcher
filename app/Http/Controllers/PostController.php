@@ -38,6 +38,10 @@ class PostController extends Controller
 
         if ($request->hasFile('file')) {
 
+            $request->validate([
+                'file' => 'max:2000',
+            ]);
+
             $filenameWithExt = $request->file->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file->getClientOriginalExtension();
