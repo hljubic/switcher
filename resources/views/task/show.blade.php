@@ -68,12 +68,8 @@
                             <div class="col-lg-12 " style="margin-top: 10px;">
                                 <div class="list-group-item" style="padding-bottom: 3px;">
                                     <div class="row">
-                                        <div class="col-lg-9">
-                                            <p style="padding-top: 7px;">{{$user->name}}</p>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <a style="color: #18bc9c;" class="glyphicon glyphicon-comment btn"
-                                               href="#"></a>
+                                        <div class="col-lg-10">
+                                            <a href="{{route('users')}}/{{$user->id}}" style="padding-top: 7px;">{{$user->name}}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -195,7 +191,7 @@
                                                 <div class="col-lg-9">
                                                     <h5> {{$file->name}}</h5>
                                                     <h6>
-                                                        {{\Carbon\Carbon::parse($file->created_at)->format('h:i:s')}} ,
+                                                        {{\Carbon\Carbon::parse($file->created_at)->format('H:i:s')}} ,
                                                         {{\Carbon\Carbon::parse($file->created_at)->format('d.m.y')}}
                                                     </h6>
                                                 </div>

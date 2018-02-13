@@ -30,7 +30,7 @@
                                                                           required></textarea>
 
                                                     <input type="hidden" name="created_at" id="inputDate"
-                                                           value="{{ date('y-m-d h:i:s') }}">
+                                                           value="{{ date('y-m-d H:i:s') }}">
                                                 </div>
                                                 <div class="panel-footer" style="">
                                                     <div class="row">
@@ -145,7 +145,7 @@
                                                                             <div class="col-lg-6"
                                                                                  style="text-align: right;">
                                                                                 <small><i class="fa fa-clock-o"
-                                                                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($comment->created_at)->format('d.m.y h:i:s')}}
+                                                                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($comment->created_at)->format('d.m.y H:i:s')}}
                                                                                 </small>
                                                                             </div>
                                                                         </div>
@@ -171,7 +171,7 @@
                                                                    placeholder="Napisi komentar...">
                                                         </div>
                                                         <input type="hidden" name="created_at"
-                                                               value="{{ date('y-m-d h:i:s') }}">
+                                                               value="{{ date('y-m-d H:i:s') }}">
                                                         <input type="hidden" name="conversation_id"
                                                                value="{{$post->conversation_id}}">
                                                         <div class="col-lg-2">
@@ -269,9 +269,20 @@
                                                             </h6>
                                                         </div>
                                                         <div class="col-lg-2">
-                                                            <a style="color: #18bc9c;"
-                                                               class="glyphicon glyphicon-comment btn"
-                                                               href="#"></a>
+                                                            <div class="col-lg-2" style="text-align: center;">
+                                                                <form class="form-horizontal" action="{{route('create_conversation2')}}"
+                                                                      method="POST">
+                                                                    {{csrf_field()}}
+                                                                    <fieldset>
+                                                                        <input type="hidden" name="user_id"
+                                                                               value="{{$friend->user->id}}">
+                                                                        <input type="hidden" name="created_at"
+                                                                               value="{{ date('y-m-d H:i:s') }}">
+                                                                        <button type="submit" style="color: #18bc9c; background: transparent;"
+                                                                                class="glyphicon glyphicon-comment btn btn-sm"></button>
+                                                                    </fieldset>
+                                                                </form>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </li>

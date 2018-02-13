@@ -3,7 +3,7 @@
        class="list-group-item list-group-item-action flex-column align-items-start col-lg-12 "
        onclick="{{$notification->markAsRead()}}">
         <div class="d-flex w-100 justify-content-between">
-            {{$notification->data['user']['name']}}
+          <strong>{{$notification->data['user']['name']}}</strong>
             objavio je novi post.
             <br>
             <small>{{Carbon\Carbon::parse($notification->created_at)->diffForHumans()}}</small>

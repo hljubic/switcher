@@ -17,18 +17,18 @@
                                           aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->deadline)->format('d.m.')}}
                                 </small>
                                 <small><i class="fa fa-clock-o"
-                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->deadline)->format('h:m')}}
+                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->deadline)->format('H:i')}}
                                     h
                                 </small>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 pull-right">
                                 <div class="row">
                                     <br>
-                                    <button type="submit" class="col-lg-4 btn btn-success btn-sm">Spremi
+                                    <button type="submit" class="col-lg-4 btn btn-success btn-sm noborder">Spremi
                                     </button>
                                     <div class="col-lg-1"></div>
-                                    @if(count($attendances)>0)
-                                        <a class="col-lg-4 btn btn-default btn-sm"
+                                    @if($attendances)
+                                        <a class="col-lg-4 btn btn-default btn-sm noborder"
                                            href="{{route('download')}}/{{$classe->id}}">Preuzmi</a>
                                     @endif
                                 </div>
@@ -40,18 +40,18 @@
                                           aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->deadline)->format('d.m.')}}
                                 </small>
                                 <small><i class="fa fa-clock-o"
-                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->deadline)->format('h:m')}}
+                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->deadline)->format('H:i')}}
                                     h
                                 </small>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="row">
+                            <div class="col-lg-3 pull-right">
+                                <div class="row ">
                                     <br>
-                                    <button type="submit" class="col-lg-4 btn btn-warning btn-sm">Spremi
+                                    <button type="submit" class="col-lg-4 btn btn-warning btn-sm noborder">Spremi
                                     </button>
                                     <div class="col-lg-1"></div>
-                                    @if(count($attendances)>0)
-                                        <a class="col-lg-4 btn btn-default btn-sm" href="{{route('download')}}/{{$classe->id}}">Preuzmi</a>
+                                    @if($attendances)
+                                        <a class="col-lg-4 btn btn-default btn-sm noborder" href="{{route('download')}}/{{$classe->id}}">Preuzmi</a>
                                     @endif
                                 </div>
                             </div>
@@ -62,18 +62,18 @@
                                           aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->created_at)->format('d.m.')}}
                                 </small>
                                 <small><i class="fa fa-clock-o"
-                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->created_at)->format('h:i')}}
+                                          aria-hidden="true"></i> {{\Carbon\Carbon::parse($classe->created_at)->format('H:i')}}
                                     h
                                 </small>
                             </div>
 
-                            <div class="col-lg-3">
-                                <div class="row">
+                            <div class="col-lg-3 pull-right">
+                                <div class="row ">
                                     <br>
-                                    <button type="submit" class="col-lg-4 btn btn-danger btn-sm">Spremi</button>
+                                    <button type="submit" class="col-lg-4 btn btn-danger btn-sm noborder">Spremi</button>
                                     <div class="col-lg-1"></div>
-                                    @if(count($attendances)>0)
-                                        <a class="col-lg-4 btn btn-default btn-sm"
+                                    @if($attendances)
+                                        <a class="col-lg-4 btn btn-default btn-sm noborder "
                                            href="{{route('download')}}/{{$classe->id}}">Preuzmi</a>
                                     @endif
                                 </div>
@@ -92,7 +92,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if(count($attendances)>0)
+                        @if($attendances)
                             @foreach($collegiums->user as $key => $user)
                                 @if(isset($attendances[$key]->user))
                                     <tr>

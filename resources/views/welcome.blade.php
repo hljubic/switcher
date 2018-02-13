@@ -69,11 +69,9 @@
 
     <div class="content">
         <div class="col-lg-8 col-lg-offset-2" style="padding-bottom: 40px;" >
-            <img  style="width:400px;" src="{{ asset('/images/switcher_logoL.png') }}">
+            <img  style="width:300px;" src="{{ asset('/images/switcher_logoL.png') }}">
         </div>
-        <div>
-            <b><p style="font-size: 20px; padding-bottom: 30px;">Dobro došli na Switcher. Switcher je stranica namijenjena studentima.</p></b>
-        </div>
+
         @if (Route::has('login'))
             <div class="top-left links">
                 @auth
@@ -81,10 +79,23 @@
                     @else
                         <a href="{{ route('login') }}">PRIJAVA</a>
                         <a href="{{ route('register') }}">REGISTRACIJA</a>
+
                         @endauth
             </div>
         @endif
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <b><p style="font-size: 20px; padding-bottom: 30px;">Dobro došli na Switcher. Switcher je stranica namijenjena studentima.</p></b>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
     </div>
+
 </div>
 </body>
 </html>

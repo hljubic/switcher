@@ -57,6 +57,7 @@
                                            class="btn noborder btn-success btn-sm col-lg-6"
                                            style="width: 120px; margin-left: 16px;">
                                             Prestani pratiti</a>
+
                                         <form class="form-horizontal" action="{{route('create_conversation2')}}"
                                               method="POST">
                                             {{csrf_field()}}
@@ -67,7 +68,7 @@
                                                        value="{{ date('y-m-d H:i:s') }}">
                                                 <button type="submit"
                                                         class="btn noborder btn-success disabled btn-sm col-lg-4"
-                                                        style="width: 120px;">Poruka
+                                                        style="width: 120px; margin-left: 20px">Poruka
                                                 </button>
                                             </fieldset>
                                         </form>
@@ -163,7 +164,7 @@
                                                             </small>
                                                             <br>
                                                             <small><i class="fa fa-clock-o"
-                                                                      aria-hidden="true"></i>{{\Carbon\Carbon::parse($post->created_at)->format('d.m.y h:i:s')}}
+                                                                      aria-hidden="true"></i>{{\Carbon\Carbon::parse($post->created_at)->format('d.m.y H:i:s')}}
                                                             </small>
                                                         </div>
                                                         @php
@@ -233,7 +234,7 @@
                                                                        id="focusedInput" type="text" name="content"
                                                                        placeholder="Napisi komentar...">
                                                                 <input type="hidden" name="created_at"
-                                                                       value="{{date('y-m-d h:i:s')}}">
+                                                                       value="{{date('y-m-d H:i:s')}}">
                                                                 <input type="hidden" name="conversation_id"
                                                                        value="{{$post->conversation_id}}">
                                                             </div>

@@ -35,7 +35,7 @@
 
                             <div class="col-md-8 col-lg-offset-2">
                                 <div class="input-group input-group-sm">
-                                    <span class="input-group-addon" id="sizing-addon1" style=" border:none; border-bottom: solid 2px; border-radius: 0px; background-color: white;"><i class="fa fa-unlock-alt" style="font-size: 20px;"></i></span>
+                                    <span class="input-group-addon" id="sizing-addon1" style=" border:none; border-bottom: solid 1px; border-radius: 0px; background-color: white;"><i class="fa fa-unlock-alt" style="font-size: 20px;"></i></span>
                                     <input id="password" type="password" class="form-control swt-input" name="password"  placeholder="Lozinka"  required >
 
                                     @if ($errors->has('password'))

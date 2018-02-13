@@ -4,7 +4,7 @@
        onclick="{{$notification->markAsRead()}}">
         <div class="d-flex w-100 justify-content-between">
             <strong> {{$notification->data['follower']['name']}}</strong>
-            se upisao na zadatak {{$notification->data['task']['name']}}
+            se upisao na zadatak <strong>{{$notification->data['task']['name']}}</strong>
             <br>
             <small>{{Carbon\Carbon::parse($notification->created_at)->diffForHumans()}}</small>
 
