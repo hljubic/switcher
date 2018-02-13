@@ -197,7 +197,8 @@
                                    class="form-control noborder"
                                    placeholder="Napišite novu poruku"
                                    ng-model="newMessage" ng-submit="sendNewMessage()"
-                                   style="">
+                                   style=""
+                                   ng-keypress="checkIfEnterKeyWasPressed($event)">
                         </div>
                         <div class="col-lg-1 nopadding">
                             <button class="btn  btn-block btn-success noborder"
@@ -259,7 +260,7 @@
                                                     <% par.name %></h5>
                                             </div>
                                             <div class="col-lg-1">
-                                                <a href="{{route('users')}}/<%selected_user1%>"
+                                                <a href="{{route('users')}}/<%par.id%>"
                                                    class="btn btn-sm btn-block"
                                                    type="button" style="background-color: transparent;">
                                                     <i class="fa fa-user" style="font-size: 18px;"></i> </a>
@@ -318,11 +319,8 @@
                     <p style="visibility: hidden; position: fixed" value="<%selected_user2%>"></p>
                 </div>
                 <div class="modal-footer">
-                    {{--<div ng-repeat="pr in provjera" ng-model="select(pr)"></div>--}}
                     <button type="button" class="btn swt-button-default btn-sm " data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-success btn-sm noborder"
-
-                            {{--ng-model = "radi()"--}}
                             ng-click="addNewConversation()" data-dismiss="modal">Spremi
                     </button>
                 </div>
@@ -361,7 +359,13 @@
                         API_MESSAGES = '{{ route('messages1','')}}' + '/' + $scope.selectedConversation.id
                         $scope.getMessages();
                     }
-                    $scope.rezz = 2;
+
+                    $scope.checkIfEnterKeyWasPressed = function($event){
+                        var keyCode = $event.which || $event.keyCode;
+                        if (keyCode === 13) {
+                            $scope.sendNewMessage();
+                        }
+                    };
                     $scope.covnertDate = function (dat) {
                         $scope.date = Date.parse(dat)
                     }
@@ -380,6 +384,7 @@
                         $scope.getConversations();
                         $scope.getUsers();
                         setInterval(function () {
+                            $scope.getConversations();
                             $scope.getMessages();
                         }, 3000);
 //                        $scope.reload();
