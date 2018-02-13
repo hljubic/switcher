@@ -32,8 +32,10 @@
                                     <h4 class="list-group-item-heading" style="padding-bottom:5px; color:#20c997;" ng-if="conv.participants.length > 1"><% conv.title %></h4>
                                     <p class="list-group-item-text" style="padding-bottom:5px; color: lightslategray;"
                                        ng-if="par.id != {{Auth::user()->id}}" >
-                                        <% conv.message.content %>
+                                        <% conv.message.content | limitTo: 60 %>
                                     </p>
+                                    <p class="list-group-item-text" style="padding-bottom:5px; color: lightslategray;" ng-model="covnertDate(conv.last_message_time)">
+                                        <%date | date : 'HH:mm'%> </p>
                                 </li>
                             </ul>
                             <ul class="list-group-item swt-nav-item"
@@ -45,10 +47,12 @@
                                 <li style="list-style-type: none;" ng-if="conv.participants.length == 1">
                                     <h4 class="list-group-item-heading" style="padding-bottom:5px; color:#20c997;" ng-if="par.id != {{Auth::user()->id}}"><% par.name %></h4>
                                     <p class="list-group-item-text" style="padding-bottom:5px; color: lightslategray;"
-                                       ng-if="par.id != {{Auth::user()->id}}" ng-model="covnertDate(conv.message.created_at)">
-                                        <% conv.message.content | limitTo: 30 %>
+                                       ng-if="par.id != {{Auth::user()->id}}" >
+                                        <% conv.message.content | limitTo: 60 %>
+                                        {{--<%conv.last_message_time | date: 'mediumTime':'UTC'%>--}}
                                     </p>
-                                    <p ng-bind="date | date: 'HH:mm'"></p>
+                                    <p class="list-group-item-text" style="padding-bottom:5px; color: lightslategray;" ng-model="covnertDate(conv.last_message_time)">
+                                        <%date | date : 'HH:mm'%></p>
                                 </li>
 
                             </ul>
@@ -73,8 +77,9 @@
                                     <div class="row" style="margin-left: 10px">
                                         <div style="position: relative; bottom: 0px; margin-left: 10px">
                                             <div ng-repeat="user in users">
-                                                <p style="color: lightslategray; font-size: small" ng-if="msg.sender_id == user.id">
-                                                    <%msg.created_at %>  @<%user.name%></p></div>
+                                                <p style="color: lightslategray; font-size: small" ng-if="msg.sender_id == user.id" ng-model="covnertDate1(msg.created_at)">
+                                                    <%date1 | date : 'MMM d, y HH:mm'%>  @<%user.name%></p>
+                                            </div>
                                         </div>
                                         <div class=" col-lg-4 swt-msg-wrapper swt-others-msg" style="margin-bottom: 3px;">
                                             <% msg.content %>
@@ -88,7 +93,7 @@
 
                                         <div class="col-xs-4 col-lg-offset-8">
                                             <div style="position: relative; bottom: 0px">
-                                                <p style="color: lightslategray; font-size: small; text-align: right"><%msg.created_at %></p>
+                                                <p style="color: lightslategray; font-size: small; text-align: right" ng-model="covnertDate2(msg.created_at)"><%date2 | date : 'MMM d, y HH:mm'%></p>
                                             </div>
                                             <div class="swt-msg-wrapper swt-my-msg" style="margin-bottom: 3px;" >
                                                 <% msg.content %>
@@ -222,11 +227,16 @@
                     }
                     $scope.rezz = 2;
                   $scope.covnertDate = function (dat) {
-                      $scope.date = dat.toString()
-                      console.log($scope.date)
+                      $scope.date = Date.parse(dat)
                     }
 
+                    $scope.covnertDate1 = function (dat) {
+                        $scope.date1 = Date.parse(dat)
+                    }
 
+                    $scope.covnertDate2 = function (dat) {
+                        $scope.date2 = Date.parse(dat)
+                    }
 
                     $scope.init = function () {
                         // Ulazna točka aplikacije

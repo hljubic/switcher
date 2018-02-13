@@ -74,9 +74,11 @@ class ChatController extends Controller
         if(count($request->list_user)==1) {
             $participants1 = Participant::where('user_id', '=', $request->list_user)->get();
             $participants2 = Participant::where('user_id', '=', Auth::user()->id)->get();
+
             foreach ($participants1 as $part1) {
                 foreach ($participants2 as $part2) {
-                    if ($part1->conversation_id == $part2->conversation_id) {
+                    $partCon = Participant::where('conversation_id','=',$part1->conversation_id)->get()->count();
+                    if ($part1->conversation_id == $part2->conversation_id && $partCon<3) {
 //                    return $part1->conversation_id;
                         $conversation = Conversation::where('id', '=', $part1->conversation_id)->get();
                         return $conversation;
@@ -157,7 +159,6 @@ class ChatController extends Controller
 
         return self::getMessages($request->conversation_id);
     }
-
     public function createConversation2(Request $request)
     {
         $participants1 = Participant::where('user_id', '=', $request->user_id)->get();
